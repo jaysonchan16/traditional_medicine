@@ -33,22 +33,25 @@ public class MainMenu extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\new_patient1.png")); // NOI18N
         jButton1.setText("病人");
         getContentPane().add(jButton1);
-        jButton1.setBounds(74, 145, 125, 48);
+        jButton1.setBounds(90, 140, 190, 80);
 
         jButton2.setText("中药");
         getContentPane().add(jButton2);
         jButton2.setBounds(396, 145, 134, 48);
 
+        jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
         jButton3.setText("草药");
         getContentPane().add(jButton3);
-        jButton3.setBounds(668, 145, 130, 48);
+        jButton3.setBounds(660, 140, 160, 80);
 
         jButton4.setText("参考病症");
         getContentPane().add(jButton4);
@@ -61,11 +64,6 @@ public class MainMenu extends javax.swing.JFrame {
         jButton6.setText("利润");
         getContentPane().add(jButton6);
         jButton6.setBounds(668, 301, 130, 53);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\hospital-patient.png")); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 50, 530, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,6 +110,5 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
