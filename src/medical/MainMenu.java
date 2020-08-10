@@ -14,6 +14,14 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    private User user;
+    public MainMenu(User user) {
+        initComponents();
+        this.user = user;
+        
+        this.lblLoggedIn.setText(user.getUserid());
+    }
+    
     public MainMenu() {
         initComponents();
     }
@@ -34,6 +42,10 @@ public class MainMenu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         btnSettings = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnlogout = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        lblLoggedIn = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,50 +55,69 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\new_patient1.png")); // NOI18N
         jButton1.setText("病人");
         getContentPane().add(jButton1);
-        jButton1.setBounds(80, 90, 220, 80);
+        jButton1.setBounds(30, 120, 220, 80);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
         jButton2.setText("中药");
         getContentPane().add(jButton2);
-        jButton2.setBounds(420, 90, 220, 80);
+        jButton2.setBounds(290, 120, 220, 80);
 
         jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
         jButton3.setText("草药");
         getContentPane().add(jButton3);
-        jButton3.setBounds(770, 80, 220, 80);
+        jButton3.setBounds(550, 120, 220, 80);
 
         jButton4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\book.png")); // NOI18N
         jButton4.setText("参考病症");
         getContentPane().add(jButton4);
-        jButton4.setBounds(90, 240, 220, 80);
+        jButton4.setBounds(820, 120, 220, 80);
 
         jButton5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\cart.png")); // NOI18N
         jButton5.setText("仓库");
         getContentPane().add(jButton5);
-        jButton5.setBounds(420, 240, 220, 80);
+        jButton5.setBounds(30, 320, 220, 80);
 
         jButton6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\profit1.png")); // NOI18N
         jButton6.setText("利润");
         getContentPane().add(jButton6);
-        jButton6.setBounds(770, 240, 220, 80);
+        jButton6.setBounds(290, 320, 220, 80);
 
         btnSettings.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnSettings.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\settings1.png")); // NOI18N
         btnSettings.setText("设定");
         getContentPane().add(btnSettings);
-        btnSettings.setBounds(420, 400, 220, 80);
+        btnSettings.setBounds(550, 320, 220, 80);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel2.setText("目录");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(480, 30, 60, 50);
+
+        btnlogout.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnlogout.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\logout1.png")); // NOI18N
+        btnlogout.setText("登出");
+        getContentPane().add(btnlogout);
+        btnlogout.setBounds(820, 320, 220, 80);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel3.setText("登入：");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(800, 30, 80, 50);
+
+        lblLoggedIn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        getContentPane().add(lblLoggedIn);
+        lblLoggedIn.setBounds(870, 30, 120, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1090, 610);
+        jLabel1.setBounds(0, 0, 1210, 610);
 
-        pack();
+        setBounds(0, 0, 1087, 648);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -126,6 +157,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSettings;
+    private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -133,5 +165,8 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables
 }

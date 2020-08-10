@@ -19,7 +19,7 @@ public class LoginUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    private User _user;
+    private User user;
     
     public LoginUI() {
         initComponents();
@@ -60,6 +60,8 @@ public class LoginUI extends javax.swing.JFrame {
         });
         getContentPane().add(btnLogin);
         btnLogin.setBounds(880, 300, 114, 50);
+
+        txtUserID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(txtUserID);
         txtUserID.setBounds(330, 310, 500, 39);
 
@@ -82,6 +84,8 @@ public class LoginUI extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(880, 370, 119, 48);
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(txtPassword);
         txtPassword.setBounds(330, 380, 500, 40);
 
@@ -118,15 +122,15 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
         jLabel9.setText("jLabel9");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 1080, 600);
+        jLabel9.setBounds(0, 0, 1070, 600);
 
-        pack();
+        setBounds(0, 0, 1088, 643);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String userid = txtUserID.getText();
-        String password = txtPassword1.getText();
+        String password = txtPassword.getText();
         
         User user = new User();
         
