@@ -158,7 +158,7 @@ public class ImportJtable extends javax.swing.JFrame {
                     if (i != 0) {
                         tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                         TableColumnModel columnModel = tblImport.getColumnModel();
-                        columnModel.getColumn(0).setPreferredWidth(90);
+                        columnModel.getColumn(0).setPreferredWidth(100);
                         columnModel.getColumn(1).setPreferredWidth(150);
                         columnModel.getColumn(2).setPreferredWidth(30);
                         columnModel.getColumn(3).setPreferredWidth(30);
