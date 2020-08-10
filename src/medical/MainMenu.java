@@ -35,10 +35,10 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnPatient = new javax.swing.JButton();
+        btnMedical = new javax.swing.JButton();
+        btnGrass = new javax.swing.JButton();
+        btnReference = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         btnSettings = new javax.swing.JButton();
@@ -51,29 +51,34 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\new_patient1.png")); // NOI18N
-        jButton1.setText("病人");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(30, 120, 220, 80);
+        btnPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\new_patient1.png")); // NOI18N
+        btnPatient.setText("病人");
+        btnPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPatient);
+        btnPatient.setBounds(30, 120, 220, 80);
 
-        jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
-        jButton2.setText("中药");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(290, 120, 220, 80);
+        btnMedical.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnMedical.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
+        btnMedical.setText("中药");
+        getContentPane().add(btnMedical);
+        btnMedical.setBounds(290, 120, 220, 80);
 
-        jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
-        jButton3.setText("草药");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(550, 120, 220, 80);
+        btnGrass.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnGrass.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
+        btnGrass.setText("草药");
+        getContentPane().add(btnGrass);
+        btnGrass.setBounds(550, 120, 220, 80);
 
-        jButton4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\book.png")); // NOI18N
-        jButton4.setText("参考病症");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(820, 120, 220, 80);
+        btnReference.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnReference.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\book.png")); // NOI18N
+        btnReference.setText("参考病症");
+        getContentPane().add(btnReference);
+        btnReference.setBounds(820, 120, 220, 80);
 
         jButton5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\cart.png")); // NOI18N
@@ -120,6 +125,10 @@ public class MainMenu extends javax.swing.JFrame {
         setBounds(0, 0, 1087, 648);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPatientActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,12 +165,12 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGrass;
+    private javax.swing.JButton btnMedical;
+    private javax.swing.JButton btnPatient;
+    private javax.swing.JButton btnReference;
     private javax.swing.JButton btnSettings;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;

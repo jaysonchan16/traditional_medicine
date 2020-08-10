@@ -62,12 +62,19 @@ public class ImportJtable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "name", "gender", "age", "phone", "address"
+                "IC", "姓名", "性别 ", "年龄 ", "电话号码 ", "地址"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -124,24 +131,6 @@ public class ImportJtable extends javax.swing.JFrame {
 
         DefaultTableModel ImportDataFromExcelModel = (DefaultTableModel) tblImport.getModel();
         Excel exl = new Excel();
-        tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        exl.resizeColumnWidth(tblImport);
-//        tblImport.getColumnModel().getColumn(4).setPreferredWidth(30);
-//        tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-//        JScrollPane scrollPane = new JScrollPane(tblImport);
-//        exl.resizeColumnWidth(tblImport);
-//        exl.sizeColumnsToFit(tblImport, 100);
-//        TableColumnModel columnModel = tblImport.getColumnModel();
-//        columnModel.getColumn(1).setWidth(1);
-//        columnModel.getColumn(1).setPreferredWidth(1);
-//        columnModel.getColumn(5).setWidth(100);
-//        columnModel.getColumn(5).setPreferredWidth(100);
-//        columnModel.getColumn(1).setWidth(5);
-//        columnModel.getColumn(2).setWidth(1);
-//        columnModel.getColumn(3).setWidth(1);
-//        columnModel.getColumn(4).setWidth(10);
-//        columnModel.getColumn(5).setWidth(100);
-        ImportDataFromExcelModel.setNumRows(0);
         FileInputStream excelFIS = null;
         BufferedInputStream excelBIS = null;
         XSSFWorkbook excelImportWorkBook = null;
@@ -167,6 +156,14 @@ public class ImportJtable extends javax.swing.JFrame {
                     XSSFCell phone = excelRow.getCell(4);
                     XSSFCell address = excelRow.getCell(5);
                     if (i != 0) {
+                        tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                        TableColumnModel columnModel = tblImport.getColumnModel();
+                        columnModel.getColumn(0).setPreferredWidth(90);
+                        columnModel.getColumn(1).setPreferredWidth(150);
+                        columnModel.getColumn(2).setPreferredWidth(30);
+                        columnModel.getColumn(3).setPreferredWidth(30);
+                        columnModel.getColumn(4).setPreferredWidth(80);
+                        columnModel.getColumn(5).setPreferredWidth(600);
                         ImportDataFromExcelModel.addRow(new Object[]{IC, name, gender, age, phone, address});
                     }
                 }
