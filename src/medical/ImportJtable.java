@@ -5,12 +5,17 @@
  */
 package medical;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -54,6 +59,7 @@ public class ImportJtable extends javax.swing.JFrame {
         tblImport = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        btnPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +102,13 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
 
+        btnPDF.setText("PDF");
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,16 +116,23 @@ public class ImportJtable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnImport, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(btnPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnImport, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(btnPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(290, 290, 290)
+                .addGap(181, 181, 181)
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,6 +209,63 @@ public class ImportJtable extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+        // TODO add your handling code here:
+        String path ="";
+        JFileChooser j =new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+        
+        if(x == JFileChooser.APPROVE_OPTION)
+        {
+            path=j.getSelectedFile().getPath();
+        }
+        
+        Document doc = new Document();
+        
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"testing.pdf"));
+            
+            doc.open();
+            
+            PdfPTable tbl = new PdfPTable(5);
+            
+            tbl.addCell("IC");
+            tbl.addCell("名字");
+            tbl.addCell("性别");
+            tbl.addCell("年龄");
+            tbl.addCell("电话号码");
+            tbl.addCell("地址");
+            
+            for(int i = 0; i<tblImport.getRowCount(); i++){
+                String IC = tblImport.getValueAt(i, 0).toString();
+                String name = tblImport.getValueAt(i, 1).toString();
+                String gender = tblImport.getValueAt(i, 2).toString();
+                String age = tblImport.getValueAt(i, 3).toString();
+                String phone = tblImport.getValueAt(i, 4).toString();
+                String address = tblImport.getValueAt(i, 5).toString();
+                
+                tbl.addCell(IC);
+                tbl.addCell(name);
+                tbl.addCell(gender);
+                tbl.addCell(age);
+                tbl.addCell(phone);
+                tbl.addCell(address);
+            }
+            
+            doc.add(tbl);
+            JOptionPane.showMessageDialog(null, "Generate PDF");
+        } catch (DocumentException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        doc.close();
+    }//GEN-LAST:event_btnPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +304,7 @@ public class ImportJtable extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImport;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblImport;
