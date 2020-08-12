@@ -145,7 +145,6 @@ public class ImportJtable extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         DefaultTableModel ImportDataFromExcelModel = (DefaultTableModel) tblImport.getModel();
-        Excel exl = new Excel();
         FileInputStream excelFIS = null;
         BufferedInputStream excelBIS = null;
         XSSFWorkbook excelImportWorkBook = null;
@@ -193,15 +192,8 @@ public class ImportJtable extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        MessageFormat header = new MessageFormat("Report Print");
-
-        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-
-        try {
-            tblImport.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-        } catch (java.awt.print.PrinterException e) {
-            System.err.format("Cannot print %s%n", e.getMessage());
-        }
+        Excel exl = new Excel();
+        exl.Print(tblImport);
     }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
