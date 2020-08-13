@@ -64,13 +64,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         btnMedical.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnMedical.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
-        btnMedical.setText("中药");
+        btnMedical.setText("草药");
         getContentPane().add(btnMedical);
         btnMedical.setBounds(290, 120, 220, 80);
 
         btnGrass.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnGrass.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
-        btnGrass.setText("草药");
+        btnGrass.setText("中药");
         getContentPane().add(btnGrass);
         btnGrass.setBounds(550, 120, 220, 80);
 

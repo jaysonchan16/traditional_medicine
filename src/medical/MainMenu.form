@@ -55,7 +55,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="C:\Users\Sheng\Desktop\Pictures\grassmedic1.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x4e2d;&#x836f;"/>
+        <Property name="text" type="java.lang.String" value="&#x8349;&#x836f;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -71,7 +71,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="C:\Users\Sheng\Desktop\Pictures\transparent.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x8349;&#x836f;"/>
+        <Property name="text" type="java.lang.String" value="&#x4e2d;&#x836f;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
