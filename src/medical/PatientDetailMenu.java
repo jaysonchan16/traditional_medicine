@@ -27,61 +27,73 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnPatient = new javax.swing.JButton();
+        btnPatientDetail = new javax.swing.JButton();
+        btnBackup = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
+        btnEditPatient = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnDisease = new javax.swing.JButton();
+        btnEditDisease = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jButton1.setText("新增");
+        btnPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-user1.png")); // NOI18N
+        btnPatient.setText("新增病人");
+        getContentPane().add(btnPatient);
+        btnPatient.setBounds(10, 140, 239, 70);
 
-        jButton2.setText("病人资料/打印");
+        btnPatientDetail.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnPatientDetail.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\report.png")); // NOI18N
+        btnPatientDetail.setText("病人资料");
+        getContentPane().add(btnPatientDetail);
+        btnPatientDetail.setBounds(820, 140, 240, 70);
 
-        jButton3.setText("备用");
+        btnBackup.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnBackup.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\export.png")); // NOI18N
+        btnBackup.setText("备用");
+        getContentPane().add(btnBackup);
+        btnBackup.setBounds(550, 140, 240, 70);
 
-        jButton4.setText("输入资料");
+        btnImport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnImport.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
+        btnImport.setText("输入资料");
+        getContentPane().add(btnImport);
+        btnImport.setBounds(550, 340, 239, 70);
 
-        jButton5.setText("更改资料");
+        btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
+        btnEditPatient.setText("更改病人资料");
+        getContentPane().add(btnEditPatient);
+        btnEditPatient.setBounds(10, 340, 239, 65);
 
-        jButton6.setText("退出");
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
+        btnBack.setText("退出");
+        getContentPane().add(btnBack);
+        btnBack.setBounds(820, 340, 240, 70);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(434, 434, 434)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(484, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(60, 60, 60)
-                .addComponent(jButton5)
-                .addGap(56, 56, 56)
-                .addComponent(jButton6)
-                .addGap(81, 81, 81))
-        );
+        btnDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnDisease.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
+        btnDisease.setText("新增病症");
+        getContentPane().add(btnDisease);
+        btnDisease.setBounds(280, 140, 240, 70);
 
-        setBounds(0, 0, 1051, 583);
+        btnEditDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnEditDisease.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
+        btnEditDisease.setText("更改病症资料");
+        getContentPane().add(btnEditDisease);
+        btnEditDisease.setBounds(280, 340, 239, 70);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1070, 600);
+
+        setBounds(0, 0, 1086, 646);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -120,11 +132,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBackup;
+    private javax.swing.JButton btnDisease;
+    private javax.swing.JButton btnEditDisease;
+    private javax.swing.JButton btnEditPatient;
+    private javax.swing.JButton btnImport;
+    private javax.swing.JButton btnPatient;
+    private javax.swing.JButton btnPatientDetail;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
