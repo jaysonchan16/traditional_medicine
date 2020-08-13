@@ -35,6 +35,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnDisease = new javax.swing.JButton();
         btnEditDisease = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,10 +89,15 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         getContentPane().add(btnEditDisease);
         btnEditDisease.setBounds(280, 340, 239, 70);
 
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel2.setText("病人");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(480, 30, 80, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1070, 600);
+        jLabel1.setBounds(0, 0, 1080, 600);
 
         setBounds(0, 0, 1086, 646);
     }// </editor-fold>//GEN-END:initComponents
@@ -141,5 +147,6 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnPatient;
     private javax.swing.JButton btnPatientDetail;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
