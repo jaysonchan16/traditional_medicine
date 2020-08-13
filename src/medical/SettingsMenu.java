@@ -31,6 +31,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -38,24 +39,29 @@ public class SettingsMenu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton1.setText("输入路径");
         getContentPane().add(jButton1);
-        jButton1.setBounds(60, 188, 133, 43);
+        jButton1.setBounds(90, 220, 180, 80);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setText("更改密码");
         getContentPane().add(jButton2);
-        jButton2.setBounds(370, 190, 133, 43);
+        jButton2.setBounds(470, 220, 180, 80);
 
         jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton3.setText("注册账号");
         getContentPane().add(jButton3);
-        jButton3.setBounds(680, 190, 133, 43);
+        jButton3.setBounds(823, 220, 190, 80);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("设定");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(390, 50, 50, 34);
+        jLabel1.setBounds(520, 60, 50, 34);
 
-        setBounds(0, 0, 906, 553);
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1070, 600);
+
+        setBounds(0, 0, 1086, 645);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -98,5 +104,6 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
