@@ -44,6 +44,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -81,8 +82,13 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
         jButton6.setText("退出");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
-        jButton6.setBounds(810, 340, 200, 90);
+        jButton6.setBounds(840, 440, 200, 90);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("中药");
@@ -98,8 +104,20 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         getContentPane().add(lblLoggedIn);
         lblLoggedIn.setBounds(870, 40, 120, 40);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1070, 550);
+
         setBounds(0, 0, 1089, 595);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        MainMenu detail = new MainMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +162,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables

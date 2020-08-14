@@ -4,7 +4,23 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/LoginUI.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MedicalMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ViewPatientDetail.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/SettingsMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/User.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ListGrassMedicine.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MedicalDetailMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/GrassDetailMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MainMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/connect.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/NewPatient.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ImportJtable.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Excel.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Medicine.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Medical.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/PatientDetailMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Patient.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/AddSick.java</file>
         </group>
     </open-files>
 </project-private>

@@ -43,6 +43,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lbl = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -50,8 +51,13 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
         jButton1.setText("新增");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(120, 140, 187, 83);
+        jButton1.setBounds(100, 140, 210, 83);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
@@ -75,11 +81,16 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
         jButton5.setText("输入");
         getContentPane().add(jButton5);
-        jButton5.setBounds(120, 360, 190, 80);
+        jButton5.setBounds(110, 360, 200, 80);
 
         jButton6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
         jButton6.setText("退出");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
         jButton6.setBounds(810, 350, 190, 90);
 
@@ -97,8 +108,24 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         getContentPane().add(lblLoggedIn);
         lblLoggedIn.setBounds(890, 40, 140, 40);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1070, 550);
+
         setBounds(0, 0, 1090, 607);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        MainMenu detail = new MainMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,6 +170,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbl;
     private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables

@@ -44,10 +44,15 @@ public class Medical {
 //                new ImportJtable().setVisible(true);
 //            }
 //        });
-            java.awt.EventQueue.invokeLater(new Runnable() {
+//            java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//
+//                new ImportJtable().setVisible(true);
+//            }
+//        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
-                new ImportJtable().setVisible(true);
+                new LoginUI().setVisible(true);
             }
         });
         }
