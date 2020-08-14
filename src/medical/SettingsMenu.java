@@ -31,7 +31,10 @@ public class SettingsMenu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -39,27 +42,41 @@ public class SettingsMenu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton1.setText("输入路径");
         getContentPane().add(jButton1);
-        jButton1.setBounds(90, 220, 180, 80);
+        jButton1.setBounds(160, 150, 180, 80);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setText("更改密码");
         getContentPane().add(jButton2);
-        jButton2.setBounds(470, 220, 180, 80);
+        jButton2.setBounds(740, 150, 180, 80);
 
         jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton3.setText("注册账号");
         getContentPane().add(jButton3);
-        jButton3.setBounds(823, 220, 190, 80);
+        jButton3.setBounds(160, 360, 190, 80);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("设定");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(520, 60, 50, 34);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        jLabel2.setText("jLabel2");
+        jButton4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jButton4.setText("删除账号");
+        getContentPane().add(jButton4);
+        jButton4.setBounds(740, 360, 180, 80);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel2.setText("登入：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1070, 600);
+        jLabel2.setBounds(730, 50, 90, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(810, 40, 170, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1090, 590);
 
         setBounds(0, 0, 1086, 645);
     }// </editor-fold>//GEN-END:initComponents
@@ -103,7 +120,10 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

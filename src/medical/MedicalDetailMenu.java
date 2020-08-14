@@ -34,7 +34,8 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblLoggedIn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -80,9 +81,14 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(490, 50, 140, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1070, 550);
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel3.setText("登入：");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(761, 40, 80, 40);
+
+        lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(lblLoggedIn);
+        lblLoggedIn.setBounds(870, 40, 120, 40);
 
         setBounds(0, 0, 1089, 595);
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +136,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables
 }

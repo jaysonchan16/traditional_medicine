@@ -65,12 +65,22 @@ public class MainMenu extends javax.swing.JFrame {
         btnMedical.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnMedical.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
         btnMedical.setText("草药");
+        btnMedical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedicalActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnMedical);
         btnMedical.setBounds(290, 120, 220, 80);
 
         btnGrass.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnGrass.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
         btnGrass.setText("中药");
+        btnGrass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrassActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnGrass);
         btnGrass.setBounds(550, 120, 220, 80);
 
@@ -127,7 +137,24 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
         // TODO add your handling code here:
+        PatientDetailMenu detail = new PatientDetailMenu(user.getUserid());
+        detail.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPatientActionPerformed
+
+    private void btnMedicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicalActionPerformed
+        // TODO add your handling code here:
+        MedicalDetailMenu detail = new MedicalDetailMenu(user.getUserid());
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMedicalActionPerformed
+
+    private void btnGrassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrassActionPerformed
+        // TODO add your handling code here:
+        GrassDetailMenu detail = new GrassDetailMenu(user.getUserid());
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGrassActionPerformed
 
     /**
      * @param args the command line arguments

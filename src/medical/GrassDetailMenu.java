@@ -34,7 +34,8 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl = new javax.swing.JLabel();
+        lblLoggedIn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -80,9 +81,14 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(520, 40, 50, 34);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1120, 560);
+        lbl.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lbl.setText("登入：");
+        getContentPane().add(lbl);
+        lbl.setBounds(810, 40, 75, 40);
+
+        lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(lblLoggedIn);
+        lblLoggedIn.setBounds(890, 40, 140, 40);
 
         setBounds(0, 0, 1090, 607);
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +136,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbl;
+    private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables
 }

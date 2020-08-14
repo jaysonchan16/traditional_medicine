@@ -141,7 +141,6 @@ public class LoginUI extends javax.swing.JFrame {
                 MainMenu rs = new MainMenu(user);
                 rs.setVisible(true);
                 this.dispose();
-                JOptionPane.showMessageDialog(rootPane,"Log In");
             }
             else {
                 JOptionPane.showMessageDialog(rootPane,"Cannot Log In");
