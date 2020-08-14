@@ -14,6 +14,13 @@ public class SettingsMenu extends javax.swing.JFrame {
     /**
      * Creates new form SettingsMenu
      */
+    private User user;
+    public SettingsMenu(User user) {
+        initComponents();
+        this.user = user;
+        
+        this.lblLoggedIn.setText(user.getUserid());
+    }
     public SettingsMenu() {
         initComponents();
     }
@@ -33,7 +40,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblLoggedIn = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,9 +76,9 @@ public class SettingsMenu extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(730, 50, 90, 40);
 
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(810, 40, 170, 50);
+        lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(lblLoggedIn);
+        lblLoggedIn.setBounds(810, 40, 170, 50);
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
         jLabel4.setText("jLabel4");
@@ -123,7 +130,7 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblLoggedIn;
     // End of variables declaration//GEN-END:variables
 }

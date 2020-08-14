@@ -14,6 +14,13 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     /**
      * Creates new form PatientDetailMenu
      */
+    private User user;
+    public PatientDetailMenu(User user) {
+        initComponents();
+        this.user = user;
+        
+        this.lblLoggedIn.setText(user.getUserid());
+    }
     public PatientDetailMenu() {
         initComponents();
     }

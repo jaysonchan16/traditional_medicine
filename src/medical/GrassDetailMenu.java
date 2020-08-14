@@ -14,6 +14,13 @@ public class GrassDetailMenu extends javax.swing.JFrame {
     /**
      * Creates new form GrassDetailMenu
      */
+    private User user;
+    public GrassDetailMenu(User user) {
+        initComponents();
+        this.user = user;
+        
+        this.lblLoggedIn.setText(user.getUserid());
+    }
     public GrassDetailMenu() {
         initComponents();
     }

@@ -105,6 +105,11 @@ public class MainMenu extends javax.swing.JFrame {
         btnSettings.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnSettings.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\settings1.png")); // NOI18N
         btnSettings.setText("设定");
+        btnSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSettingsActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSettings);
         btnSettings.setBounds(550, 320, 220, 80);
 
@@ -116,6 +121,11 @@ public class MainMenu extends javax.swing.JFrame {
         btnlogout.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnlogout.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\logout1.png")); // NOI18N
         btnlogout.setText("登出");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnlogout);
         btnlogout.setBounds(820, 320, 220, 80);
 
@@ -137,24 +147,38 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
         // TODO add your handling code here:
-        PatientDetailMenu detail = new PatientDetailMenu(user.getUserid());
+        PatientDetailMenu detail = new PatientDetailMenu(user);
         detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPatientActionPerformed
 
     private void btnMedicalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicalActionPerformed
         // TODO add your handling code here:
-        MedicalDetailMenu detail = new MedicalDetailMenu(user.getUserid());
+        MedicalDetailMenu detail = new MedicalDetailMenu(user);
         detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMedicalActionPerformed
 
     private void btnGrassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrassActionPerformed
         // TODO add your handling code here:
-        GrassDetailMenu detail = new GrassDetailMenu(user.getUserid());
+        GrassDetailMenu detail = new GrassDetailMenu(user);
         detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGrassActionPerformed
+
+    private void btnSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingsActionPerformed
+        // TODO add your handling code here:
+        SettingsMenu detail = new SettingsMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSettingsActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        LoginUI login = new LoginUI();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
