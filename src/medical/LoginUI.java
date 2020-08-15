@@ -23,6 +23,7 @@ public class LoginUI extends javax.swing.JFrame {
     
     public LoginUI() {
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -131,7 +132,6 @@ public class LoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userid = txtUserID.getText();
         String password = txtPassword.getText();
-        
         User user = new User();
         
         try {
@@ -143,7 +143,7 @@ public class LoginUI extends javax.swing.JFrame {
                 this.dispose();
             }
             else {
-                JOptionPane.showMessageDialog(rootPane,"Cannot Log In");
+                JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
                 
             }
         } catch (SQLException ex) {
