@@ -20,6 +20,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         this.user = user;
         
         this.lblLoggedIn.setText(user.getUserid());
+        setResizable(false);
     }
     public GrassDetailMenu() {
         initComponents();

@@ -71,7 +71,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPatient);
 
-        btnBackup.setText("Backup");
+        btnBackup.setText("备用");
         btnBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackupActionPerformed(evt);

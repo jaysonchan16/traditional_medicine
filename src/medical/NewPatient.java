@@ -22,6 +22,12 @@ public class NewPatient extends javax.swing.JFrame {
      * Creates new form NewPatient
      */
     //private static Statement st;
+    private User user;
+    public NewPatient(User user) {
+        initComponents();
+        this.user = user;
+        
+    }
     public NewPatient() {
         initComponents();
         //st = connect.connection();
@@ -37,15 +43,11 @@ public class NewPatient extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtGender = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtAge = new javax.swing.JTextField();
         txtIC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
@@ -55,33 +57,75 @@ public class NewPatient extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        txtGender = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtSymptom = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("名字：");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 128, 70, 40);
 
-        txtName.setEnabled(false);
-
-        txtGender.setEnabled(false);
-
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("性别：");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 180, 145, 30);
 
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("年龄：");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(400, 180, 60, 40);
 
-        txtAge.setEnabled(false);
+        txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtIC.setText("4");
+        getContentPane().add(txtIC);
+        txtIC.setBounds(100, 80, 480, 40);
 
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("IC:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 82, 130, 40);
 
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("电话：");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 230, 154, 30);
 
-        txtPhone.setEnabled(false);
-
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("地址：");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 280, 154, 40);
 
+        txtAddress.setEditable(false);
         txtAddress.setColumns(20);
+        txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtAddress.setRows(5);
         txtAddress.setEnabled(false);
         jScrollPane1.setViewportView(txtAddress);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(100, 280, 650, 110);
 
         btnAdd.setText("新增");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +133,17 @@ public class NewPatient extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAdd);
+        btnAdd.setBounds(780, 1519, 126, 51);
 
         jButton2.setText("退出");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(32, 1519, 126, 51);
 
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel7.setText("病人资料");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(210, 30, 260, 41);
 
         btnDelete.setText("删除");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +151,8 @@ public class NewPatient extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDelete);
+        btnDelete.setBounds(204, 1520, 126, 49);
 
         btnEdit.setText("更改");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -107,103 +160,110 @@ public class NewPatient extends javax.swing.JFrame {
                 btnEditActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEdit);
+        btnEdit.setBounds(401, 1520, 126, 49);
 
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
             }
         });
+        getContentPane().add(btnFind);
+        btnFind.setBounds(600, 72, 151, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtIC, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtPhone))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtAge)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(71, 71, 71)
-                                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jScrollPane1))))
-                                .addGap(31, 31, 31)
-                                .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIC, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63))
-        );
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtName);
+        txtName.setBounds(100, 130, 650, 40);
 
-        pack();
+        txtGender.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtGender);
+        txtGender.setBounds(100, 180, 270, 40);
+
+        txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtAge);
+        txtAge.setBounds(470, 180, 280, 40);
+
+        txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtPhone);
+        txtPhone.setBounds(100, 230, 650, 40);
+
+        txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtSymptom);
+        txtSymptom.setBounds(100, 410, 650, 40);
+
+        jLabel8.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel8.setText("主症 :");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(32, 1460, 126, 52);
+
+        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel9.setText("主症：");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(20, 410, 70, 30);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(10, 400, 760, 10);
+
+        jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel10.setText("体温：");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(20, 470, 60, 20);
+
+        jTextField1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(100, 460, 260, 40);
+
+        jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel11.setText("血压：");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(380, 460, 60, 40);
+
+        jTextField2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(440, 460, 310, 40);
+
+        jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel12.setText("脉象：");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(20, 510, 60, 30);
+
+        jTextField3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(100, 510, 650, 40);
+
+        jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel13.setText("舌质：");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(20, 560, 60, 30);
+
+        jTextField4.setFont(new java.awt.Font("STXihei", 0, 18)); // NOI18N
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(100, 560, 650, 40);
+
+        jLabel14.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel14.setText("舌苔：");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(20, 610, 60, 30);
+
+        jTextField5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField5);
+        jTextField5.setBounds(100, 610, 650, 40);
+
+        jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel15.setText("大便：");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(20, 660, 60, 30);
+
+        jTextField6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField6);
+        jTextField6.setBounds(100, 660, 650, 40);
+
+        jLabel16.setText("jLabel16");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(20, 720, 48, 16);
+
+        setBounds(0, 0, 1911, 1467);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -339,18 +399,35 @@ public class NewPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtSymptom;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,6 +20,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.user = user;
         
         this.lblLoggedIn.setText(user.getUserid());
+        setResizable(false);
     }
     public PatientDetailMenu() {
         initComponents();
@@ -82,6 +83,11 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
         btnEditPatient.setText("更改病人资料");
+        btnEditPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPatientActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEditPatient);
         btnEditPatient.setBounds(10, 340, 239, 65);
 
@@ -139,6 +145,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPatientActionPerformed
+
+    private void btnEditPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPatientActionPerformed
+        // TODO add your handling code here:
+        NewPatient patient = new NewPatient(user);
+        patient.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnEditPatientActionPerformed
 
     /**
      * @param args the command line arguments

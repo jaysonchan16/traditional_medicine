@@ -20,6 +20,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         this.user = user;
         
         this.lblLoggedIn.setText(user.getUserid());
+        setResizable(false);
     }
     
     public MedicalDetailMenu() {

@@ -105,6 +105,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x66f4;&#x6539;&#x75c5;&#x4eba;&#x8d44;&#x6599;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditPatientActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="10" y="340" width="-1" height="65"/>

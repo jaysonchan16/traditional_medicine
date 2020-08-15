@@ -20,6 +20,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         this.user = user;
         
         this.lblLoggedIn.setText(user.getUserid());
+        setResizable(false);
     }
     public SettingsMenu() {
         initComponents();
