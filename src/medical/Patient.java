@@ -165,7 +165,7 @@ public class Patient {
     }
     
     public int EditPatient(String name, String gender, int age, String IC, String phone, String address){
-         String query = "Update Patient Set name = '"+name+"', gender = '"+gender+"', age = "+age+", phone = '"+phone+"', address = '"+address+"'"
+         String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"')"
                  + "where IC = '"+IC+"'";
         try {
             st.executeUpdate(query);

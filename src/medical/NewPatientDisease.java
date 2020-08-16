@@ -46,6 +46,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtIC.setText(ic);
         txtName.setText(name);
         txtPhone.setText(phone);
+        lblID.setText(String.valueOf(id));
         setResizable(false);
     }
     public NewPatientDisease() {
@@ -85,8 +86,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtShit = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtPee = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BtnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -207,10 +209,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(txtPee);
         txtPee.setBounds(120, 640, 930, 40);
 
-        jButton2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jButton2.setText("新增");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(850, 710, 90, 40);
+        BtnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        BtnAdd.setText("新增");
+        BtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnAdd);
+        BtnAdd.setBounds(850, 710, 90, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -221,6 +228,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack);
         btnBack.setBounds(960, 710, 90, 40);
+        getContentPane().add(lblID);
+        lblID.setBounds(40, 50, 0, 0);
 
         setBounds(0, 0, 1101, 816);
     }// </editor-fold>//GEN-END:initComponents
@@ -239,6 +248,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             {    
                 txtName.setText(patient.getPatient(IC).getName());
                 txtPhone.setText(patient.getPatient(IC).getPhone());
+                lblID.setText(String.valueOf(patient.getPatient(IC).getID()));
                 txtIC.setEnabled(false);
             }
             else
@@ -259,6 +269,50 @@ public class NewPatientDisease extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddActionPerformed
+        // TODO add your handling code here:
+        try {
+            int patientID = Integer.parseInt(lblID.getText());
+            String symptom = txtSymptom.getText();
+            int temperature = Integer.parseInt(txtTemperature.getText());
+            String blood = txtBlood.getText();
+            String pulse = txtPulse.getText();
+            String tonguequality = txtTongueQuality.getText();
+            String tonguecoating = txtTongueCoating.getText();
+            String shit = txtShit.getText();
+            String pee = txtPee.getText();
+            
+            if (symptom.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "主症没填！");
+            } else if (temperature <= 0 && temperature >= 100) {
+                JOptionPane.showMessageDialog(rootPane, "体温错误！");
+            } else if (blood.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "血压没填！");
+            } else if (pulse.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "脉象没填！");
+            } else if (tonguequality.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "舌质没填！");
+            } else if (tonguecoating.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "舌苔没填！");
+            } else if (shit.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "大便没填！");
+            } else if (pee.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "小便没填！");
+            }
+            else {
+                Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
+                                                tonguecoating, pee, shit, patientID);
+                if (disease.AddDisease() == 1) {
+                    JOptionPane.showMessageDialog(rootPane, "新增成功");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "新增失败");
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "体温后面不可以有空格/体温不可以放字母！");
+        }
+    }//GEN-LAST:event_BtnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,9 +350,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -311,6 +365,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblID;
     private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtName;
