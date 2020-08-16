@@ -58,21 +58,21 @@ public class GrassDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(100, 140, 210, 83);
+        jButton1.setBounds(150, 140, 190, 90);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
         jButton2.setText("更改");
         getContentPane().add(jButton2);
-        jButton2.setBounds(460, 140, 188, 83);
+        jButton2.setBounds(480, 140, 188, 90);
 
         jButton3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\export.png")); // NOI18N
         jButton3.setText("备用");
         getContentPane().add(jButton3);
-        jButton3.setBounds(460, 360, 190, 80);
+        jButton3.setBounds(480, 330, 190, 90);
 
-        jButton4.setFont(new java.awt.Font("STXihei", 0, 24)); // NOI18N
+        jButton4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\report.png")); // NOI18N
         jButton4.setText("资料");
         getContentPane().add(jButton4);
@@ -82,7 +82,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
         jButton5.setText("输入");
         getContentPane().add(jButton5);
-        jButton5.setBounds(110, 360, 200, 80);
+        jButton5.setBounds(150, 330, 190, 90);
 
         jButton6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
@@ -93,7 +93,7 @@ public class GrassDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(810, 350, 190, 90);
+        jButton6.setBounds(810, 330, 190, 90);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("草药");

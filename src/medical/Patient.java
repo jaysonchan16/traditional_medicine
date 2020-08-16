@@ -151,8 +151,8 @@ public class Patient {
     public int AddNewPatient(){
         /* String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
                 + "'"+age+"','"+phone+"','"+address+"')";*/
-        String query = "insert into Patient(IC, name, gender, age, phone, address)"
-                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"')";
+        String query = "insert into Patient(IC, name, gender, age, phone, address,lastUpdateDateTime)"
+                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -165,7 +165,7 @@ public class Patient {
     }
     
     public int EditPatient(String name, String gender, int age, String IC, String phone, String address){
-         String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"')"
+         String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + "where IC = '"+IC+"'";
         try {
             st.executeUpdate(query);

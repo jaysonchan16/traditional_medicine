@@ -239,9 +239,9 @@ public class Disease {
     }
     
     public int AddDisease(){
-        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID)"
+        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpateDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"')";
+                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), lastUpdateDateTime = datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -256,7 +256,7 @@ public class Disease {
     public int EditDisease(){
          String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
                  + " BloodPressure = trim('"+bloodPressure+"'), PulseCondition = trim('"+pulseCondition+"'), TongueQuality = trim('"+tongueQuality+"'),"
-                 + " TongueCoating = trim('"+tongueCoating+"'), Pee = trim('"+pee+"'), Shit = trim('"+shit+"')"
+                 + " TongueCoating = trim('"+tongueCoating+"'), Pee = trim('"+pee+"'), Shit = trim('"+shit+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where patientID = "+patientID+" order by 1 desc";
         try {
             st.executeUpdate(query);
