@@ -253,12 +253,11 @@ public class Disease {
         }
     }
     
-    public int EditDisease(String name, String gender, int age, String IC, String phone, String address){
-         String query = "Update Disease b Set b.Symptom = trim('"+symptom+"'), b.Temperature = "+temperature+","
-                 + " b.BloodPressure = trim('"+bloodPressure+"'), b.PulseCondition = trim('"+pulseCondition+"'), b.TongueQuality = trim('"+tongueQuality+"'),"
-                 + " b.TongueCoating = trim('"+tongueCoating+"'), b.Pee = trim('"+pee+"'), b.Shit = trim('"+shit+"')"
-                 + " From Patient a Inner join Disease b INNER JOIN a.ID = b.PatientID"
-                 + "where a.IC = '"+IC+"'";
+    public int EditDisease(){
+         String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
+                 + " BloodPressure = trim('"+bloodPressure+"'), PulseCondition = trim('"+pulseCondition+"'), TongueQuality = trim('"+tongueQuality+"'),"
+                 + " TongueCoating = trim('"+tongueCoating+"'), Pee = trim('"+pee+"'), Shit = trim('"+shit+"')"
+                 + " where patientID = "+patientID+" order by 1 desc";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -270,7 +269,7 @@ public class Disease {
     }
     
     public int DeleteDisease() throws SQLException{
-         String query = "Delete From Patient where IC = '"+getIC()+"'";
+         String query = "Delete From Disease where patientID ="+patientID+" order by 1 desc";
         try {
             st.executeUpdate(query);
             return 1;

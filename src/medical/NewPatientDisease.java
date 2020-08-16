@@ -89,6 +89,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         BtnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblID = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -96,7 +99,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("IC:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 27, 32);
+        jLabel1.setBounds(30, 80, 27, 32);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtIC);
@@ -231,6 +234,31 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(lblID);
         lblID.setBounds(40, 50, 0, 0);
 
+        btnEdit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnEdit.setText("更改");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEdit);
+        btnEdit.setBounds(750, 710, 90, 40);
+
+        btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnDelete.setText("删除");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDelete);
+        btnDelete.setBounds(640, 710, 90, 40);
+
+        jLabel12.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel12.setText("病症资料");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(490, 20, 120, 40);
+
         setBounds(0, 0, 1101, 816);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -314,6 +342,48 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnAddActionPerformed
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        String symptom = txtSymptom.getText();
+        int temperature = Integer.parseInt(txtTemperature.getText());
+        String blood = txtBlood.getText();
+        String pulse = txtPulse.getText();
+        String tonguequality = txtTongueQuality.getText();
+        String tonguecoating = txtTongueCoating.getText();
+        String shit = txtShit.getText();
+        String pee = txtPee.getText();
+        int patientID = Integer.parseInt(lblID.getText());
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID);
+        if (disease.EditDisease() == 1) {
+            JOptionPane.showMessageDialog(rootPane, "更改成功");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "更改失败");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String symptom = txtSymptom.getText();
+        int temperature = Integer.parseInt(txtTemperature.getText());
+        String blood = txtBlood.getText();
+        String pulse = txtPulse.getText();
+        String tonguequality = txtTongueQuality.getText();
+        String tonguecoating = txtTongueCoating.getText();
+        String shit = txtShit.getText();
+        String pee = txtPee.getText();
+        int patientID = Integer.parseInt(lblID.getText());
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID);
+        try {
+            if (disease.DeleteDisease() == 1) {
+                JOptionPane.showMessageDialog(rootPane, "删除成功");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "删除失败");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -352,10 +422,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
