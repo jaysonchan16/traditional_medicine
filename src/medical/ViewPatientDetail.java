@@ -33,6 +33,13 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     /**
      * Creates new form ViewPatientDetail
      */
+    private User user;
+    public ViewPatientDetail(User user) throws SQLException {
+        initComponents();
+        show_patient();
+        this.user = user;
+        setResizable(false);
+    }
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
@@ -164,6 +171,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                   
                     new ViewPatientDetail().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(ViewPatientDetail.class.getName()).log(Level.SEVERE, null, ex);

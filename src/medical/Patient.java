@@ -24,6 +24,7 @@ public class Patient {
     private String IC;
     private String phone;
     private String address;
+    private int ID;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -41,7 +42,28 @@ public class Patient {
         this.phone = _phone;
         this.address = _address;
     }
+    
+    public Patient(int _ID,String _IC, String _name, String _gender, int _age, String _phone, String _address){
+        this.ID = _ID;
+        this.name = _name;
+        this.gender = _gender;
+        this.age = _age;
+        this.IC = _IC;
+        this.phone = _phone;
+        this.address = _address;
+    }
 
+    public int getID() {
+        return ID;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setID(int _ID) {
+        this.ID = _ID;
+    }
+    
     /**
      * @return the name
      */
@@ -127,8 +149,10 @@ public class Patient {
     }
     
     public int AddNewPatient(){
-         String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
-                + "'"+age+"','"+phone+"','"+address+"')";
+        /* String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
+                + "'"+age+"','"+phone+"','"+address+"')";*/
+        String query = "insert into Patient(IC, name, gender, age, phone, address)"
+                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -150,7 +174,7 @@ public class Patient {
         } catch (SQLException ex) {
             Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 0;
+            return 0;
     }
     
     public int DeletePatient() throws SQLException{
@@ -170,11 +194,11 @@ public class Patient {
     }
     
     public Patient getPatient(String IC) throws SQLException{
-        String query = "Select IC,name,gender,age,phone,address from Patient where IC = '"+IC+"'";
+        String query = "Select ID,IC,name,gender,age,phone,address from Patient where IC = '"+IC+"'";
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {
-                 return new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
+                 return new Patient(rs.getInt("ID"),rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"));
             }   
         } 

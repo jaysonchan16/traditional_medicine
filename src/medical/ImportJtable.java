@@ -52,6 +52,13 @@ public class ImportJtable extends javax.swing.JFrame {
     /**
      * Creates new form ImportJtable
      */
+    private User user;
+    public ImportJtable(User user) {
+        initComponents();
+        this.user = user;
+        
+        setResizable(false);
+    }
     public ImportJtable() {
         initComponents();
     }
@@ -69,8 +76,10 @@ public class ImportJtable extends javax.swing.JFrame {
         tblImport = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         tblImport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,12 +106,17 @@ public class ImportJtable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblImport);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(258, 47, 893, 402);
+
         btnImport.setText("Import");
         btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImportActionPerformed(evt);
             }
         });
+        getContentPane().add(btnImport);
+        btnImport.setBounds(813, 496, 105, 48);
 
         btnPrint.setText("Print");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -110,36 +124,19 @@ public class ImportJtable extends javax.swing.JFrame {
                 btnPrintActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPrint);
+        btnPrint.setBounds(652, 496, 105, 48);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack);
+        btnBack.setBounds(1050, 500, 102, 50);
 
-        pack();
+        setBounds(0, 0, 1361, 622);
     }// </editor-fold>//GEN-END:initComponents
     DefaultTableModel model;
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -197,6 +194,13 @@ public class ImportJtable extends javax.swing.JFrame {
         exl.Print(tblImport);
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        PatientDetailMenu detail = new PatientDetailMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,6 +238,7 @@ public class ImportJtable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;

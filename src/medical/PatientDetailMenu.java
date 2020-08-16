@@ -5,6 +5,8 @@
  */
 package medical;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Sheng
@@ -71,12 +73,22 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnBackup.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBackup.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\export.png")); // NOI18N
         btnBackup.setText("备用");
+        btnBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackupActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBackup);
         btnBackup.setBounds(550, 140, 240, 70);
 
         btnImport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnImport.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
         btnImport.setText("输入资料");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnImport);
         btnImport.setBounds(550, 340, 239, 70);
 
@@ -111,6 +123,11 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnEditDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnEditDisease.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
         btnEditDisease.setText("更改病症资料");
+        btnEditDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditDiseaseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEditDisease);
         btnEditDisease.setBounds(280, 340, 239, 70);
 
@@ -153,6 +170,32 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnEditPatientActionPerformed
+
+    private void btnEditDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDiseaseActionPerformed
+        // TODO add your handling code here:
+        NewPatientDisease patient = new NewPatientDisease(user);
+        patient.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEditDiseaseActionPerformed
+
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        // TODO add your handling code here:
+        ImportJtable i = new ImportJtable(user);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnImportActionPerformed
+
+    private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
+        // TODO add your handling code here:
+        ViewPatientDetail view = null;
+        try {
+            view = new ViewPatientDetail(user);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        view.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackupActionPerformed
 
     /**
      * @param args the command line arguments
