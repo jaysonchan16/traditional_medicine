@@ -205,7 +205,7 @@ public class Patient {
     
     public int DeletePatient() throws SQLException{
          String query = "Delete From Patient where IC = '"+IC+"'";
-          System.out.println(query);
+          
         try {
             st.executeUpdate(query);
             return 1;

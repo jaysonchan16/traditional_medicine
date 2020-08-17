@@ -86,14 +86,14 @@ public class ImportJtable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "姓名", "性别 ", "年龄 ", "电话号码 ", "地址"
+                "IC", "姓名", "性别 ", "年龄 ", "电话号码 ", "地址", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, true
+                false, true, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -134,7 +134,7 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(1050, 500, 102, 50);
+        btnBack.setBounds(1050, 490, 102, 50);
 
         setBounds(0, 0, 1361, 622);
     }// </editor-fold>//GEN-END:initComponents
@@ -167,16 +167,18 @@ public class ImportJtable extends javax.swing.JFrame {
                     XSSFCell age = excelRow.getCell(3);
                     XSSFCell phone = excelRow.getCell(4);
                     XSSFCell address = excelRow.getCell(5);
+                    XSSFCell lastUpdateDateTime = excelRow.getCell(6);
                     if (i != 0) {
                         tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                         TableColumnModel columnModel = tblImport.getColumnModel();
                         columnModel.getColumn(0).setPreferredWidth(100);
                         columnModel.getColumn(1).setPreferredWidth(150);
-                        columnModel.getColumn(2).setPreferredWidth(30);
-                        columnModel.getColumn(3).setPreferredWidth(30);
-                        columnModel.getColumn(4).setPreferredWidth(80);
-                        columnModel.getColumn(5).setPreferredWidth(600);
-                        ImportDataFromExcelModel.addRow(new Object[]{IC, name, gender, age, phone, address});
+                        columnModel.getColumn(2).setPreferredWidth(50);
+                        columnModel.getColumn(3).setPreferredWidth(40);
+                        columnModel.getColumn(4).setPreferredWidth(90);
+                        columnModel.getColumn(5).setPreferredWidth(530);
+                        columnModel.getColumn(6).setPreferredWidth(170);
+                        ImportDataFromExcelModel.addRow(new Object[]{IC, name, gender, age, phone, address, lastUpdateDateTime});
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Imported Successfully......");

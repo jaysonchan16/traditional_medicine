@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Statement;
 import java.text.MessageFormat;
 import java.util.Vector;
 import javax.swing.JFrame;
@@ -35,6 +36,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  */
 public class Excel {
 
+    public Statement st = connect.connection();
+     
     public void exportToExcel(JTable table, String filePath) throws Exception {
         TableModel model = table.getModel();
         Workbook workbook = new XSSFWorkbook();
@@ -80,6 +83,18 @@ public class Excel {
             table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (java.awt.print.PrinterException e) {
             System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }
+    
+    public void SaveDataJtable(javax.swing.JTable table, String query)
+    {
+        try 
+        {
+            st=conn.createStatement();
+        }
+        catch(Exception ex)
+        {
+            
         }
     }
 }
