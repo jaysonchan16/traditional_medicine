@@ -242,7 +242,7 @@ public class Patient {
         try {
              while (rs.next()) {
                  return new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
-                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpateDateTime"),rs.getString("createDateTime"),
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),
                          rs.getInt("ID")
                  );
             }   

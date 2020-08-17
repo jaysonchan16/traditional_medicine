@@ -309,6 +309,7 @@ public class NewPatient extends javax.swing.JFrame {
                     txtAge.setEnabled(true);
                     txtPhone.setEnabled(true);
                     txtAddress.setEnabled(true);
+                    btnAdd.setVisible(false);
                 } else {
                     txtIC.setEnabled(false);
                     txtName.setEnabled(true);
@@ -316,6 +317,8 @@ public class NewPatient extends javax.swing.JFrame {
                     txtAge.setEnabled(true);
                     txtPhone.setEnabled(true);
                     txtAddress.setEnabled(true);
+                    btnEdit.setVisible(false);
+                    btnDelete.setVisible(false);
                 }
 
             } catch (SQLException ex) {
