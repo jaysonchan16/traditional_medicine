@@ -37,7 +37,6 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPatient = new javax.swing.JButton();
         btnPatientDetail = new javax.swing.JButton();
         btnBackup = new javax.swing.JButton();
         btnImport = new javax.swing.JButton();
@@ -53,20 +52,9 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-user1.png")); // NOI18N
-        btnPatient.setText("新增病人");
-        btnPatient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPatientActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPatient);
-        btnPatient.setBounds(10, 140, 239, 70);
-
         btnPatientDetail.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnPatientDetail.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\report.png")); // NOI18N
-        btnPatientDetail.setText("病人资料");
+        btnPatientDetail.setText("病人报告");
         getContentPane().add(btnPatientDetail);
         btnPatientDetail.setBounds(820, 140, 240, 70);
 
@@ -94,14 +82,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
         btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
-        btnEditPatient.setText("更改病人资料");
+        btnEditPatient.setText("病人资料");
         btnEditPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditPatientActionPerformed(evt);
             }
         });
         getContentPane().add(btnEditPatient);
-        btnEditPatient.setBounds(10, 340, 239, 65);
+        btnEditPatient.setBounds(10, 250, 189, 65);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
@@ -117,6 +105,11 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnDisease.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
         btnDisease.setText("新增病症");
+        btnDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiseaseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDisease);
         btnDisease.setBounds(280, 140, 240, 70);
 
@@ -159,10 +152,6 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPatientActionPerformed
-
     private void btnEditPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPatientActionPerformed
         // TODO add your handling code here:
         NewPatient patient = new NewPatient(user);
@@ -173,9 +162,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
     private void btnEditDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDiseaseActionPerformed
         // TODO add your handling code here:
-        NewPatientDisease patient = new NewPatientDisease(user);
-        patient.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_btnEditDiseaseActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -196,6 +183,13 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         view.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackupActionPerformed
+
+    private void btnDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiseaseActionPerformed
+        // TODO add your handling code here:
+        NewPatientDisease patient = new NewPatientDisease(user);
+        patient.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDiseaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,7 +233,6 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnEditDisease;
     private javax.swing.JButton btnEditPatient;
     private javax.swing.JButton btnImport;
-    private javax.swing.JButton btnPatient;
     private javax.swing.JButton btnPatientDetail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

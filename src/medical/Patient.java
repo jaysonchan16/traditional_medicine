@@ -25,6 +25,7 @@ public class Patient {
     private String phone;
     private String address;
     private int ID;
+    private String lastUpdateDateTime;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -43,7 +44,17 @@ public class Patient {
         this.address = _address;
     }
     
-    public Patient(int _ID,String _IC, String _name, String _gender, int _age, String _phone, String _address){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime){
+        this.name = _name;
+        this.gender = _gender;
+        this.age = _age;
+        this.IC = _IC;
+        this.phone = _phone;
+        this.address = _address;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+    
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime,int _ID){
         this.ID = _ID;
         this.name = _name;
         this.gender = _gender;
@@ -51,6 +62,7 @@ public class Patient {
         this.IC = _IC;
         this.phone = _phone;
         this.address = _address;
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public int getID() {
@@ -148,6 +160,20 @@ public class Patient {
         this.address = address;
     }
     
+    /**
+     * @return the lastUpdateDateTime
+     */
+    public String getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    /**
+     * @param lastUpdateDateTime the lastUpdateDateTime to set
+     */
+    public void setLastUpdateDateTime(String lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+    
     public int AddNewPatient(){
         /* String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
                 + "'"+age+"','"+phone+"','"+address+"')";*/
@@ -194,12 +220,12 @@ public class Patient {
     }
     
     public Patient getPatient(String IC) throws SQLException{
-        String query = "Select ID,IC,name,gender,age,phone,address from Patient where IC = '"+IC+"'";
+        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime from Patient where IC = '"+IC+"'";
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {
-                 return new Patient(rs.getInt("ID"),rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
-                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"));
+                 return new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpateDateTime"),rs.getInt("ID"));
             }   
         } 
         catch (NullPointerException e)
@@ -215,12 +241,12 @@ public class Patient {
     
     public List<Patient> getPatients() throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query = "Select IC,name,gender,age,phone,address from Patient";
+        String query = "Select IC,name,gender,age,phone,address,lastUpdateDateTime from Patient";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
-                 rs.getInt("age"),rs.getString("phone"),rs.getString("address")));
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime")));
             } 
         } 
         catch (Exception e)
@@ -229,4 +255,6 @@ public class Patient {
         }
         return patientList;
     }
+
+    
 }
