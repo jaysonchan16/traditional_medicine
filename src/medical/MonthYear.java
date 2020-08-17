@@ -29,70 +29,75 @@ public class MonthYear extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtFromYear = new javax.swing.JTextField();
+        txtToYear = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtFromMonth = new javax.swing.JTextField();
+        txtToMonth = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("月份：");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(371, 42, 75, 34);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel2.setText("年份：");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(549, 39, 75, 40);
 
-        jTextField1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        txtFromYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        txtFromYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFromYearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtFromYear);
+        txtFromYear.setBounds(540, 120, 86, 42);
 
-        jTextField2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        txtToYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtToYear);
+        txtToYear.setBounds(540, 240, 86, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setText("退出");
+        getContentPane().add(btnBack);
+        btnBack.setBounds(244, 374, 128, 45);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnFind.setText("寻找");
+        getContentPane().add(btnFind);
+        btnFind.setBounds(592, 374, 119, 45);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(244, 244, 244)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
-                        .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
-                .addContainerGap(234, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(btnFind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(71, 71, 71))
-        );
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel3.setText("从：");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(277, 122, 50, 34);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel4.setText("到：");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(277, 244, 50, 34);
+
+        txtFromMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtFromMonth);
+        txtFromMonth.setBounds(360, 120, 90, 40);
+
+        txtToMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtToMonth);
+        txtToMonth.setBounds(360, 240, 90, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtFromYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromYearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFromYearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,7 +139,11 @@ public class MonthYear extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField txtFromMonth;
+    private javax.swing.JTextField txtFromYear;
+    private javax.swing.JTextField txtToMonth;
+    private javax.swing.JTextField txtToYear;
     // End of variables declaration//GEN-END:variables
 }

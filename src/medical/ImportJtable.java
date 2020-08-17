@@ -86,14 +86,14 @@ public class ImportJtable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "姓名", "性别 ", "年龄 ", "电话号码 ", "地址", "更新时间"
+                "IC", "姓名", "性别 ", "年龄 ", "电话号码 ", "地址", "更新时间", "创建时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, true, true
+                false, true, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,7 +107,7 @@ public class ImportJtable extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblImport);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(258, 47, 893, 402);
+        jScrollPane1.setBounds(70, 50, 893, 402);
 
         btnImport.setText("Import");
         btnImport.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnImport);
-        btnImport.setBounds(813, 496, 105, 48);
+        btnImport.setBounds(730, 490, 105, 48);
 
         btnPrint.setText("Print");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +125,7 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnPrint);
-        btnPrint.setBounds(652, 496, 105, 48);
+        btnPrint.setBounds(590, 490, 105, 48);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +134,7 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(1050, 490, 102, 50);
+        btnBack.setBounds(860, 490, 102, 50);
 
         setBounds(0, 0, 1361, 622);
     }// </editor-fold>//GEN-END:initComponents
@@ -168,6 +168,7 @@ public class ImportJtable extends javax.swing.JFrame {
                     XSSFCell phone = excelRow.getCell(4);
                     XSSFCell address = excelRow.getCell(5);
                     XSSFCell lastUpdateDateTime = excelRow.getCell(6);
+                    XSSFCell createDateTime = excelRow.getCell(7);
                     if (i != 0) {
                         tblImport.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                         TableColumnModel columnModel = tblImport.getColumnModel();
@@ -178,7 +179,8 @@ public class ImportJtable extends javax.swing.JFrame {
                         columnModel.getColumn(4).setPreferredWidth(90);
                         columnModel.getColumn(5).setPreferredWidth(530);
                         columnModel.getColumn(6).setPreferredWidth(170);
-                        ImportDataFromExcelModel.addRow(new Object[]{IC, name, gender, age, phone, address, lastUpdateDateTime});
+                        columnModel.getColumn(7).setPreferredWidth(170);
+                        ImportDataFromExcelModel.addRow(new Object[]{IC, name, gender, age, phone, address, lastUpdateDateTime, createDateTime});
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Imported Successfully......");

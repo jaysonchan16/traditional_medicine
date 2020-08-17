@@ -26,6 +26,7 @@ public class Patient {
     private String address;
     private int ID;
     private String lastUpdateDateTime;
+    private String createDateTime;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -44,7 +45,7 @@ public class Patient {
         this.address = _address;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime){
         this.name = _name;
         this.gender = _gender;
         this.age = _age;
@@ -52,9 +53,10 @@ public class Patient {
         this.phone = _phone;
         this.address = _address;
         this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime,int _ID){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime,int _ID){
         this.ID = _ID;
         this.name = _name;
         this.gender = _gender;
@@ -63,6 +65,7 @@ public class Patient {
         this.phone = _phone;
         this.address = _address;
         this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
     }
 
     public int getID() {
@@ -174,11 +177,25 @@ public class Patient {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
     
+       /**
+     * @return the createDateTime
+     */
+    public String getCreateDateTime() {
+        return createDateTime;
+    }
+
+    /**
+     * @param createDateTime the createDateTime to set
+     */
+    public void setCreateDateTime(String createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+    
     public int AddNewPatient(){
         /* String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
                 + "'"+age+"','"+phone+"','"+address+"')";*/
-        String query = "insert into Patient(IC, name, gender, age, phone, address,lastUpdateDateTime)"
-                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime')";
+        String query = "insert into Patient(IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime)"
+                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -220,12 +237,14 @@ public class Patient {
     }
     
     public Patient getPatient(String IC) throws SQLException{
-        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime from Patient where IC = '"+IC+"'";
+        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC = '"+IC+"'";
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {
                  return new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
-                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpateDateTime"),rs.getInt("ID"));
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpateDateTime"),rs.getString("createDateTime"),
+                         rs.getInt("ID")
+                 );
             }   
         } 
         catch (NullPointerException e)
@@ -241,12 +260,13 @@ public class Patient {
     
     public List<Patient> getPatients() throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query = "Select IC,name,gender,age,phone,address,lastUpdateDateTime from Patient";
+        String query = "Select IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
-                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime")));
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
+                 rs.getString("createDateTime")));
             } 
         } 
         catch (Exception e)
@@ -255,6 +275,8 @@ public class Patient {
         }
         return patientList;
     }
+
+ 
 
     
 }

@@ -32,6 +32,8 @@ public class Disease {
     private String IC;
     private String name;
     private String phoneNo;
+    private String lastUpdateDateTime;
+    private String createDateTime;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -56,7 +58,8 @@ public class Disease {
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String pee, String shit, int patientID, String IC, String name, String phoneNo){
+            String tongueCoating, String pee, String shit, int patientID, String lastUpdateDateTime, String createDateTime,
+            String IC, String name, String phoneNo){
         this.symptom = symptom;
         this.temperature = temperature;
         this.bloodPressure = bloodPressure;
@@ -66,6 +69,8 @@ public class Disease {
         this.pee = pee;
         this.shit = shit;
         this.patientID = patientID;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
         this.IC = IC;
         this.name = name;
         this.phoneNo = phoneNo;
@@ -238,10 +243,38 @@ public class Disease {
         this.phoneNo = phoneNo;
     }
     
+    /**
+     * @return the lastUpdateDateTime
+     */
+    public String getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    /**
+     * @param lastUpdateDateTime the lastUpdateDateTime to set
+     */
+    public void setLastUpdateDateTime(String lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    /**
+     * @return the createDateTime
+     */
+    public String getCreateDateTime() {
+        return createDateTime;
+    }
+
+    /**
+     * @param createDateTime the createDateTime to set
+     */
+    public void setCreateDateTime(String createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+    
     public int AddDisease(){
-        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpateDateTime)"
+        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpateDateTime, createDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), lastUpdateDateTime = datetime('now','localtime')";
+                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), lastUpdateDateTime = datetime('now','localtime'), createDateTime = datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -285,7 +318,7 @@ public class Disease {
     
     public Disease getDisease(String IC) throws SQLException{
         String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID where a.IC = '"+IC+"'";
         rs = st.executeQuery(query);
@@ -294,7 +327,7 @@ public class Disease {
                  return new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
-                         rs.getInt("ID"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
+                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
             }   
         } 
         catch (NullPointerException e)
@@ -311,7 +344,7 @@ public class Disease {
     public List<Disease> getDiseases() throws SQLException{
         List<Disease> diseaseList = new ArrayList<>();
             String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID";
         rs = st.executeQuery(query);
@@ -320,7 +353,7 @@ public class Disease {
                  diseaseList.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
-                         rs.getInt("ID"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
+                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
             } 
         } 
         catch (Exception e)
@@ -329,6 +362,8 @@ public class Disease {
         }
         return diseaseList;
     }
+
+    
 
 
 }

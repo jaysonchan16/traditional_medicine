@@ -92,6 +92,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblCreateDateTime = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        lblLastUpdateDateTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -118,7 +122,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("主症：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 280, 57, 26);
+        jLabel2.setBounds(60, 280, 57, 26);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
@@ -147,7 +151,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("体温：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 340, 60, 30);
+        jLabel5.setBounds(60, 340, 60, 30);
 
         txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTemperature);
@@ -156,7 +160,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("血压：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(560, 340, 60, 30);
+        jLabel6.setBounds(580, 340, 60, 30);
 
         txtBlood.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtBlood);
@@ -165,7 +169,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("脉象：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 400, 60, 30);
+        jLabel7.setBounds(60, 400, 60, 30);
 
         txtPulse.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtPulse.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +183,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("舌质：");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 460, 70, 30);
+        jLabel8.setBounds(60, 460, 70, 30);
 
         txtTongueQuality.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueQuality);
@@ -188,7 +192,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("舌苔：");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 520, 60, 26);
+        jLabel9.setBounds(60, 520, 60, 26);
 
         txtTongueCoating.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueCoating);
@@ -197,7 +201,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("大便：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 580, 70, 26);
+        jLabel10.setBounds(60, 580, 70, 26);
 
         txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtShit);
@@ -206,7 +210,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel11.setText("小便：");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(30, 640, 70, 30);
+        jLabel11.setBounds(60, 640, 70, 30);
 
         txtPee.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPee);
@@ -220,7 +224,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnAdd);
-        BtnAdd.setBounds(850, 710, 90, 40);
+        BtnAdd.setBounds(850, 760, 90, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -230,7 +234,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(960, 710, 90, 40);
+        btnBack.setBounds(960, 760, 90, 40);
         getContentPane().add(lblID);
         lblID.setBounds(40, 50, 0, 0);
 
@@ -242,7 +246,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEdit);
-        btnEdit.setBounds(750, 710, 90, 40);
+        btnEdit.setBounds(750, 760, 90, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -252,14 +256,32 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(640, 710, 90, 40);
+        btnDelete.setBounds(640, 760, 90, 40);
 
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel12.setText("病症资料");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(490, 20, 120, 40);
 
-        setBounds(0, 0, 1101, 816);
+        jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel13.setText("创新时间：");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(30, 710, 100, 26);
+
+        lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblCreateDateTime);
+        lblCreateDateTime.setBounds(120, 700, 400, 40);
+
+        jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel15.setText("更新时间：");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(540, 700, 100, 40);
+
+        lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblLastUpdateDateTime);
+        lblLastUpdateDateTime.setBounds(630, 700, 420, 40);
+
+        setBounds(0, 0, 1101, 857);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
@@ -353,7 +375,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String shit = txtShit.getText();
         String pee = txtPee.getText();
         int patientID = Integer.parseInt(lblID.getText());
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID);
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID );
         if (disease.EditDisease() == 1) {
             JOptionPane.showMessageDialog(rootPane, "更改成功");
         } else {
@@ -429,6 +451,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -438,7 +462,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLastUpdateDateTime;
     private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtName;

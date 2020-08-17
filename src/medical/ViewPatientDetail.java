@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -58,6 +59,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         tblPatient = new javax.swing.JTable();
         btnBackup = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,11 +68,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "名字", "性别", "年龄", "电话号码", "地址", "更新时间"
+                "IC", "名字", "性别", "年龄", "电话号码", "地址", "更新时间", "创建时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,6 +95,13 @@ public class ViewPatientDetail extends javax.swing.JFrame {
             }
         });
 
+        btnSave.setText("储存");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +110,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
                         .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -117,7 +128,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBackup, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -158,6 +170,17 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dt =(DefaultTableModel) tblPatient.getModel();
+        
+        //String query = "update Patient set IC= '"+dt.getValueAt(x, 1)+"', ";
+        
+        Excel ex = new Excel();
+        
+        //ex.SaveDataJtable(dt, query);
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +227,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
          List<Patient> patientList = patient.getPatients();
          //List<Patient> patientList = new ArrayList<>();
          model = (DefaultTableModel)tblPatient.getModel();
-         Object row[] = new Object[7];
+         Object row[] = new Object[8];
          for(int i =0; i<patientList.size(); i++)
          {
              row[0] = patientList.get(i).getIC();
@@ -214,12 +237,14 @@ public class ViewPatientDetail extends javax.swing.JFrame {
              row[4] = patientList.get(i).getPhone();
              row[5] = patientList.get(i).getAddress();
              row[6] = patientList.get(i).getLastUpdateDateTime();
+             row[7] = patientList.get(i).getCreateDateTime();
              model.addRow(row);
          }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBackup;
+    private javax.swing.JButton btnSave;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPatient;
     // End of variables declaration//GEN-END:variables

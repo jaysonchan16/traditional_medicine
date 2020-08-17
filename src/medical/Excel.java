@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -86,11 +87,14 @@ public class Excel {
         }
     }
     
-    public void SaveDataJtable(javax.swing.JTable table, String query)
+    public void SaveDataJtable(DefaultTableModel table, String query)
     {
         try 
         {
-            st=conn.createStatement();
+            for(int x=0;x<table.getRowCount();x++)
+            {
+                st.executeUpdate(query);
+            }
         }
         catch(Exception ex)
         {
