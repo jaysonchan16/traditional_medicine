@@ -127,41 +127,61 @@ public class MonthYear extends javax.swing.JFrame {
             String fromyear = txtFromYear.getText();
             String toyear = txtToYear.getText();
             String to="";
-            if(tomonth.length() == 1)
+            if(frommonth.equalsIgnoreCase("") || tomonth.equalsIgnoreCase(""))
             {
-                tomonth = "0"+tomonth;
+                JOptionPane.showMessageDialog(rootPane, "请填月份！");
             }
-            if(frommonth.length() == 1)
+            else if(fromyear.equalsIgnoreCase("") || toyear.equalsIgnoreCase(""))
             {
-                frommonth = "0"+frommonth;
+                JOptionPane.showMessageDialog(rootPane, "请填年份！");
             }
-            String from=fromyear+"-"+frommonth+"-01";
-            
-            switch(Integer.parseInt(tomonth))
+            else if(tomonth.length() > 2 || tomonth.length() < 1 || frommonth.length() > 2 || frommonth.length() < 1)
             {
-                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-                    to = toyear+"-"+tomonth+"-31";
-                    break;
-                case 2:
-                    if(Integer.parseInt(toyear) % 4==0)
-                    {
-                        to = toyear+"-"+tomonth+"-29";
-                    }
-                    else
-                    {
-                        to = toyear+"-"+tomonth+"-28";
-                    }
-                    break;
-                case 4: case 6: case 9: case 11:
-                    to = toyear+"-"+tomonth+"-30";
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(rootPane, "日期错误");
-                    break;
+                JOptionPane.showMessageDialog(rootPane, "月份错误！");
             }
-            ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
-            monthly.setVisible(true);
-            this.dispose();
+            else if(toyear.length() > 2 || toyear.length() < 1 || fromyear.length() > 2 || fromyear.length() < 1)
+            {
+                 JOptionPane.showMessageDialog(rootPane, "年份错误！");
+            }
+            else
+            {
+                if(tomonth.length() == 1)
+                {
+                    tomonth = "0"+tomonth;
+                }
+                if(frommonth.length() == 1)
+                {
+                    frommonth = "0"+frommonth;
+                }
+                
+                String from=fromyear+"-"+frommonth+"-01";
+
+                switch(Integer.parseInt(tomonth))
+                {
+                    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                        to = toyear+"-"+tomonth+"-31";
+                        break;
+                    case 2:
+                        if(Integer.parseInt(toyear) % 4==0)
+                        {
+                            to = toyear+"-"+tomonth+"-29";
+                        }
+                        else
+                        {
+                            to = toyear+"-"+tomonth+"-28";
+                        }
+                        break;
+                    case 4: case 6: case 9: case 11:
+                        to = toyear+"-"+tomonth+"-30";
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(rootPane, "日期错误");
+                        break;
+                }
+                ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
+                monthly.setVisible(true);
+                this.dispose();
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
