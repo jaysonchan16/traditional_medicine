@@ -121,30 +121,30 @@ public class MonthYear extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFromYearActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        try {
-            String frommonth = txtFromMonth.getText();
-            String tomonth = txtToMonth.getText();
-            String fromyear = txtFromYear.getText();
-            String toyear = txtToYear.getText();
-            String to="";
-            if(frommonth.equalsIgnoreCase("") || tomonth.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane, "请填月份！");
-            }
-            else if(fromyear.equalsIgnoreCase("") || toyear.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane, "请填年份！");
-            }
-            else if(tomonth.length() > 2 || tomonth.length() < 1 || frommonth.length() > 2 || frommonth.length() < 1)
-            {
-                JOptionPane.showMessageDialog(rootPane, "月份错误！");
-            }
-            else if(toyear.length() > 2 || toyear.length() < 1 || fromyear.length() > 2 || fromyear.length() < 1)
-            {
-                 JOptionPane.showMessageDialog(rootPane, "年份错误！");
-            }
-            else
-            {
+        String frommonth = txtFromMonth.getText();
+        String tomonth = txtToMonth.getText();
+        String fromyear = txtFromYear.getText();
+        String toyear = txtToYear.getText();
+        String to="";
+        if(frommonth.equalsIgnoreCase("") || tomonth.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "请填月份！");
+        }
+        else if(fromyear.equalsIgnoreCase("") || toyear.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "请填年份！");
+        }
+        else if(tomonth.length() > 2 || tomonth.length() < 1 || frommonth.length() > 2 || frommonth.length() < 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "月份错误！");
+        }
+        else if(toyear.length() > 4 || toyear.length() < 4 || fromyear.length() > 4 || fromyear.length() < 4)
+        {
+            JOptionPane.showMessageDialog(rootPane, "年份错误！");
+        }
+        else
+        {
+            try {
                 if(tomonth.length() == 1)
                 {
                     tomonth = "0"+tomonth;
@@ -155,38 +155,46 @@ public class MonthYear extends javax.swing.JFrame {
                 }
                 
                 String from=fromyear+"-"+frommonth+"-01";
-
+                
                 switch(Integer.parseInt(tomonth))
                 {
                     case 1: case 3: case 5: case 7: case 8: case 10: case 12:
                         to = toyear+"-"+tomonth+"-31";
+                        viewpatientpage(from, to);
                         break;
                     case 2:
                         if(Integer.parseInt(toyear) % 4==0)
                         {
                             to = toyear+"-"+tomonth+"-29";
+                            viewpatientpage(from, to);
                         }
                         else
                         {
                             to = toyear+"-"+tomonth+"-28";
+                            viewpatientpage(from, to);
                         }
                         break;
                     case 4: case 6: case 9: case 11:
                         to = toyear+"-"+tomonth+"-30";
+                        viewpatientpage(from, to);
                         break;
                     default:
-                        JOptionPane.showMessageDialog(rootPane, "日期错误");
+                        JOptionPane.showMessageDialog(rootPane, "月份错误");
                         break;
                 }
-                ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
-                monthly.setVisible(true);
-                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnFindActionPerformed
 
+    public void viewpatientpage(String from, String to) throws SQLException
+    {
+        ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
+        monthly.setVisible(true);
+        this.dispose();
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         PatientDetailMenu menu = new PatientDetailMenu(user);
