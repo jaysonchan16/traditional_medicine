@@ -19,12 +19,14 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
      * Creates new form MonthlyPatientReport
      */
     private User user;
-    private String from;
-    private String to;
-    public MonthlyPatientReport(User user, String from, String to) throws SQLException{
+    private String from="";
+    private String to="";
+    private String IC="";
+    public MonthlyPatientReport(User user, String from, String to, String IC) throws SQLException{
         this.user = user;
         this.from = from;
         this.to = to;
+        this.IC = IC;
         show_patient();
         initComponents();
     }
@@ -53,7 +55,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "名字", "x", "主症"
+                "主症", "体温", "血压", "脉象", "舌质", "舌苔", "大便", "小便"
             }
         ));
         jScrollPane1.setViewportView(tblMonthlyPatient);
@@ -119,7 +121,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     DefaultTableModel model ;
     public void show_patient() throws SQLException{
          Patient patient = new Patient();
-         List<Patient> patientList = patient.getPatients(from, to);
+         List<Patient> patientList = patient.getDiseasePatients(from, to, IC);
          //List<Patient> patientList = new ArrayList<>();
          model = (DefaultTableModel)tblMonthlyPatient.getModel();
          Object row[] = new Object[9];

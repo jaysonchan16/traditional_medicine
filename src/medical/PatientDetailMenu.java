@@ -55,6 +55,11 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         btnPatientDetail.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnPatientDetail.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\report.png")); // NOI18N
         btnPatientDetail.setText("病人报告");
+        btnPatientDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientDetailActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPatientDetail);
         btnPatientDetail.setBounds(820, 140, 240, 70);
 
@@ -199,10 +204,21 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
     private void btnMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyReportActionPerformed
         // TODO add your handling code here:
-        MonthYear monthyear = new MonthYear(user);
+        MonthYearIC monthyear = new MonthYearIC(user);
         monthyear.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMonthlyReportActionPerformed
+
+    private void btnPatientDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientDetailActionPerformed
+        try {
+            // TODO add your handling code here:
+            ViewPatientDetail monthyear = new ViewPatientDetail(user);
+            monthyear.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPatientDetailActionPerformed
 
     /**
      * @param args the command line arguments

@@ -13,19 +13,19 @@ import javax.swing.JOptionPane;
  *
  * @author Sheng
  */
-public class MonthYear extends javax.swing.JFrame {
+public class MonthYearIC extends javax.swing.JFrame {
 
     /**
      * Creates new form MonthYear
      */
     private User user;
-    public MonthYear(User user)
-    {
+
+    public MonthYearIC(User user) {
         this.user = user;
         initComponents();
     }
-    
-    public MonthYear() {
+
+    public MonthYearIC() {
         initComponents();
     }
 
@@ -48,6 +48,8 @@ public class MonthYear extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtFromMonth = new javax.swing.JTextField();
         txtToMonth = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtIC = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -73,7 +75,7 @@ public class MonthYear extends javax.swing.JFrame {
 
         txtToYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         getContentPane().add(txtToYear);
-        txtToYear.setBounds(540, 240, 86, 40);
+        txtToYear.setBounds(540, 200, 86, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setText("退出");
@@ -103,7 +105,7 @@ public class MonthYear extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel4.setText("到：");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(277, 244, 50, 34);
+        jLabel4.setBounds(280, 200, 50, 34);
 
         txtFromMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         getContentPane().add(txtFromMonth);
@@ -111,7 +113,16 @@ public class MonthYear extends javax.swing.JFrame {
 
         txtToMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         getContentPane().add(txtToMonth);
-        txtToMonth.setBounds(360, 240, 90, 40);
+        txtToMonth.setBounds(360, 200, 90, 40);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel5.setText("IC:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(270, 280, 50, 40);
+
+        txtIC.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtIC);
+        txtIC.setBounds(360, 280, 270, 40);
 
         setBounds(0, 0, 954, 537);
     }// </editor-fold>//GEN-END:initComponents
@@ -125,76 +136,74 @@ public class MonthYear extends javax.swing.JFrame {
         String tomonth = txtToMonth.getText();
         String fromyear = txtFromYear.getText();
         String toyear = txtToYear.getText();
-        String to="";
-        if(frommonth.equalsIgnoreCase("") || tomonth.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane, "请填月份！");
-        }
-        else if(fromyear.equalsIgnoreCase("") || toyear.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane, "请填年份！");
-        }
-        else if(tomonth.length() > 2 || tomonth.length() < 1 || frommonth.length() > 2 || frommonth.length() < 1)
-        {
-            JOptionPane.showMessageDialog(rootPane, "月份错误！");
-        }
-        else if(toyear.length() > 4 || toyear.length() < 4 || fromyear.length() > 4 || fromyear.length() < 4)
-        {
-            JOptionPane.showMessageDialog(rootPane, "年份错误！");
-        }
-        else
-        {
-            try {
-                if(tomonth.length() == 1)
-                {
-                    tomonth = "0"+tomonth;
+        String IC = txtIC.getText();
+        String to = "";
+        String from = "";
+        try {
+            if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") && IC.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(rootPane, "请填月份或者IC！");
+            } else if (tomonth.length() > 2 || frommonth.length() > 2) {
+                JOptionPane.showMessageDialog(rootPane, "月份错误！");
+            } else if (toyear.length() > 4 || (toyear.length() > 0 && toyear.length() < 4) || fromyear.length() > 4 || (fromyear.length() > 0 && fromyear.length() < 4)) {
+                JOptionPane.showMessageDialog(rootPane, "年份错误！");
+            } else if (!IC.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
+                System.out.println("1");
+                viewpatientpage(from, to, IC);
+            } else {
+                System.out.println("2");
+                if (tomonth.length() == 1) {
+                    tomonth = "0" + tomonth;
                 }
-                if(frommonth.length() == 1)
-                {
-                    frommonth = "0"+frommonth;
+                if (frommonth.length() == 1) {
+                    frommonth = "0" + frommonth;
                 }
-                
-                String from=fromyear+"-"+frommonth+"-01";
-                
-                switch(Integer.parseInt(tomonth))
-                {
-                    case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-                        to = toyear+"-"+tomonth+"-31";
-                        viewpatientpage(from, to);
+
+                from = fromyear + "-" + frommonth + "-01";
+
+                switch (Integer.parseInt(tomonth)) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        to = toyear + "-" + tomonth + "-31";
+                        viewpatientpage(from, to, IC);
                         break;
                     case 2:
-                        if(Integer.parseInt(toyear) % 4==0)
-                        {
-                            to = toyear+"-"+tomonth+"-29";
-                            viewpatientpage(from, to);
-                        }
-                        else
-                        {
-                            to = toyear+"-"+tomonth+"-28";
-                            viewpatientpage(from, to);
+                        if (Integer.parseInt(toyear) % 4 == 0) {
+                            to = toyear + "-" + tomonth + "-29";
+                            viewpatientpage(from, to, IC);
+                        } else {
+                            to = toyear + "-" + tomonth + "-28";
+                            viewpatientpage(from, to, IC);
                         }
                         break;
-                    case 4: case 6: case 9: case 11:
-                        to = toyear+"-"+tomonth+"-30";
-                        viewpatientpage(from, to);
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        to = toyear + "-" + tomonth + "-30";
+                        viewpatientpage(from, to, IC);
                         break;
                     default:
                         JOptionPane.showMessageDialog(rootPane, "月份错误");
                         break;
+
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnFindActionPerformed
 
-    public void viewpatientpage(String from, String to) throws SQLException
-    {
-        ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
+    public void viewpatientpage(String from, String to, String IC) throws SQLException {
+        MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC);
         monthly.setVisible(true);
         this.dispose();
     }
-    
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         PatientDetailMenu menu = new PatientDetailMenu(user);
@@ -219,20 +228,21 @@ public class MonthYear extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MonthYear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthYearIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MonthYear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthYearIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MonthYear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthYearIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MonthYear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthYearIC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MonthYear().setVisible(true);
+                new MonthYearIC().setVisible(true);
             }
         });
     }
@@ -244,8 +254,10 @@ public class MonthYear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtFromMonth;
     private javax.swing.JTextField txtFromYear;
+    private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtToMonth;
     private javax.swing.JTextField txtToYear;
     // End of variables declaration//GEN-END:variables

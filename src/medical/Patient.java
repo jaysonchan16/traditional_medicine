@@ -258,7 +258,7 @@ public class Patient {
         return new Patient("1");
     }
     
-    public List<Patient> getPatients(String from) throws SQLException{
+    public List<Patient> getPatients() throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
         rs = st.executeQuery(query);
@@ -276,16 +276,22 @@ public class Patient {
         return patientList;
     }
 
-    public List<Patient> getPatients(String from, String to) throws SQLException{
+    public List<Patient> getDiseasePatients(String from, String to, String IC) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query;
+        
         if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,lastUpdateDateTime,createDateTime from Disease d right join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
+            System.out.println(query);
+        }
+        else if(IC.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where createDateTime>='"+from+"' and createDateTime<='"+to+"'";
         }
         else
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC='"+IC+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
         }
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -302,6 +308,5 @@ public class Patient {
         }
         return patientList;
     }
-
     
 }

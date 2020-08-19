@@ -5,12 +5,7 @@
  */
 package medical;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,12 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -37,6 +27,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private User user;
     private String from="";
     private String to="";
+    private String IC;
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
@@ -44,14 +35,6 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     public ViewPatientDetail(User user) throws SQLException {
         initComponents();
         this.user = user;
-        show_patient();
-        setResizable(false);
-    }
-    public ViewPatientDetail(User user, String from, String to) throws SQLException {
-        initComponents();
-        this.user = user;
-        this.from = from;
-        this.to = to;
         show_patient();
         setResizable(false);
     }
@@ -239,7 +222,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     public void show_patient() throws SQLException{
          Patient patient = new Patient();
          List<Patient> patientList = new ArrayList<Patient>();
-         patientList = patient.getPatients(from,to);
+         patientList = patient.getPatients();
          model = (DefaultTableModel)tblPatient.getModel();
          Object row[] = new Object[9];
          for(int i =0; i<patientList.size(); i++)
