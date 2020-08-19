@@ -69,19 +69,25 @@
         <Component class="javax.swing.JTable" name="tblPatient">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="0">
+              <Table columnCount="9" rowCount="0">
+                <Column editable="false" title="ID" type="java.lang.Integer"/>
                 <Column editable="true" title="IC" type="java.lang.String"/>
                 <Column editable="true" title="&#x540d;&#x5b57;" type="java.lang.String"/>
                 <Column editable="true" title="&#x6027;&#x522b;" type="java.lang.String"/>
                 <Column editable="true" title="&#x5e74;&#x9f84;" type="java.lang.Integer"/>
                 <Column editable="true" title="&#x7535;&#x8bdd;&#x53f7;&#x7801;" type="java.lang.String"/>
                 <Column editable="true" title="&#x5730;&#x5740;" type="java.lang.String"/>
-                <Column editable="true" title="&#x66f4;&#x65b0;&#x65f6;&#x95f4;" type="java.lang.String"/>
-                <Column editable="true" title="&#x521b;&#x5efa;&#x65f6;&#x95f4;" type="java.lang.String"/>
+                <Column editable="false" title="&#x66f4;&#x65b0;&#x65f6;&#x95f4;" type="java.lang.String"/>
+                <Column editable="false" title="&#x521b;&#x5efa;&#x65f6;&#x95f4;" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

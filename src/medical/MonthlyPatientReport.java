@@ -5,6 +5,10 @@
  */
 package medical;
 
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sheng
@@ -14,7 +18,19 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     /**
      * Creates new form MonthlyPatientReport
      */
-    public MonthlyPatientReport() {
+    private User user;
+    private String from;
+    private String to;
+    public MonthlyPatientReport(User user, String from, String to) throws SQLException{
+        this.user = user;
+        this.from = from;
+        this.to = to;
+        show_patient();
+        initComponents();
+    }
+    
+    public MonthlyPatientReport() throws SQLException {
+        show_patient();
         initComponents();
     }
 
@@ -28,11 +44,11 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMonthlyPatient = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMonthlyPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -40,7 +56,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
                 "IC", "名字", "x", "主症"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblMonthlyPatient);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,13 +108,37 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MonthlyPatientReport().setVisible(true);
+                try {
+                    new MonthlyPatientReport().setVisible(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
-
+    DefaultTableModel model ;
+    public void show_patient() throws SQLException{
+         Patient patient = new Patient();
+         List<Patient> patientList = patient.getPatients(from, to);
+         //List<Patient> patientList = new ArrayList<>();
+         model = (DefaultTableModel)tblMonthlyPatient.getModel();
+         Object row[] = new Object[9];
+         for(int i =0; i<patientList.size(); i++)
+         {
+             row[0] = patientList.get(i).getID();
+             row[1] = patientList.get(i).getIC();
+             row[2] = patientList.get(i).getName();
+             row[3] = patientList.get(i).getGender();
+             row[4] = patientList.get(i).getAge();
+             row[5] = patientList.get(i).getPhone();
+             row[6] = patientList.get(i).getAddress();
+             row[7] = patientList.get(i).getLastUpdateDateTime();
+             row[8] = patientList.get(i).getCreateDateTime();
+             model.addRow(row);
+         }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblMonthlyPatient;
     // End of variables declaration//GEN-END:variables
 }

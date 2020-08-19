@@ -47,7 +47,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btnMonthlyReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -67,7 +67,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBackup);
-        btnBackup.setBounds(550, 140, 240, 70);
+        btnBackup.setBounds(560, 140, 240, 70);
 
         btnImport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnImport.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
@@ -89,7 +89,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEditPatient);
-        btnEditPatient.setBounds(10, 250, 189, 65);
+        btnEditPatient.setBounds(30, 140, 210, 65);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
@@ -138,9 +138,15 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         getContentPane().add(lblLoggedIn);
         lblLoggedIn.setBounds(860, 40, 140, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1080, 600);
+        btnMonthlyReport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnMonthlyReport.setText("月份报告");
+        btnMonthlyReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonthlyReportActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMonthlyReport);
+        btnMonthlyReport.setBounds(40, 340, 210, 70);
 
         setBounds(0, 0, 1086, 646);
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +197,13 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDiseaseActionPerformed
 
+    private void btnMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyReportActionPerformed
+        // TODO add your handling code here:
+        MonthYear monthyear = new MonthYear(user);
+        monthyear.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMonthlyReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -233,8 +246,8 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnEditDisease;
     private javax.swing.JButton btnEditPatient;
     private javax.swing.JButton btnImport;
+    private javax.swing.JButton btnMonthlyReport;
     private javax.swing.JButton btnPatientDetail;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblLoggedIn;

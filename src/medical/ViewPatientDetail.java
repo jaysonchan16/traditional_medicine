@@ -35,16 +35,27 @@ public class ViewPatientDetail extends javax.swing.JFrame {
      * Creates new form ViewPatientDetail
      */
     private User user;
-    public ViewPatientDetail(User user) throws SQLException {
-        initComponents();
-        show_patient();
-        this.user = user;
-        setResizable(false);
-    }
+    private String from="";
+    private String to="";
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
     }
+    public ViewPatientDetail(User user) throws SQLException {
+        initComponents();
+        this.user = user;
+        show_patient();
+        setResizable(false);
+    }
+    public ViewPatientDetail(User user, String from, String to) throws SQLException {
+        initComponents();
+        this.user = user;
+        this.from = from;
+        this.to = to;
+        show_patient();
+        setResizable(false);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,15 +79,22 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IC", "名字", "性别", "年龄", "电话号码", "地址", "更新时间", "创建时间"
+                "ID", "IC", "名字", "性别", "年龄", "电话号码", "地址", "更新时间", "创建时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblPatient);
@@ -175,11 +193,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel dt =(DefaultTableModel) tblPatient.getModel();
         
-        //String query = "update Patient set IC= '"+dt.getValueAt(x, 1)+"', ";
-        
-        Excel ex = new Excel();
-        
-        //ex.SaveDataJtable(dt, query);
+        dt.setValueAt(dt, WIDTH, WIDTH);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
@@ -224,20 +238,21 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     
     public void show_patient() throws SQLException{
          Patient patient = new Patient();
-         List<Patient> patientList = patient.getPatients();
-         //List<Patient> patientList = new ArrayList<>();
+         List<Patient> patientList = new ArrayList<Patient>();
+         patientList = patient.getPatients(from,to);
          model = (DefaultTableModel)tblPatient.getModel();
-         Object row[] = new Object[8];
+         Object row[] = new Object[9];
          for(int i =0; i<patientList.size(); i++)
          {
-             row[0] = patientList.get(i).getIC();
-             row[1] = patientList.get(i).getName();
-             row[2] = patientList.get(i).getGender();
-             row[3] = patientList.get(i).getAge();
-             row[4] = patientList.get(i).getPhone();
-             row[5] = patientList.get(i).getAddress();
-             row[6] = patientList.get(i).getLastUpdateDateTime();
-             row[7] = patientList.get(i).getCreateDateTime();
+             row[0] = patientList.get(i).getID();
+             row[1] = patientList.get(i).getIC();
+             row[2] = patientList.get(i).getName();
+             row[3] = patientList.get(i).getGender();
+             row[4] = patientList.get(i).getAge();
+             row[5] = patientList.get(i).getPhone();
+             row[6] = patientList.get(i).getAddress();
+             row[7] = patientList.get(i).getLastUpdateDateTime();
+             row[8] = patientList.get(i).getCreateDateTime();
              model.addRow(row);
          }
     }

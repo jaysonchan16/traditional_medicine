@@ -258,15 +258,15 @@ public class Patient {
         return new Patient("1");
     }
     
-    public List<Patient> getPatients() throws SQLException{
+    public List<Patient> getPatients(String from) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query = "Select IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
+        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
-                 rs.getString("createDateTime")));
+                 rs.getString("createDateTime"),rs.getInt("ID")));
             } 
         } 
         catch (Exception e)
@@ -276,7 +276,32 @@ public class Patient {
         return patientList;
     }
 
- 
+    public List<Patient> getPatients(String from, String to) throws SQLException{
+        List<Patient> patientList = new ArrayList<>();
+        String query;
+        if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
+        }
+        else
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+        }
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
+                 rs.getString("createDateTime"),rs.getInt("ID")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return patientList;
+    }
 
     
 }

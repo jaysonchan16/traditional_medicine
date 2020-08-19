@@ -5,6 +5,10 @@
  */
 package medical;
 
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sheng
@@ -14,6 +18,13 @@ public class MonthYear extends javax.swing.JFrame {
     /**
      * Creates new form MonthYear
      */
+    private User user;
+    public MonthYear(User user)
+    {
+        this.user = user;
+        initComponents();
+    }
+    
     public MonthYear() {
         initComponents();
     }
@@ -66,11 +77,21 @@ public class MonthYear extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBack);
         btnBack.setBounds(244, 374, 128, 45);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnFind.setText("寻找");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnFind);
         btnFind.setBounds(592, 374, 119, 45);
 
@@ -92,12 +113,66 @@ public class MonthYear extends javax.swing.JFrame {
         getContentPane().add(txtToMonth);
         txtToMonth.setBounds(360, 240, 90, 40);
 
-        pack();
+        setBounds(0, 0, 954, 537);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFromYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromYearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFromYearActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        try {
+            String frommonth = txtFromMonth.getText();
+            String tomonth = txtToMonth.getText();
+            String fromyear = txtFromYear.getText();
+            String toyear = txtToYear.getText();
+            String to="";
+            if(tomonth.length() == 1)
+            {
+                tomonth = "0"+tomonth;
+            }
+            if(frommonth.length() == 1)
+            {
+                frommonth = "0"+frommonth;
+            }
+            String from=fromyear+"-"+frommonth+"-01";
+            
+            switch(Integer.parseInt(tomonth))
+            {
+                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                    to = toyear+"-"+tomonth+"-31";
+                    break;
+                case 2:
+                    if(Integer.parseInt(toyear) % 4==0)
+                    {
+                        to = toyear+"-"+tomonth+"-29";
+                    }
+                    else
+                    {
+                        to = toyear+"-"+tomonth+"-28";
+                    }
+                    break;
+                case 4: case 6: case 9: case 11:
+                    to = toyear+"-"+tomonth+"-30";
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(rootPane, "日期错误");
+                    break;
+            }
+            ViewPatientDetail monthly = new ViewPatientDetail(user,from, to);
+            monthly.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        PatientDetailMenu menu = new PatientDetailMenu(user);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments

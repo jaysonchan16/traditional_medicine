@@ -86,19 +86,4 @@ public class Excel {
             System.err.format("Cannot print %s%n", e.getMessage());
         }
     }
-    
-    public void SaveDataJtable(DefaultTableModel table, String query)
-    {
-        try 
-        {
-            for(int x=0;x<table.getRowCount();x++)
-            {
-                st.executeUpdate(query);
-            }
-        }
-        catch(Exception ex)
-        {
-            
-        }
-    }
 }
