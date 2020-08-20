@@ -19,17 +19,17 @@ public class Medical {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new LoginUI().setVisible(true);
-//            }
-//        });
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PatientDetailMenu().setVisible(true);
+                new LoginUI().setVisible(true);
             }
         });
+
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PatientDetailMenu().setVisible(true);
+//            }
+//        });
 
     }
 }
