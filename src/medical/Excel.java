@@ -13,8 +13,10 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -84,6 +86,97 @@ public class Excel {
             table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (java.awt.print.PrinterException e) {
             System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }
+    
+    public HashMap<String, String> checkMonthYearIC(String frommonth, String tomonth, String fromyear, String toyear, String IC){
+        String to = "";
+        String from = "";
+        HashMap<String,String> data = new HashMap<String,String>();
+        if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") && IC.equalsIgnoreCase("")) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "请填月份或者IC！");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "请填月份或者IC！");
+        } else if (tomonth.length() > 2 || frommonth.length() > 2) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "月份错误！");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "月份错误！");
+        } else if (toyear.length() > 4 || (toyear.length() > 0 && toyear.length() < 4) || fromyear.length() > 4 || (fromyear.length() > 0 && fromyear.length() < 4)) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "年份错误！");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "年份错误！");
+        } else if (!IC.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "");
+            return data;
+        } else {
+            if (tomonth.length() == 1) {
+                tomonth = "0" + tomonth;
+            }
+            if (frommonth.length() == 1) {
+                frommonth = "0" + frommonth;
+            }
+            
+            from = fromyear + "-" + frommonth + "-01";
+            
+            switch (Integer.parseInt(tomonth)) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    to = toyear + "-" + tomonth + "-31";
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("IC",IC);
+                    data.put("Messages", "");
+                    break;
+                case 2:
+                    if (Integer.parseInt(toyear) % 4 == 0) {
+                        to = toyear + "-" + tomonth + "-29";
+                        data.put("From",from);
+                        data.put("To", to);
+                        data.put("IC",IC);
+                        data.put("Messages","");
+                    } else {
+                        to = toyear + "-" + tomonth + "-28";
+                        data.put("From",from);
+                        data.put("To", to);
+                        data.put("IC",IC);
+                        data.put("Messages","");
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    to = toyear + "-" + tomonth + "-30";
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("IC",IC);
+                    data.put("Messages","");
+                    break;
+                default:
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("IC",IC);
+                    data.put("Messages","月份错误");
+                    break;
+            }
+            return data;
         }
     }
 }

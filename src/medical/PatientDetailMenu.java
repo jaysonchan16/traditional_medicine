@@ -144,7 +144,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         lblLoggedIn.setBounds(860, 40, 140, 40);
 
         btnMonthlyReport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnMonthlyReport.setText("月份报告");
+        btnMonthlyReport.setText("病症报告");
         btnMonthlyReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMonthlyReportActionPerformed(evt);
@@ -185,14 +185,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
         // TODO add your handling code here:
-        ViewPatientDetail view = null;
+        /*ViewPatientDetail view = null;
         try {
             view = new ViewPatientDetail(user);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         view.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_btnBackupActionPerformed
 
     private void btnDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiseaseActionPerformed
@@ -204,20 +204,15 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
     private void btnMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyReportActionPerformed
         // TODO add your handling code here:
-        MonthYearIC monthyear = new MonthYearIC(user);
+        MonthYearIC monthyear = new MonthYearIC(user,1);
         monthyear.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMonthlyReportActionPerformed
 
     private void btnPatientDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientDetailActionPerformed
-        try {
-            // TODO add your handling code here:
-            ViewPatientDetail monthyear = new ViewPatientDetail(user);
-            monthyear.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        MonthYearIC monthyear = new MonthYearIC(user,2);
+        monthyear.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPatientDetailActionPerformed
 
     /**

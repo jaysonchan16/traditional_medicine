@@ -6,6 +6,7 @@
 package medical;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,17 +24,18 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     private String to="";
     private String IC="";
     public MonthlyPatientReport(User user, String from, String to, String IC) throws SQLException{
+        initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
         this.IC = IC;
-        show_patient();
-        initComponents();
+        show_disease();
+        setResizable(false);
     }
     
     public MonthlyPatientReport() throws SQLException {
-        show_patient();
         initComponents();
+        show_disease();
     }
 
     /**
@@ -55,9 +57,17 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "主症", "体温", "血压", "脉象", "舌质", "舌苔", "大便", "小便"
+                "主症", "体温", "血压", "脉象", "舌质", "舌苔", "大便", "小便", "创建时间", "更新时间"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblMonthlyPatient);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,24 +128,25 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
             }
         });
     }
-    DefaultTableModel model ;
-    public void show_patient() throws SQLException{
-         Patient patient = new Patient();
-         List<Patient> patientList = patient.getDiseasePatients(from, to, IC);
-         //List<Patient> patientList = new ArrayList<>();
-         model = (DefaultTableModel)tblMonthlyPatient.getModel();
-         Object row[] = new Object[9];
-         for(int i =0; i<patientList.size(); i++)
+    
+    public void show_disease() throws SQLException{
+         Disease disease = new Disease();
+         List<Disease> diseaseList = new ArrayList<Disease>();
+         diseaseList = disease.getDiseasePatients(from, to, IC);
+         DefaultTableModel model = (DefaultTableModel)tblMonthlyPatient.getModel();
+         Object row[] = new Object[10];
+         for(int i =0; i<diseaseList.size(); i++)
          {
-             row[0] = patientList.get(i).getID();
-             row[1] = patientList.get(i).getIC();
-             row[2] = patientList.get(i).getName();
-             row[3] = patientList.get(i).getGender();
-             row[4] = patientList.get(i).getAge();
-             row[5] = patientList.get(i).getPhone();
-             row[6] = patientList.get(i).getAddress();
-             row[7] = patientList.get(i).getLastUpdateDateTime();
-             row[8] = patientList.get(i).getCreateDateTime();
+             row[0] = diseaseList.get(i).getSymptom();
+             row[1] = diseaseList.get(i).getTemperature();
+             row[2] = diseaseList.get(i).getBloodPressure();
+             row[3] = diseaseList.get(i).getPulseCondition();
+             row[4] = diseaseList.get(i).getTongueQuality();
+             row[5] = diseaseList.get(i).getTongueCoating();
+             row[6] = diseaseList.get(i).getShit();
+             row[7] = diseaseList.get(i).getPee();
+             row[8] = diseaseList.get(i).getLastUpdateDateTime();
+             row[9] = diseaseList.get(i).getCreateDateTime();
              model.addRow(row);
          }
     }

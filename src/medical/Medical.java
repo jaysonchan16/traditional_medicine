@@ -21,39 +21,15 @@ public class Medical {
     public static void main(String[] args) {
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new NewPatient().setVisible(true);
+//                new LoginUI().setVisible(true);
 //            }
 //        });
-       /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginUI().setVisible(true);
-            }
-        });*/
-//       java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    new ViewPatientDetail().setVisible(true);
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Medical.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        });
-//        new TestImportToJtable();
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ImportJtable().setVisible(true);
-//            }
-//        });
-//            java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//
-//                new ImportJtable().setVisible(true);
-//            }
-//        });
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginUI().setVisible(true);
+                new PatientDetailMenu().setVisible(true);
             }
         });
-        }
+
+    }
 }

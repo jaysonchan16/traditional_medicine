@@ -6,6 +6,7 @@
 package medical;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -19,9 +20,10 @@ public class MonthYearIC extends javax.swing.JFrame {
      * Creates new form MonthYear
      */
     private User user;
-
-    public MonthYearIC(User user) {
+    private int option;
+    public MonthYearIC(User user, int option) {
         this.user = user;
+        this.option = option;
         initComponents();
     }
 
@@ -137,73 +139,43 @@ public class MonthYearIC extends javax.swing.JFrame {
         String fromyear = txtFromYear.getText();
         String toyear = txtToYear.getText();
         String IC = txtIC.getText();
-        String to = "";
-        String from = "";
-        try {
-            if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") && IC.equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(rootPane, "请填月份或者IC！");
-            } else if (tomonth.length() > 2 || frommonth.length() > 2) {
-                JOptionPane.showMessageDialog(rootPane, "月份错误！");
-            } else if (toyear.length() > 4 || (toyear.length() > 0 && toyear.length() < 4) || fromyear.length() > 4 || (fromyear.length() > 0 && fromyear.length() < 4)) {
-                JOptionPane.showMessageDialog(rootPane, "年份错误！");
-            } else if (!IC.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
-                System.out.println("1");
-                viewpatientpage(from, to, IC);
-            } else {
-                System.out.println("2");
-                if (tomonth.length() == 1) {
-                    tomonth = "0" + tomonth;
+        System.out.println(option);
+        Excel monthyear = new Excel();
+        HashMap<String,String> monthyearIC = new HashMap<String,String>();
+        monthyearIC = monthyear.checkMonthYearIC(frommonth, tomonth, fromyear, toyear, IC);
+        if(!monthyearIC.get("Messages").equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, monthyearIC.get("Messages"));
+        }
+        else
+        {
+            try {
+                if(option == 2)
+                {
+                    viewpatientpage(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"));
                 }
-                if (frommonth.length() == 1) {
-                    frommonth = "0" + frommonth;
+                else
+                {
+                    monthlypatientreport(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"));
                 }
-
-                from = fromyear + "-" + frommonth + "-01";
-
-                switch (Integer.parseInt(tomonth)) {
-                    case 1:
-                    case 3:
-                    case 5:
-                    case 7:
-                    case 8:
-                    case 10:
-                    case 12:
-                        to = toyear + "-" + tomonth + "-31";
-                        viewpatientpage(from, to, IC);
-                        break;
-                    case 2:
-                        if (Integer.parseInt(toyear) % 4 == 0) {
-                            to = toyear + "-" + tomonth + "-29";
-                            viewpatientpage(from, to, IC);
-                        } else {
-                            to = toyear + "-" + tomonth + "-28";
-                            viewpatientpage(from, to, IC);
-                        }
-                        break;
-                    case 4:
-                    case 6:
-                    case 9:
-                    case 11:
-                        to = toyear + "-" + tomonth + "-30";
-                        viewpatientpage(from, to, IC);
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(rootPane, "月份错误");
-                        break;
-
-                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnFindActionPerformed
 
     public void viewpatientpage(String from, String to, String IC) throws SQLException {
-        MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC);
+        ViewPatientDetail monthly = new ViewPatientDetail(user, from, to, IC);
         monthly.setVisible(true);
         this.dispose();
     }
 
+    public void monthlypatientreport(String from, String to, String IC)throws SQLException {
+       MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC);
+       monthly.setVisible(true);
+       this.dispose();
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         PatientDetailMenu menu = new PatientDetailMenu(user);

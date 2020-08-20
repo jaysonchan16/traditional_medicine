@@ -310,7 +310,7 @@ public class NewPatient extends javax.swing.JFrame {
                     txtPhone.setEnabled(true);
                     txtAddress.setEnabled(true);
                     btnAdd.setVisible(false);
-                } else {
+                } else{
                     txtIC.setEnabled(false);
                     txtName.setEnabled(true);
                     txtGender.setEnabled(true);

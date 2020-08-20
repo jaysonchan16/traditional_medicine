@@ -32,9 +32,12 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         initComponents();
         show_patient();
     }
-    public ViewPatientDetail(User user) throws SQLException {
+    public ViewPatientDetail(User user,String from,String to, String IC) throws SQLException {
         initComponents();
         this.user = user;
+        this.from = from;
+        this.to = to;
+        this.IC = IC;
         show_patient();
         setResizable(false);
     }
@@ -222,7 +225,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     public void show_patient() throws SQLException{
          Patient patient = new Patient();
          List<Patient> patientList = new ArrayList<Patient>();
-         patientList = patient.getPatients();
+         patientList = patient.getPatients(from, to, IC);
          model = (DefaultTableModel)tblPatient.getModel();
          Object row[] = new Object[9];
          for(int i =0; i<patientList.size(); i++)

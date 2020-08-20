@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Sheng
  */
-public class Disease {
+public class Disease extends Patient{
     
     private String symptom;
     private int temperature;
@@ -29,9 +29,6 @@ public class Disease {
     private String pee;
     private String shit;
     private int patientID;
-    private String IC;
-    private String name;
-    private String phoneNo;
     private String lastUpdateDateTime;
     private String createDateTime;
     public Statement st = connect.connection();
@@ -58,8 +55,23 @@ public class Disease {
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
+            String tongueCoating, String pee, String shit, String lastUpdateDateTime, String createDateTime){
+        this.symptom = symptom;
+        this.temperature = temperature;
+        this.bloodPressure = bloodPressure;
+        this.pulseCondition = pulseCondition;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.pee = pee;
+        this.shit = shit;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
+    }
+    
+    public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
             String tongueCoating, String pee, String shit, int patientID, String lastUpdateDateTime, String createDateTime,
             String IC, String name, String phoneNo){
+        super(IC,name,phoneNo);
         this.symptom = symptom;
         this.temperature = temperature;
         this.bloodPressure = bloodPressure;
@@ -71,9 +83,6 @@ public class Disease {
         this.patientID = patientID;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
-        this.IC = IC;
-        this.name = name;
-        this.phoneNo = phoneNo;
     }
     /**
      * @return the symptom
@@ -201,48 +210,6 @@ public class Disease {
         this.patientID = patientID;
     }
     
-        /**
-     * @return the IC
-     */
-    public String getIC() {
-        return IC;
-    }
-
-    /**
-     * @param IC the IC to set
-     */
-    public void setIC(String IC) {
-        this.IC = IC;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the phoneNo
-     */
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    /**
-     * @param phoneNo the phoneNo to set
-     */
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-    
     /**
      * @return the lastUpdateDateTime
      */
@@ -272,9 +239,9 @@ public class Disease {
     }
     
     public int AddDisease(){
-        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpateDateTime, createDateTime)"
+        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpdateDateTime, createDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), lastUpdateDateTime = datetime('now','localtime'), createDateTime = datetime('now','localtime')";
+                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -363,7 +330,38 @@ public class Disease {
         return diseaseList;
     }
 
-    
+    public List<Disease> getDiseasePatients(String from, String to, String IC) throws SQLException{
+        List<Disease> patientDisease = new ArrayList<>();
+        String query;
+        
+        if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
+        {
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
+        }
+        else if(IC.equalsIgnoreCase(""))
+        {
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where d.createDateTime>=trim('"+from+"') and d.createDateTime<=trim('"+to+"')";
+        }
+        else
+        {
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
+        }
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 patientDisease.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
+                         rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
+                         rs.getString("lastUpdateDateTime"),rs.getString("createDateTime")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return patientDisease;
+    }
 
 
 }

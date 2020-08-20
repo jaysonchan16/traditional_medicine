@@ -204,7 +204,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="STXihei" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x6708;&#x4efd;&#x62a5;&#x544a;"/>
+        <Property name="text" type="java.lang.String" value="&#x75c5;&#x75c7;&#x62a5;&#x544a;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMonthlyReportActionPerformed"/>
