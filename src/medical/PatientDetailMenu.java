@@ -83,7 +83,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnImport);
-        btnImport.setBounds(550, 340, 239, 70);
+        btnImport.setBounds(560, 340, 239, 70);
 
         btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
@@ -184,15 +184,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportActionPerformed
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
-        // TODO add your handling code here:
-        /*ViewPatientDetail view = null;
         try {
-            view = new ViewPatientDetail(user);
+            // TODO add your handling code here:
+            ViewPatientDetail i = new ViewPatientDetail(user,3);
+            i.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        view.setVisible(true);
-        this.dispose();*/
     }//GEN-LAST:event_btnBackupActionPerformed
 
     private void btnDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiseaseActionPerformed

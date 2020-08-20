@@ -120,6 +120,26 @@ public class Excel {
             data.put("IC",IC);
             data.put("Messages", "");
             return data;
+        } else if((!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (!frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                 (!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))){
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "请填写完整月份和年份");
+            return data;
+        } else if(Integer.parseInt(frommonth) > 12){
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("Messages", "月份错误");
+            return data;
         } else {
             if (tomonth.length() == 1) {
                 tomonth = "0" + tomonth;
@@ -179,4 +199,5 @@ public class Excel {
             return data;
         }
     }
+    
 }

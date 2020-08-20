@@ -27,11 +27,20 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private User user;
     private String from="";
     private String to="";
-    private String IC;
+    private String IC="";
+    private int option;
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
     }
+    
+    public ViewPatientDetail(User user, int option) throws SQLException {
+        initComponents();
+        this.user = user;
+        this.option = option;
+        show_patient();
+    }
+    
     public ViewPatientDetail(User user,String from,String to, String IC) throws SQLException {
         initComponents();
         this.user = user;
@@ -170,9 +179,17 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        MonthYearIC menu = new MonthYearIC(user,2);
-        menu.setVisible(true);
-        this.dispose();
+        if(option == 3){
+            PatientDetailMenu menu = new PatientDetailMenu(user);
+            menu.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            MonthYearIC menu = new MonthYearIC(user,2);
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -225,7 +242,15 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     public void show_patient() throws SQLException{
          Patient patient = new Patient();
          List<Patient> patientList = new ArrayList<Patient>();
-         patientList = patient.getPatients(from, to, IC);
+         if(option == 3)
+         {
+             patientList = patient.getPatients();
+         }
+         else
+         {
+             patientList = patient.getPatients(from, to, IC);
+         }
+         
          model = (DefaultTableModel)tblPatient.getModel();
          Object row[] = new Object[9];
          for(int i =0; i<patientList.size(); i++)
