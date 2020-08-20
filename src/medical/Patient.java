@@ -18,22 +18,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Patient {
-    private String name;
-    private String gender;
-    private int age;
-    private String IC;
-    private String phone;
-    private String address;
-    private int ID;
-    private String lastUpdateDateTime;
-    private String createDateTime;
-    public Statement st = connect.connection();
+    protected String name;
+    protected String gender;
+    protected int age;
+    protected String IC;
+    protected String phone;
+    protected String address;
+    protected int ID;
+    protected String lastUpdateDateTime;
+    protected String createDateTime;
+    protected Statement st = connect.connection();
     ResultSet rs;
     
     public Patient(){}
     
     public Patient(String _IC){
         this.IC = _IC;
+    }
+    
+    public Patient(String _IC, String _name, String _phone){
+        this.IC = _IC;
+        this.name = _name;
+        this.phone = _phone;
     }
     
     public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address){
@@ -261,6 +267,7 @@ public class Patient {
     public List<Patient> getPatients() throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
+        
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -275,15 +282,13 @@ public class Patient {
         }
         return patientList;
     }
-
-    public List<Patient> getDiseasePatients(String from, String to, String IC) throws SQLException{
+    
+    public List<Patient> getPatients(String from, String to, String IC) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query;
-        
+        String query="";
         if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
         {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,lastUpdateDateTime,createDateTime from Disease d right join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
-            System.out.println(query);
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"')";
         }
         else if(IC.equalsIgnoreCase(""))
         {
@@ -308,5 +313,7 @@ public class Patient {
         }
         return patientList;
     }
+
+    
     
 }
