@@ -8,6 +8,7 @@ package medical;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  *
@@ -56,25 +57,87 @@ public class Code {
         this.number = number;
     }
     
-    public int validateID(String name) throws SQLException{
+    public HashMap<String,String> validateID(String name) throws SQLException{
+        HashMap<String,String> data= new HashMap<String,String>();
         String upperName = name.substring(0,1).toUpperCase();
+        
+        int Number;
+        System.out.println(upperName);
+        if(countID(upperName) == 1)
+        {
+            if(plusOneID(upperName).equalsIgnoreCase("1"))
+            {
+                String query = "Select Number from Maintcode where Code = '"+upperName+"'";
+                try {
+                    rs = st.executeQuery(query);
+                    Number = rs.getInt("Number");
+                    st.close();
+                    rs.close();
+                    System.out.println("Here" + upperName + "-" + Number);
+                    data.put("data", upperName + "-" + Number);
+                    data.put("messages", "");
+                    return data;
+                } 
+                catch (NullPointerException e)
+                {
+                    data.put("data", "");
+                    data.put("messages", e.getMessage());
+                    return data;
+                }
+                finally{
+                    st.close(); 
+                }
+            }
+            else
+            {
+                data.put("data", "");
+                data.put("messages", plusOneID(upperName));
+                return data;
+            }
+        }
+        else
+        {
+            data.put("data", "");
+            data.put("messages", "名字只需用英文名！");
+            return data;
+        }
+    }
+    
+    public String plusOneID(String upperName) throws SQLException{
+        String query = "Update Maintcode Set Number = Number + 1 "
+                 + "where Code = '"+upperName+"'";
+        
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public int countID(String upperName) throws SQLException
+    {
+        String query = "Select count(*) as Number from Maintcode where Code = '"+upperName+"'";
+        
         int Number;
         
-        
-        String query = "Select Number from Maintcode where Code = '"+upperName+"'";
         try {
             rs = st.executeQuery(query);
             Number = rs.getInt("Number");
-            
+            st.close();
+            rs.close();
             return Number;
         } 
         catch (NullPointerException e)
         {
-            //throw(new NoSuchElementException(e.getMessage()));
+            return 0;
+        } 
+        catch (SQLException ex) {
+            ex.printStackTrace();
             return 0;
         }
         finally{
+            rs.close();
             st.close(); 
         }
+        
     }
 }

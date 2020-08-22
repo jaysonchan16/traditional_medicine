@@ -35,6 +35,9 @@ public class NewPatient extends javax.swing.JFrame {
         txtAddress.setEnabled(false);
         lblCreateDateTime.setEnabled(false);
         lblLastUpdateDateTime.setEnabled(false);
+        btnDelete.setVisible(false);
+        btnEdit.setVisible(false);
+        txtID.setEnabled(false);
         this.user = user;
     }
 
@@ -50,6 +53,7 @@ public class NewPatient extends javax.swing.JFrame {
         txtAddress.setEnabled(true);
         lblCreateDateTime.setEnabled(false);
         lblLastUpdateDateTime.setEnabled(false);
+        txtID.setEnabled(false);
     }
 
     public NewPatient() {
@@ -259,7 +263,7 @@ public class NewPatient extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "地址没填！");
             } else {
                 Patient patient = new Patient(IC, name, gender, age, phone, address);
-                if (patient.AddNewPatient() == 1) {
+                if (patient.AddNewPatient().equalsIgnoreCase("1")) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功");
                     try {
                         if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC).getIC().equalsIgnoreCase(IC)) {
@@ -275,11 +279,13 @@ public class NewPatient extends javax.swing.JFrame {
                         ex.printStackTrace();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "新增失败");
+                    JOptionPane.showMessageDialog(rootPane, patient.AddNewPatient());
                 }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "年龄后面不可以有空格/年龄不可以放字母！");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -288,10 +294,10 @@ public class NewPatient extends javax.swing.JFrame {
         String IC = txtIC.getText();
         Patient patient = new Patient(IC);
         try {
-            if (patient.DeletePatient() == 1) {
+            if (patient.DeletePatient().equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "删除失败");
+                JOptionPane.showMessageDialog(rootPane, patient.DeletePatient());
             }
         } catch (SQLException ex) {
             Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
@@ -340,19 +346,23 @@ public class NewPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        String IC = txtIC.getText();
-        String name = txtName.getText();
-        String gender = txtGender.getText();
-        int age = Integer.parseInt(txtAge.getText());
-        String phone = txtPhone.getText();
-        String address = txtAddress.getText();
-
-        Patient patient = new Patient(IC);
-        if (patient.EditPatient(name, gender, age, IC, phone, address) == 1) {
-            JOptionPane.showMessageDialog(rootPane, "更改成功");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "更改失败");
+        try {
+            // TODO add your handling code here:
+            String IC = txtIC.getText();
+            String name = txtName.getText();
+            String gender = txtGender.getText();
+            int age = Integer.parseInt(txtAge.getText());
+            String phone = txtPhone.getText();
+            String address = txtAddress.getText();
+            
+            Patient patient = new Patient(IC);
+            if (patient.EditPatient(name, gender, age, IC, phone, address).equalsIgnoreCase("1")) {
+                JOptionPane.showMessageDialog(rootPane, "更改成功");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, patient.EditPatient(name, gender, age, IC, phone, address));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnEditActionPerformed
 

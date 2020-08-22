@@ -197,49 +197,42 @@ public class Patient {
         this.createDateTime = createDateTime;
     }
     
-    public int AddNewPatient(){
-        /* String query = "insert into Patient(IC, name, gender, age, phone, address) values('"+IC+"','"+name+"','"+gender+"',"
-                + "'"+age+"','"+phone+"','"+address+"')";*/
-        String query = "insert into Patient(IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime)"
-                + "Select trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime')";
-        try {
-            st.executeUpdate(query);
-            st.close(); 
-            return 1;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
+    public String AddNewPatient() throws SQLException{
+        Code code = new Code();
+        HashMap<String, String> map = new HashMap<String,String>();
+        map = code.validateID(name);
+        
+        if(map.get("messages").equalsIgnoreCase("") && validatePatient(IC) == 0)
+        {        
+            String query = "insert into Patient(ID, IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime)"
+                    + "Select '"+map.get("data")+"',trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime')";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query);
         }
-    }
-    
-    public int EditPatient(String name, String gender, int age, String IC, String phone, String address){
-         String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
-                 + "where IC = '"+IC+"'";
-        try {
-            st.executeUpdate(query);
-            st.close(); 
-            return 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return 0;
-    }
-    
-    public int DeletePatient() throws SQLException{
-         String query = "Delete From Patient where IC = '"+IC+"'";
-          
-        try {
-            st.executeUpdate(query);
-            return 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-        finally
+        else
         {
-            st.close();
+            return code.validateID(name).get("messages");
         }
+        
+    }
+    
+    public String EditPatient(String name, String gender, int age, String IC, String phone, String address) throws SQLException{
+        String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
+                 + "where IC = '"+IC+"'";
+         
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public String DeletePatient() throws SQLException{
+        String query = "Delete From Patient where IC = '"+IC+"'";
+          
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
     }
     
     public Patient getPatient(String IC) throws SQLException{
@@ -315,5 +308,25 @@ public class Patient {
         return patientList;
     }
 
-            
+    public int validatePatient(String IC) throws SQLException
+    {
+        try {
+            String query = "Select count(1) as count from Patient where IC = '"+IC+"'";
+            int count = 0;
+            rs = st.executeQuery(query);
+            count = rs.getInt("count");
+            rs.close();
+            st.close();
+            return count;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+        finally{
+            rs.close();
+            st.close();
+            return 0;
+        }
+        
+    }
 }
