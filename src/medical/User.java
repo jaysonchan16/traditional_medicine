@@ -119,4 +119,62 @@ public class User {
         User theUser = getUser(username);
         return(password.equals(theUser.getPassword()));
     }
+    
+    public int validateID()
+    {
+        int count = 0;
+        try {
+            String countID = "Select count(*)as ID from maintcode";
+            rs = st.executeQuery(countID);
+            try {
+                count = rs.getInt("ID");
+                System.out.println(count);
+                if(count == 0)
+                {
+                    String query = "insert into maintcode(Code,Number)"
+                            + "Select 'A',1 UNION ALL "
+                            + "Select 'B',1 UNION ALL "
+                            + "Select 'C',1 UNION ALL "
+                            + "Select 'D',1 UNION ALL "
+                            + "Select 'E',1 UNION ALL "
+                            + "Select 'F',1 UNION ALL "
+                            + "Select 'G',1 UNION ALL "
+                            + "Select 'H',1 UNION ALL "
+                            + "Select 'I',1 UNION ALL "
+                            + "Select 'J',1 UNION ALL "
+                            + "Select 'K',1 UNION ALL "
+                            + "Select 'L',1 UNION ALL "
+                            + "Select 'M',1 UNION ALL "
+                            + "Select 'N',1 UNION ALL "
+                            + "Select 'O',1 UNION ALL "
+                            + "Select 'P',1 UNION ALL "
+                            + "Select 'Q',1 UNION ALL "
+                            + "Select 'R',1 UNION ALL "
+                            + "Select 'S',1 UNION ALL "
+                            + "Select 'T',1 UNION ALL "
+                            + "Select 'U',1 UNION ALL "
+                            + "Select 'V',1 UNION ALL "
+                            + "Select 'W',1 UNION ALL "
+                            + "Select 'X',1 UNION ALL "
+                            + "Select 'Y',1 UNION ALL "
+                            + "Select 'Z',1";
+                    
+                    st.executeUpdate(query);
+                    st.close();
+                    
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
 }

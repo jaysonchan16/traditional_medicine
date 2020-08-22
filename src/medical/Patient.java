@@ -268,6 +268,7 @@ public class Patient {
         List<Patient> patientList = new ArrayList<>();
         String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
         
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -314,6 +315,5 @@ public class Patient {
         return patientList;
     }
 
-    
-    
+            
 }

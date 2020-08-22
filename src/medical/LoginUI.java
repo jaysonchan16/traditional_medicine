@@ -135,6 +135,7 @@ public class LoginUI extends javax.swing.JFrame {
         User user = new User();
         
         try {
+            user.validateID();
             if( user.login(userid, password)){
                 user = user.getUser(userid);
                 

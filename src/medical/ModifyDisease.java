@@ -29,35 +29,116 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtSymptom = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblIC = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtTemperature = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        jTable1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "", "", "", ""
+                "ID", "主症 ", "体温", "血压", "脉象", "舌质", "舌苔", "大便", "小便", "PatientID", "创建时间", "更新时间"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("主症 ");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("体温");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("血压");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("脉象");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("舌质");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("舌苔");
+            jTable1.getColumnModel().getColumn(7).setHeaderValue("大便");
+            jTable1.getColumnModel().getColumn(8).setHeaderValue("小便");
+            jTable1.getColumnModel().getColumn(9).setHeaderValue("PatientID");
+            jTable1.getColumnModel().getColumn(10).setHeaderValue("创建时间");
+            jTable1.getColumnModel().getColumn(11).setHeaderValue("更新时间");
+        }
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(573, 54, 1023, 660);
+
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton1.setText("退出");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(60, 720, 130, 50);
+
+        jButton2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton2.setText("更新");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(240, 720, 140, 50);
+
+        jButton3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton3.setText("删除");
+        getContentPane().add(jButton3);
+        jButton3.setBounds(420, 720, 140, 50);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("主症：");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 220, 60, 40);
+
+        txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtSymptom);
+        txtSymptom.setBounds(90, 220, 450, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("名字：");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 70, 70, 30);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblName);
+        lblName.setBounds(100, 70, 450, 40);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("IC：");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 130, 70, 40);
+
+        lblIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblIC);
+        lblIC.setBounds(100, 130, 450, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("体温：");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 290, 60, 30);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(0, 190, 560, 10);
+
+        txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtTemperature);
+        txtTemperature.setBounds(90, 290, 450, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("血压：");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 360, 60, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,7 +179,20 @@ public class ModifyDisease extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblIC;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JTextField txtSymptom;
+    private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,7 +28,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private String from="";
     private String to="";
     private String IC="";
-    private int option;
+    private int option=0;
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
@@ -39,6 +39,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.user = user;
         this.option = option;
         show_patient();
+        setResizable(false);
     }
     
     public ViewPatientDetail(User user,String from,String to, String IC) throws SQLException {
@@ -65,7 +66,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         tblPatient = new javax.swing.JTable();
         btnBackup = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,14 +75,14 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "IC", "名字", "性别", "年龄", "电话号码", "地址", "更新时间", "创建时间"
+                "ID", "IC", "名字", "性别", "年龄", "电话号码", "地址", "创建时间", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,6 +95,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPatient);
 
+        btnBackup.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBackup.setText("备用");
         btnBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,17 +103,19 @@ public class ViewPatientDetail extends javax.swing.JFrame {
             }
         });
 
-        btnBack.setText("Back");
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        btnSave.setText("储存");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnPrintActionPerformed(evt);
             }
         });
 
@@ -123,8 +127,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
                         .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,7 +146,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBackup, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -192,12 +196,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel dt =(DefaultTableModel) tblPatient.getModel();
-        
-        dt.setValueAt(dt, WIDTH, WIDTH);
-    }//GEN-LAST:event_btnSaveActionPerformed
+        Excel exl = new Excel();
+        exl.Print(tblPatient);
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,7 +273,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBackup;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPatient;
     // End of variables declaration//GEN-END:variables

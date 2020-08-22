@@ -36,12 +36,25 @@ public class ListGrassMedicine extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         wordDefinitionTxtArea = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtComponent = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtEffect = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtPotion = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtRemark = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
 
         jLabel1.setText("Word");
 
@@ -97,68 +110,141 @@ public class ListGrassMedicine extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jButton1.setText("Add ");
+        btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnAdd.setText("新增");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdd);
+        btnAdd.setBounds(150, 520, 119, 51);
 
-        jButton2.setText("Edit");
+        btnEdit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnEdit.setText("更改");
+        getContentPane().add(btnEdit);
+        btnEdit.setBounds(290, 520, 120, 51);
 
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtName);
+        txtName.setBounds(170, 90, 380, 40);
+
+        jTable1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Word", "Word Type", "Definition"
+                "名字", "组成", "功效", "每次每日剂量", "价格", "注备"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
-        jButton4.setText("jButton4");
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(700, 90, 543, 423);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 175, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
+        btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnDelete.setText("删除");
+        getContentPane().add(btnDelete);
+        btnDelete.setBounds(430, 520, 120, 51);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("名字：");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(80, 100, 57, 26);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("组成：");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(80, 170, 60, 30);
+
+        txtComponent.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtComponent);
+        txtComponent.setBounds(170, 160, 380, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("功效：");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(80, 240, 60, 20);
+
+        txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtEffect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEffectActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtEffect);
+        txtEffect.setBounds(170, 230, 380, 40);
+
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel7.setText("每次每日剂量：");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 300, 140, 30);
+
+        txtPotion.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtPotion);
+        txtPotion.setBounds(170, 300, 380, 40);
+
+        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel8.setText("价格/ g：");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(50, 370, 90, 40);
+
+        txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtPrice);
+        txtPrice.setBounds(170, 370, 380, 40);
+
+        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel9.setText("备注：");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(70, 440, 60, 30);
+
+        txtRemark.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtRemark);
+        txtRemark.setBounds(170, 440, 380, 40);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        getContentPane().add(btnBack);
+        btnBack.setBounds(10, 520, 120, 50);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind.setText("寻找");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFind);
+        btnFind.setBounds(560, 80, 120, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtEffectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEffectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEffectActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,18 +282,31 @@ public class ListGrassMedicine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnFind;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtComponent;
+    private javax.swing.JTextField txtEffect;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPotion;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtRemark;
     private javax.swing.JTextArea wordDefinitionTxtArea;
     private javax.swing.JTextField wordTxt;
     private javax.swing.JComboBox<String> wordTypeCombo;

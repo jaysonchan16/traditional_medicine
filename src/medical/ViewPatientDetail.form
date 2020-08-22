@@ -27,8 +27,8 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnSave" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="btnPrint" min="-2" pref="121" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                       <Component id="btnBackup" min="-2" pref="132" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" pref="137" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnBackup" pref="62" max="32767" attributes="0"/>
                   <Component id="btnBack" max="32767" attributes="0"/>
-                  <Component id="btnSave" max="32767" attributes="0"/>
+                  <Component id="btnPrint" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
@@ -71,14 +71,14 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="0">
                 <Column editable="false" title="ID" type="java.lang.Integer"/>
-                <Column editable="true" title="IC" type="java.lang.String"/>
-                <Column editable="true" title="&#x540d;&#x5b57;" type="java.lang.String"/>
-                <Column editable="true" title="&#x6027;&#x522b;" type="java.lang.String"/>
-                <Column editable="true" title="&#x5e74;&#x9f84;" type="java.lang.Integer"/>
-                <Column editable="true" title="&#x7535;&#x8bdd;&#x53f7;&#x7801;" type="java.lang.String"/>
-                <Column editable="true" title="&#x5730;&#x5740;" type="java.lang.String"/>
-                <Column editable="false" title="&#x66f4;&#x65b0;&#x65f6;&#x95f4;" type="java.lang.String"/>
+                <Column editable="false" title="IC" type="java.lang.String"/>
+                <Column editable="false" title="&#x540d;&#x5b57;" type="java.lang.String"/>
+                <Column editable="false" title="&#x6027;&#x522b;" type="java.lang.String"/>
+                <Column editable="false" title="&#x5e74;&#x9f84;" type="java.lang.Integer"/>
+                <Column editable="false" title="&#x7535;&#x8bdd;&#x53f7;&#x7801;" type="java.lang.String"/>
+                <Column editable="false" title="&#x5730;&#x5740;" type="java.lang.String"/>
                 <Column editable="false" title="&#x521b;&#x5efa;&#x65f6;&#x95f4;" type="java.lang.String"/>
+                <Column editable="false" title="&#x66f4;&#x65b0;&#x65f6;&#x95f4;" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -139,6 +139,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnBackup">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="STXihei" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x5907;&#x7528;"/>
       </Properties>
       <Events>
@@ -147,18 +150,24 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="STXihei" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x9000;&#x51fa;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSave">
+    <Component class="javax.swing.JButton" name="btnPrint">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x50a8;&#x5b58;"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="STXihei" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x6253;&#x5370;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

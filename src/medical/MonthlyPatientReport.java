@@ -71,7 +71,8 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblMonthlyPatient);
 
-        btnBack.setText("Back");
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
