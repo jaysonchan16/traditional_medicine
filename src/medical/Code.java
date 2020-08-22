@@ -5,6 +5,10 @@
  */
 package medical;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Sheng
@@ -13,6 +17,8 @@ public class Code {
     
     private String code;
     private int number;
+    protected Statement st = connect.connection();
+    ResultSet rs;
     
     public Code() {}
     
@@ -48,5 +54,27 @@ public class Code {
      */
     public void setNumber(int number) {
         this.number = number;
+    }
+    
+    public int validateID(String name) throws SQLException{
+        String upperName = name.substring(0,1).toUpperCase();
+        int Number;
+        
+        
+        String query = "Select Number from Maintcode where Code = '"+upperName+"'";
+        try {
+            rs = st.executeQuery(query);
+            Number = rs.getInt("Number");
+            
+            return Number;
+        } 
+        catch (NullPointerException e)
+        {
+            //throw(new NoSuchElementException(e.getMessage()));
+            return 0;
+        }
+        finally{
+            st.close(); 
+        }
     }
 }

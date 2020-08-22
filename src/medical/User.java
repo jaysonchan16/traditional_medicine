@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class User {
     private String userid;
     private String password;
-    private Statement st =connect.connection(); 
+    protected Statement st = connect.connection();
     ResultSet rs;
     
     public User(){}
@@ -124,45 +124,13 @@ public class User {
     {
         int count = 0;
         try {
-            String countID = "Select count(*)as ID from maintcode";
+            String countID = "Select count(*)as ID from Maintcode";
             rs = st.executeQuery(countID);
             try {
                 count = rs.getInt("ID");
-                System.out.println(count);
                 if(count == 0)
                 {
-                    String query = "insert into maintcode(Code,Number)"
-                            + "Select 'A',1 UNION ALL "
-                            + "Select 'B',1 UNION ALL "
-                            + "Select 'C',1 UNION ALL "
-                            + "Select 'D',1 UNION ALL "
-                            + "Select 'E',1 UNION ALL "
-                            + "Select 'F',1 UNION ALL "
-                            + "Select 'G',1 UNION ALL "
-                            + "Select 'H',1 UNION ALL "
-                            + "Select 'I',1 UNION ALL "
-                            + "Select 'J',1 UNION ALL "
-                            + "Select 'K',1 UNION ALL "
-                            + "Select 'L',1 UNION ALL "
-                            + "Select 'M',1 UNION ALL "
-                            + "Select 'N',1 UNION ALL "
-                            + "Select 'O',1 UNION ALL "
-                            + "Select 'P',1 UNION ALL "
-                            + "Select 'Q',1 UNION ALL "
-                            + "Select 'R',1 UNION ALL "
-                            + "Select 'S',1 UNION ALL "
-                            + "Select 'T',1 UNION ALL "
-                            + "Select 'U',1 UNION ALL "
-                            + "Select 'V',1 UNION ALL "
-                            + "Select 'W',1 UNION ALL "
-                            + "Select 'X',1 UNION ALL "
-                            + "Select 'Y',1 UNION ALL "
-                            + "Select 'Z',1";
-                    
-                    st.executeUpdate(query);
-                    st.close();
-                    
-                    return 1;
+                    return registerMaintcode();
                 }
                 else
                 {
@@ -177,4 +145,81 @@ public class User {
         }
         return 0;
     }
+    
+    public int validateUser() throws SQLException
+    {
+        int count = 0;
+        String countID = "Select count(*)as ID from User";
+        rs = st.executeQuery(countID);
+        count = rs.getInt("ID");
+        if(count == 0)
+        {
+            st.close();
+            rs.close();
+            return 1;
+        }
+        else 
+        {
+            st.close();
+            rs.close();
+            return 0;
+        }
+        
+    }
+    
+    public int registerMaintcode() throws SQLException
+    {
+        try {
+            String query = "insert into Maintcode(Code,Number)"
+                    + "Select 'A',0 UNION ALL "
+                    + "Select 'B',0 UNION ALL "
+                    + "Select 'C',0 UNION ALL "
+                    + "Select 'D',0 UNION ALL "
+                    + "Select 'E',0 UNION ALL "
+                    + "Select 'F',0 UNION ALL "
+                    + "Select 'G',0 UNION ALL "
+                    + "Select 'H',0 UNION ALL "
+                    + "Select 'I',0 UNION ALL "
+                    + "Select 'J',0 UNION ALL "
+                    + "Select 'K',0 UNION ALL "
+                    + "Select 'L',0 UNION ALL "
+                    + "Select 'M',0 UNION ALL "
+                    + "Select 'N',0 UNION ALL "
+                    + "Select 'O',0 UNION ALL "
+                    + "Select 'P',0 UNION ALL "
+                    + "Select 'Q',0 UNION ALL "
+                    + "Select 'R',0 UNION ALL "
+                    + "Select 'S',0 UNION ALL "
+                    + "Select 'T',0 UNION ALL "
+                    + "Select 'U',0 UNION ALL "
+                    + "Select 'V',0 UNION ALL "
+                    + "Select 'W',0 UNION ALL "
+                    + "Select 'X',0 UNION ALL "
+                    + "Select 'Y',0 UNION ALL "
+                    + "Select 'Z',0";
+            
+            st.executeUpdate(query);
+            st.close();
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public String registerUser() throws SQLException
+    {
+        try {
+            String query = "insert into User(userid,password) "
+                    + "Select '"+userid+"','"+password+"'";
+            System.out.println(query);
+            st.executeUpdate(query);
+            st.close();
+            return "1";
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
 }
+

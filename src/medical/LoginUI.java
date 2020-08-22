@@ -135,17 +135,26 @@ public class LoginUI extends javax.swing.JFrame {
         User user = new User();
         
         try {
-            user.validateID();
-            if( user.login(userid, password)){
-                user = user.getUser(userid);
-                
-                MainMenu rs = new MainMenu(user);
-                rs.setVisible(true);
+            if(user.validateUser() == 1)
+            {
+                JOptionPane.showMessageDialog(rootPane,"新的系统注册");
+                RegisterNewUser register = new RegisterNewUser();
+                register.setVisible(true);
                 this.dispose();
             }
-            else {
-                JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
-                
+            else
+            {
+                user.validateID();
+                if( user.login(userid, password)){
+                    user = user.getUser(userid);
+
+                    MainMenu rs = new MainMenu(user);
+                    rs.setVisible(true);
+                    this.dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
