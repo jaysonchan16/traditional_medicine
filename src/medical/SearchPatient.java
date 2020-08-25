@@ -278,7 +278,7 @@ public class SearchPatient extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String phone = txtPhone.getText();
-            show_selected_patients("age",phone);
+            show_selected_patients("phone",phone);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
