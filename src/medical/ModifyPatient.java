@@ -26,14 +26,46 @@ public class ModifyPatient extends javax.swing.JFrame {
     DefaultTableModel model;
     private String IC;
     private String ID;
+    private String Name;
+    private String Gender;
+    private String Age;
+    private String Phone;
+    private String Address;
+    private String createDateTime;
+    private String lastUpdateDateTime;
+    private int option;
     
     public ModifyPatient() {
         initComponents();
     }
 
-    public ModifyPatient(User user) {
+    public ModifyPatient(User user, int option) {
         initComponents();
         this.user = user;
+        this.option = option;
+    }
+    
+    public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option){
+        initComponents();
+        this.user = user;
+        this.ID = ID;
+        this.IC = IC;
+        this.Gender = Gender;
+        this.Age= Age;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.createDateTime = createDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.option = option;
+        
+        txtID.setText(ID);
+        txtIC.setText(IC);
+        txtName.setText(Name);
+        txtGender.setText(Gender);
+        txtAge.setText(Age);
+        txtPhone.setText(Phone);
+        txtAddress.setText(Address);
+        btnFind.setEnabled(false);
     }
 
     /**
@@ -160,6 +192,11 @@ public class ModifyPatient extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBack);
         btnBack.setBounds(30, 700, 110, 50);
 
@@ -303,6 +340,24 @@ public class ModifyPatient extends javax.swing.JFrame {
             Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        if(option == 2){
+            try {
+                SearchPatient patient = new SearchPatient(user);
+                patient.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else if(option == 1){
+            PatientDetailMenu patient = new PatientDetailMenu(user);
+            patient.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnBackActionPerformed
 
     
     /**

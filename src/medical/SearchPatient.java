@@ -24,7 +24,7 @@ public class SearchPatient extends javax.swing.JFrame {
      */
     private User user;
     DefaultTableModel model;
-    ModifyPatient patient = new ModifyPatient();
+    
     public SearchPatient() {
         initComponents();
     }
@@ -240,7 +240,13 @@ public class SearchPatient extends javax.swing.JFrame {
         String createDateTime = model.getValueAt(index,7).toString();
         String lastUpdateDateTime = model.getValueAt(index,8).toString();
         
+        //option = 2 
+//        SearchPatient go through to the modifypatient
+        int option = 2;
+        ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,createDateTime,lastUpdateDateTime, option);
         patient.setVisible(true);
+        this.dispose();
+        /*patient.setVisible(true);
         patient.setLocationRelativeTo(null);
         patient.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
@@ -252,7 +258,7 @@ public class SearchPatient extends javax.swing.JFrame {
         patient.txtGender.setText(Gender);
         patient.txtAge.setText(Age);
         patient.txtPhone.setText(Phone);
-        patient.txtAddress.setText(Address);
+        patient.txtAddress.setText(Address);*/
         
     }//GEN-LAST:event_tblPatientMouseClicked
 
