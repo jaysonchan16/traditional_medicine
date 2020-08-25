@@ -218,7 +218,7 @@ public class Patient {
         
     }
     
-    public String EditPatient(String ID, String name, String gender, int age, String IC, String phone, String address) throws SQLException{
+    public String EditPatient(String IC, String name, String gender, int age, String phone, String address) throws SQLException{
         String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + "where IC = '"+IC+"'";
          
@@ -335,6 +335,29 @@ public class Patient {
         String query="";
         
         query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where "+contribute+" like '%"+detail+"%' order by "+contribute+" "+arrangement+"";
+          
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
+                 rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
+                 rs.getString("createDateTime"),rs.getString("ID")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return patientList;
+    }
+    
+    public List<Patient> getAllDetail(String ID, String IC, String name, String gender, String age, String phone, String arrangement) throws SQLException{
+        List<Patient> patientList = new ArrayList<>();
+        String query="";
+        
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID like '%"+ID+"%' and IC like '%"+IC+"%' and "
+                + "name like '%"+name+"%' and gender like '%"+gender+"%' and age like '%"+age+"%' and phone like '%"+phone+"%' order by ID "+arrangement+"";
           
         System.out.println(query);
         rs = st.executeQuery(query);

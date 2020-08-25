@@ -8,6 +8,8 @@ package medical;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,6 +75,11 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel1.setBounds(70, 130, 27, 26);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtIC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtICActionPerformed(evt);
+            }
+        });
         txtIC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtICKeyPressed(evt);
@@ -87,6 +94,11 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel2.setBounds(60, 270, 60, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtName);
         txtName.setBounds(120, 270, 710, 40);
 
@@ -103,6 +115,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel4.setText("年龄：");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(60, 410, 70, 30);
+
+        txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtAge);
         txtAge.setBounds(120, 410, 710, 40);
 
@@ -132,17 +146,22 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUpdate);
-        btnUpdate.setBounds(560, 610, 110, 50);
+        btnUpdate.setBounds(560, 700, 110, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(720, 610, 110, 50);
+        btnDelete.setBounds(720, 700, 110, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
         getContentPane().add(btnBack);
-        btnBack.setBounds(30, 610, 110, 50);
+        btnBack.setBounds(30, 700, 110, 50);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel7.setText("更改病人资料");
@@ -175,7 +194,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(10, 250, 860, 2);
 
-        pack();
+        setBounds(0, 0, 912, 815);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -212,6 +231,23 @@ public class ModifyPatient extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+         try {
+            String IC = txtIC.getText();
+            String name = txtName.getText();
+            String gender = txtGender.getText();
+            int age = Integer.parseInt(txtAge.getText());
+            String phone = txtPhone.getText();
+            String address = txtAddress.getText();
+            
+            Patient patient = new Patient(IC);
+            if (patient.EditPatient(IC, name, gender, age, phone, address).equalsIgnoreCase("1")) {
+                JOptionPane.showMessageDialog(rootPane, "更改成功");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, patient.EditPatient(IC, name, gender, age, phone, address));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
@@ -242,29 +278,31 @@ public class ModifyPatient extends javax.swing.JFrame {
 
     private void txtICKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtICKeyPressed
         // TODO add your handling code here:
-        IC = txtIC.getText();
-        try {
-            Patient patient = new Patient();
-            if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
-            {
-                txtName.setText(patient.getPatient(IC,ID).getName());
-                txtGender.setText(patient.getPatient(IC,ID).getGender());
-                txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
-                txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                txtAddress.setText(patient.getPatient(IC,ID).getAddress());
-
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                /*NewPatient detail = new NewPatient(user,IC);
-                detail.setVisible(true);
-                this.dispose();*/
-            }
-                } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+     
     }//GEN-LAST:event_txtICKeyPressed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtICActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtICActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtICActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String IC = txtIC.getText();
+        Patient patient = new Patient(IC);
+        try {
+            if (patient.DeletePatient().equalsIgnoreCase("1")) {
+                JOptionPane.showMessageDialog(rootPane, "删除成功");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, patient.DeletePatient());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     
     /**
@@ -305,7 +343,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnFind;
+    public javax.swing.JButton btnFind;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,12 +354,12 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtGender;
-    private javax.swing.JTextField txtIC;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPhone;
+    public javax.swing.JTextField txtAddress;
+    public javax.swing.JTextField txtAge;
+    public javax.swing.JTextField txtGender;
+    public javax.swing.JTextField txtIC;
+    public javax.swing.JTextField txtID;
+    public javax.swing.JTextField txtName;
+    public javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }

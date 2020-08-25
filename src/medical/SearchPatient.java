@@ -8,7 +8,10 @@ package medical;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -21,7 +24,7 @@ public class SearchPatient extends javax.swing.JFrame {
      */
     private User user;
     DefaultTableModel model;
-    
+    ModifyPatient patient = new ModifyPatient();
     public SearchPatient() {
         initComponents();
     }
@@ -193,11 +196,21 @@ public class SearchPatient extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBack);
         btnBack.setBounds(100, 810, 130, 50);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnFind);
         btnFind.setBounds(830, 800, 130, 50);
 
@@ -215,7 +228,31 @@ public class SearchPatient extends javax.swing.JFrame {
 
     private void tblPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientMouseClicked
         // TODO add your handling code here:
+        int index = tblPatient.getSelectedRow();
+        TableModel model = tblPatient.getModel();
+        String ID = model.getValueAt(index, 0).toString();
+        String IC = model.getValueAt(index,1).toString();
+        String Name = model.getValueAt(index,2).toString();
+        String Gender = model.getValueAt(index,3).toString();
+        String Age = model.getValueAt(index,4).toString();
+        String Phone = model.getValueAt(index,5).toString();
+        String Address = model.getValueAt(index,6).toString();
+        String createDateTime = model.getValueAt(index,7).toString();
+        String lastUpdateDateTime = model.getValueAt(index,8).toString();
         
+        patient.setVisible(true);
+        patient.setLocationRelativeTo(null);
+        patient.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        patient.txtID.setEnabled(false);
+        patient.btnFind.setEnabled(false);
+        patient.txtID.setText(ID);
+        patient.txtIC.setText(IC);
+        patient.txtName.setText(Name);
+        patient.txtGender.setText(Gender);
+        patient.txtAge.setText(Age);
+        patient.txtPhone.setText(Phone);
+        patient.txtAddress.setText(Address);
         
     }//GEN-LAST:event_tblPatientMouseClicked
 
@@ -283,6 +320,29 @@ public class SearchPatient extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_txtPhoneKeyPressed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        PatientDetailMenu detail = new PatientDetailMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        try {
+            // TODO add your handling code here:
+            String ID = txtID.getText();
+            String IC = txtIC.getText();
+            String Name = txtName.getText();
+            String Gender = txtGender.getText();
+            String Age = txtAge.getText();
+            String Phone = txtPhone.getText();
+            
+            show_all_patients(ID, IC, Name, Gender, Age,Phone);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,9 +422,31 @@ public class SearchPatient extends javax.swing.JFrame {
             row[8] = patientList.get(i).getCreateDateTime();
             model.addRow(row);
         }
-        model.fireTableDataChanged();
     }
     
+    public void show_all_patients(String ID, String IC, String Name, String Gender, String Age, String Phone) throws SQLException{
+        model.setRowCount(0);
+        Patient patient = new Patient();
+        List<Patient> patientList = new ArrayList<Patient>();
+        String arrangement;
+        arrangement = comboArrange.getSelectedItem() == "顺序" ? "asc" : comboArrange.getSelectedItem() == "逆序" ? "desc" : "系统有问题！";
+        patientList = patient.getAllDetail(ID, IC, Name, Gender ,Age ,Phone ,arrangement);
+        model = (DefaultTableModel)tblPatient.getModel();
+        Object row[] = new Object[9];
+        for(int i =0; i<patientList.size(); i++)
+        {
+            row[0] = patientList.get(i).getID();
+            row[1] = patientList.get(i).getIC();
+            row[2] = patientList.get(i).getName();
+            row[3] = patientList.get(i).getGender();
+            row[4] = patientList.get(i).getAge();
+            row[5] = patientList.get(i).getPhone();
+            row[6] = patientList.get(i).getAddress();
+            row[7] = patientList.get(i).getLastUpdateDateTime();
+            row[8] = patientList.get(i).getCreateDateTime();
+            model.addRow(row);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
