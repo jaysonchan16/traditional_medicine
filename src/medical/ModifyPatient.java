@@ -66,6 +66,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         txtPhone.setText(Phone);
         txtAddress.setText(Address);
         btnFind.setEnabled(false);
+        txtID.setEnabled(false);
     }
 
     /**

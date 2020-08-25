@@ -32,6 +32,7 @@ public class SearchPatient extends javax.swing.JFrame {
     public SearchPatient(User user) throws SQLException {
         this.user = user;
         initComponents();
+        
         show_patients();
     }
     /**
@@ -386,6 +387,7 @@ public class SearchPatient extends javax.swing.JFrame {
     }
     
     public void show_patients() throws SQLException{
+         
          Patient patient = new Patient();
          List<Patient> patientList = new ArrayList<Patient>();
          patientList = patient.getPatients();
