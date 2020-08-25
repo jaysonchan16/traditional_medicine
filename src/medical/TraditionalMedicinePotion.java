@@ -10,13 +10,11 @@ package medical;
  * @author Sheng
  */
 public class TraditionalMedicinePotion extends Medicine{
-
-    private float cost;
     
     public TraditionalMedicinePotion() {}
     
-    public TraditionalMedicinePotion(String name, String component, float gram, float sellprice, float cost ){
-        super(name,component,gram,sellprice, cost);
+    public TraditionalMedicinePotion(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
+        super(name,component,effect,indications,sellprice,gram,cost);
         
     }
 }

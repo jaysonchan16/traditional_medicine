@@ -11,60 +11,10 @@ package medical;
  */
 public class GrassMedicinePill extends Medicine{
     
-    private String taste;
-    private String guijing;
-    private int portion;
-    
     public GrassMedicinePill(){}
     
-    public GrassMedicinePill(String name, String taste, String guijing, String effect, float cost, int portion, String remark, float gprice){
-        super(name,effect,remark,gprice,cost);
-        this.taste =taste;
-        this.guijing = guijing;
-        this.portion = portion;
+    public GrassMedicinePill(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
+        super(name,component,effect,indications,sellprice,gram,cost);
     }
 
-    /**
-     * @return the taste
-     */
-    public String getTaste() {
-        return taste;
-    }
-
-    /**
-     * @param taste the taste to set
-     */
-    public void setTaste(String taste) {
-        this.taste = taste;
-    }
-
-    /**
-     * @return the guijing
-     */
-    public String getGuijing() {
-        return guijing;
-    }
-
-    /**
-     * @param guijing the guijing to set
-     */
-    public void setGuijing(String guijing) {
-        this.guijing = guijing;
-    }
-
-    /**
-     * @return the portion
-     */
-    public int getPortion() {
-        return portion;
-    }
-
-    /**
-     * @param portion the portion to set
-     */
-    public void setPortion(int portion) {
-        this.portion = portion;
-    }
-    
-    
 }

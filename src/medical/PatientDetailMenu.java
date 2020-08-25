@@ -48,6 +48,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
         btnMonthlyReport = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -83,7 +84,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnImport);
-        btnImport.setBounds(560, 340, 239, 70);
+        btnImport.setBounds(570, 290, 239, 70);
 
         btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
@@ -105,7 +106,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(820, 340, 240, 70);
+        btnBack.setBounds(830, 290, 240, 70);
 
         btnDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnDisease.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
@@ -127,7 +128,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEditDisease);
-        btnEditDisease.setBounds(280, 340, 239, 70);
+        btnEditDisease.setBounds(290, 290, 239, 70);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel2.setText("病人");
@@ -151,7 +152,17 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnMonthlyReport);
-        btnMonthlyReport.setBounds(40, 340, 210, 70);
+        btnMonthlyReport.setBounds(40, 290, 210, 70);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind.setText("寻找病人资料");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFind);
+        btnFind.setBounds(40, 410, 200, 60);
 
         setBounds(0, 0, 1086, 646);
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +225,17 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPatientDetailActionPerformed
 
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        try {
+            // TODO add your handling code here:
+            SearchPatient search = new SearchPatient(user);
+            search.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,6 +277,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnDisease;
     private javax.swing.JButton btnEditDisease;
     private javax.swing.JButton btnEditPatient;
+    private javax.swing.JButton btnFind;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnMonthlyReport;
     private javax.swing.JButton btnPatientDetail;

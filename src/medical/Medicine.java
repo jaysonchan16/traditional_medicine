@@ -16,38 +16,31 @@ public class Medicine {
     private String name;
     private String component;
     private String effect;
-    private float gprice;
-    private String remark;
+    private String indications;
     private float sellprice;
     private float gram;
     private float cost;
 
     public Medicine(){}
     
-    public Medicine(String name, String component, float gram, float sellprice, float cost){
+    public Medicine(String name,String effect,float sellprice, float gram, float cost){
+        this.name = name;
+        this.effect = effect;
+        this.sellprice = sellprice;
+        this.gram = gram;
+        this.cost = cost;
+    }
+    
+    public Medicine(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
         this.name = name;
         this.component = component;
+        this.effect = effect;
+        this.indications = indications;
         this.gram = gram;
         this.sellprice = sellprice;
         this.cost = cost;
     }
-    
-    public Medicine(String name,String effect, String remark, float gprice, float cost){
-        this.name = name;
-        this.effect = effect;
-        this.remark = remark;
-        this.gprice = gprice;
-        this.cost = cost;
-    }
-    
-    public Medicine(String name, String component, float gprice, String remark, float cost)
-    {
-        this.name = name;
-        this.component = component;
-        this.gprice = gprice;
-        this.remark = remark;
-        this.cost = cost;
-    }
+
     /**
      * @return the name
      */
@@ -91,31 +84,17 @@ public class Medicine {
     }
 
     /**
-     * @return the gprice
+     * @return the indications
      */
-    public float getGprice() {
-        return gprice;
+    public String getIndications() {
+        return indications;
     }
 
     /**
-     * @param gprice the gprice to set
+     * @param indications the indications to set
      */
-    public void setGprice(float gprice) {
-        this.gprice = gprice;
-    }
-
-    /**
-     * @return the remark
-     */
-    public String getRemark() {
-        return remark;
-    }
-
-    /**
-     * @param remark the remark to set
-     */
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setIndications(String indications) {
+        this.indications = indications;
     }
 
     /**
@@ -159,5 +138,5 @@ public class Medicine {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    
+        
 }
