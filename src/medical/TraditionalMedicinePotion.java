@@ -13,8 +13,8 @@ public class TraditionalMedicinePotion extends Medicine{
     
     public TraditionalMedicinePotion() {}
     
-    public TraditionalMedicinePotion(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
-        super(name,component,effect,indications,sellprice,gram,cost);
+    public TraditionalMedicinePotion(String name, String component, String effect, String indications, int scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime){
+        super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime);
         
     }
 }

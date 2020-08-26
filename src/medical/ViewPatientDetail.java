@@ -14,6 +14,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -27,7 +28,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private User user;
     private String from="";
     private String to="";
-    private String IC="";
+    private String initialIC="";
     private int option=0;
     public ViewPatientDetail() throws SQLException {
         initComponents();
@@ -42,12 +43,12 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public ViewPatientDetail(User user,String from,String to, String IC) throws SQLException {
+    public ViewPatientDetail(User user,String from,String to, String initialIC) throws SQLException {
         initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
-        this.IC = IC;
+        this.initialIC = initialIC;
         show_patient();
         setResizable(false);
     }
@@ -91,6 +92,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPatientMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblPatient);
@@ -202,6 +208,29 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         exl.Print(tblPatient);
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void tblPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientMouseClicked
+        // TODO add your handling code here:
+         int index = tblPatient.getSelectedRow();
+        TableModel model = tblPatient.getModel();
+        String ID = model.getValueAt(index, 0).toString();
+        String IC = model.getValueAt(index,1).toString();
+        String Name = model.getValueAt(index,2).toString();
+        String Gender = model.getValueAt(index,3).toString();
+        String Age = model.getValueAt(index,4).toString();
+        String Phone = model.getValueAt(index,5).toString();
+        String Address = model.getValueAt(index,6).toString();
+        String createDateTime = model.getValueAt(index,7).toString();
+        String lastUpdateDateTime = model.getValueAt(index,8).toString();
+        
+        //option = 4 
+//        initialPatient is from monthYearIC
+        System.out.println(from);
+        int option = 4;
+        ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,createDateTime,lastUpdateDateTime, option, from, to, initialIC);
+        patient.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_tblPatientMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -251,7 +280,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
          }
          else
          {
-             patientList = patient.getPatients(from, to, IC);
+             patientList = patient.getPatients(from, to, initialIC);
          }
          
          model = (DefaultTableModel)tblPatient.getModel();

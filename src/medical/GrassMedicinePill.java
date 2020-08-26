@@ -13,8 +13,8 @@ public class GrassMedicinePill extends Medicine{
     
     public GrassMedicinePill(){}
     
-    public GrassMedicinePill(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
-        super(name,component,effect,indications,sellprice,gram,cost);
+    public GrassMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime){
+        super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime);
     }
 
 }

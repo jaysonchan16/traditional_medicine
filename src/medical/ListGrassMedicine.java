@@ -39,8 +39,6 @@ public class ListGrassMedicine extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -130,29 +128,6 @@ public class ListGrassMedicine extends javax.swing.JFrame {
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtName);
         txtName.setBounds(170, 90, 380, 40);
-
-        jTable1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "名字", "组成", "功效", "每次每日剂量", "价格", "注备"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(700, 90, 543, 423);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -298,9 +273,7 @@ public class ListGrassMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtComponent;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtName;

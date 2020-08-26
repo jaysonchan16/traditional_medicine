@@ -36,8 +36,6 @@ public class NewPatient extends javax.swing.JFrame {
         txtAddress.setEnabled(false);
         lblCreateDateTime.setEnabled(false);
         lblLastUpdateDateTime.setEnabled(false);
-        btnDelete.setVisible(false);
-        btnEdit.setVisible(false);
         this.user = user;
     }
 
@@ -48,8 +46,6 @@ public class NewPatient extends javax.swing.JFrame {
         txtIC.setText(DiseaseIC);
         txtIC.setEnabled(false);
         btnFind.setVisible(false);
-        btnDelete.setVisible(false);
-        btnEdit.setVisible(false);
         txtAddress.setEnabled(true);
         lblCreateDateTime.setEnabled(false);
         lblLastUpdateDateTime.setEnabled(false);
@@ -80,8 +76,6 @@ public class NewPatient extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
@@ -155,26 +149,6 @@ public class NewPatient extends javax.swing.JFrame {
         jLabel7.setText("病人资料");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(480, 20, 260, 41);
-
-        btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnDelete.setText("删除");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDelete);
-        btnDelete.setBounds(460, 580, 126, 49);
-
-        btnEdit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnEdit.setText("更改");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEdit);
-        btnEdit.setBounds(610, 580, 126, 49);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -278,21 +252,6 @@ public class NewPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String IC = txtIC.getText();
-        Patient patient = new Patient(IC);
-        try {
-            if (patient.DeletePatient().equalsIgnoreCase("1")) {
-                JOptionPane.showMessageDialog(rootPane, "删除成功");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, patient.DeletePatient());
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
      /*   String IC = txtIC.getText();
@@ -333,27 +292,6 @@ public class NewPatient extends javax.swing.JFrame {
         }
 */
     }//GEN-LAST:event_btnFindActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-       /* try {
-            // TODO add your handling code here:
-            String IC = txtIC.getText();
-            String name = txtName.getText();
-            String gender = txtGender.getText();
-            int age = Integer.parseInt(txtAge.getText());
-            String phone = txtPhone.getText();
-            String address = txtAddress.getText();
-            
-            Patient patient = new Patient(IC);
-            if (patient.EditPatient(name, gender, age, IC, phone, address).equalsIgnoreCase("1")) {
-                JOptionPane.showMessageDialog(rootPane, "更改成功");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, patient.EditPatient(name, gender, age, IC, phone, address));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }*/
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -406,8 +344,6 @@ public class NewPatient extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

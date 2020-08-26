@@ -20,27 +20,39 @@ public class Medicine {
     private float sellprice;
     private float gram;
     private float cost;
-
+    private float scoop;
+    private String lastUpdateDateTime;
+    private String createDateTime;
+    
     public Medicine(){}
     
-    public Medicine(String name,String effect,float sellprice, float gram, float cost){
-        this.name = name;
-        this.effect = effect;
-        this.sellprice = sellprice;
-        this.gram = gram;
-        this.cost = cost;
-    }
-    
-    public Medicine(String name, String component, String effect, String indications, float sellprice, float gram, float cost){
+    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime){
         this.name = name;
         this.component = component;
-        this.effect = effect;
         this.indications = indications;
-        this.gram = gram;
+        this.effect = effect;
+        this.scoop = scoop;
         this.sellprice = sellprice;
+        this.gram = gram;
         this.cost = cost;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
+    }
+    
+    /**
+     * @return the name
+     */
+    public float getScoop() {
+        return scoop;
     }
 
+    /**
+     * @param name the name to set
+     */
+    public void setScoop(float scoop) {
+        this.scoop = scoop;
+    }
+    
     /**
      * @return the name
      */
@@ -137,6 +149,34 @@ public class Medicine {
      */
     public void setCost(float cost) {
         this.cost = cost;
+    }
+
+    /**
+     * @return the lastUpdateDateTime
+     */
+    public String getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    /**
+     * @param lastUpdateDateTime the lastUpdateDateTime to set
+     */
+    public void setLastUpdateDateTime(String lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    /**
+     * @return the createDateTime
+     */
+    public String getCreateDateTime() {
+        return createDateTime;
+    }
+
+    /**
+     * @param createDateTime the createDateTime to set
+     */
+    public void setCreateDateTime(String createDateTime) {
+        this.createDateTime = createDateTime;
     }
         
 }

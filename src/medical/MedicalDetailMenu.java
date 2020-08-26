@@ -36,7 +36,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -50,11 +50,16 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
-        jButton1.setText("新增");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(80, 150, 200, 83);
+        btnAdd.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\add-1.png")); // NOI18N
+        btnAdd.setText("新增");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAdd);
+        btnAdd.setBounds(80, 150, 200, 83);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
@@ -120,6 +125,13 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        NewMedicine medicine = new NewMedicine(user);
+        medicine.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,7 +168,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

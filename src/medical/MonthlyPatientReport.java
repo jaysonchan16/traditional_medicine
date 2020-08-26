@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -23,12 +24,14 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     private String from="";
     private String to="";
     private String IC="";
-    public MonthlyPatientReport(User user, String from, String to, String IC) throws SQLException{
+    private String initialIC = "";
+    
+    public MonthlyPatientReport(User user, String from, String to, String initialIC) throws SQLException{
         initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
-        this.IC = IC;
+        this.initialIC = initialIC;
         show_disease();
         setResizable(false);
     }
@@ -53,6 +56,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblMonthlyPatient.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMonthlyPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -67,6 +71,11 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tblMonthlyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMonthlyPatientMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblMonthlyPatient);
@@ -109,6 +118,28 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void tblMonthlyPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonthlyPatientMouseClicked
+        // TODO add your handling code here:
+  /*      int index = tblMonthlyPatient.getSelectedRow();
+        TableModel model = tblMonthlyPatient.getModel();
+        String ID = model.getValueAt(index, 0).toString();
+        String IC = model.getValueAt(index,1).toString();
+        String Name = model.getValueAt(index,2).toString();
+        String Gender = model.getValueAt(index,3).toString();
+        String Age = model.getValueAt(index,4).toString();
+        String Phone = model.getValueAt(index,5).toString();
+        String Address = model.getValueAt(index,6).toString();
+        String createDateTime = model.getValueAt(index,7).toString();
+        String lastUpdateDateTime = model.getValueAt(index,8).toString();
+        
+        //option = 2 
+//        SearchPatient go through to the modifypatient
+        int option = 3;
+        ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,createDateTime,lastUpdateDateTime, option, from ,to,initialIC);
+        patient.setVisible(true);
+        this.dispose();*/
+    }//GEN-LAST:event_tblMonthlyPatientMouseClicked
 
     /**
      * @param args the command line arguments

@@ -34,6 +34,9 @@ public class ModifyPatient extends javax.swing.JFrame {
     private String createDateTime;
     private String lastUpdateDateTime;
     private int option;
+    private String from;
+    private String to;
+    private String initialIC;
     
     public ModifyPatient() {
         initComponents();
@@ -43,6 +46,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         this.option = option;
+        setResizable(false);
     }
     
     public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option){
@@ -67,8 +71,63 @@ public class ModifyPatient extends javax.swing.JFrame {
         txtAddress.setText(Address);
         btnFind.setEnabled(false);
         txtID.setEnabled(false);
+        setResizable(false);
     }
 
+    public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to){
+        initComponents();
+        this.user = user;
+        this.ID = ID;
+        this.IC = IC;
+        this.Gender = Gender;
+        this.Age= Age;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.createDateTime = createDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.option = option;
+        this.from = from;
+        this.to = to;
+        
+        txtID.setText(ID);
+        txtIC.setText(IC);
+        txtName.setText(Name);
+        txtGender.setText(Gender);
+        txtAge.setText(Age);
+        txtPhone.setText(Phone);
+        txtAddress.setText(Address);
+        btnFind.setEnabled(false);
+        txtID.setEnabled(false);
+        setResizable(false);
+    }
+    
+        public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to, String initialIC){
+        initComponents();
+        this.user = user;
+        this.ID = ID;
+        this.IC = IC;
+        this.Gender = Gender;
+        this.Age= Age;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.createDateTime = createDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.option = option;
+        this.from = from;
+        this.to = to;
+        this.initialIC = initialIC;
+        
+        txtID.setText(ID);
+        txtIC.setText(IC);
+        txtName.setText(Name);
+        txtGender.setText(Gender);
+        txtAge.setText(Age);
+        txtPhone.setText(Phone);
+        txtAddress.setText(Address);
+        btnFind.setEnabled(false);
+        txtID.setEnabled(false);
+        setResizable(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -285,7 +344,10 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(rootPane, "年龄不可以有字母！");
         }
+         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
@@ -344,6 +406,9 @@ public class ModifyPatient extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        System.out.println(option);
+        System.out.println(from);
+        System.out.println(to);
         if(option == 2){
             try {
                 SearchPatient patient = new SearchPatient(user);
@@ -357,7 +422,25 @@ public class ModifyPatient extends javax.swing.JFrame {
             PatientDetailMenu patient = new PatientDetailMenu(user);
             patient.setVisible(true);
             this.dispose();
+        } 
+        else if(option == 3){
+            try {
+                MonthlyPatientReport report = new MonthlyPatientReport(user,from,to,initialIC);
+                report.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
+        else if(option == 4){
+            try {
+                ViewPatientDetail patient = new ViewPatientDetail(user,from,to,initialIC);
+                patient.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } 
     }//GEN-LAST:event_btnBackActionPerformed
 
     

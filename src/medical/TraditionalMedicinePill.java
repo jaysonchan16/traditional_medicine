@@ -12,13 +12,12 @@ package medical;
 public class TraditionalMedicinePill extends Medicine{
     
     private String property;
-    private String utilize;
+    private String appliance;
     
     public TraditionalMedicinePill(){}
     
-    public TraditionalMedicinePill(String name, String effect, float sellprice, float gram, float cost, String property, String utilize)
-    {
-        super(name,effect,sellprice,gram,cost);
+    public TraditionalMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance){
+        super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime);
     }
 
     /**
@@ -38,14 +37,14 @@ public class TraditionalMedicinePill extends Medicine{
     /**
      * @return the utilize
      */
-    public String getUtilize() {
-        return utilize;
+    public String getAppliance() {
+        return appliance;
     }
 
     /**
      * @param utilize the utilize to set
      */
-    public void setUtilize(String utilize) {
-        this.utilize = utilize;
+    public void setAppliance(String appliance) {
+        this.appliance = appliance;
     }
 }
