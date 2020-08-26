@@ -200,49 +200,7 @@ public class NewMedicine extends javax.swing.JFrame {
         String cost = txtCost.getText();
         String price = txtPrice.getText();
         
-        if(comboMedicine.getSelectedItem() != "单调药粉")
-        {
-            if(component.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane,"组成没填！");
-            }
-            else if(indication.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane,"主治没填！");
-            }
-        } 
-        else if(comboMedicine.getSelectedItem() == "单调药粉")
-        {
-            if(component.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane,"药性没填！");
-            }
-            else if(indication.equalsIgnoreCase(""))
-            {
-                JOptionPane.showMessageDialog(rootPane,"应用没填！");
-            }
-        }
-        else if(effect.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"功效没填！");
-        }
-        else if(scoop.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"每次每日分量没填！");
-        }
-        else if(weight.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"重量没填！");
-        }
-        else if(cost.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"本钱没填！");
-        }
-        else if(price.equalsIgnoreCase(""))
-        {
-            JOptionPane.showMessageDialog(rootPane,"价格没填！");
-        }
-         
+        optionMessage(component,indication,effect,scoop,weight,cost,price);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -292,7 +250,63 @@ public class NewMedicine extends javax.swing.JFrame {
             lblzhuzi.setText("主治"); 
         }
     }//GEN-LAST:event_comboMedicineActionPerformed
-
+    
+    public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price){
+        if(comboMedicine.getSelectedItem() != "单调药粉")
+        {
+            if(component.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane,"组成没填！");
+            }
+            else if(indication.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane,"主治没填！");
+            }
+            else
+            {
+                validateMessage(effect, scoop, weight, cost, price);
+            }
+        } 
+        else if(comboMedicine.getSelectedItem() == "单调药粉")
+        {
+            if(component.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane,"药性没填！");
+            }
+            else if(indication.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane,"应用没填！");
+            }
+            else
+            {
+                validateMessage(effect, scoop, weight, cost, price);
+            }
+        }
+        
+    }
+    
+    public void validateMessage(String effect, String scoop, String weight, String cost, String price){
+        if(effect.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane,"功效没填！");
+        }
+        else if(scoop.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane,"每次每日分量没填！");
+        }
+        else if(weight.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane,"重量没填！");
+        }
+        else if(cost.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane,"本钱没填！");
+        }
+        else if(price.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(rootPane,"价格没填！");
+        }
+    }
     /**
      * @param args the command line arguments
      */
