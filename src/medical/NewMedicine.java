@@ -67,13 +67,15 @@ public class NewMedicine extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         txtComponent.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtComponent);
-        txtComponent.setBounds(190, 190, 870, 41);
+        txtComponent.setBounds(180, 270, 870, 41);
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnAdd.setText("新增");
@@ -83,11 +85,11 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdd);
-        btnAdd.setBounds(920, 740, 130, 60);
+        btnAdd.setBounds(910, 820, 130, 60);
 
         txtIndication.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtIndication);
-        txtIndication.setBounds(190, 270, 870, 41);
+        txtIndication.setBounds(180, 350, 870, 41);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单调药粉" }));
@@ -120,57 +122,57 @@ public class NewMedicine extends javax.swing.JFrame {
         lblzhucheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhucheng.setText("组成：");
         getContentPane().add(lblzhucheng);
-        lblzhucheng.setBounds(110, 190, 70, 30);
+        lblzhucheng.setBounds(100, 270, 70, 30);
 
         lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhuzi.setText("主治：");
         getContentPane().add(lblzhuzi);
-        lblzhuzi.setBounds(110, 270, 70, 30);
+        lblzhuzi.setBounds(100, 350, 70, 30);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("功效：");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(110, 350, 57, 26);
+        jLabel4.setBounds(100, 430, 57, 26);
 
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtEffect);
-        txtEffect.setBounds(190, 350, 870, 40);
+        txtEffect.setBounds(180, 430, 870, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("每次每日分量：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(40, 430, 140, 30);
+        jLabel5.setBounds(30, 510, 140, 30);
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtScoop);
-        txtScoop.setBounds(190, 430, 860, 40);
+        txtScoop.setBounds(180, 510, 870, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("重量：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(110, 510, 60, 30);
+        jLabel6.setBounds(100, 590, 60, 30);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtWeight);
-        txtWeight.setBounds(190, 510, 860, 40);
+        txtWeight.setBounds(180, 590, 870, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("本钱：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(110, 590, 60, 30);
+        jLabel7.setBounds(100, 670, 60, 30);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCost);
-        txtCost.setBounds(190, 590, 860, 40);
+        txtCost.setBounds(180, 670, 860, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrice);
-        txtPrice.setBounds(190, 670, 860, 40);
+        txtPrice.setBounds(180, 750, 860, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("价格：");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(110, 670, 60, 30);
+        jLabel8.setBounds(100, 750, 60, 30);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel9.setText("新增");
@@ -185,22 +187,67 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(40, 740, 130, 60);
+        btnBack.setBounds(30, 820, 130, 60);
 
-        setBounds(0, 0, 1137, 866);
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtName);
+        txtName.setBounds(180, 190, 870, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("名字：");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(100, 190, 70, 30);
+
+        setBounds(0, 0, 1137, 968);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String component = txtComponent.getText();
-        String indication = txtIndication.getText();
-        String effect = txtEffect.getText();
-        String scoop = txtScoop.getText();
-        String weight = txtWeight.getText();
-        String cost = txtCost.getText();
-        String price = txtPrice.getText();
-        
-        optionMessage(component,indication,effect,scoop,weight,cost,price);
+        try
+        {
+            String name = txtName.getText();
+            String component = txtComponent.getText();
+            String indication = txtIndication.getText();
+            String effect = txtEffect.getText();
+            String scoop = txtScoop.getText();
+            String weight = txtWeight.getText();
+            String cost = txtCost.getText();
+            String price = txtPrice.getText();
+
+            float scoop1 = Float.valueOf(txtScoop.getText());
+            float weight1= Float.valueOf(txtWeight.getText());
+            float cost1 = Float.valueOf(txtCost.getText());
+            float price1 = Float.valueOf(txtPrice.getText());
+
+            optionMessage(component,indication,effect,scoop,weight,cost,price);
+
+            if(comboMedicine.getSelectedItem() == "复方药粉") // traitional medicine potion
+            {
+                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
+                pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo");
+                JOptionPane.showMessageDialog(rootPane, "复方药粉已新增！");
+            }
+            else if(comboMedicine.getSelectedItem() == "药丸") //grass medicine pill
+            {
+                GrassMedicinePill pill = new GrassMedicinePill();
+                pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi");
+                JOptionPane.showMessageDialog(rootPane, "药丸已新增！");
+            }
+            else if(comboMedicine.getSelectedItem() == "药水")// grass medicine potion
+            {
+                GrassMedicinePotion pill = new GrassMedicinePotion();
+                pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo");
+                JOptionPane.showMessageDialog(rootPane, "药水已新增！");
+            }
+            else if(comboMedicine.getSelectedItem() == "单调药粉")// traitional medicine pill
+            {
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
+                JOptionPane.showMessageDialog(rootPane, "单调药粉已新增！");
+            }
+        } catch (NumberFormatException number){
+            JOptionPane.showMessageDialog(rootPane, "每次每日分量，重量，本钱和价格不可以有字母！");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -347,6 +394,7 @@ public class NewMedicine extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JComboBox<String> comboMedicine;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -359,6 +407,7 @@ public class NewMedicine extends javax.swing.JFrame {
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtIndication;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;
     private javax.swing.JTextField txtWeight;

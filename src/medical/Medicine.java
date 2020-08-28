@@ -23,10 +23,23 @@ public class Medicine {
     private float scoop;
     private String lastUpdateDateTime;
     private String createDateTime;
+    private String code;
     
     public Medicine(){}
     
-    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime){
+    public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
+        this.name = name;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.sellprice = sellprice;
+        this.gram = gram;
+        this.cost = cost;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
+        this.code = code;
+    }
+    
+    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
         this.name = name;
         this.component = component;
         this.indications = indications;
@@ -37,12 +50,13 @@ public class Medicine {
         this.cost = cost;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
+        this.code = code;
     }
     
     /**
      * @return the name
      */
-    public float getScoop() {
+    public double getScoop() {
         return scoop;
     }
 
@@ -177,6 +191,20 @@ public class Medicine {
      */
     public void setCreateDateTime(String createDateTime) {
         this.createDateTime = createDateTime;
+    }
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
     }
         
 }

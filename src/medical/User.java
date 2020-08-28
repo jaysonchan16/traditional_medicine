@@ -196,7 +196,11 @@ public class User {
                     + "Select 'W',0 UNION ALL "
                     + "Select 'X',0 UNION ALL "
                     + "Select 'Y',0 UNION ALL "
-                    + "Select 'Z',0";
+                    + "Select 'Z',0 UNION ALL "
+                    + "Select 'GrasMedPi',0 UNION ALL "
+                    + "Select 'GrasMedPo',0 UNION ALL "
+                    + "Select 'TradMedPi',0 UNION ALL "
+                    + "Select 'TradMedPo',0',";
             
             st.executeUpdate(query);
             st.close();

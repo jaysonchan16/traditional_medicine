@@ -63,9 +63,10 @@ public class Code {
         
         int Number;
         System.out.println(upperName);
-        if(countID(upperName) == 1)
+        
+        if(countID(upperName) == 1) //英文名
         {
-            if(plusOneID(upperName).equalsIgnoreCase("1"))
+            if(plusOneID(upperName).equalsIgnoreCase("1")) // ID + 1
             {
                 String query = "Select Number from Maintcode where Code = '"+upperName+"'";
                 try {
@@ -112,7 +113,7 @@ public class Code {
         
         return sql.AddEditDeleteQuery(query);
     }
-    
+
     public int countID(String upperName) throws SQLException
     {
         String query = "Select count(*) as Number from Maintcode where Code = '"+upperName+"'";
@@ -138,6 +139,49 @@ public class Code {
             rs.close();
             st.close(); 
         }
-        
+    }
+    
+    public HashMap<String,String> validateMedicID(String name) throws SQLException{
+        HashMap<String,String> data= new HashMap<String,String>();        
+        System.out.println(name);
+        int Number;
+        if(countID(name) == 1)
+        {
+            if(plusOneID(name).equalsIgnoreCase("1"))
+            {
+                String query = "Select Number from Maintcode where Code = '"+name+"'";
+                try {
+                    rs = st.executeQuery(query);
+                    Number = rs.getInt("Number");
+                    st.close();
+                    rs.close();
+                    System.out.println("Here" + name + "-" + Number);
+                    data.put("data", name + "-" + Number);
+                    data.put("messages", "");
+                    return data;
+                } 
+                catch (NullPointerException e)
+                {
+                    data.put("data", "");
+                    data.put("messages", e.getMessage());
+                    return data;
+                }
+                finally{
+                    st.close(); 
+                }
+            }
+            else
+            {
+                data.put("data", "");
+                data.put("messages", plusOneID(name));
+                return data;
+            }
+        }
+        else
+        {
+            data.put("data", "");
+            data.put("messages", "系统问题！");
+            return data;
+        }
     }
 }
