@@ -59,6 +59,7 @@ public class GrassMedicinePill extends Medicine{
     {
         try {
             String query = "Select count(1) as count from GrassMedicinePill where name = '"+name+"'";
+            System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
             count = rs.getInt("count");
@@ -67,12 +68,11 @@ public class GrassMedicinePill extends Medicine{
             return count;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return 0;
+            return 1;
         }
         finally{
             rs.close();
             st.close();
-            return 0;
         }
         
     }

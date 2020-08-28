@@ -150,6 +150,7 @@ public class Code {
             if(plusOneID(name).equalsIgnoreCase("1"))
             {
                 String query = "Select Number from Maintcode where Code = '"+name+"'";
+                System.out.println(query);
                 try {
                     rs = st.executeQuery(query);
                     Number = rs.getInt("Number");
@@ -180,7 +181,7 @@ public class Code {
         else
         {
             data.put("data", "");
-            data.put("messages", "系统问题！");
+            data.put("messages", "系统已有资料！");
             return data;
         }
     }

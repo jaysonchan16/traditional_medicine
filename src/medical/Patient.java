@@ -320,12 +320,11 @@ public class Patient {
             return count;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return 0;
+            return 1;
         }
         finally{
             rs.close();
             st.close();
-            return 0;
         }
         
     }

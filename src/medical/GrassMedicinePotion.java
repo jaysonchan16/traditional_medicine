@@ -37,6 +37,7 @@ public class GrassMedicinePotion extends Medicine {
             double cost1 = cost;
             if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion(name) == 0)
             {
+                System.out.println("AT HERE!!!");
                 String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
                         + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime')";
@@ -58,6 +59,7 @@ public class GrassMedicinePotion extends Medicine {
     {
         try {
             String query = "Select count(1) as count from GrassMedicinePotion where name = '"+name+"'";
+            System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
             count = rs.getInt("count");
@@ -66,12 +68,11 @@ public class GrassMedicinePotion extends Medicine {
             return count;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return 0;
+            return 1;
         }
         finally{
             rs.close();
             st.close();
-            return 0;
         }
         
     }
