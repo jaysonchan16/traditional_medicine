@@ -27,6 +27,11 @@ public class Medicine {
     
     public Medicine(){}
     
+    public Medicine(String name)
+    {
+        this.name = name;
+    }
+    
     public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
         this.name = name;
         this.effect = effect;

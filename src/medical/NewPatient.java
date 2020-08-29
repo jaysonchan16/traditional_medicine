@@ -8,6 +8,7 @@ package medical;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -214,6 +215,8 @@ public class NewPatient extends javax.swing.JFrame {
             String IC = txtIC.getText();
             String phone = txtPhone.getText();
             String address = txtAddress.getText();
+            HashMap<String,String> map = new HashMap<String,String>();
+            
             if (name.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "名字没填！");
             } else if (gender.equalsIgnoreCase("")) {
@@ -226,8 +229,10 @@ public class NewPatient extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "地址没填！");
             } else {
                 Patient patient = new Patient(IC, name, gender, age, phone, address);
-                if (patient.AddNewPatient().equalsIgnoreCase("1")) {
-                    JOptionPane.showMessageDialog(rootPane, "新增成功");
+                map = patient.AddNewPatient();
+                System.out.println(map.get("returnMessage"));
+                if (map.get("returnMessage").equalsIgnoreCase("1")) {
+                    JOptionPane.showMessageDialog(rootPane, "新增成功,你的ID是：" +map.get("ID"));
                     try {
                         if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,"0").getIC().equalsIgnoreCase(IC)) {
                             diseasepage = new NewPatientDisease(user, patient.getPatient(DiseaseIC,"0").getID(),
@@ -254,20 +259,20 @@ public class NewPatient extends javax.swing.JFrame {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-     /*   String IC = txtIC.getText();
+        String IC = txtIC.getText();
         if (IC.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(rootPane, "IC没填！");
         } else {
             Patient patient = new Patient();
             try {
-                if (patient.getPatient(IC).getIC().equalsIgnoreCase(IC)) {
-                    txtName.setText(patient.getPatient(IC).getName());
-                    txtGender.setText(patient.getPatient(IC).getGender());
-                    txtAge.setText(String.valueOf(patient.getPatient(IC).getAge()));
-                    txtPhone.setText(patient.getPatient(IC).getPhone());
-                    txtAddress.setText(patient.getPatient(IC).getAddress());
-                    lblCreateDateTime.setText(patient.getPatient(IC).getCreateDateTime());
-                    lblLastUpdateDateTime.setText(patient.getPatient(IC).getLastUpdateDateTime());
+                if (patient.getPatient(IC,"").getIC().equalsIgnoreCase(IC)) {
+                    txtName.setText(patient.getPatient(IC,"").getName());
+                    txtGender.setText(patient.getPatient(IC,"").getGender());
+                    txtAge.setText(String.valueOf(patient.getPatient(IC,"").getAge()));
+                    txtPhone.setText(patient.getPatient(IC,"").getPhone());
+                    txtAddress.setText(patient.getPatient(IC,"").getAddress());
+                    lblCreateDateTime.setText(patient.getPatient(IC,"").getCreateDateTime());
+                    lblLastUpdateDateTime.setText(patient.getPatient(IC,"").getLastUpdateDateTime());
                     txtIC.setEnabled(false);
                     txtName.setEnabled(true);
                     txtGender.setEnabled(true);
@@ -282,15 +287,13 @@ public class NewPatient extends javax.swing.JFrame {
                     txtAge.setEnabled(true);
                     txtPhone.setEnabled(true);
                     txtAddress.setEnabled(true);
-                    btnEdit.setVisible(false);
-                    btnDelete.setVisible(false);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-*/
+
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

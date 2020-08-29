@@ -197,23 +197,26 @@ public class Patient {
         this.createDateTime = createDateTime;
     }
     
-    public String AddNewPatient() throws SQLException{
+    public HashMap<String,String> AddNewPatient() throws SQLException{
         Code code = new Code();
         HashMap<String, String> map = new HashMap<String,String>();
         map = code.validateID(name);
-        
+        HashMap<String,String> returnMessage = new HashMap<String,String>();
         if(map.get("messages").equalsIgnoreCase("") && validatePatient(IC) == 0)
         {        
             String query = "insert into Patient(ID, IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime)"
                     + "Select '"+map.get("data")+"',trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime')";
 
             SQLQuery sql = new SQLQuery();
-
-            return sql.AddEditDeleteQuery(query);
+            returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+            returnMessage.put("ID", map.get("data"));
+            return returnMessage;
         }
         else
         {
-            return code.validateID(name).get("messages");
+            returnMessage.put("returnMessage",code.validateID(name).get("messages"));
+            returnMessage.put("ID","");
+            return returnMessage;
         }
         
     }

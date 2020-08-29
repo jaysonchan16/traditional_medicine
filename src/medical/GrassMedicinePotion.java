@@ -25,8 +25,9 @@ public class GrassMedicinePotion extends Medicine {
         super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
     }
     
-    public String AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
+    public HashMap<String,String> AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
     {
+        HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code1 = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
@@ -37,21 +38,26 @@ public class GrassMedicinePotion extends Medicine {
             double cost1 = cost;
             if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion(name) == 0)
             {
-                System.out.println("AT HERE!!!");
                 String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
                         + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime')";
                 
                 SQLQuery sql = new SQLQuery();
                 
-                return sql.AddEditDeleteQuery(query);
+                returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+                returnMessage.put("ID", map.get("data"));
+                return returnMessage;
             }
             else
             {
-                return code1.validateMedicID(name).get("messages");
+                returnMessage.put("returnMessage", code1.validateMedicID(name).get("messages"));
+                returnMessage.put("ID", "");
+                return returnMessage;
             }
         } catch (SQLException ex) {
-            return ex.getMessage();
+            returnMessage.put("returnMessage", ex.getMessage());
+            returnMessage.put("ID", "");
+            return returnMessage;
         }
     }
     

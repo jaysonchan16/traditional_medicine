@@ -27,7 +27,6 @@ public class SQLQuery {
             return "1";
             
         } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
             return ex.getMessage();
         }
         finally

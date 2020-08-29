@@ -64,6 +64,11 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-1.png")); // NOI18N
         jButton2.setText("更改");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(450, 150, 200, 83);
 
@@ -131,6 +136,13 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         medicine.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ModifyMedicine med = new ModifyMedicine(user);
+        med.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

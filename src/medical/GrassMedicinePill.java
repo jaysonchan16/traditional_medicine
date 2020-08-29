@@ -25,8 +25,9 @@ public class GrassMedicinePill extends Medicine{
         super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
     }
     
-    public String AddGrassMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
+    public HashMap<String,String> AddGrassMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
     {
+        HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code1 = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
@@ -44,14 +45,20 @@ public class GrassMedicinePill extends Medicine{
                 
                 SQLQuery sql = new SQLQuery();
                 
-                return sql.AddEditDeleteQuery(query);
+                returnMessage.put("returnMessage",sql.AddEditDeleteQuery(query));
+                returnMessage.put("ID", map.get("data"));
+                return returnMessage;
             }
             else
             {
-                return code1.validateMedicID(name).get("messages");
+                returnMessage.put("returnMessage",code1.validateMedicID(name).get("messages"));
+                returnMessage.put("ID","");
+                return returnMessage;
             }
         } catch (SQLException ex) {
-            return ex.getMessage();
+            returnMessage.put("returnMessage",ex.getMessage());
+            returnMessage.put("ID","");
+            return returnMessage;
         }
     }
     
