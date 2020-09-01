@@ -8,7 +8,10 @@ package medical;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -82,5 +85,24 @@ public class GrassMedicinePill extends Medicine{
             st.close();
         }
         
+    }
+    
+    public List<GrassMedicinePill> getGrassMedicinePill() throws SQLException{
+        List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
+                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return grassMedicinePillList;
     }
 }

@@ -124,30 +124,26 @@ public class TraditionalMedicinePotion extends Medicine{
         }
     }
     
-    /*public TraditionalMedicinePotion getTraditionalMedicinePotion(String ID) throws SQLException{
-        String query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost,createDateTime,lastUpdateDateTime where ID = '"+ID+"'";
-        String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime,String code
+    public List<TraditionalMedicinePotion> getTraditionalMedicinePotion() throws SQLException{
+        List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion";
         rs = st.executeQuery(query);
         try {
-             while (rs.next()) {
-                 return new TraditionalMedicinePotion(rs.getString("ID"),rs.getInt("Temperature"),
-                         rs.getString("BloodPressure"),rs.getString("PulseCondition"),
-                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
-                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
-            }   
+            while (rs.next()) {
+                 traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),rs.getString("component"),
+                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+            } 
         } 
-        catch (NullPointerException e)
+        catch (Exception e)
         {
-            //throw(new NoSuchElementException(e.getMessage()));
-            return new TraditionalMedicinePotion("1");
+            throw(new NoSuchElementException(e.getMessage()));
         }
-        finally{
-            st.close(); 
-        }
-        return new TraditionalMedicinePotion("1");
+        return traditionalMedicinePotionList;
     }
     
-    public List<TraditionalMedicinePotion> getTraditionalMedicinePotions() throws SQLException{
+    /*public List<TraditionalMedicinePotion> getTraditionalMedicinePotions() throws SQLException{
         List<TraditionalMedicinePotion> TraditionalMedicinePotionList = new ArrayList<>();
             String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
                 + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"

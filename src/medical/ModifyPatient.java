@@ -321,7 +321,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                     this.dispose();*/
                 }
                     } catch (SQLException ex) {
-                ex.printStackTrace();
+                        JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
          }
     }//GEN-LAST:event_btnFindActionPerformed
@@ -372,7 +372,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 this.dispose();*/
             }
                 } catch (SQLException ex) {
-            ex.printStackTrace();
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_txtIDKeyPressed
 
@@ -400,7 +400,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, patient.DeletePatient());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -415,7 +415,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 patient.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
         else if(option == 1){
@@ -429,7 +429,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 report.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
         else if(option == 4){
@@ -438,7 +438,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 patient.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         } 
     }//GEN-LAST:event_btnBackActionPerformed

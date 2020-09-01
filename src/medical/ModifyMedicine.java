@@ -37,6 +37,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        createColumns(0);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +51,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         comboMedicine = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TblMedicine = new javax.swing.JTable();
+        tblMedicine = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblzhucheng = new javax.swing.JLabel();
@@ -80,7 +81,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("药：");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 60, 38, 26);
+        jLabel1.setBounds(120, 50, 38, 26);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单调药粉" }));
@@ -92,7 +93,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         getContentPane().add(comboMedicine);
         comboMedicine.setBounds(160, 50, 110, 40);
 
-        TblMedicine.setModel(new javax.swing.table.DefaultTableModel(
+        tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -100,12 +101,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
             }
         ));
-        TblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TblMedicineMouseClicked(evt);
+                tblMedicineMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TblMedicine);
+        jScrollPane1.setViewportView(tblMedicine);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(660, 50, 540, 860);
@@ -226,12 +227,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
-        createColumns();
+        createColumns(1);
     }//GEN-LAST:event_comboMedicineActionPerformed
 
-    private void TblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblMedicineMouseClicked
+    private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_TblMedicineMouseClicked
+    }//GEN-LAST:event_tblMedicineMouseClicked
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
@@ -244,59 +245,146 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    public void createColumns()
+    public void createColumns(int count)
     {
-        model = (DefaultTableModel)TblMedicine.getModel();
+        model = (DefaultTableModel)tblMedicine.getModel();
+        if(count != 0)
+        {
+            model.setColumnCount(0);
+            model.setRowCount(0);
+        }
         if(comboMedicine.getSelectedItem() == "单调药粉")
         {
-            System.out.println(1);
-            lblzhucheng.setText("药性"); 
-            lblzhuzi.setText("应用"); 
-            model.addColumn("ID");
-            model.addColumn("名字");
-            model.addColumn("药性");
-            model.addColumn("应用");
-            model.addColumn("功效");
-            model.addColumn("每次每日分量");
-            model.addColumn("重量");
-            model.addColumn("本钱");
-            model.addColumn("价格");
+            try {
+                System.out.println(1);
+                lblzhucheng.setText("药性");
+                lblzhuzi.setText("应用");
+                model.addColumn("ID");
+                model.addColumn("名字");
+                model.addColumn("药性");
+                model.addColumn("应用");
+                model.addColumn("功效");
+                model.addColumn("每次每日分量");
+                model.addColumn("重量");
+                model.addColumn("本钱");
+                model.addColumn("价格");
+                show_medical();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         else
         {
-            System.out.println(2);
-            lblzhucheng.setText("组成"); 
-            lblzhuzi.setText("主治"); 
-            model.addColumn("ID");
-            model.addColumn("名字");
-            model.addColumn("药性");
-            model.addColumn("应用");
-            model.addColumn("功效");
-            model.addColumn("每次每日分量");
-            model.addColumn("重量");
-            model.addColumn("本钱");
-            model.addColumn("价格");
+            try {
+                System.out.println(2);
+                lblzhucheng.setText("组成");
+                lblzhuzi.setText("主治");
+                model.addColumn("ID");
+                model.addColumn("名字");
+                model.addColumn("组成");
+                model.addColumn("主治");
+                model.addColumn("功效");
+                model.addColumn("每次每日分量");
+                model.addColumn("重量");
+                model.addColumn("本钱");
+                model.addColumn("价格");
+                show_medical();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
     
     public void show_medical() throws SQLException{
-         Patient patient = new Patient();
-         List<Patient> patientList = new ArrayList<Patient>();
-         model = (DefaultTableModel)TblMedicine.getModel();
-         Object row[] = new Object[9];
-         for(int i =0; i<patientList.size(); i++)
-         {
-             row[0] = patientList.get(i).getID();
-             row[1] = patientList.get(i).getIC();
-             row[2] = patientList.get(i).getName();
-             row[3] = patientList.get(i).getGender();
-             row[4] = patientList.get(i).getAge();
-             row[5] = patientList.get(i).getPhone();
-             row[6] = patientList.get(i).getAddress();
-             row[7] = patientList.get(i).getLastUpdateDateTime();
-             row[8] = patientList.get(i).getCreateDateTime();
-             model.addRow(row);
-         }
+        
+        if(comboMedicine.getSelectedItem() == "单调药粉") // traitional medicine potion
+        {
+            TraditionalMedicinePill medic = new TraditionalMedicinePill();
+            List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
+            medicList = medic.getTraditionalMedicinePill();
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getProperty();
+                row[3] = medicList.get(i).getAppliance();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "复方药粉")
+        {
+            TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
+            List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
+            medicList = medic.getTraditionalMedicinePotion();
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "药丸")
+        {
+            GrassMedicinePill medic = new GrassMedicinePill();
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = medic.getGrassMedicinePill();
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "药水")
+        {
+            GrassMedicinePotion medic = new GrassMedicinePotion();
+            List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
+            medicList = medic.getGrassMedicinePotion();
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
     }
     /**
      * @param args the command line arguments
@@ -334,7 +422,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TblMedicine;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
@@ -351,6 +438,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblzhucheng;
     private javax.swing.JLabel lblzhuzi;
+    private javax.swing.JTable tblMedicine;
     private javax.swing.JTextField txtComponent;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
