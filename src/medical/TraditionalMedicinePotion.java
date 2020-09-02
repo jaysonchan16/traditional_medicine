@@ -95,7 +95,7 @@ public class TraditionalMedicinePotion extends Medicine{
          String query = "Update TraditionalMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'),"
                  + " indications = trim('"+indication+"'), scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'),"
                  + " gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
-                 + " where ID = "+ID+" order by 1 desc";
+                 + " where ID = '"+ID+"'";
         
          SQLQuery sql = new SQLQuery();
         
