@@ -91,37 +91,24 @@ public class TraditionalMedicinePotion extends Medicine{
         }
     }
     
-    public int EditTraditionalMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String ID) throws SQLException{
+    public String EditTraditionalMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
          String query = "Update TraditionalMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'),"
-                 + " indications = trim('"+indications+"'), scoop = trim('"+scoop+"'), sellprice = trim('"+sellprice+"'),"
+                 + " indications = trim('"+indication+"'), scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'),"
                  + " gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where ID = "+ID+" order by 1 desc";
-        try {
-            st.executeUpdate(query);
-            st.close(); 
-            return 1;
-        } catch (SQLException ex) {
-             return 0;
-        }finally
-        {
-            st.close();
-        }
+        
+         SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
     }
     
     
-    public int DeleteTraditionalMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String ID) throws SQLException{
-         String query = "Delete From TraditionalMedicinePotion where ID ="+ID+" order by 1 desc";
-        try {
-            st.executeUpdate(query);
-            return 1;
-        } catch (SQLException ex) {
-            
-            return 0;
-        }
-        finally
-        {
-            st.close();
-        }
+    public String DeleteTraditionalMedicinePotion(String ID) throws SQLException{
+        String query = "Delete From TraditionalMedicinePotion where ID ="+ID+" order by 1 desc";
+        
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
     }
     
     public List<TraditionalMedicinePotion> getTraditionalMedicinePotion() throws SQLException{
@@ -161,4 +148,5 @@ public class TraditionalMedicinePotion extends Medicine{
         }
         return traditionalMedicinePotionList;
     }
+    
 }

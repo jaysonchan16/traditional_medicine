@@ -123,4 +123,22 @@ public class GrassMedicinePotion extends Medicine {
         }
         return grassMedicinePotionList;
     }
+    
+    public String EditGrassMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
+        String query = "Update GrassMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
+                + " scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'), gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
+                 + "where ID = '"+ID+"'";
+         
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public String DeleteGrassMedicinePotion(String ID) throws SQLException{
+        String query = "Delete From GrassMedicinePotion where ID = '"+ID+"'";
+          
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
 }

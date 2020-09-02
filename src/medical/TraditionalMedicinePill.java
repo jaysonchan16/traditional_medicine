@@ -152,4 +152,22 @@ public class TraditionalMedicinePill extends Medicine{
         return traditionalMedicinePillList;
     }
     
+    
+    public String EditTraditionalMedicinePill(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
+        String query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
+                + "address = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), price = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
+                 + "where ID = '"+ID+"'";
+         
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public String DeleteTraditionalMedicinePill(String ID) throws SQLException{
+        String query = "Delete From TraditionalMedicinePill where ID = '"+ID+"'";
+          
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
 }

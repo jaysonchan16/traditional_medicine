@@ -216,6 +216,11 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModify);
         btnModify.setBounds(370, 850, 130, 60);
 
@@ -279,6 +284,75 @@ public class ModifyMedicine extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        String component = txtComponent.getText();
+        String indication = txtIndication.getText();
+        String effect = txtEffect.getText();
+        String scoop = txtScoop.getText();
+        String gram = txtWeight.getText();
+        String cost = txtCost.getText();
+        String price = txtPrice.getText();
+        String ID = txtID.getText();
+        String code = ID.substring(0,9);
+        
+        try
+        {
+            if(code.equalsIgnoreCase("GrasMedPi"))
+            {
+                GrassMedicinePill pill = new GrassMedicinePill();
+                if(pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更改成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                }
+            }
+            else if(code.equalsIgnoreCase("GrasMedPo"))
+            {
+                GrassMedicinePotion pill = new GrassMedicinePotion();        
+                if(pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更改成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price));
+                }
+            }
+            else if(code.equalsIgnoreCase("TradMedPi"))
+            {
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();      
+                if(pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更改成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                }
+            }
+            else if(code.equalsIgnoreCase("TradMedPo"))
+            {
+                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
+                if(pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                {
+                   JOptionPane.showMessageDialog(rootPane, "更改成功"); 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price)); 
+                }
+            }
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
 
     public void createColumns(int count, String ID)
     {
