@@ -28,6 +28,8 @@ public class TraditionalMedicinePill extends Medicine{
     
     public TraditionalMedicinePill(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance, String code){
         super(name,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+        this.appliance = appliance;
+        this.property = property;
     }
 
     /**
@@ -119,7 +121,7 @@ public class TraditionalMedicinePill extends Medicine{
             String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill";
         rs = st.executeQuery(query);
         try {
-            while (rs.next()) {
+           while (rs.next()) {
                  traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),
                          rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),
