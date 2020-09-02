@@ -303,25 +303,25 @@ public class ModifyPatient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "IC或ID没填！");
         } else {
             try {
-                Patient patient = new Patient();
-                if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
-                {
-                    txtName.setText(patient.getPatient(IC,ID).getName());
-                    txtGender.setText(patient.getPatient(IC,ID).getGender());
-                    txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
-                    txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                    txtAddress.setText(patient.getPatient(IC,ID).getAddress());
-                    
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                    /*NewPatient detail = new NewPatient(user,IC);
-                    detail.setVisible(true);
-                    this.dispose();*/
-                }
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                    Patient patient = new Patient();
+                    if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
+                    {
+                        txtName.setText(patient.getPatient(IC,ID).getName());
+                        txtGender.setText(patient.getPatient(IC,ID).getGender());
+                        txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
+                        txtPhone.setText(patient.getPatient(IC,ID).getPhone());
+                        txtAddress.setText(patient.getPatient(IC,ID).getAddress());
+
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                        /*NewPatient detail = new NewPatient(user,IC);
+                        detail.setVisible(true);
+                        this.dispose();*/
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
          }
     }//GEN-LAST:event_btnFindActionPerformed

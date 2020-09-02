@@ -8,6 +8,7 @@ package medical;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,7 +38,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
-        createColumns(0);
+        createColumns(0,"");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -227,7 +228,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
-        createColumns(1);
+        createColumns(1,"");
     }//GEN-LAST:event_comboMedicineActionPerformed
 
     private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
@@ -236,6 +237,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
+        String ID = txtID.getText();
+        
+        if(ID.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(rootPane, "ID没填！");
+        }
+        else
+        {
+            createColumns(2,ID); 
+        }
+        
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -245,8 +256,11 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    public void createColumns(int count)
+    public void createColumns(int count, String ID)
     {
+        // count 0 就是我们一按进这个page的
+        // count 1 就是换combo box
+        // count 2 就是按寻找的时候
         model = (DefaultTableModel)tblMedicine.getModel();
         if(count != 0)
         {
@@ -268,9 +282,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addColumn("重量");
                 model.addColumn("本钱");
                 model.addColumn("价格");
-                show_medical();
+                if(count == 0 || count == 1)
+                {
+                    show_medical();
+                }
+                else
+                {
+                    show_medical_ID(ID);
+                }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
         else
@@ -288,9 +309,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addColumn("重量");
                 model.addColumn("本钱");
                 model.addColumn("价格");
-                show_medical();
+                if(count == 0 || count == 1)
+                {
+                    show_medical();
+                }
+                else
+                {
+                    show_medical_ID(ID);
+                }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
     }
@@ -385,6 +413,175 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
+    }
+    
+    public void show_medical_ID(String ID) throws SQLException{
+        
+        if(comboMedicine.getSelectedItem() == "单调药粉") // traitional medicine potion
+        {
+            TraditionalMedicinePill medic = new TraditionalMedicinePill();
+            List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
+            medicList = medic.getTraditionalMedicinePillID(ID);
+            if(medic.validateAddTraditionalMedicinePill("ID", ID) == 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
+            }
+            else
+            {
+                txtName.setText(medicList.get(0).getName());
+                txtComponent.setText(medicList.get(0).getProperty());
+                txtIndication.setText(medicList.get(0).getAppliance());
+                txtEffect.setText(medicList.get(0).getEffect());
+                txtScoop.setText(String.valueOf(medicList.get(0).getScoop()));
+                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+                txtCost.setText(String.valueOf(medicList.get(0).getCost()));
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                disabledTextBox();
+            }
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getProperty();
+                row[3] = medicList.get(i).getAppliance();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "复方药粉")
+        {
+            TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
+            List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
+            medicList = medic.getTraditionalMedicinePotionID(ID);
+            if(medic.validateTraditionalMedicinePotion("ID", ID) == 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
+            }
+            else
+            {
+                txtName.setText(medicList.get(0).getName());
+                txtComponent.setText(medicList.get(0).getComponent());
+                txtIndication.setText(medicList.get(0).getIndications());
+                txtEffect.setText(medicList.get(0).getEffect());
+                txtScoop.setText(String.valueOf(medicList.get(0).getScoop()));
+                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+                txtCost.setText(String.valueOf(medicList.get(0).getCost()));
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                disabledTextBox();
+            }
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "药丸")
+        {
+            GrassMedicinePill medic = new GrassMedicinePill();
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = medic.getGrassMedicinePillID(ID);
+            if(medic.validateGrassMedicinePill("ID", ID) == 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
+            }
+            else
+            {
+                txtName.setText(medicList.get(0).getName());
+                txtComponent.setText(medicList.get(0).getComponent());
+                txtIndication.setText(medicList.get(0).getIndications());
+                txtEffect.setText(medicList.get(0).getEffect());
+                txtScoop.setText(String.valueOf(medicList.get(0).getScoop()));
+                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+                txtCost.setText(String.valueOf(medicList.get(0).getCost()));
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                disabledTextBox();
+            }
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+        else if(comboMedicine.getSelectedItem() == "药水")
+        {
+            GrassMedicinePotion medic = new GrassMedicinePotion();
+            List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
+            medicList = medic.getGrassMedicinePotionID(ID);
+            if(medic.validateAddGrassMedicinePotion("ID", ID) == 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
+            }
+            else
+            {
+                txtName.setText(medicList.get(0).getName());
+                txtComponent.setText(medicList.get(0).getComponent());
+                txtIndication.setText(medicList.get(0).getIndications());
+                txtEffect.setText(medicList.get(0).getEffect());
+                txtScoop.setText(String.valueOf(medicList.get(0).getScoop()));
+                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+                txtCost.setText(String.valueOf(medicList.get(0).getCost()));
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                disabledTextBox();
+            }
+            DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
+            Object row[] = new Object[10];
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getCode();
+                row[1] = medicList.get(i).getName();
+                row[2] = medicList.get(i).getComponent();
+                row[3] = medicList.get(i).getIndications();
+                row[4] = medicList.get(i).getScoop();
+                row[5] = medicList.get(i).getGram();
+                row[6] = medicList.get(i).getCost();
+                row[7] = medicList.get(i).getSellprice();
+                row[8] = medicList.get(i).getLastUpdateDateTime();
+                row[9] = medicList.get(i).getCreateDateTime();
+                model.addRow(row);
+            }
+        }
+    }
+
+    public void disabledTextBox()
+    {
+        txtName.setEnabled(true);
+        txtComponent.setEnabled(true);
+        txtIndication.setEnabled(true);
+        txtEffect.setEnabled(true);
+        txtScoop.setEnabled(true);
+        txtWeight.setEnabled(true);
+        txtCost.setEnabled(true);
+        txtPrice.setEnabled(true);
+        txtID.setEnabled(false);
     }
     /**
      * @param args the command line arguments

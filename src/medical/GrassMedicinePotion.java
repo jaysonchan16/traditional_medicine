@@ -39,7 +39,7 @@ public class GrassMedicinePotion extends Medicine {
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
-            if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion(name) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion("name",name) == 0)
             {
                 String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -64,10 +64,10 @@ public class GrassMedicinePotion extends Medicine {
         }
     }
     
-    public int validateAddGrassMedicinePotion(String name) throws SQLException
+    public int validateAddGrassMedicinePotion(String attribute, String data) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from GrassMedicinePotion where name = '"+name+"'";
+            String query = "Select count(1) as count from GrassMedicinePotion where "+attribute+" = '"+data+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -89,6 +89,25 @@ public class GrassMedicinePotion extends Medicine {
     public List<GrassMedicinePotion> getGrassMedicinePotion() throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
             String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePotion";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
+                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return grassMedicinePotionList;
+    }
+    
+    public List<GrassMedicinePotion> getGrassMedicinePotionID(String ID) throws SQLException{
+        List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePotion where ID = '"+ID+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {

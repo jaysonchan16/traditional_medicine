@@ -40,7 +40,7 @@ public class GrassMedicinePill extends Medicine{
             double gram1 = gram;
             double cost1 = cost;
             
-            if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePill(name) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePill("name", name) == 0)
             {
                 String query = "insert into GrassMedicinePill(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -65,10 +65,10 @@ public class GrassMedicinePill extends Medicine{
         }
     }
     
-    public int validateGrassMedicinePill(String name) throws SQLException
+    public int validateGrassMedicinePill(String attribute, String data) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from GrassMedicinePill where name = '"+name+"'";
+            String query = "Select count(1) as count from GrassMedicinePill where "+attribute+" = '"+data+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -90,6 +90,25 @@ public class GrassMedicinePill extends Medicine{
     public List<GrassMedicinePill> getGrassMedicinePill() throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
             String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
+                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return grassMedicinePillList;
+    }
+    
+    public List<GrassMedicinePill> getGrassMedicinePillID(String ID) throws SQLException{
+        List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill where ID = '"+ID+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {

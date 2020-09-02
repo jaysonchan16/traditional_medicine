@@ -61,7 +61,7 @@ public class Medicine {
     /**
      * @return the name
      */
-    public double getScoop() {
+    public float getScoop() {
         return scoop;
     }
 

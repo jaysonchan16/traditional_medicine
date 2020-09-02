@@ -45,7 +45,7 @@ public class TraditionalMedicinePotion extends Medicine{
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
-            if(map.get("messages").equalsIgnoreCase("") && validateTraditionalMedicinePotion(name) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateTraditionalMedicinePotion("name",name) == 0)
             {
                 String query = "insert into TraditionalMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -70,10 +70,10 @@ public class TraditionalMedicinePotion extends Medicine{
         }
     }
     
-    public int validateTraditionalMedicinePotion(String name) throws SQLException
+    public int validateTraditionalMedicinePotion(String attribute, String data) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from TraditionalMedicinePotion where name = '"+name+"'";
+            String query = "Select count(1) as count from TraditionalMedicinePotion where "+attribute+" = '"+data+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -143,25 +143,22 @@ public class TraditionalMedicinePotion extends Medicine{
         return traditionalMedicinePotionList;
     }
     
-    /*public List<TraditionalMedicinePotion> getTraditionalMedicinePotions() throws SQLException{
-        List<TraditionalMedicinePotion> TraditionalMedicinePotionList = new ArrayList<>();
-            String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
-                + "from Patient a Inner Join Disease b "
-                + "ON a.ID = b.PatientID";
+    public List<TraditionalMedicinePotion> getTraditionalMedicinePotionID(String ID) throws SQLException{
+        List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
+        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion where ID='"+ID+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                 TraditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("Symptom"),rs.getInt("Temperature"),
-                         rs.getString("BloodPressure"),rs.getString("PulseCondition"),
-                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
-                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
+                 traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),rs.getString("component"),
+                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
             } 
         } 
         catch (Exception e)
         {
             throw(new NoSuchElementException(e.getMessage()));
         }
-        return TraditionalMedicinePotionList;
-    }*/
+        return traditionalMedicinePotionList;
+    }
 }
