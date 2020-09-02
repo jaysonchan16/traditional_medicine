@@ -226,6 +226,11 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete);
         btnDelete.setBounds(520, 850, 130, 60);
 
@@ -350,9 +355,72 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         }
         catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
         }
     }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String ID = txtID.getText();
+        String code = ID.substring(0,9);
+        
+        try
+        {
+            if(code.equalsIgnoreCase("GrasMedPi"))
+            {
+                GrassMedicinePill pill = new GrassMedicinePill();
+                if(pill.DeleteGrassMedicinePill(ID).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "删除成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.DeleteGrassMedicinePill(ID));
+                }
+            }
+            else if(code.equalsIgnoreCase("GrasMedPo"))
+            {
+                GrassMedicinePotion pill = new GrassMedicinePotion();        
+                if(pill.DeleteGrassMedicinePotion(ID).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "删除成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.DeleteGrassMedicinePotion(ID));
+                }
+            }
+            else if(code.equalsIgnoreCase("TradMedPi"))
+            {
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();      
+                if(pill.DeleteTraditionalMedicinePill(ID).equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "删除成功");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.DeleteTraditionalMedicinePill(ID));
+                }
+            }
+            else if(code.equalsIgnoreCase("TradMedPo"))
+            {
+                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
+                if(pill.DeleteTraditionalMedicinePotion(ID).equalsIgnoreCase("1"))
+                {
+                   JOptionPane.showMessageDialog(rootPane, "删除成功"); 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, pill.DeleteTraditionalMedicinePotion(ID)); 
+                }
+            }
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
+        }
+        
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     public void createColumns(int count, String ID)
     {
