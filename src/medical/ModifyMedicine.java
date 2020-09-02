@@ -239,6 +239,14 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
+        txtName.setText("");
+        txtComponent.setText("");
+        txtIndication.setText("");
+        txtEffect.setText("");
+        txtScoop.setText("");
+        txtWeight.setText("");
+        txtCost.setText("");
+        txtPrice.setText("");
         createColumns(1,"");
     }//GEN-LAST:event_comboMedicineActionPerformed
 
