@@ -215,65 +215,114 @@ public class NewMedicine extends javax.swing.JFrame {
             String cost = txtCost.getText();
             String price = txtPrice.getText();
             
-            HashMap<String,String> map = new HashMap<String, String>();
-            
-            float scoop1 = Float.valueOf(txtScoop.getText());
-            float weight1= Float.valueOf(txtWeight.getText());
-            float cost1 = Float.valueOf(txtCost.getText());
-            float price1 = Float.valueOf(txtPrice.getText());
+            if(name.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写名字！");
+            }
+            else if(component.equalsIgnoreCase(""))
+            {
+                if(comboMedicine.getSelectedItem() == "单调药粉")
+                {
+                    JOptionPane.showMessageDialog(rootPane, "请填写药性！");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "请填写组成！");
+                }
+            }
+            else if(indication.equalsIgnoreCase(""))
+            {
+                if(comboMedicine.getSelectedItem() == "单调药粉")
+                {
+                    JOptionPane.showMessageDialog(rootPane, "请填写主治！");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "请填写应用！");
+                }
+            }
+            else if(effect.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写功效！");
+            }
+            else if(scoop.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写每次每日分量！");
+            }
+            else if(weight.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写重量！");
+            }
+            else if(cost.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写本钱！");
+            }
+            else if(price.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写价格！");
+            }
+            else
+            {
+                HashMap<String,String> map = new HashMap<String, String>();
 
-            optionMessage(component,indication,effect,scoop,weight,cost,price);
+                float scoop1 = Float.valueOf(txtScoop.getText());
+                float weight1= Float.valueOf(txtWeight.getText());
+                float cost1 = Float.valueOf(txtCost.getText());
+                float price1 = Float.valueOf(txtPrice.getText());
 
-            if(comboMedicine.getSelectedItem() == "复方药粉") // traitional medicine potion
-            {
-                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
-                map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo");
-                if(map.get("returnMessage").equalsIgnoreCase("1"))
+                optionMessage(component,indication,effect,scoop,weight,cost,price);
+
+                if(comboMedicine.getSelectedItem() == "复方药粉") // traitional medicine potion
                 {
-                    JOptionPane.showMessageDialog(rootPane, "复方药粉已新增！ID 是 "+map.get("ID"));
+                    TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
+                    map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo");
+                    if(map.get("returnMessage").equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "复方药粉已新增！ID 是 "+map.get("ID"));
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    }
                 }
-                else
+                else if(comboMedicine.getSelectedItem() == "药丸") //grass medicine pill
                 {
-                    JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    GrassMedicinePill pill = new GrassMedicinePill();
+                    map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi");
+                    if(map.get("returnMessage").equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "药丸已新增！ID 是 "+map.get("ID"));
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    }
                 }
-            }
-            else if(comboMedicine.getSelectedItem() == "药丸") //grass medicine pill
-            {
-                GrassMedicinePill pill = new GrassMedicinePill();
-                map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi");
-                if(map.get("returnMessage").equalsIgnoreCase("1"))
+                else if(comboMedicine.getSelectedItem() == "药水")// grass medicine potion
                 {
-                    JOptionPane.showMessageDialog(rootPane, "药丸已新增！ID 是 "+map.get("ID"));
+                    GrassMedicinePotion pill = new GrassMedicinePotion();
+                    map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo");
+                    if(map.get("returnMessage").equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "药水已新增！ID 是 "+map.get("ID"));
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    }
                 }
-                else
+                else if(comboMedicine.getSelectedItem() == "单调药粉")// traitional medicine pill
                 {
-                    JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
-                }
-            }
-            else if(comboMedicine.getSelectedItem() == "药水")// grass medicine potion
-            {
-                GrassMedicinePotion pill = new GrassMedicinePotion();
-                map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo");
-                if(map.get("returnMessage").equalsIgnoreCase("1"))
-                {
-                    JOptionPane.showMessageDialog(rootPane, "药水已新增！ID 是 "+map.get("ID"));
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
-                }
-            }
-            else if(comboMedicine.getSelectedItem() == "单调药粉")// traitional medicine pill
-            {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
-                if(map.get("returnMessage").equalsIgnoreCase("1"))
-                {
-                    JOptionPane.showMessageDialog(rootPane, "单调药粉已新增！ID 是 "+map.get("ID"));
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                    map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
+                    if(map.get("returnMessage").equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "单调药粉已新增！ID 是 "+map.get("ID"));
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
+                    }
                 }
             }
         } catch (NumberFormatException number){
@@ -385,6 +434,7 @@ public class NewMedicine extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"价格没填！");
         }
     }
+
     /**
      * @param args the command line arguments
      */
