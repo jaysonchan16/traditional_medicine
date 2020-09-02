@@ -127,7 +127,7 @@ public class GrassMedicinePill extends Medicine{
     
     public String EditGrassMedicinePill(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
         String query = "Update GrassMedicinePill Set name = trim('"+name+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
-                + " cost = trim('"+cost+"'), price = trim('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
+                + " cost = trim('"+cost+"'), sellprice = trim('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + "where ID = '"+ID+"'";
          
         SQLQuery sql = new SQLQuery();

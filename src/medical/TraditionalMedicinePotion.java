@@ -92,7 +92,7 @@ public class TraditionalMedicinePotion extends Medicine{
     }
     
     public String EditTraditionalMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
-         String query = "Update TraditionalMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'),"
+         String query = "Update TraditionalMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), "
                  + " indications = trim('"+indication+"'), scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'),"
                  + " gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where ID = '"+ID+"'";
