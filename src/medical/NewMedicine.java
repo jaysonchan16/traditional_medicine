@@ -221,7 +221,6 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                System.out.println(comboMedicine.getSelectedItem());
                 if(comboMedicine.getSelectedItem() == "单调药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
@@ -233,7 +232,6 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                System.out.println(comboMedicine.getSelectedItem());
                 if(comboMedicine.getSelectedItem() == "单调药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");

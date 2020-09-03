@@ -313,52 +313,101 @@ public class ModifyMedicine extends javax.swing.JFrame {
         
         try
         {
-            if(code.equalsIgnoreCase("GrasMedPi"))
+            if(name.equalsIgnoreCase(""))
             {
-                GrassMedicinePill pill = new GrassMedicinePill();
-                if(pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                JOptionPane.showMessageDialog(rootPane, "请填写名字！");
+            }
+            else if(component.equalsIgnoreCase(""))
+            {
+                if(comboMedicine.getSelectedItem() == "单调药粉")
                 {
-                    JOptionPane.showMessageDialog(rootPane, "更改成功");
+                    JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                    JOptionPane.showMessageDialog(rootPane, "请填写组成！");
                 }
             }
-            else if(code.equalsIgnoreCase("GrasMedPo"))
+            else if(indication.equalsIgnoreCase(""))
             {
-                GrassMedicinePotion pill = new GrassMedicinePotion();        
-                if(pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                if(comboMedicine.getSelectedItem() == "单调药粉")
                 {
-                    JOptionPane.showMessageDialog(rootPane, "更改成功");
+                    JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price));
+                    JOptionPane.showMessageDialog(rootPane, "请填写主治！");
                 }
             }
-            else if(code.equalsIgnoreCase("TradMedPi"))
+            else if(effect.equalsIgnoreCase(""))
             {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();      
-                if(pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
-                {
-                    JOptionPane.showMessageDialog(rootPane, "更改成功");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
-                }
+                JOptionPane.showMessageDialog(rootPane, "请填写功效！");
             }
-            else if(code.equalsIgnoreCase("TradMedPo"))
+            else if(scoop.equalsIgnoreCase(""))
             {
-                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
-                if(pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                JOptionPane.showMessageDialog(rootPane, "请填写每次每日分量！");
+            }
+            else if(gram.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写重量！");
+            }
+            else if(cost.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写本钱！");
+            }
+            else if(price.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写价格！");
+            }
+            else
+            {
+                if(code.equalsIgnoreCase("GrasMedPi"))
                 {
-                   JOptionPane.showMessageDialog(rootPane, "更改成功"); 
+                    GrassMedicinePill pill = new GrassMedicinePill();
+                    if(pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                    }
                 }
-                else
+                else if(code.equalsIgnoreCase("GrasMedPo"))
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price)); 
+                    GrassMedicinePotion pill = new GrassMedicinePotion();        
+                    if(pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price));
+                    }
+                }
+                else if(code.equalsIgnoreCase("TradMedPi"))
+                {
+                    TraditionalMedicinePill pill = new TraditionalMedicinePill();      
+                    if(pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                    }
+                }
+                else if(code.equalsIgnoreCase("TradMedPo"))
+                {
+                    TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
+                    if(pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    {
+                       JOptionPane.showMessageDialog(rootPane, "更改成功"); 
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price)); 
+                    }
                 }
             }
         }
