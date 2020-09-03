@@ -68,7 +68,7 @@ public class NewMedicine extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        txtName = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -189,15 +189,13 @@ public class NewMedicine extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack);
         btnBack.setBounds(30, 820, 130, 60);
-
-        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtName);
-        txtName.setBounds(180, 190, 870, 40);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(180, 190, 870, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 190, 70, 30);
+        jLabel2.setBounds(90, 200, 57, 26);
 
         setBounds(0, 0, 1137, 968);
     }// </editor-fold>//GEN-END:initComponents
@@ -206,7 +204,7 @@ public class NewMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
-            String name = txtName.getText();
+            String name = jTextField1.getText();
             String component = txtComponent.getText();
             String indication = txtIndication.getText();
             String effect = txtEffect.getText();
@@ -482,13 +480,13 @@ public class NewMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblzhucheng;
     private javax.swing.JLabel lblzhuzi;
     private javax.swing.JTextField txtComponent;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtIndication;
-    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;
     private javax.swing.JTextField txtWeight;
