@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 /**
  *
  * @author Sheng
@@ -84,8 +85,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTongueCoating = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtShit = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtPee = new javax.swing.JTextField();
         BtnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         lblID = new javax.swing.JLabel();
@@ -98,6 +97,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lblLastUpdateDateTime = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDisease = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -201,22 +202,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTongueCoating.setBounds(120, 570, 930, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel10.setText("大便：");
+        jLabel10.setText("大小便：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(60, 630, 70, 26);
+        jLabel10.setBounds(40, 630, 90, 26);
 
         txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtShit);
         txtShit.setBounds(120, 630, 930, 40);
-
-        jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel11.setText("小便：");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(60, 690, 70, 30);
-
-        txtPee.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtPee);
-        txtPee.setBounds(120, 690, 930, 40);
 
         BtnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         BtnAdd.setText("新增");
@@ -226,7 +218,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnAdd);
-        BtnAdd.setBounds(850, 810, 90, 40);
+        BtnAdd.setBounds(850, 910, 90, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -236,7 +228,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(960, 810, 90, 40);
+        btnBack.setBounds(960, 910, 90, 40);
         getContentPane().add(lblID);
         lblID.setBounds(40, 50, 0, 0);
 
@@ -248,7 +240,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEdit);
-        btnEdit.setBounds(750, 810, 90, 40);
+        btnEdit.setBounds(750, 910, 90, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -258,7 +250,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(640, 810, 90, 40);
+        btnDelete.setBounds(640, 910, 90, 40);
 
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel12.setText("病症资料");
@@ -268,20 +260,20 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel13.setText("创新时间：");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(30, 760, 100, 26);
+        jLabel13.setBounds(30, 710, 100, 26);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(120, 750, 400, 40);
+        lblCreateDateTime.setBounds(120, 700, 400, 40);
 
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel15.setText("更新时间：");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(540, 750, 100, 40);
+        jLabel15.setBounds(540, 700, 100, 40);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(630, 750, 420, 40);
+        lblLastUpdateDateTime.setBounds(630, 700, 420, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtID);
@@ -292,7 +284,33 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(30, 70, 50, 30);
 
-        setBounds(0, 0, 1101, 928);
+        tblDisease.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblDisease);
+        if (tblDisease.getColumnModel().getColumnCount() > 0) {
+            tblDisease.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(new JComboBox()));
+            tblDisease.getColumnModel().getColumn(2).setResizable(false);
+            tblDisease.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(new JComboBox()));
+        }
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 760, 1020, 110);
+
+        setBounds(0, 0, 1101, 1026);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
@@ -343,7 +361,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String tonguequality = txtTongueQuality.getText();
             String tonguecoating = txtTongueCoating.getText();
             String shit = txtShit.getText();
-            String pee = txtPee.getText();
+//            String pee = txtPee.getText();
             
             if (symptom.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "主症没填！");
@@ -359,12 +377,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "舌苔没填！");
             } else if (shit.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "大便没填！");
-            } else if (pee.equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(rootPane, "小便没填！");
             }
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
-                                                tonguecoating, pee, shit, patientID);
+                                                tonguecoating, "", shit, patientID);
                 if (disease.AddDisease() == 1) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功");
                 } else {
@@ -385,9 +401,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String tonguequality = txtTongueQuality.getText();
         String tonguecoating = txtTongueCoating.getText();
         String shit = txtShit.getText();
-        String pee = txtPee.getText();
+//        String pee = txtPee.getText();
         int patientID = Integer.parseInt(lblID.getText());
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID );
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, "",shit, patientID );
         if (disease.EditDisease() == 1) {
             JOptionPane.showMessageDialog(rootPane, "更改成功");
         } else {
@@ -404,9 +420,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String tonguequality = txtTongueQuality.getText();
         String tonguecoating = txtTongueCoating.getText();
         String shit = txtShit.getText();
-        String pee = txtPee.getText();
+//        String pee = txtPee.getText();
         int patientID = Integer.parseInt(lblID.getText());
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, pee,shit, patientID);
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, "",shit, patientID);
         try {
             if (disease.DeleteDisease() == 1) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -461,7 +477,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -474,15 +489,16 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLastUpdateDateTime;
+    private javax.swing.JTable tblDisease;
     private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPee;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPulse;
     private javax.swing.JTextField txtShit;
