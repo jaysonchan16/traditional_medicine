@@ -99,6 +99,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -260,20 +261,20 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel13.setText("创新时间：");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(30, 710, 100, 26);
+        jLabel13.setBounds(30, 690, 100, 26);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(120, 700, 400, 40);
+        lblCreateDateTime.setBounds(120, 690, 400, 40);
 
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel15.setText("更新时间：");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(540, 700, 100, 40);
+        jLabel15.setBounds(540, 690, 100, 30);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(630, 700, 420, 40);
+        lblLastUpdateDateTime.setBounds(630, 690, 420, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtID);
@@ -308,7 +309,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 760, 1020, 110);
+        jScrollPane1.setBounds(30, 750, 930, 130);
+
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton1.setText("添加");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(970, 780, 71, 30);
 
         setBounds(0, 0, 1101, 1026);
     }// </editor-fold>//GEN-END:initComponents
@@ -361,7 +367,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String tonguequality = txtTongueQuality.getText();
             String tonguecoating = txtTongueCoating.getText();
             String shit = txtShit.getText();
-//            String pee = txtPee.getText();
             
             if (symptom.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "主症没填！");
@@ -376,11 +381,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
             } else if (tonguecoating.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "舌苔没填！");
             } else if (shit.equalsIgnoreCase("")) {
-                JOptionPane.showMessageDialog(rootPane, "大便没填！");
+                JOptionPane.showMessageDialog(rootPane, "大小便没填！");
             }
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
-                                                tonguecoating, "", shit, patientID);
+                                                tonguecoating, shit, patientID);
                 if (disease.AddDisease() == 1) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功");
                 } else {
@@ -401,9 +406,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String tonguequality = txtTongueQuality.getText();
         String tonguecoating = txtTongueCoating.getText();
         String shit = txtShit.getText();
-//        String pee = txtPee.getText();
         int patientID = Integer.parseInt(lblID.getText());
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, "",shit, patientID );
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, patientID );
         if (disease.EditDisease() == 1) {
             JOptionPane.showMessageDialog(rootPane, "更改成功");
         } else {
@@ -420,9 +424,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String tonguequality = txtTongueQuality.getText();
         String tonguecoating = txtTongueCoating.getText();
         String shit = txtShit.getText();
-//        String pee = txtPee.getText();
         int patientID = Integer.parseInt(lblID.getText());
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, "",shit, patientID);
+        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, patientID);
         try {
             if (disease.DeleteDisease() == 1) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -475,6 +478,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

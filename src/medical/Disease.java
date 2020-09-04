@@ -26,8 +26,7 @@ public class Disease extends Patient{
     private String pulseCondition;
     private String tongueQuality;
     private String tongueCoating;
-    private String pee;
-    private String shit;
+    private String peeshit;
     private int patientID;
     private String lastUpdateDateTime;
     private String createDateTime;
@@ -42,34 +41,32 @@ public class Disease extends Patient{
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String pee, String shit, int patientID){
+            String tongueCoating, String peeshit, int patientID){
         this.symptom = symptom;
         this.temperature = temperature;
         this.bloodPressure = bloodPressure;
         this.pulseCondition = pulseCondition;
         this.tongueQuality = tongueQuality;
         this.tongueCoating = tongueCoating;
-        this.pee = pee;
-        this.shit = shit;
+        this.peeshit = peeshit;
         this.patientID = patientID;
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String pee, String shit, String lastUpdateDateTime, String createDateTime){
+            String tongueCoating, String peeshit, String lastUpdateDateTime, String createDateTime){
         this.symptom = symptom;
         this.temperature = temperature;
         this.bloodPressure = bloodPressure;
         this.pulseCondition = pulseCondition;
         this.tongueQuality = tongueQuality;
         this.tongueCoating = tongueCoating;
-        this.pee = pee;
-        this.shit = shit;
+        this.peeshit = peeshit;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String pee, String shit, int patientID, String lastUpdateDateTime, String createDateTime,
+            String tongueCoating, String peeshit, int patientID, String lastUpdateDateTime, String createDateTime,
             String IC, String name, String phoneNo){
         super(IC,name,phoneNo);
         this.symptom = symptom;
@@ -78,8 +75,7 @@ public class Disease extends Patient{
         this.pulseCondition = pulseCondition;
         this.tongueQuality = tongueQuality;
         this.tongueCoating = tongueCoating;
-        this.pee = pee;
-        this.shit = shit;
+        this.peeshit = peeshit;
         this.patientID = patientID;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
@@ -171,29 +167,15 @@ public class Disease extends Patient{
     /**
      * @return the pee
      */
-    public String getPee() {
-        return pee;
+    public String getPeeShit() {
+        return peeshit;
     }
 
     /**
      * @param pee the pee to set
      */
-    public void setPee(String pee) {
-        this.pee = pee;
-    }
-
-    /**
-     * @return the shit
-     */
-    public String getShit() {
-        return shit;
-    }
-
-    /**
-     * @param shit the shit to set
-     */
-    public void setShit(String shit) {
-        this.shit = shit;
+    public void setPeeShit(String peeshit) {
+        this.peeshit = peeshit;
     }
 
     /**
@@ -239,9 +221,9 @@ public class Disease extends Patient{
     }
     
     public int AddDisease(){
-        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, Pee, Shit, PatientID, lastUpdateDateTime, createDateTime)"
+        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, PatientID, lastUpdateDateTime, createDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+pee+"'), trim('"+shit+"'), trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
+                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
         try {
             st.executeUpdate(query);
             st.close(); 
@@ -256,7 +238,7 @@ public class Disease extends Patient{
     public int EditDisease(){
          String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
                  + " BloodPressure = trim('"+bloodPressure+"'), PulseCondition = trim('"+pulseCondition+"'), TongueQuality = trim('"+tongueQuality+"'),"
-                 + " TongueCoating = trim('"+tongueCoating+"'), Pee = trim('"+pee+"'), Shit = trim('"+shit+"'), lastUpdateDateTime = datetime('now','localtime')"
+                 + " TongueCoating = trim('"+tongueCoating+"'), PeeShit = trim('"+peeshit+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where patientID = "+patientID+" order by 1 desc";
         try {
             st.executeUpdate(query);
@@ -285,7 +267,7 @@ public class Disease extends Patient{
     
     public Disease getDisease(String IC) throws SQLException{
         String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.PeeShit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID where a.IC = '"+IC+"'";
         rs = st.executeQuery(query);
@@ -293,7 +275,7 @@ public class Disease extends Patient{
              while (rs.next()) {
                  return new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
-                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"),
                          rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
             }   
         } 
@@ -311,7 +293,7 @@ public class Disease extends Patient{
     public List<Disease> getDiseases() throws SQLException{
         List<Disease> diseaseList = new ArrayList<>();
             String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.Pee, b.Shit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.PeeShit,a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID";
         rs = st.executeQuery(query);
@@ -319,7 +301,7 @@ public class Disease extends Patient{
             while (rs.next()) {
                  diseaseList.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
-                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"),
                          rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
             } 
         } 
@@ -336,15 +318,15 @@ public class Disease extends Patient{
         
         if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
         {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
         }
         else if(IC.equalsIgnoreCase(""))
         {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where d.createDateTime>=trim('"+from+"') and d.createDateTime<=trim('"+to+"')";
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where d.createDateTime>=trim('"+from+"') and d.createDateTime<=trim('"+to+"')";
         }
         else
         {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,Shit,Pee,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
+            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
         }
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -352,7 +334,7 @@ public class Disease extends Patient{
             while (rs.next()) {
                  patientDisease.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
-                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("Pee"),rs.getString("Shit"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"),
                          rs.getString("lastUpdateDateTime"),rs.getString("createDateTime")));
             } 
         } 
