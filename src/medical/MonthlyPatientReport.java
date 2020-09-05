@@ -62,11 +62,11 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "主症", "体温", "血压", "脉象", "舌质", "舌苔", "大便", "小便", "创建时间", "更新时间"
+                "主症", "体温", "血压", "脉象", "舌质", "舌苔", "大小便", "创建时间", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -194,8 +194,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
              row[3] = diseaseList.get(i).getPulseCondition();
              row[4] = diseaseList.get(i).getTongueQuality();
              row[5] = diseaseList.get(i).getTongueCoating();
-             row[6] = diseaseList.get(i).getShit();
-             row[7] = diseaseList.get(i).getPee();
+             row[6] = diseaseList.get(i).getPeeShit();
              row[8] = diseaseList.get(i).getLastUpdateDateTime();
              row[9] = diseaseList.get(i).getCreateDateTime();
              model.addRow(row);
