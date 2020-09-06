@@ -8,7 +8,10 @@ package medical;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -18,15 +21,22 @@ public class Code {
     
     private String code;
     private int number;
+    private String remark;
     protected Statement st = connect.connection();
     ResultSet rs;
     
     public Code() {}
     
-    public Code(String code, int number)
+    public Code(String code)
+    {
+        this.code = code;
+    }
+    
+    public Code(String code, int number, String remark)
     {
         this.code = code;
         this.number = number;
+        this.remark = remark;
     }
 
     /**
@@ -55,6 +65,20 @@ public class Code {
      */
     public void setNumber(int number) {
         this.number = number;
+    }
+    
+        /**
+     * @return the remark
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * @param remark the remark to set
+     */
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     
     public HashMap<String,String> validateID(String name) throws SQLException{
@@ -184,5 +208,25 @@ public class Code {
             data.put("messages", "系统已有资料！");
             return data;
         }
+    }
+
+    public List<Code> getComboMedicine() throws SQLException
+    {
+        List<Code> comboMedicine = new ArrayList<>();
+        String query;
+
+        query = "Select Code from Maintcode where Remark = 'ComboMedicine'";
+
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                comboMedicine.add(new Code(rs.getString("Code")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return comboMedicine;
     }
 }

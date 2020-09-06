@@ -39,6 +39,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        comboMedicine();
         createColumns(0,"");
     }
     /**
@@ -86,7 +87,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel1.setBounds(120, 50, 38, 26);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单调药粉" }));
         comboMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboMedicineActionPerformed(evt);
@@ -319,7 +319,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单调药粉")
+                if(comboMedicine.getSelectedItem() == "单味药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
@@ -330,7 +330,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单调药粉")
+                if(comboMedicine.getSelectedItem() == "单味药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
@@ -490,7 +490,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             model.setColumnCount(0);
             model.setRowCount(0);
         }
-        if(comboMedicine.getSelectedItem() == "单调药粉")
+        if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             try {
                 System.out.println(1);
@@ -552,7 +552,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void show_medical() throws SQLException{
         
-        if(comboMedicine.getSelectedItem() == "单调药粉") // traitional medicine potion
+        if(comboMedicine.getSelectedItem() == "单味药粉") // traitional medicine potion
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
@@ -648,7 +648,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void show_medical_ID(String ID) throws SQLException{
         
-        if(comboMedicine.getSelectedItem() == "单调药粉") // traitional medicine potion
+        if(comboMedicine.getSelectedItem() == "单味药粉") // traitional medicine potion
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
@@ -817,6 +817,21 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtCost.setEnabled(true);
         txtPrice.setEnabled(true);
         txtID.setEnabled(false);
+    }
+    
+    public void comboMedicine()
+    {
+        try {
+            Code code = new Code();
+            
+            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            {
+                System.out.println(code.getComboMedicine().get(i).toString());
+                comboMedicine.addItem(code.getComboMedicine().get(i).getCode());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
     }
     /**
      * @param args the command line arguments

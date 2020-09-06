@@ -39,6 +39,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         this.user = user;
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
+         medicineCategory();
         setResizable(false);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) {
@@ -57,6 +58,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtName.setText(name);
         txtPhone.setText(phone);
         lblID.setText(String.valueOf(id));
+         medicineCategory();
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
        
@@ -75,6 +77,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtIC = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
@@ -129,6 +132,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtCategory = new javax.swing.JTextField();
         btnFind2 = new javax.swing.JButton();
+
+        buttonAdd.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -307,7 +312,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null}
             },
             new String [] {
                 "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值"
@@ -359,14 +364,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel17.setBounds(20, 590, 100, 30);
 
         comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxMedicineActionPerformed(evt);
             }
         });
         getContentPane().add(comboBoxMedicine);
-        comboBoxMedicine.setBounds(120, 590, 130, 40);
+        comboBoxMedicine.setBounds(120, 590, 410, 40);
 
         jLabel18.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel18.setText("药物名称：");
@@ -433,7 +437,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(btnFind2);
         btnFind2.setBounds(1250, 70, 110, 40);
 
-        setBounds(0, 0, 1404, 1058);
+        setBounds(0, 0, 1418, 1058);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
@@ -546,6 +550,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_comboBoxMedicineActionPerformed
 
     private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
@@ -583,6 +588,21 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 NewPatient detail = new NewPatient(user,IC);
                 detail.setVisible(true);
                 this.dispose();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+    
+    public void medicineCategory()
+    {
+        try {
+            Code code = new Code();
+            
+            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            {
+                System.out.println(code.getComboMedicine().get(i).toString());
+                comboBoxMedicine.addItem(code.getComboMedicine().get(i).getCode());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
@@ -631,6 +651,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnFind2;
+    private javax.swing.JButton buttonAdd;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;
     private javax.swing.JLabel jLabel1;

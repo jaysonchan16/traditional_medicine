@@ -5,6 +5,7 @@
  */
 package medical;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -27,7 +28,7 @@ public class NewMedicine extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         
-        if(comboMedicine.getSelectedItem() == "单调药粉")
+        if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             System.out.println(1);
             lblzhucheng.setText("药性"); 
@@ -39,6 +40,7 @@ public class NewMedicine extends javax.swing.JFrame {
             lblzhucheng.setText("组成"); 
             lblzhuzi.setText("主治"); 
         }
+        comboMedicine();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,7 +95,6 @@ public class NewMedicine extends javax.swing.JFrame {
         txtIndication.setBounds(180, 350, 870, 41);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单调药粉" }));
         comboMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboMedicineMouseClicked(evt);
@@ -219,7 +220,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单调药粉")
+                if(comboMedicine.getSelectedItem() == "单味药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
@@ -230,7 +231,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单调药粉")
+                if(comboMedicine.getSelectedItem() == "单味药粉")
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
@@ -309,7 +310,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem() == "单调药粉")// traitional medicine pill
+                else if(comboMedicine.getSelectedItem() == "单味药粉")// traitional medicine pill
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
                     map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
@@ -337,7 +338,7 @@ public class NewMedicine extends javax.swing.JFrame {
 
     private void comboMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboMedicineMouseClicked
         // TODO add your handling code here:
-        if(comboMedicine.getSelectedItem() == "单调药粉")
+        if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             System.out.println(1);
             lblzhucheng.setText("药性"); 
@@ -362,7 +363,7 @@ public class NewMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
-        if(comboMedicine.getSelectedItem() == "单调药粉")
+        if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             System.out.println(1);
             lblzhucheng.setText("药性"); 
@@ -377,7 +378,7 @@ public class NewMedicine extends javax.swing.JFrame {
     }//GEN-LAST:event_comboMedicineActionPerformed
     
     public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price){
-        if(comboMedicine.getSelectedItem() != "单调药粉")
+        if(comboMedicine.getSelectedItem() != "单味药粉")
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -392,7 +393,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 validateMessage(effect, scoop, weight, cost, price);
             }
         } 
-        else if(comboMedicine.getSelectedItem() == "单调药粉")
+        else if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -432,7 +433,21 @@ public class NewMedicine extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"价格没填！");
         }
     }
-
+    
+    public void comboMedicine()
+    {
+        try {
+            Code code = new Code();
+            
+            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            {
+                System.out.println(code.getComboMedicine().get(i).toString());
+                comboMedicine.addItem(code.getComboMedicine().get(i).getCode());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
