@@ -303,9 +303,13 @@ public class NewPatient extends javax.swing.JFrame {
             main.setVisible(true);
             this.dispose();
         } else {
-            diseasepage = new NewPatientDisease(user);
-            diseasepage.setVisible(true);
-            this.dispose();
+            try {
+                diseasepage = new NewPatientDisease(user);
+                diseasepage.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }//GEN-LAST:event_btnBackActionPerformed
 

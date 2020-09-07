@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Sheng
  */
-public class TraditionalMedicinePotion extends Medicine{
+public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     
     protected Statement st = connect.connection();
     ResultSet rs;
@@ -149,4 +149,21 @@ public class TraditionalMedicinePotion extends Medicine{
         return traditionalMedicinePotionList;
     }
     
+    
+    public List<TraditionalMedicinePotion> comboName() throws SQLException{
+        List<TraditionalMedicinePotion> name = new ArrayList<>();
+        String query = "Select name from TraditionalMedicinePotion";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new TraditionalMedicinePotion(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return name;
+    }
 }

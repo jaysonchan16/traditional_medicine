@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  *
  * @author Sheng
  */
-public class TraditionalMedicinePill extends Medicine{
+public class TraditionalMedicinePill extends Medicine{//单味药粉
     
     private String property;
     private String appliance;
@@ -25,6 +25,10 @@ public class TraditionalMedicinePill extends Medicine{
     ResultSet rs;
     
     public TraditionalMedicinePill(){}
+    
+    public TraditionalMedicinePill(String name){
+        super(name);
+    }
     
     public TraditionalMedicinePill(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance, String code){
         super(name,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
@@ -171,5 +175,22 @@ public class TraditionalMedicinePill extends Medicine{
         SQLQuery sql = new SQLQuery();
         
         return sql.AddEditDeleteQuery(query);
+    }
+    
+    public List<TraditionalMedicinePill> comboName() throws SQLException{
+        List<TraditionalMedicinePill> name = new ArrayList<>();
+        String query = "Select name from TraditionalMedicinePill";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new TraditionalMedicinePill(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return name;
     }
 }

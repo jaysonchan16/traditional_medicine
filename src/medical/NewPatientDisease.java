@@ -34,15 +34,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private String phone;
     DefaultTableModel model;
     
-    public NewPatientDisease(User user) {
+    public NewPatientDisease(User user) throws SQLException {
         initComponents();
         this.user = user;
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
-         medicineCategory();
+        medicineCategory();
         setResizable(false);
     }
-    public NewPatientDisease(User user,String id, String ic, String name, String phone) {
+    public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         initComponents();
         this.user = user;
         this.id = id;
@@ -58,7 +58,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtName.setText(name);
         txtPhone.setText(phone);
         lblID.setText(String.valueOf(id));
-         medicineCategory();
+        medicineCategory();
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
        
@@ -337,6 +337,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnAdd.setText("添加");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAdd);
         btnAdd.setBounds(450, 890, 80, 40);
 
@@ -378,14 +383,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel18.setBounds(20, 650, 95, 26);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxNameActionPerformed(evt);
             }
         });
         getContentPane().add(comboBoxName);
-        comboBoxName.setBounds(120, 650, 130, 40);
+        comboBoxName.setBounds(120, 650, 410, 40);
 
         jLabel19.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel19.setText("剂量：");
@@ -549,7 +553,16 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String name = comboBoxMedicine.getSelectedItem().toString();
+            
+            System.out.println(name);
+            
+            medicineName(name);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         
     }//GEN-LAST:event_comboBoxMedicineActionPerformed
 
@@ -562,6 +575,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         // TODO add your handling code here:
         Find();
     }//GEN-LAST:event_btnFind2ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
     public void getComboBoxItem()
     {
@@ -594,18 +611,62 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
     }
     
-    public void medicineCategory()
+    public void medicineCategory() throws SQLException
     {
         try {
             Code code = new Code();
             
             for(int i = 0; i < code.getComboMedicine().size(); i++)
             {
-                System.out.println(code.getComboMedicine().get(i).toString());
                 comboBoxMedicine.addItem(code.getComboMedicine().get(i).getCode());
             }
+            medicineName(code.getComboMedicine().get(0).getCode());
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+        
+    }
+    
+    public void medicineName(String name) throws SQLException
+    {
+        System.out.println("medicineName:"+name);
+        comboBoxName.removeAllItems();
+        if(name.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill pill = new TraditionalMedicinePill();
+            
+            for(int i = 0; i < pill.comboName().size(); i++)
+            {
+                comboBoxName.addItem(pill.comboName().get(i).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion potion = new GrassMedicinePotion();
+            
+            for(int i = 0; i < potion.comboName().size(); i++)
+            {
+                comboBoxName.addItem(potion.comboName().get(i).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill = new GrassMedicinePill();
+            
+            for(int i = 0; i < pill.comboName().size(); i++)
+            {
+                comboBoxName.addItem(pill.comboName().get(i).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+            
+            for(int i = 0; i < potion.comboName().size(); i++)
+            {
+                comboBoxName.addItem(potion.comboName().get(i).getName());
+            }
         }
     }
     /**

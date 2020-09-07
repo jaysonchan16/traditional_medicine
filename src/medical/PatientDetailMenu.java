@@ -217,10 +217,14 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackupActionPerformed
 
     private void btnDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiseaseActionPerformed
-        // TODO add your handling code here:
-        NewPatientDisease patient = new NewPatientDisease(user);
-        patient.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            NewPatientDisease patient = new NewPatientDisease(user);
+            patient.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnDiseaseActionPerformed
 
     private void btnMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyReportActionPerformed

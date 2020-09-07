@@ -17,12 +17,16 @@ import java.util.NoSuchElementException;
  *
  * @author Sheng
  */
-public class GrassMedicinePotion extends Medicine {
+public class GrassMedicinePotion extends Medicine {// 药水
     
     protected Statement st = connect.connection();
     ResultSet rs;
     
     public GrassMedicinePotion(){}
+    
+    public GrassMedicinePotion(String name){
+        super(name);
+    }
     
     public GrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
         super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
@@ -140,5 +144,22 @@ public class GrassMedicinePotion extends Medicine {
         SQLQuery sql = new SQLQuery();
         
         return sql.AddEditDeleteQuery(query);
+    }
+    
+    public List<GrassMedicinePotion> comboName() throws SQLException{
+        List<GrassMedicinePotion> name = new ArrayList<>();
+        String query = "Select name from GrassMedicinePotion";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new GrassMedicinePotion(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return name;
     }
 }
