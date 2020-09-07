@@ -41,6 +41,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtPhone.setEnabled(false);
         medicineCategory();
         setResizable(false);
+        txtchufang.setText("1");
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         initComponents();
@@ -61,8 +62,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         medicineCategory();
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
-       
-        
+        txtchufang.setText("1");
     }
     public NewPatientDisease() {
         initComponents();
@@ -312,7 +312,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值"
@@ -568,7 +568,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
         // TODO add your handling code here:
-        getComboBoxItem();
     }//GEN-LAST:event_comboBoxNameActionPerformed
 
     private void btnFind2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind2ActionPerformed
@@ -578,11 +577,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        chufang();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    public void getComboBoxItem()
+    public void chufang()
     {
-        
+        int chufang = Integer.valueOf(txtchufang.getText()) + 1;
+        txtchufang.setText(String.valueOf(chufang));
     }
     
     public void Find()
@@ -630,7 +631,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public void medicineName(String name) throws SQLException
     {
-        System.out.println("medicineName:"+name);
         comboBoxName.removeAllItems();
         if(name.equalsIgnoreCase("单味药粉"))
         {
