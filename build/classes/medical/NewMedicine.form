@@ -186,11 +186,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="STXihei" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x91cd;&#x91cf;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x91cd;&#x91cf;/GM&#xff1a;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="100" y="590" width="60" height="30"/>
+          <AbsoluteConstraints x="60" y="590" width="110" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -211,11 +211,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="STXihei" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x672c;&#x94b1;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value="&#x672c;&#x94b1;/GM&#xff1a;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="100" y="670" width="60" height="30"/>
+          <AbsoluteConstraints x="60" y="670" width="110" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -285,7 +285,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtName">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="STXihei" size="18" style="1"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="180" y="190" width="870" height="40"/>

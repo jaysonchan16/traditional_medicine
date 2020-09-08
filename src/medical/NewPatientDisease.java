@@ -42,6 +42,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         medicineCategory();
         setResizable(false);
         txtchufang.setText("1");
+        txtchufang.setEnabled(false);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         initComponents();
@@ -63,6 +64,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
         txtchufang.setText("1");
+        txtchufang.setEnabled(false);
     }
     public NewPatientDisease() {
         initComponents();
@@ -132,6 +134,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtCategory = new javax.swing.JTextField();
         btnFind2 = new javax.swing.JButton();
+        jScrollBar1 = new javax.swing.JScrollBar();
 
         buttonAdd.setText("jButton1");
 
@@ -398,7 +401,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         txtJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtJiLiang);
-        txtJiLiang.setBounds(120, 710, 410, 40);
+        txtJiLiang.setBounds(120, 710, 380, 50);
 
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel20.setText("价格/G:");
@@ -440,6 +443,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         });
         getContentPane().add(btnFind2);
         btnFind2.setBounds(1250, 70, 110, 40);
+        getContentPane().add(jScrollBar1);
+        jScrollBar1.setBounds(500, 710, 21, 48);
 
         setBounds(0, 0, 1418, 1058);
     }// </editor-fold>//GEN-END:initComponents
@@ -578,6 +583,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         chufang();
+        
+        String jiliang = txtJiLiang.getText();
+        String price = txtPrice.getText();
+        String totalprice = txtTotalPrice.getText();
+        
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     public void chufang()
@@ -736,6 +747,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

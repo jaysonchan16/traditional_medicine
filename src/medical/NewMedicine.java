@@ -27,20 +27,22 @@ public class NewMedicine extends javax.swing.JFrame {
     public NewMedicine(User user) {
         initComponents();
         this.user = user;
-        
-        if(comboMedicine.getSelectedItem() == "单味药粉")
+        comboMedicine();
+        if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             System.out.println(1);
-            lblzhucheng.setText("药性"); 
-            lblzhuzi.setText("应用"); 
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
         }
         else
         {
             System.out.println(2);
-            lblzhucheng.setText("组成"); 
-            lblzhuzi.setText("主治"); 
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
         }
-        comboMedicine();
+        txtWeight.setText("1");
+        txtWeight.setEnabled(false);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,7 +72,7 @@ public class NewMedicine extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,18 +152,18 @@ public class NewMedicine extends javax.swing.JFrame {
         txtScoop.setBounds(180, 510, 870, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel6.setText("重量：");
+        jLabel6.setText("重量/GM：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(100, 590, 60, 30);
+        jLabel6.setBounds(60, 590, 110, 30);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtWeight);
         txtWeight.setBounds(180, 590, 870, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel7.setText("本钱：");
+        jLabel7.setText("本钱/GM：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(100, 670, 60, 30);
+        jLabel7.setBounds(60, 670, 110, 30);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCost);
@@ -190,8 +192,10 @@ public class NewMedicine extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack);
         btnBack.setBounds(30, 820, 130, 60);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(180, 190, 870, 40);
+
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtName);
+        txtName.setBounds(180, 190, 870, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
@@ -205,7 +209,7 @@ public class NewMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
-            String name = jTextField1.getText();
+            String name = txtName.getText();
             String component = txtComponent.getText();
             String indication = txtIndication.getText();
             String effect = txtEffect.getText();
@@ -220,7 +224,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单味药粉")
+                if(comboMedicine.getSelectedItem().equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
@@ -231,7 +235,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单味药粉")
+                if(comboMedicine.getSelectedItem().equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
@@ -270,9 +274,10 @@ public class NewMedicine extends javax.swing.JFrame {
                 float price1 = Float.valueOf(txtPrice.getText());
 
                 optionMessage(component,indication,effect,scoop,weight,cost,price);
-
-                if(comboMedicine.getSelectedItem() == "复方药粉") // traitional medicine potion
+                
+                if(comboMedicine.getSelectedItem().equals("复方药粉")) // traitional medicine potion
                 {
+                    System.out.println("Here");
                     TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
                     map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo");
                     if(map.get("returnMessage").equalsIgnoreCase("1"))
@@ -284,7 +289,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem() == "药丸") //grass medicine pill
+                else if(comboMedicine.getSelectedItem().equals("药丸")) //grass medicine pill
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
                     map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi");
@@ -297,7 +302,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem() == "药水")// grass medicine potion
+                else if(comboMedicine.getSelectedItem().equals("药水"))// grass medicine potion
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
                     map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo");
@@ -310,7 +315,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem() == "单味药粉")// traitional medicine pill
+                else if(comboMedicine.getSelectedItem().equals("单味药粉"))// traitional medicine pill
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
                     map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
@@ -338,18 +343,18 @@ public class NewMedicine extends javax.swing.JFrame {
 
     private void comboMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboMedicineMouseClicked
         // TODO add your handling code here:
-        if(comboMedicine.getSelectedItem() == "单味药粉")
+      /*  if(comboMedicine.getSelectedItem() == "单味药粉")
         {
             System.out.println(1);
-            lblzhucheng.setText("药性"); 
-            lblzhuzi.setText("应用"); 
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
         }
         else
         {
             System.out.println(2);
-            lblzhucheng.setText("组成"); 
-            lblzhuzi.setText("主治"); 
-        }
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
+        }*/
     }//GEN-LAST:event_comboMedicineMouseClicked
 
     private void comboMedicineMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboMedicineMouseExited
@@ -363,22 +368,22 @@ public class NewMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
-        if(comboMedicine.getSelectedItem() == "单味药粉")
+        System.out.println(comboMedicine.getSelectedItem());
+        if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             System.out.println(1);
-            lblzhucheng.setText("药性"); 
-            lblzhuzi.setText("应用"); 
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
         }
         else
         {
-            System.out.println(2);
-            lblzhucheng.setText("组成"); 
-            lblzhuzi.setText("主治"); 
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
         }
     }//GEN-LAST:event_comboMedicineActionPerformed
     
     public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price){
-        if(comboMedicine.getSelectedItem() != "单味药粉")
+        if(!comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -393,7 +398,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 validateMessage(effect, scoop, weight, cost, price);
             }
         } 
-        else if(comboMedicine.getSelectedItem() == "单味药粉")
+        else if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -495,13 +500,13 @@ public class NewMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblzhucheng;
     private javax.swing.JLabel lblzhuzi;
     private javax.swing.JTextField txtComponent;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtIndication;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;
     private javax.swing.JTextField txtWeight;

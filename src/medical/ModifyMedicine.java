@@ -319,7 +319,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单味药粉")
+                if(comboMedicine.getSelectedItem().equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
@@ -330,7 +330,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem() == "单味药粉")
+                if(comboMedicine.getSelectedItem().equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
@@ -490,12 +490,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
             model.setColumnCount(0);
             model.setRowCount(0);
         }
-        if(comboMedicine.getSelectedItem() == "单味药粉")
+        if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             try {
                 System.out.println(1);
-                lblzhucheng.setText("药性");
-                lblzhuzi.setText("应用");
+                lblzhucheng.setText("药性:");
+                lblzhuzi.setText("应用:");
                 model.addColumn("ID");
                 model.addColumn("名字");
                 model.addColumn("药性");
@@ -523,8 +523,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             try {
                 System.out.println(2);
-                lblzhucheng.setText("组成");
-                lblzhuzi.setText("主治");
+                lblzhucheng.setText("组成:");
+                lblzhuzi.setText("主治:");
                 model.addColumn("ID");
                 model.addColumn("名字");
                 model.addColumn("组成");
@@ -552,7 +552,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void show_medical() throws SQLException{
         
-        if(comboMedicine.getSelectedItem() == "单味药粉") // traitional medicine potion
+        if(comboMedicine.getSelectedItem().equals("单味药粉")) // traitional medicine potion
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
@@ -575,7 +575,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "复方药粉")
+        else if(comboMedicine.getSelectedItem().equals("复方药粉"))
         {
             TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
@@ -598,7 +598,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "药丸")
+        else if(comboMedicine.getSelectedItem().equals("药丸"))
         {
             GrassMedicinePill medic = new GrassMedicinePill();
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
@@ -621,7 +621,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "药水")
+        else if(comboMedicine.getSelectedItem().equals("药水"))
         {
             GrassMedicinePotion medic = new GrassMedicinePotion();
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
@@ -648,7 +648,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void show_medical_ID(String ID) throws SQLException{
         
-        if(comboMedicine.getSelectedItem() == "单味药粉") // traitional medicine potion
+        if(comboMedicine.getSelectedItem().equals("单味药粉")) // traitional medicine potion
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
@@ -687,7 +687,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "复方药粉")
+        else if(comboMedicine.getSelectedItem().equals("复方药粉"))
         {
             TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
@@ -726,7 +726,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "药丸")
+        else if(comboMedicine.getSelectedItem().equals("药丸"))
         {
             GrassMedicinePill medic = new GrassMedicinePill();
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
@@ -765,7 +765,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
-        else if(comboMedicine.getSelectedItem() == "药水")
+        else if(comboMedicine.getSelectedItem().equals("药水"))
         {
             GrassMedicinePotion medic = new GrassMedicinePotion();
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
