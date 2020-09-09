@@ -66,25 +66,25 @@ public class MainMenu extends javax.swing.JFrame {
 
         btnMedical.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnMedical.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\grassmedic1.png")); // NOI18N
-        btnMedical.setText("草药");
+        btnMedical.setText("药");
         btnMedical.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedicalActionPerformed(evt);
             }
         });
         getContentPane().add(btnMedical);
-        btnMedical.setBounds(290, 120, 220, 80);
+        btnMedical.setBounds(560, 120, 220, 80);
 
         btnGrass.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnGrass.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\transparent.png")); // NOI18N
-        btnGrass.setText("中药");
+        btnGrass.setText("病症");
         btnGrass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGrassActionPerformed(evt);
             }
         });
         getContentPane().add(btnGrass);
-        btnGrass.setBounds(550, 120, 220, 80);
+        btnGrass.setBounds(290, 120, 220, 80);
 
         btnReference.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnReference.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\book.png")); // NOI18N

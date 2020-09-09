@@ -15,6 +15,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
      * Creates new form MedicalDetailMenu
      */
     private User user;
+    
     public MedicalDetailMenu(User user) {
         initComponents();
         this.user = user;
@@ -132,8 +133,8 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        NewMedicine medicine = new NewMedicine(user);
-        medicine.setVisible(true);
+        NewMedicine med = new NewMedicine(user);
+        med.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 

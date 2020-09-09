@@ -24,9 +24,9 @@ public class NewMedicine extends javax.swing.JFrame {
         initComponents();
     }
 
-    public NewMedicine(User user) {
-        initComponents();
+    public NewMedicine(User user) {        
         this.user = user;
+        initComponents();
         comboMedicine();
         if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
@@ -39,6 +39,7 @@ public class NewMedicine extends javax.swing.JFrame {
             lblzhuzi.setText("主治:"); 
         }
          changeLabel();
+         
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -371,7 +372,6 @@ public class NewMedicine extends javax.swing.JFrame {
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
         // TODO add your handling code here:
-        System.out.println(comboMedicine.getSelectedItem());
         if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {
             lblzhucheng.setText("药性:"); 

@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -40,7 +42,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
         comboMedicine();
-        createColumns(0,"");
+        changeLabel();
+        createColumns(1,"");
+        widthTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,18 +62,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblzhucheng = new javax.swing.JLabel();
-        txtComponent = new javax.swing.JTextField();
         lblzhuzi = new javax.swing.JLabel();
-        txtIndication = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtEffect = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtScoop = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCost = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblCost = new javax.swing.JLabel();
         txtWeight = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        lblPrice = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
@@ -77,6 +79,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtIndication = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtComponent = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        lblWeight = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -84,7 +92,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("药：");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 50, 38, 26);
+        jLabel1.setBounds(120, 80, 38, 26);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboMedicine.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +101,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboMedicine);
-        comboMedicine.setBounds(160, 50, 110, 40);
+        comboMedicine.setBounds(200, 80, 110, 40);
 
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,88 +119,80 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblMedicine);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(660, 50, 540, 860);
+        jScrollPane1.setBounds(800, 80, 1090, 880);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 210, 57, 30);
+        jLabel2.setBounds(100, 220, 57, 30);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtName);
-        txtName.setBounds(150, 210, 400, 40);
+        txtName.setBounds(200, 220, 480, 40);
 
         lblzhucheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhucheng.setText("组成：");
         getContentPane().add(lblzhucheng);
         lblzhucheng.setBounds(100, 290, 60, 30);
 
-        txtComponent.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtComponent);
-        txtComponent.setBounds(150, 290, 400, 40);
-
         lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhuzi.setText("主治：");
         getContentPane().add(lblzhuzi);
-        lblzhuzi.setBounds(100, 370, 60, 30);
-
-        txtIndication.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtIndication);
-        txtIndication.setBounds(150, 370, 400, 40);
+        lblzhuzi.setBounds(100, 430, 60, 30);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("功效：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(100, 450, 60, 30);
+        jLabel5.setBounds(100, 550, 60, 30);
 
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtEffect);
-        txtEffect.setBounds(150, 450, 400, 40);
+        txtEffect.setBounds(200, 550, 480, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("每次每日分量：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 530, 133, 30);
+        jLabel6.setBounds(20, 620, 133, 30);
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtScoop);
-        txtScoop.setBounds(150, 530, 400, 40);
+        txtScoop.setBounds(200, 620, 480, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(100, 610, 57, 30);
+        jLabel7.setBounds(80, 690, 57, 30);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCost);
-        txtCost.setBounds(150, 690, 400, 40);
+        txtCost.setBounds(200, 760, 480, 40);
 
-        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel8.setText("本钱：");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(100, 690, 57, 30);
+        lblCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblCost.setText("本钱 RM/GM: RM");
+        getContentPane().add(lblCost);
+        lblCost.setBounds(7, 760, 190, 30);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtWeight);
-        txtWeight.setBounds(150, 610, 400, 40);
+        txtWeight.setBounds(200, 690, 480, 40);
 
-        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel9.setText("价格：");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(100, 780, 60, 26);
+        lblPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblPrice.setText("价格 RM/GM: RM");
+        getContentPane().add(lblPrice);
+        lblPrice.setBounds(10, 830, 190, 26);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrice);
-        txtPrice.setBounds(150, 780, 400, 40);
+        txtPrice.setBounds(200, 830, 480, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("ID:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 130, 30, 30);
+        jLabel3.setBounds(110, 150, 30, 30);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtID);
-        txtID.setBounds(150, 130, 400, 40);
+        txtID.setBounds(200, 150, 480, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -202,7 +202,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFind);
-        btnFind.setBounds(560, 130, 90, 40);
+        btnFind.setBounds(690, 150, 90, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -212,7 +212,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(30, 850, 130, 60);
+        btnBack.setBounds(30, 900, 130, 60);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
@@ -222,7 +222,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModify);
-        btnModify.setBounds(370, 850, 130, 60);
+        btnModify.setBounds(380, 900, 130, 60);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -232,9 +232,35 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(520, 850, 130, 60);
+        btnDelete.setBounds(530, 900, 130, 60);
 
-        setBounds(0, 0, 1247, 985);
+        txtIndication.setColumns(20);
+        txtIndication.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtIndication.setRows(5);
+        jScrollPane2.setViewportView(txtIndication);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(200, 430, 480, 90);
+
+        txtComponent.setColumns(20);
+        txtComponent.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtComponent.setRows(5);
+        jScrollPane3.setViewportView(txtComponent);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(200, 290, 480, 100);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel4.setText("更改药资料");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(570, 10, 140, 40);
+
+        lblWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblWeight.setText("GM");
+        getContentPane().add(lblWeight);
+        lblWeight.setBounds(680, 690, 60, 40);
+
+        setBounds(0, 0, 1931, 1037);
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
@@ -247,7 +273,20 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setText("");
         txtCost.setText("");
         txtPrice.setText("");
+        txtID.setText("");
+        txtID.setEnabled(true);
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtPrice.setEnabled(false);
         createColumns(1,"");
+        changeLabel();
+        widthTable();
+        
     }//GEN-LAST:event_comboMedicineActionPerformed
 
     private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
@@ -494,6 +533,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             try {
                 System.out.println(1);
+                System.out.println(count);
                 lblzhucheng.setText("药性:");
                 lblzhuzi.setText("应用:");
                 model.addColumn("ID");
@@ -522,7 +562,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         else
         {
             try {
-                System.out.println(2);
                 lblzhucheng.setText("组成:");
                 lblzhuzi.setText("主治:");
                 model.addColumn("ID");
@@ -833,6 +872,45 @@ public class ModifyMedicine extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
+    
+    public void changeLabel()
+    {
+        if(comboMedicine.getSelectedItem().equals("药丸"))
+        {
+            lblWeight.setText("'S");
+            lblCost.setText("本钱 RM/'S: RM");
+            lblPrice.setText("价格 RM/'S: RM");
+        }
+        else if(comboMedicine.getSelectedItem().equals("药水"))
+        {
+            lblWeight.setText("ML");
+            lblCost.setText("本钱 RM/10 ML: RM");
+            lblPrice.setText("价格 RM/10 ML: RM");
+        }
+        else
+        {
+            lblWeight.setText("GM");
+            lblCost.setText("本钱 RM/GM: RM");
+            lblPrice.setText("价格 RM/GM: RM");
+        }
+    }
+    
+    public void widthTable()
+    {
+        tblMedicine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tblMedicine.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(50);
+        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(7).setPreferredWidth(50);
+        columnModel.getColumn(8).setPreferredWidth(50);
+        columnModel.getColumn(9).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(100);
+    }
     /**
      * @param args the command line arguments
      */
@@ -877,20 +955,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCost;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblWeight;
     private javax.swing.JLabel lblzhucheng;
     private javax.swing.JLabel lblzhuzi;
     private javax.swing.JTable tblMedicine;
-    private javax.swing.JTextField txtComponent;
+    private javax.swing.JTextArea txtComponent;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtIndication;
+    private javax.swing.JTextArea txtIndication;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;

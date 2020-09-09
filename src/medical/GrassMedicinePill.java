@@ -28,11 +28,11 @@ public class GrassMedicinePill extends Medicine{//药丸
         super(name);
     }
     
-    public GrassMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
-        super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+    public GrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
+        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
     }
     
-    public HashMap<String,String> AddGrassMedicinePill(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
+    public HashMap<String,String> AddGrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
@@ -98,7 +98,7 @@ public class GrassMedicinePill extends Medicine{//药丸
         try {
             while (rs.next()) {
                  grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
-                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
             } 
@@ -117,7 +117,7 @@ public class GrassMedicinePill extends Medicine{//药丸
         try {
             while (rs.next()) {
                  grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
-                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
             } 

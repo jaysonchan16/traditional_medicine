@@ -28,8 +28,8 @@ public class GrassMedicinePotion extends Medicine {// 药水
         super(name);
     }
     
-    public GrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
-        super(name,component,effect,indications,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+    public GrassMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
+        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
     }
     
     public HashMap<String,String> AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
@@ -97,7 +97,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
         try {
             while (rs.next()) {
                  grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
-                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
             } 
@@ -116,7 +116,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
         try {
             while (rs.next()) {
                  grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
-                         rs.getString("effect"),rs.getString("indications"),
+                         rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
             } 
