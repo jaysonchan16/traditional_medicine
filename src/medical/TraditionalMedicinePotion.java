@@ -130,9 +130,9 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         return traditionalMedicinePotionList;
     }
     
-    public List<TraditionalMedicinePotion> getTraditionalMedicinePotionID(String ID) throws SQLException{
+    public List<TraditionalMedicinePotion> findTraditionalMedicinePotionDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
-        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion where ID='"+ID+"' order by 1 desc";
+        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion where "+attribute+"='"+data+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
