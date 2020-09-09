@@ -139,9 +139,9 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         return traditionalMedicinePillList;
     }
     
-    public List<TraditionalMedicinePill> getTraditionalMedicinePillID(String ID) throws SQLException{
+    public List<TraditionalMedicinePill> findTraditionalMedicinePillDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill where ID='"+ID+"' order by 1 desc";
+            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill where "+attribute+"='"+data+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -193,4 +193,5 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         }
         return name;
     }
+    
 }

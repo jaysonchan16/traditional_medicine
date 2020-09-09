@@ -161,7 +161,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(80, 690, 57, 30);
+        jLabel7.setBounds(90, 690, 57, 30);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCost);
@@ -222,7 +222,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModify);
-        btnModify.setBounds(380, 900, 130, 60);
+        btnModify.setBounds(400, 900, 130, 60);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -232,7 +232,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(530, 900, 130, 60);
+        btnDelete.setBounds(550, 900, 130, 60);
 
         txtIndication.setColumns(20);
         txtIndication.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -691,7 +691,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-            medicList = medic.getTraditionalMedicinePillID(ID);
+            medicList = medic.findTraditionalMedicinePillDetails("ID",ID);
             if(medic.validateAddTraditionalMedicinePill("ID", ID) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
@@ -730,7 +730,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
-            medicList = medic.getTraditionalMedicinePotionID(ID);
+            medicList = medic.findTraditionalMedicinePotionDetails("ID",ID);
             if(medic.validateTraditionalMedicinePotion("ID", ID) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
@@ -769,7 +769,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePill medic = new GrassMedicinePill();
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
-            medicList = medic.getGrassMedicinePillID(ID);
+            medicList = medic.findGrassMedicinePillDetails("ID",ID);
             if(medic.validateGrassMedicinePill("ID", ID) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
@@ -808,7 +808,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePotion medic = new GrassMedicinePotion();
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-            medicList = medic.getGrassMedicinePotionID(ID);
+            medicList = medic.findGrassMedicinePotionDetails("ID",ID);
             if(medic.validateAddGrassMedicinePotion("ID", ID) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");

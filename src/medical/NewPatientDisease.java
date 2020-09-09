@@ -570,6 +570,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
         // TODO add your handling code here:
+        FindByMedicineName();
     }//GEN-LAST:event_comboBoxNameActionPerformed
 
     private void btnFind2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind2ActionPerformed
@@ -638,6 +639,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public void medicineName(String name) throws SQLException
     {
+        //name
         comboBoxName.removeAllItems();
         if(name.equalsIgnoreCase("单味药粉"))
         {
@@ -674,6 +676,29 @@ public class NewPatientDisease extends javax.swing.JFrame {
             {
                 comboBoxName.addItem(potion.comboName().get(i).getName());
             }
+        }
+    }
+    
+    public void FindByMedicineName()
+    {
+        String name = (String)comboBoxName.getSelectedItem();
+        String medicine = (String)comboBoxMedicine.getSelectedItem();
+        
+        if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion potion = new GrassMedicinePotion();
+        }
+        else if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill = new GrassMedicinePill();
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
         }
     }
     /**
