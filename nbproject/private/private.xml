@@ -16,7 +16,6 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/LoginUI.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MonthYearIC.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ViewPatientDetail.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/TraditionalMedicinePotion.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/SettingsMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ListGrassMedicine.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/RegisterNewUser.java</file>
@@ -31,6 +30,7 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyDisease.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Patient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyPatient.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyMedicine.java</file>
         </group>
     </open-files>
 </project-private>

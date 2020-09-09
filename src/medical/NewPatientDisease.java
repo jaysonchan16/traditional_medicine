@@ -125,7 +125,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         comboBoxName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
-        txtJiLiang = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
         txtTotalPrice = new javax.swing.JTextField();
@@ -134,7 +133,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtCategory = new javax.swing.JTextField();
         btnFind2 = new javax.swing.JButton();
-        jScrollBar1 = new javax.swing.JScrollBar();
+        spinnerJiLiang = new javax.swing.JSpinner();
 
         buttonAdd.setText("jButton1");
 
@@ -399,10 +398,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(jLabel19);
         jLabel19.setBounds(50, 710, 60, 26);
 
-        txtJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtJiLiang);
-        txtJiLiang.setBounds(120, 710, 380, 50);
-
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel20.setText("价格/G:");
         getContentPane().add(jLabel20);
@@ -443,8 +438,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         });
         getContentPane().add(btnFind2);
         btnFind2.setBounds(1250, 70, 110, 40);
-        getContentPane().add(jScrollBar1);
-        jScrollBar1.setBounds(500, 710, 21, 48);
+
+        spinnerJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(spinnerJiLiang);
+        spinnerJiLiang.setBounds(120, 710, 100, 40);
 
         setBounds(0, 0, 1418, 1058);
     }// </editor-fold>//GEN-END:initComponents
@@ -584,10 +581,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         // TODO add your handling code here:
         chufang();
         
-        String jiliang = txtJiLiang.getText();
+        int jiliang = (Integer)spinnerJiLiang.getValue();
         String price = txtPrice.getText();
         String totalprice = txtTotalPrice.getText();
-        
         
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -747,20 +743,19 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblID;
+    private javax.swing.JSpinner spinnerJiLiang;
     private javax.swing.JTable tblDisease;
     private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtHistory;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtJiLiang;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrice;
