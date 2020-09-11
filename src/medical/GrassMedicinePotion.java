@@ -112,6 +112,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
     public List<GrassMedicinePotion> findGrassMedicinePotionDetails(String attribute, String data) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
             String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePotion where "+attribute+" = '"+data+"' order by 1 desc";
+            System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -161,5 +162,18 @@ public class GrassMedicinePotion extends Medicine {// 药水
             throw(new NoSuchElementException(e.getMessage()));
         }
         return name;
+    }
+    
+    public String findGrassMedicinePotionName(String name) throws SQLException{
+        
+        String query = "Select sellprice from GrassMedicinePotion where name='"+name+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            return rs.getString("sellprice");
+        } 
+        catch (Exception e)
+        {
+            return e.getMessage();
+        }
     }
 }

@@ -133,6 +133,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     public List<TraditionalMedicinePotion> findTraditionalMedicinePotionDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
         String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion where "+attribute+"='"+data+"' order by 1 desc";
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -165,5 +166,18 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
             throw(new NoSuchElementException(e.getMessage()));
         }
         return name;
+    }
+    
+    public String findTraditionalMedicinePotionName(String name) throws SQLException{
+        
+        String query = "Select sellprice from TraditionalMedicinePotion where name='"+name+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            return rs.getString("sellprice");
+        } 
+        catch (Exception e)
+        {
+            return e.getMessage();
+        }
     }
 }

@@ -112,7 +112,8 @@ public class GrassMedicinePill extends Medicine{//药丸
     
     public List<GrassMedicinePill> findGrassMedicinePillDetails(String attribute, String data) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill where "+attribute+" = '"+data+"' order by 1 desc";
+        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill where "+attribute+" = '"+data+"' order by 1 desc";
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -162,5 +163,18 @@ public class GrassMedicinePill extends Medicine{//药丸
             throw(new NoSuchElementException(e.getMessage()));
         }
         return name;
+    }
+    
+    public String findGrassMedicinePillName(String name) throws SQLException{
+        
+        String query = "Select sellprice from GrassMedicinePill where name='"+name+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            return rs.getString("sellprice");
+        } 
+        catch (Exception e)
+        {
+            return e.getMessage();
+        }
     }
 }

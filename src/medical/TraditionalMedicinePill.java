@@ -142,6 +142,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     public List<TraditionalMedicinePill> findTraditionalMedicinePillDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
             String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill where "+attribute+"='"+data+"' order by 1 desc";
+            System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -194,4 +195,16 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         return name;
     }
     
+    public String findTraditionalMedicinePillName(String name) throws SQLException{
+        
+        String query = "Select sellprice from TraditionalMedicinePill where name='"+name+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            return rs.getString("sellprice");
+        } 
+        catch (Exception e)
+        {
+            return e.getMessage();
+        }
+    }
 }
