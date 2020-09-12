@@ -37,6 +37,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public NewPatientDisease(User user) throws SQLException {
         initComponents();
+        createColumns();
         this.user = user;
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
@@ -50,9 +51,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
-        System.out.println(String.valueOf(comboBoxName.getSelectedItem()));
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         initComponents();
+         createColumns();
         this.user = user;
         this.id = id;
         this.ic = ic;
@@ -325,22 +326,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
             },
             new String [] {
-                "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tblDisease);
-        if (tblDisease.getColumnModel().getColumnCount() > 0) {
-            tblDisease.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(new JComboBox()));
-            tblDisease.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(new JComboBox()));
-        }
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(550, 530, 810, 400);
@@ -394,31 +383,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel18.setBounds(20, 650, 95, 26);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboBoxNameMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                comboBoxNameMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                comboBoxNameMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                comboBoxNameMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                comboBoxNameMouseReleased(evt);
-            }
-        });
         comboBoxName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxNameActionPerformed(evt);
-            }
-        });
-        comboBoxName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                comboBoxNameKeyPressed(evt);
             }
         });
         getContentPane().add(comboBoxName);
@@ -475,11 +442,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         spinnerJiLiang.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spinnerJiLiangStateChanged(evt);
-            }
-        });
-        spinnerJiLiang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                spinnerJiLiangMouseClicked(evt);
             }
         });
         getContentPane().add(spinnerJiLiang);
@@ -622,52 +584,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        chufang();
-        
-        
-        model = (DefaultTableModel)tblDisease.getModel();
-        Object row[] = new Object[6];
-        row[0] = txtchufang.getText();
-        row[1] = comboBoxMedicine.getSelectedItem();
-        row[2] = comboBoxName.getSelectedItem();
-        row[3] = spinnerJiLiang.getValue();
-        row[4] = txtPrice.getText();
-        row[5] = txtTotalPrice.getText();
-        model.addRow(row);
+       populate(txtchufang.getText(),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
+                spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText());
+       chufang();
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void comboBoxNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMouseClicked
-        // TODO add your handling code here:
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-    }//GEN-LAST:event_comboBoxNameMouseClicked
-
-    private void comboBoxNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxNameKeyPressed
-        // TODO add your handling code here:
-        //FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
-    }//GEN-LAST:event_comboBoxNameKeyPressed
-
-    private void comboBoxNameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMousePressed
-        // TODO add your handling code here:
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-    }//GEN-LAST:event_comboBoxNameMousePressed
-
-    private void comboBoxNameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMouseEntered
-        // TODO add your handling code here:
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-    }//GEN-LAST:event_comboBoxNameMouseEntered
-
-    private void comboBoxNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxNameMouseExited
-
-    private void comboBoxNameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxNameMouseReleased
-
-    private void spinnerJiLiangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spinnerJiLiangMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_spinnerJiLiangMouseClicked
 
     private void spinnerJiLiangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerJiLiangStateChanged
         // TODO add your handling code here:
@@ -679,6 +599,24 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTotalPrice.setText(String.valueOf(total));
     }//GEN-LAST:event_spinnerJiLiangStateChanged
 
+    private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice)
+    {
+        model = (DefaultTableModel)tblDisease.getModel();
+        String []rowData ={chufang,medicine,name,jiliang,price,totalPrice};
+        model.addRow(rowData);
+    }
+    
+    private void createColumns()
+    {
+        model = (DefaultTableModel) tblDisease.getModel();
+        model.addColumn("处方");
+        model.addColumn("药物种类");
+        model.addColumn("药物名称");
+        model.addColumn("剂量");
+        model.addColumn("价格/G");
+        model.addColumn("总价值");
+    }
+    
     public void chufang()
     {
         int chufang = Integer.valueOf(txtchufang.getText()) + 1;
