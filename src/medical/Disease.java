@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
@@ -27,7 +28,7 @@ public class Disease extends Patient{
     private String tongueQuality;
     private String tongueCoating;
     private String peeshit;
-    private int patientID;
+    private String patientID;
     private String lastUpdateDateTime;
     private String createDateTime;
     private String history;
@@ -43,7 +44,7 @@ public class Disease extends Patient{
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String peeshit, String category, String history, int patientID){
+            String tongueCoating, String peeshit, String category, String history, String patientID){
         this.symptom = symptom;
         this.temperature = temperature;
         this.bloodPressure = bloodPressure;
@@ -72,7 +73,7 @@ public class Disease extends Patient{
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String peeshit, String category, String history, int patientID, String lastUpdateDateTime, String createDateTime,
+            String tongueCoating, String peeshit, String category, String history, String patientID, String lastUpdateDateTime, String createDateTime,
             String IC, String name, String phoneNo){
         super(IC,name,phoneNo);
         this.symptom = symptom;
@@ -189,14 +190,14 @@ public class Disease extends Patient{
     /**
      * @return the patientID
      */
-    public int getPatientID() {
+    public String getPatientID() {
         return patientID;
     }
 
     /**
      * @param patientID the patientID to set
      */
-    public void setPatientID(int patientID) {
+    public void setPatientID(String patientID) {
         this.patientID = patientID;
     }
     
@@ -256,19 +257,18 @@ public class Disease extends Patient{
         this.category = category;
     }
     
-    public int AddDisease(){
+    public HashMap<String,String> AddDisease() throws SQLException{
+        Code code = new Code();
+        HashMap<String, String> returnMessage = new HashMap<String,String>();
+        HashMap<String, String> map = new HashMap<String,String>();
         String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
                 + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
-        try {
-            st.executeUpdate(query);
-            st.close(); 
-            return 1;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
+        SQLQuery sql = new SQLQuery();
+        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+        returnMessage.put("ID", map.get("data"));
+        return returnMessage;
+
     }
     
     public int EditDisease(){
@@ -312,7 +312,7 @@ public class Disease extends Patient{
                  return new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"), rs.getString("History"),
-                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
+                         rs.getString("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
             }   
         } 
         catch (NullPointerException e)
@@ -338,7 +338,7 @@ public class Disease extends Patient{
                  diseaseList.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
                          rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"),rs.getString("Category"), rs.getString("History"),
-                         rs.getInt("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
+                         rs.getString("ID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
             } 
         } 
         catch (Exception e)

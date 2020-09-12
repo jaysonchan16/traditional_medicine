@@ -161,13 +161,21 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     
     
     public String EditTraditionalMedicinePill(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
-        String query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
-                + "scoop = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), sellprice = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
-                 + "where ID = '"+ID+"'";
-         
-        SQLQuery sql = new SQLQuery();
+        if(validateAddTraditionalMedicinePill("name",name) == 0)
+        {
+            String query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
+                    + "scoop = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), sellprice = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
+                     + "where ID = '"+ID+"'";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query);   
+        }
+        else
+        {
+            return "这名字已经存在";
+        }
         
-        return sql.AddEditDeleteQuery(query);
     }
     
     public String DeleteTraditionalMedicinePill(String ID) throws SQLException{
