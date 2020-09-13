@@ -14,10 +14,16 @@ public class ModifyDisease extends javax.swing.JFrame {
     /**
      * Creates new form ModifyDisease
      */
+    private User user;
+    
     public ModifyDisease() {
         initComponents();
     }
-
+    
+    public ModifyDisease(User user) {
+        initComponents();
+        this.user = user;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,13 +41,24 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtSymptom = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblIC = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtTemperature = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton5 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -80,7 +97,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(573, 54, 1023, 660);
+        jScrollPane1.setBounds(736, 54, 860, 660);
 
         jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jButton1.setText("退出");
@@ -100,45 +117,87 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("主症：");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 220, 60, 40);
+        jLabel1.setBounds(60, 280, 60, 40);
 
         txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtSymptom);
-        txtSymptom.setBounds(90, 220, 450, 40);
+        txtSymptom.setBounds(120, 280, 500, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 70, 70, 30);
-
-        lblName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(lblName);
-        lblName.setBounds(100, 70, 450, 40);
+        jLabel2.setBounds(60, 120, 70, 30);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel4.setText("IC：");
+        jLabel4.setText("ID:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 130, 70, 40);
-
-        lblIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(lblIC);
-        lblIC.setBounds(100, 130, 450, 40);
+        jLabel4.setBounds(420, 60, 25, 30);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel6.setText("体温：");
+        jLabel6.setText("病症分类：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 290, 60, 30);
+        jLabel6.setBounds(20, 350, 100, 30);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(0, 190, 560, 10);
+        jSeparator1.setBounds(0, 252, 720, 0);
 
         txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTemperature);
-        txtTemperature.setBounds(90, 290, 450, 40);
+        txtTemperature.setBounds(120, 350, 500, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel3.setText("血压：");
+        jLabel3.setText("脉象：");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 360, 60, 30);
+        jLabel3.setBounds(60, 420, 60, 30);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("IC:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(70, 60, 30, 26);
+
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel7.setText("电话号码：");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(20, 180, 100, 40);
+
+        jTextField1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(110, 60, 190, 40);
+
+        jTextField2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(450, 60, 170, 40);
+
+        jButton4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton4.setText("寻找");
+        getContentPane().add(jButton4);
+        jButton4.setBounds(310, 60, 90, 40);
+
+        jTextField3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(110, 120, 510, 40);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(280, 20, 50, 110);
+        getContentPane().add(jSeparator4);
+        jSeparator4.setBounds(280, 20, 50, 120);
+
+        jButton5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton5.setText("寻找");
+        getContentPane().add(jButton5);
+        jButton5.setBounds(630, 60, 90, 40);
+        getContentPane().add(jSeparator3);
+        jSeparator3.setBounds(0, 240, 730, 10);
+
+        jTextField4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(110, 180, 510, 40);
+
+        jTextField5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(jTextField5);
+        jTextField5.setBounds(120, 420, 220, 40);
+
+        jLabel8.setText("舌质：");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(370, 420, 39, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,16 +241,27 @@ public class ModifyDisease extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblIC;
-    private javax.swing.JLabel lblName;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField txtSymptom;
     private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables

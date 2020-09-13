@@ -5,6 +5,8 @@
  */
 package medical;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Sheng
@@ -59,11 +61,21 @@ public class DiseaseMenu extends javax.swing.JFrame {
 
         btnAddDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnAddDisease.setText("新增病症");
+        btnAddDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDiseaseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAddDisease);
         btnAddDisease.setBounds(30, 150, 200, 80);
 
         btnModifyDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnModifyDisease.setText("更改病症");
+        btnModifyDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyDiseaseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModifyDisease);
         btnModifyDisease.setBounds(270, 150, 200, 80);
 
@@ -127,6 +139,24 @@ public class DiseaseMenu extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDiseaseActionPerformed
+        try {
+            // TODO add your handling code here:
+            NewPatientDisease patient = new NewPatientDisease(user);
+            patient.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAddDiseaseActionPerformed
+
+    private void btnModifyDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyDiseaseActionPerformed
+        // TODO add your handling code here:
+        ModifyDisease modify = new ModifyDisease(user);
+        modify.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnModifyDiseaseActionPerformed
 
     /**
      * @param args the command line arguments
