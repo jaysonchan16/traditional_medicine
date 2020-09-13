@@ -34,6 +34,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private String phone;
     DefaultTableModel model;
     private String comboBox = "";
+    HashMap<String,String> save = new HashMap<String,String>();
     
     public NewPatientDisease(User user) throws SQLException {
         initComponents();
@@ -329,6 +330,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
             }
         ));
+        tblDisease.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDiseaseMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDisease);
 
         getContentPane().add(jScrollPane1);
@@ -498,16 +504,20 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "病症归类没填！");
             } else if (history.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "病史没填！");
-            } else if (validCheck() == false) {
+            } else if (tblDisease.getRowCount() == 0) {
                JOptionPane.showMessageDialog(null,"一定要添加至少一个资料");
             } 
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
                                                 tonguecoating, shit, category, history, patientID);
-                if (disease.AddDisease() == 1) {
-                    JOptionPane.showMessageDialog(rootPane, "新增成功");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "新增失败");
+                try {
+                    if (disease.AddDisease().get("returnMessage").equalsIgnoreCase("1")) {
+                        JOptionPane.showMessageDialog(rootPane, "新增成功");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "新增失败");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
             }
         } catch (NumberFormatException e) {
@@ -586,11 +596,34 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRowActionPerformed
         // TODO add your handling code here:
-       populate(txtchufang.getText(),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
-                spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText());
-       chufang();
+        
+        if(save.isEmpty())
+        {
+            saveDataTable();
+        }
+        else
+        {
+            if(save.get("medicine").equalsIgnoreCase(comboBoxMedicine.getSelectedItem().toString()) && save.get("name").equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+            {
+                JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
+            }
+            else
+            {
+                saveDataTable();
+            }
+        }
     }//GEN-LAST:event_btnAddRowActionPerformed
-
+    
+    public HashMap<String,String> saveDataTable()
+    {
+        populate(txtchufang.getText(),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
+                     spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText());
+        save.put("medicine", comboBoxMedicine.getSelectedItem().toString());
+        save.put("name",comboBoxName.getSelectedItem().toString());
+        chufang();
+        return save;
+    }
+    
     private void spinnerJiLiangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerJiLiangStateChanged
         // TODO add your handling code here:
         String jiliang = spinnerJiLiang.getValue().toString();
@@ -600,6 +633,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         
         txtTotalPrice.setText(String.valueOf(total));
     }//GEN-LAST:event_spinnerJiLiangStateChanged
+
+    private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDiseaseMouseClicked
 
     private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice)
     {
@@ -801,21 +838,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }
-    
-    public boolean validCheck() {
-      if(tblDisease.getCellEditor()!= null) {
-         tblDisease.getCellEditor().stopCellEditing();
-      }
-      for(int i=0; i < tblDisease.getRowCount(); i++) {
-         for(int j=0; j < tblDisease.getColumnCount(); j++) {
-            String value = tblDisease.getValueAt(i,j).toString();
-            if(value.trim().length() == 0) {
-               return false;
-            }
-         }
-      }
-      return true;
-   }
+   
     /**
      * @param args the command line arguments
      */

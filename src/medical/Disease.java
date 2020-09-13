@@ -258,8 +258,9 @@ public class Disease extends Patient{
     }
     
     public HashMap<String,String> AddDisease() throws SQLException{
-        Code code = new Code();
         HashMap<String, String> returnMessage = new HashMap<String,String>();
+        /*Code code = new Code();
+        
         HashMap<String, String> map = new HashMap<String,String>();
         String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime)"
                 + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
@@ -267,6 +268,8 @@ public class Disease extends Patient{
         SQLQuery sql = new SQLQuery();
         returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
         returnMessage.put("ID", map.get("data"));
+        return returnMessage;*/
+        returnMessage.put("returnMessage","success");
         return returnMessage;
 
     }
