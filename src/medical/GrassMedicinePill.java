@@ -38,7 +38,7 @@ public class GrassMedicinePill extends Medicine{//药丸
         try {
             Code code1 = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
-            map = code1.validateMedicID(code);
+            map = code1.validateID(code);
             double scoop1 = scoop;
             double sellprice1 = sellprice;
             double gram1 = gram;
@@ -58,7 +58,7 @@ public class GrassMedicinePill extends Medicine{//药丸
             }
             else
             {
-                returnMessage.put("returnMessage",code1.validateMedicID(name).get("messages"));
+                returnMessage.put("returnMessage",code1.validateID(name).get("messages"));
                 returnMessage.put("ID","");
                 return returnMessage;
             }
@@ -107,6 +107,12 @@ public class GrassMedicinePill extends Medicine{//药丸
         {
             throw(new NoSuchElementException(e.getMessage()));
         }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
         return grassMedicinePillList;
     }
     
@@ -127,6 +133,12 @@ public class GrassMedicinePill extends Medicine{//药丸
         {
             throw(new NoSuchElementException(e.getMessage()));
         }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
         return grassMedicinePillList;
     }
     
@@ -169,6 +181,12 @@ public class GrassMedicinePill extends Medicine{//药丸
         {
             throw(new NoSuchElementException(e.getMessage()));
         }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
         return name;
     }
     
@@ -182,6 +200,10 @@ public class GrassMedicinePill extends Medicine{//药丸
         catch (Exception e)
         {
             return e.getMessage();
+        }
+        finally{
+            rs.close();
+            st.close();
         }
     }
 }

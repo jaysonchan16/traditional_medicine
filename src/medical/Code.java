@@ -81,7 +81,7 @@ public class Code {
         this.remark = remark;
     }
     
-    public HashMap<String,String> validateID(String name) throws SQLException{
+    public HashMap<String,String> validatePatientID(String name) throws SQLException{
         HashMap<String,String> data= new HashMap<String,String>();
         String upperName = name.substring(0,1).toUpperCase();
         
@@ -134,7 +134,7 @@ public class Code {
         
         System.out.println(query);
         SQLQuery sql = new SQLQuery();
-        
+        st.close();
         return sql.AddEditDeleteQuery(query);
     }
 
@@ -165,7 +165,7 @@ public class Code {
         }
     }
     
-    public HashMap<String,String> validateMedicID(String name) throws SQLException{
+    public HashMap<String,String> validateID(String name) throws SQLException{
         HashMap<String,String> data= new HashMap<String,String>();        
         System.out.println(name);
         int Number;
@@ -192,6 +192,7 @@ public class Code {
                     return data;
                 }
                 finally{
+                    rs.close();
                     st.close(); 
                 }
             }
@@ -209,7 +210,7 @@ public class Code {
             return data;
         }
     }
-
+    
     public List<Code> getComboMedicine() throws SQLException
     {
         List<Code> comboMedicine = new ArrayList<>();
@@ -226,6 +227,11 @@ public class Code {
         catch (Exception e)
         {
             throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally
+        {
+            rs.close();
+            st.close();
         }
         return comboMedicine;
     }

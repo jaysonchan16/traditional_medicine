@@ -257,20 +257,36 @@ public class Disease extends Patient{
         this.category = category;
     }
     
+
+    
     public HashMap<String,String> AddDisease() throws SQLException{
-        HashMap<String, String> returnMessage = new HashMap<String,String>();
-        /*Code code = new Code();
-        
-        HashMap<String, String> map = new HashMap<String,String>();
-        String query = "Insert into Disease(Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime)"
-                + "Select trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
-        SQLQuery sql = new SQLQuery();
-        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
-        returnMessage.put("ID", map.get("data"));
-        return returnMessage;*/
-        returnMessage.put("returnMessage","success");
-        return returnMessage;
+        HashMap<String,String> returnMessage = new HashMap<String,String>();
+        try {
+            Code code = new Code();
+            HashMap<String, String> map = new HashMap<String,String>();
+            map = code.validateID("Disease");
+            if(map.get("messages").equalsIgnoreCase(""))
+            {
+                String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime)"
+                        + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
+                        + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime')";
+                System.out.println(query);
+                SQLQuery sql = new SQLQuery();
+                returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+                returnMessage.put("ID", map.get("data"));
+                return returnMessage;
+            }
+            else
+            {
+                returnMessage.put("returnMessage",code.validateID("Disease").get("messages"));
+                returnMessage.put("ID", "");
+                return returnMessage;
+            }
+        } catch (SQLException ex) {
+            returnMessage.put("returnMessage",ex.getMessage());
+            returnMessage.put("ID", "");
+            return returnMessage;
+        }
 
     }
     
@@ -383,6 +399,8 @@ public class Disease extends Patient{
         }
         return patientDisease;
     }
+
+
 
 
 

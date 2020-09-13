@@ -200,7 +200,7 @@ public class Patient {
     public HashMap<String,String> AddNewPatient() throws SQLException{
         Code code = new Code();
         HashMap<String, String> map = new HashMap<String,String>();
-        map = code.validateID(name);
+        map = code.validatePatientID(name);
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         if(map.get("messages").equalsIgnoreCase("") && validatePatient(IC) == 0)
         {        
@@ -214,7 +214,7 @@ public class Patient {
         }
         else
         {
-            returnMessage.put("returnMessage",code.validateID(name).get("messages"));
+            returnMessage.put("returnMessage",code.validatePatientID(name).get("messages"));
             returnMessage.put("ID","");
             return returnMessage;
         }
@@ -255,6 +255,7 @@ public class Patient {
             return new Patient("1");
         }
         finally{
+            rs.close();
             st.close(); 
         }
         return new Patient("1");

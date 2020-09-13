@@ -110,6 +110,7 @@ public class User {
         finally
         {
             st.close();
+            rs.close();
         }
         return new User();
     }
@@ -204,7 +205,9 @@ public class User {
                     + "Select '复方药粉',0,'ComboMedicine' UNION ALL "
                     + "Select '药丸', 0,'ComboMedicine' UNION ALL "
                     + "Select '药水', 0,'ComboMedicine' UNION ALL "
-                    + "Select '单味药粉', 0,'ComboMedicine' ";
+                    + "Select '单味药粉', 0,'ComboMedicine' UNION ALL "
+                    + "Select 'Disease', 0, 'DiseaseID' UNION ALL "
+                    + "Select 'Prescription', 0, 'PrescriptionID'";
             
             st.executeUpdate(query);
             st.close();

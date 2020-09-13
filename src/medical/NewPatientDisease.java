@@ -43,7 +43,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
         medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
         setResizable(false);
         txtchufang.setText("1");
         txtchufang.setEnabled(false);
@@ -52,7 +52,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
         initComponents();
          createColumns();
         this.user = user;
@@ -412,6 +412,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtPrice.setBounds(120, 770, 410, 40);
 
         txtTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtTotalPrice.setText("0.0");
         getContentPane().add(txtTotalPrice);
         txtTotalPrice.setBounds(120, 830, 410, 40);
 
@@ -485,6 +486,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String shit = txtShit.getText();
             String category = txtCategory.getText();
             String history = txtHistory.getText();
+            HashMap<String,String> map = new HashMap<String,String>();
+            int rows=tblDisease.getRowCount();
             
             if (symptom.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "主症没填！");
@@ -504,20 +507,40 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "病症归类没填！");
             } else if (history.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "病史没填！");
-            } else if (tblDisease.getRowCount() == 0) {
+            } else if (rows == 0) {
                JOptionPane.showMessageDialog(null,"一定要添加至少一个资料");
             } 
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
                                                 tonguecoating, shit, category, history, patientID);
                 try {
-                    if (disease.AddDisease().get("returnMessage").equalsIgnoreCase("1")) {
-                        JOptionPane.showMessageDialog(rootPane, "新增成功");
+                    map = disease.AddDisease();
+                    if (map.get("returnMessage").equalsIgnoreCase("1")) {
+                        Prescription prescription = new Prescription();
+                        HashMap<String,String> prescriptionMap = new HashMap<String,String>();
+                        for(int row = 0; row<rows; row++)
+                        {
+                            String chufang = (String)tblDisease.getValueAt(row, 0);
+                            String categorytable = (String)tblDisease.getValueAt(row, 1);
+                            String nametable = (String)tblDisease.getValueAt(row, 2);
+                            String jiliang = (String)tblDisease.getValueAt(row, 3);
+                            String price = (String)tblDisease.getValueAt(row, 4);
+                            String totalprice = (String)tblDisease.getValueAt(row, 5);
+                            prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription");
+                        }
+                        if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "病症已新增！ID 是 "+map.get("ID"));
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "新增失败");
+                        }
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "新增失败");
                     }
                 } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
                 }
             }
         } catch (NumberFormatException e) {
@@ -585,7 +608,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
 
             // TODO add your handling code here:
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
 
     }//GEN-LAST:event_comboBoxNameActionPerformed
 
@@ -673,8 +696,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
             {    
                 txtName.setText(patient.getPatient(IC,ID).getName());
                 txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                lblID.setText(patient.getPatient(IC,ID).getID());
+                txtID.setText(patient.getPatient(IC,ID).getID());
+                txtIC.setText(patient.getPatient(IC,ID).getIC());
                 txtIC.setEnabled(false);
+                txtID.setEnabled(false);
             }
             else
             {
@@ -719,8 +744,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
             for(int i = 0; i < pill.comboName().size(); i++)
             {
                 comboBoxName.addItem(pill.comboName().get(i).getName());
-                /*List<TraditionalMedicinePill> move = new ArrayList<>();
-                move.*/
             }
             FindByMedicineName(pill.comboName().get(0).getName());
         }
@@ -770,7 +793,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
                 TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
                 medicList = pill.findTraditionalMedicinePillDetails("name", name);
-                System.out.println("traditionalMedicinepill:"+String.valueOf(medicList.get(0).getSellprice()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
@@ -778,7 +800,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
                 GrassMedicinePotion potion = new GrassMedicinePotion(name);
                 medicList = potion.findGrassMedicinePotionDetails("name", name);
-                System.out.println("grssmedicinepotion:"+String.valueOf(medicList.get(0).getSellprice()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
@@ -786,7 +807,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
                 GrassMedicinePill pill = new GrassMedicinePill();
                 medicList = pill.findGrassMedicinePillDetails("name", name);
-                System.out.println("grassmedicinepill:"+String.valueOf(medicList.get(0).getSellprice()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
@@ -794,7 +814,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
                 medicList = potion.findTraditionalMedicinePotionDetails("name", name);
-                System.out.println("traditionalMedicinepotion:"+String.valueOf(medicList.get(0).getSellprice()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
         }
