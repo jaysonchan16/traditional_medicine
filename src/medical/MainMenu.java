@@ -163,7 +163,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnGrassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrassActionPerformed
         // TODO add your handling code here:
-        GrassDetailMenu detail = new GrassDetailMenu(user);
+        DiseaseMenu detail = new DiseaseMenu(user);
         detail.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGrassActionPerformed
