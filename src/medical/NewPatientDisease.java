@@ -43,7 +43,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
         medicineCategory();
-        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         setResizable(false);
         txtchufang.setText("1");
         txtchufang.setEnabled(false);
@@ -52,7 +52,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
-        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         initComponents();
          createColumns();
         this.user = user;
@@ -608,7 +608,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
 
             // TODO add your handling code here:
-        FindByMedicineName(String.valueOf(comboBoxName.getSelectedItem()));
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
 
     }//GEN-LAST:event_comboBoxNameActionPerformed
 
