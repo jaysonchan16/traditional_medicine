@@ -5,12 +5,14 @@
  */
 package medical;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 /**
@@ -32,7 +34,8 @@ public class SearchPatient extends javax.swing.JFrame {
     public SearchPatient(User user) throws SQLException {
         this.user = user;
         initComponents();
-        
+        JTableHeader tableHeader = tblPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         show_patients();
     }
     /**

@@ -172,7 +172,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("主症：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 270, 57, 26);
+        jLabel2.setBounds(60, 270, 57, 40);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
@@ -201,7 +201,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("体温：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(60, 450, 60, 30);
+        jLabel5.setBounds(60, 450, 60, 40);
 
         txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTemperature);
@@ -210,7 +210,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("血压：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(580, 450, 60, 30);
+        jLabel6.setBounds(580, 450, 60, 40);
 
         txtBlood.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtBlood);
@@ -219,7 +219,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("脉象：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(60, 330, 57, 26);
+        jLabel7.setBounds(60, 330, 57, 40);
 
         txtPulse.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtPulse.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +233,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("舌质：");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(410, 330, 60, 26);
+        jLabel8.setBounds(410, 330, 60, 40);
 
         txtTongueQuality.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueQuality);
@@ -242,7 +242,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("舌苔：");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(750, 330, 60, 26);
+        jLabel9.setBounds(750, 330, 60, 40);
 
         txtTongueCoating.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueCoating);
@@ -251,7 +251,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("大小便：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(40, 390, 90, 26);
+        jLabel10.setBounds(40, 390, 90, 40);
 
         txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtShit);
@@ -353,12 +353,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel11.setText("病史：");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(580, 400, 60, 20);
+        jLabel11.setBounds(580, 390, 60, 40);
 
         jLabel16.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel16.setText("处方：");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(50, 530, 60, 30);
+        jLabel16.setBounds(50, 530, 60, 40);
 
         txtchufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtchufang);
@@ -371,7 +371,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel17.setText("药物种类：");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(20, 590, 100, 30);
+        jLabel17.setBounds(20, 590, 100, 40);
 
         comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
@@ -386,7 +386,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel18.setText("药物名称：");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(20, 650, 95, 26);
+        jLabel18.setBounds(20, 650, 95, 40);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxName.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +400,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel19.setText("剂量：");
         getContentPane().add(jLabel19);
-        jLabel19.setBounds(50, 710, 60, 26);
+        jLabel19.setBounds(50, 710, 60, 40);
 
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel20.setText("价格/G:");
@@ -419,7 +419,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel21.setText("总价值：");
         getContentPane().add(jLabel21);
-        jLabel21.setBounds(20, 830, 90, 30);
+        jLabel21.setBounds(30, 830, 90, 40);
 
         txtHistory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtHistory);
@@ -428,7 +428,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel22.setText("病症分类：");
         getContentPane().add(jLabel22);
-        jLabel22.setBounds(570, 270, 95, 30);
+        jLabel22.setBounds(570, 270, 95, 40);
 
         txtCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCategory);

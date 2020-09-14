@@ -5,6 +5,7 @@
  */
 package medical;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 /**
@@ -33,6 +35,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
+        JTableHeader tableHeader = tblPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
     }
     
     public ViewPatientDetail(User user, int option) throws SQLException {
@@ -40,6 +44,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.user = user;
         this.option = option;
         show_patient();
+        JTableHeader tableHeader = tblPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
     }
     
@@ -50,6 +56,8 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.to = to;
         this.initialIC = initialIC;
         show_patient();
+        JTableHeader tableHeader = tblPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
     }
     

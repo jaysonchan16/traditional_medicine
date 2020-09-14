@@ -32,17 +32,15 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.awt.Font;
+import javax.swing.table.JTableHeader;
 /**
  *
  * @author Sheng
@@ -56,7 +54,8 @@ public class ImportJtable extends javax.swing.JFrame {
     public ImportJtable(User user) {
         initComponents();
         this.user = user;
-        
+        JTableHeader tableHeader = tblImport.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
     }
     public ImportJtable() {

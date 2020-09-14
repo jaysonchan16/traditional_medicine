@@ -5,10 +5,12 @@
  */
 package medical;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 /**
@@ -33,12 +35,16 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
         this.to = to;
         this.initialIC = initialIC;
         show_disease();
+        JTableHeader tableHeader = tblMonthlyPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
     }
     
     public MonthlyPatientReport() throws SQLException {
         initComponents();
         show_disease();
+        JTableHeader tableHeader = tblMonthlyPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
     }
 
     /**

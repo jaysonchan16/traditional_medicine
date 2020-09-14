@@ -5,12 +5,14 @@
  */
 package medical;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
@@ -45,6 +47,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         changeLabel();
         createColumns(1,"");
         widthTable();
+        JTableHeader tableHeader = tblMedicine.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
     }
     /**
      * This method is called from within the constructor to initialize the form.
