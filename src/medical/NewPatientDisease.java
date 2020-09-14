@@ -549,47 +549,53 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddDataActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        String symptom = txtSymptom.getText();
-        int temperature = Integer.parseInt(txtTemperature.getText());
-        String blood = txtBlood.getText();
-        String pulse = txtPulse.getText();
-        String tonguequality = txtTongueQuality.getText();
-        String tonguecoating = txtTongueCoating.getText();
-        String shit = txtShit.getText();
-        String category = txtCategory.getText();
-        String history = txtHistory.getText();
-        String patientID = txtID.getText();
-        
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID );
-        if (disease.EditDisease() == 1) {
-            JOptionPane.showMessageDialog(rootPane, "更改成功");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "更改失败");
+        try {
+            // TODO add your handling code here:
+            String symptom = txtSymptom.getText();
+            int temperature = Integer.parseInt(txtTemperature.getText());
+            String blood = txtBlood.getText();
+            String pulse = txtPulse.getText();
+            String tonguequality = txtTongueQuality.getText();
+            String tonguecoating = txtTongueCoating.getText();
+            String shit = txtShit.getText();
+            String category = txtCategory.getText();
+            String history = txtHistory.getText();
+            String patientID = txtID.getText();
+            
+            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID );
+            String result = disease.EditDisease();
+            if (result.equalsIgnoreCase("1")) {
+                JOptionPane.showMessageDialog(rootPane, "更改成功");
+            } else {
+                JOptionPane.showMessageDialog(rootPane,result);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String symptom = txtSymptom.getText();
-        int temperature = Integer.parseInt(txtTemperature.getText());
-        String blood = txtBlood.getText();
-        String pulse = txtPulse.getText();
-        String tonguequality = txtTongueQuality.getText();
-        String tonguecoating = txtTongueCoating.getText();
-        String shit = txtShit.getText();
-        String category = txtCategory.getText();
-        String history = txtHistory.getText();
-        String patientID = txtID.getText();
-        Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID);
-        try {
-            if (disease.DeleteDisease() == 1) {
+        try {                                          
+            // TODO add your handling code here:
+            String symptom = txtSymptom.getText();
+            int temperature = Integer.parseInt(txtTemperature.getText());
+            String blood = txtBlood.getText();
+            String pulse = txtPulse.getText();
+            String tonguequality = txtTongueQuality.getText();
+            String tonguecoating = txtTongueCoating.getText();
+            String shit = txtShit.getText();
+            String category = txtCategory.getText();
+            String history = txtHistory.getText();
+            String patientID = txtID.getText();
+            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID);
+            String result = disease.DeleteDisease();
+            if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "删除失败");
+                JOptionPane.showMessageDialog(rootPane, result);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

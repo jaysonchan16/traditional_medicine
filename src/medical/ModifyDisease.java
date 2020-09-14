@@ -119,6 +119,11 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete);
         btnDelete.setBounds(400, 760, 140, 50);
 
@@ -370,19 +375,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         // TODO add your handling code here:
-        String IC = txtIC.getText();
-        String ID = txtID.getText();
-        String symptom = txtSymptom.getText();
-        String category = txtCategory.getText();
-        String pulse = txtPulse.getText();
-        String tonguequality = txtTongueQuality.getText();
-        String tonguecoating = txtTongueCoating.getText();
-        String shit = txtShit.getText();
-        String history = txtHistory.getText();
-        String temperature = txtTemperature.getText();
-        String blood = txtBlood.getText();
-        
-        if(IC.equalsIgnoreCase(IC))
+        if(validateTextBox())
         {
             
         }
@@ -401,10 +394,20 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtHistory.setText("");
         txtTemperature.setText("");
         txtBlood.setText("");
+        txtName.setText("");
+        txtPhone.setText("");
         txtIC.setEnabled(true);
         txtID.setEnabled(true);
         disabledTextBox();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        if(validateTextBox())
+        {
+            
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     public void Find()
     {
@@ -484,6 +487,49 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtHistory.setEnabled(false);
         txtTemperature.setEnabled(false);
         txtBlood.setEnabled(false);
+    }
+    
+    public boolean validateTextBox()
+    {
+        boolean result = false;
+        String IC = txtIC.getText();
+        String ID = txtID.getText();
+        String symptom = txtSymptom.getText();
+        String category = txtCategory.getText();
+        String pulse = txtPulse.getText();
+        String tonguequality = txtTongueQuality.getText();
+        String tonguecoating = txtTongueCoating.getText();
+        String shit = txtShit.getText();
+        String history = txtHistory.getText();
+        int temperature = Integer.parseInt(txtTemperature.getText());
+        String blood = txtBlood.getText();
+        
+        if(IC.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(rootPane, "IC没填！");
+        } else if(ID.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(rootPane, "ID没填！");
+        } else if (symptom.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "主症没填！");
+        } else if (temperature <= 0 && temperature >= 100) {
+            JOptionPane.showMessageDialog(rootPane, "体温错误！");
+        } else if (blood.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "血压没填！");
+        } else if (pulse.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "脉象没填！");
+        } else if (tonguequality.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "舌质没填！");
+        } else if (tonguecoating.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "舌苔没填！");
+        } else if (shit.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "大小便没填！");
+        } else if (category.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "病症归类没填！");
+        } else if (history.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "病史没填！");
+        } else {
+            result = true;
+        }
+        return result;
     }
     /**
      * @param args the command line arguments

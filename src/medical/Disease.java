@@ -287,37 +287,25 @@ public class Disease extends Patient{
             returnMessage.put("ID", "");
             return returnMessage;
         }
-
     }
     
-    public int EditDisease(){
+    public String EditDisease() throws SQLException{
          String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
                  + " BloodPressure = trim('"+bloodPressure+"'), PulseCondition = trim('"+pulseCondition+"'), TongueQuality = trim('"+tongueQuality+"'),"
                  + " TongueCoating = trim('"+tongueCoating+"'), PeeShit = trim('"+peeshit+"'), Category = trim('"+category+"'), History = trim('"+history+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where patientID = "+patientID+" order by 1 desc";
-        try {
-            st.executeUpdate(query);
-            st.close(); 
-            return 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return 0;
+        
+         SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
     }
     
-    public int DeleteDisease() throws SQLException{
-         String query = "Delete From Disease where patientID ="+patientID+" order by 1 desc";
-        try {
-            st.executeUpdate(query);
-            return 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(NewPatient.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-        finally
-        {
-            st.close();
-        }
+    public String DeleteDisease() throws SQLException{
+        String query = "Delete From Disease where patientID ="+patientID+" order by 1 desc";
+        
+        SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
     }
     
     public Disease getDisease(String IC) throws SQLException{

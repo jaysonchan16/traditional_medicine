@@ -355,7 +355,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         String price = txtPrice.getText();
         String ID = txtID.getText();
         String code = ID.substring(0,9);
-        
+        String result;
         try
         {
             if(name.equalsIgnoreCase(""))
@@ -409,49 +409,53 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(code.equalsIgnoreCase("GrasMedPi"))
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
-                    if(pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    result = pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                        JOptionPane.showMessageDialog(rootPane, result);
                     }
                 }
                 else if(code.equalsIgnoreCase("GrasMedPo"))
                 {
-                    GrassMedicinePotion pill = new GrassMedicinePotion();        
-                    if(pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    GrassMedicinePotion pill = new GrassMedicinePotion();
+                    result = pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(rootPane, pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price));
+                        JOptionPane.showMessageDialog(rootPane, result);
                     }
                 }
                 else if(code.equalsIgnoreCase("TradMedPi"))
                 {
-                    TraditionalMedicinePill pill = new TraditionalMedicinePill();      
-                    if(pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                    result = pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price));
+                        JOptionPane.showMessageDialog(rootPane, result);
                     }
                 }
                 else if(code.equalsIgnoreCase("TradMedPo"))
                 {
-                    TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
-                    if(pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price).equalsIgnoreCase("1"))
+                    TraditionalMedicinePotion pill = new TraditionalMedicinePotion();    
+                    result = pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    if(result.equalsIgnoreCase("1"))
                     {
                        JOptionPane.showMessageDialog(rootPane, "更改成功"); 
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(rootPane, pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price)); 
+                        JOptionPane.showMessageDialog(rootPane, result); 
                     }
                 }
             }
@@ -465,55 +469,59 @@ public class ModifyMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ID = txtID.getText();
         String code = ID.substring(0,9);
-        
+        String result;
         try
         {
             if(code.equalsIgnoreCase("GrasMedPi"))
             {
                 GrassMedicinePill pill = new GrassMedicinePill();
-                if(pill.DeleteGrassMedicinePill(ID).equalsIgnoreCase("1"))
+                result =pill.DeleteGrassMedicinePill(ID);
+                if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.DeleteGrassMedicinePill(ID));
+                    JOptionPane.showMessageDialog(rootPane, result);
                 }
             }
             else if(code.equalsIgnoreCase("GrasMedPo"))
             {
-                GrassMedicinePotion pill = new GrassMedicinePotion();        
-                if(pill.DeleteGrassMedicinePotion(ID).equalsIgnoreCase("1"))
+                GrassMedicinePotion pill = new GrassMedicinePotion();    
+                result = pill.DeleteGrassMedicinePotion(ID);
+                if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.DeleteGrassMedicinePotion(ID));
+                    JOptionPane.showMessageDialog(rootPane, result);
                 }
             }
             else if(code.equalsIgnoreCase("TradMedPi"))
             {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();      
-                if(pill.DeleteTraditionalMedicinePill(ID).equalsIgnoreCase("1"))
+                TraditionalMedicinePill pill = new TraditionalMedicinePill(); 
+                result = pill.DeleteTraditionalMedicinePill(ID);
+                if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.DeleteTraditionalMedicinePill(ID));
+                    JOptionPane.showMessageDialog(rootPane, result);
                 }
             }
             else if(code.equalsIgnoreCase("TradMedPo"))
             {
-                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();     
-                if(pill.DeleteTraditionalMedicinePotion(ID).equalsIgnoreCase("1"))
+                TraditionalMedicinePotion pill = new TraditionalMedicinePotion();  
+                result = pill.DeleteTraditionalMedicinePotion(ID);
+                if(result.equalsIgnoreCase("1"))
                 {
                    JOptionPane.showMessageDialog(rootPane, "删除成功"); 
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, pill.DeleteTraditionalMedicinePotion(ID)); 
+                    JOptionPane.showMessageDialog(rootPane, result); 
                 }
             }
         }
