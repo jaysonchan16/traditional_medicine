@@ -6,6 +6,7 @@
 package medical;
 
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -177,7 +178,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             i.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "PatientDetailMenu.btnBackupActionPerformed get error on line 181,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnBackupActionPerformed
 

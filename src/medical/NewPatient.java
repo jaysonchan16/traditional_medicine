@@ -243,17 +243,16 @@ public class NewPatient extends javax.swing.JFrame {
                             this.dispose();
                         }
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, "新增失败");
-                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(rootPane, "NewPatient.btnAddActionPerformed get error on line 246"+ex.getMessage());
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, patient.AddNewPatient());
+                    JOptionPane.showMessageDialog(rootPane, map);
                 }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "年龄后面不可以有空格/年龄不可以放字母！");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           JOptionPane.showMessageDialog(rootPane, "NewPatient.btnAddActionPerformed get error on line 255"+ex.getMessage());
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -290,7 +289,7 @@ public class NewPatient extends javax.swing.JFrame {
                 }
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "NewPatient.btnFindActionPerformed get error on line 292"+ex.getMessage());
             }
         }
 
@@ -308,7 +307,7 @@ public class NewPatient extends javax.swing.JFrame {
                 diseasepage.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, "NewPatient.btnBackActionPerformed get error on line 310"+ex.getMessage());
             }
         }
     }//GEN-LAST:event_btnBackActionPerformed

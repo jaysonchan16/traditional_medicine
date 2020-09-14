@@ -157,7 +157,7 @@ public class LoginUI extends javax.swing.JFrame {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane,"LoginUI.btnLoginActionPerformed get error on line 160, "+ex.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

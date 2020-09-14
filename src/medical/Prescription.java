@@ -173,12 +173,12 @@ public class Prescription extends Disease{
             }
             else
             {
-                returnMessage.put("returnMessage",code.validateID(maintcode).get("messages"));
+                returnMessage.put("returnMessage","Prescription.addPrescription get error on line 176, "+code.validateID(maintcode).get("messages"));
                 returnMessage.put("ID", "");
                 return returnMessage;
             }
         } catch (SQLException ex) {
-            returnMessage.put("returnMessage",ex.getMessage());
+            returnMessage.put("returnMessage","Prescription.addPrescription get error on line 181, "+ex.getMessage());
             returnMessage.put("ID", "");
             return returnMessage;
         }

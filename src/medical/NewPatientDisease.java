@@ -540,7 +540,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "新增失败");
                     }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                    JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.btnAddDataActionPerformed get error on line 543,"+ex.getMessage());
                 }
             }
         } catch (NumberFormatException e) {
@@ -570,7 +570,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane,result);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.btnEditActionPerformed get error on line 573,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -595,7 +595,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, result);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.btnDeleteActionPerformed get error on line 598,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -606,7 +606,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             
             medicineName(name);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.comboBoxMedicineActionPerformed get error on line 609,"+ex.getMessage());
         }
         
     }//GEN-LAST:event_comboBoxMedicineActionPerformed
@@ -715,7 +715,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.Find() get error on line 718,"+ex.getMessage());
         }
     }
     
@@ -734,7 +734,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             medicineName(code.getComboMedicine().get(0).getCode());
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.medicineCategory() get error on line 737,"+ex.getMessage());
         }
         
     }
@@ -825,7 +825,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
         catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName() get error on line 828,"+ex.getMessage());
         }
     }
     
@@ -860,7 +860,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
         catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName2() get error on line 863,"+ex.getMessage());
         }
     }
    

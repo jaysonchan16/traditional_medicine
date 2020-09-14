@@ -214,7 +214,7 @@ public class Patient {
         }
         else
         {
-            returnMessage.put("returnMessage",code.validatePatientID(name).get("messages"));
+            returnMessage.put("returnMessage","Patient.AddNewPatient() get error on line 217, "+code.validatePatientID(name).get("messages"));
             returnMessage.put("ID","");
             return returnMessage;
         }

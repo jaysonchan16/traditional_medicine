@@ -186,7 +186,7 @@ public class ImportJtable extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "File Not Found");
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                JOptionPane.showMessageDialog(null, "ImportJtable.btnImportActionPerformed get error on line 189"+ex.getMessage());
             }
         }
     }//GEN-LAST:event_btnImportActionPerformed

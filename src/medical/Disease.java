@@ -278,7 +278,7 @@ public class Disease extends Patient{
             }
             else
             {
-                returnMessage.put("returnMessage",code.validateID("Disease").get("messages"));
+                returnMessage.put("returnMessage","Disease.AddDisease class line 281 get error, "+map.get("messages"));
                 returnMessage.put("ID", "");
                 return returnMessage;
             }

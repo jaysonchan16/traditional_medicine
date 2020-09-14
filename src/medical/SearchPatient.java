@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -272,7 +273,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String ID = txtID.getText();
             show_selected_patients("ID",ID);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtIDPressed get error on line 276, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtIDKeyPressed
 
@@ -283,7 +284,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String IC = txtIC.getText();
             show_selected_patients("IC",IC);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtICKeyPressed get error on line 287, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtICKeyPressed
 
@@ -294,7 +295,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String Name = txtName.getText();
             show_selected_patients("name",Name);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtNameKeyPressed get error on line 298, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtNameKeyPressed
 
@@ -305,7 +306,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String gender = txtGender.getText();
             show_selected_patients("gender",gender);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtGenderKeyPressed get error on line 309, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtGenderKeyPressed
 
@@ -316,7 +317,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String age = txtAge.getText();
             show_selected_patients("age",age);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtAgeKeyPressed get error on line 320, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtAgeKeyPressed
 
@@ -327,7 +328,7 @@ public class SearchPatient extends javax.swing.JFrame {
             String phone = txtPhone.getText();
             show_selected_patients("phone",phone);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             JOptionPane.showMessageDialog(rootPane, "SearchPatient.txtPhoneKeyPressed get error on line 331, "+ex.getMessage());
         }
     }//GEN-LAST:event_txtPhoneKeyPressed
 
@@ -350,7 +351,7 @@ public class SearchPatient extends javax.swing.JFrame {
             
             show_all_patients(ID, IC, Name, Gender, Age,Phone);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "SearchPatient.btnFindActionPerformed get error on line 354, "+ex.getMessage());
         }
     }//GEN-LAST:event_btnFindActionPerformed
 

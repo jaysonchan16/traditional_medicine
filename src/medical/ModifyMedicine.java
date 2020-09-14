@@ -461,7 +461,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         }
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
+            JOptionPane.showMessageDialog(rootPane, "ModifyMedicine.btnModifyActionPerformed get error on line 464, "+ex.getMessage());
         }
     }//GEN-LAST:event_btnModifyActionPerformed
 
@@ -526,7 +526,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         }
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
+            JOptionPane.showMessageDialog(rootPane, "ModifyMedicine.btnDeleteActionPerformed get error on line 529, "+ex.getMessage());
         }
         
         
@@ -570,7 +570,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     show_medical_ID(ID);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "ModifyMedicine.createColumns get error on line 573, "+ex.getMessage());
             }
         }
         else
@@ -598,7 +598,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     show_medical_ID(ID);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "ModifyMedicine.createColumns get error on line 601, "+ex.getMessage());
             }
         }
     }
@@ -883,7 +883,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 comboMedicine.addItem(code.getComboMedicine().get(i).getCode());
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "comboMedicine get error on line 886, "+ex.getMessage());
         }
     }
     

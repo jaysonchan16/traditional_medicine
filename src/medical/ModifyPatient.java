@@ -337,13 +337,14 @@ public class ModifyPatient extends javax.swing.JFrame {
             String address = txtAddress.getText();
             
             Patient patient = new Patient(IC);
-            if (patient.EditPatient(IC, name, gender, age, phone, address).equalsIgnoreCase("1")) {
+            String result = patient.EditPatient(IC, name, gender, age, phone, address);
+            if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "更改成功");
             } else {
-                JOptionPane.showMessageDialog(rootPane, patient.EditPatient(IC, name, gender, age, phone, address));
+                JOptionPane.showMessageDialog(rootPane, result);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         } catch(NumberFormatException e){
             JOptionPane.showMessageDialog(rootPane, "年龄不可以有字母！");
         }
@@ -390,14 +391,15 @@ public class ModifyPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_txtICActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String IC = txtIC.getText();
-        Patient patient = new Patient(IC);
-        try {
-            if (patient.DeletePatient().equalsIgnoreCase("1")) {
+        try {                                          
+            // TODO add your handling code here:
+            String IC = txtIC.getText();
+            Patient patient = new Patient(IC);
+            String result = patient.DeletePatient();
+            if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
             } else {
-                JOptionPane.showMessageDialog(rootPane, patient.DeletePatient());
+                JOptionPane.showMessageDialog(rootPane, result);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());

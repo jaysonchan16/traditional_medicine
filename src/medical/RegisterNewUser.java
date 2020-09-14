@@ -108,7 +108,8 @@ public class RegisterNewUser extends javax.swing.JFrame {
         {
             try {
                 User user = new User(userid, password);
-                if(user.registerUser().equalsIgnoreCase("1"))
+                String result = user.registerUser();
+                if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "注册成功！");
                     LoginUI loginui = new LoginUI();
@@ -117,10 +118,10 @@ public class RegisterNewUser extends javax.swing.JFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, user.registerUser());
+                    JOptionPane.showMessageDialog(rootPane, result);
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, "RegisterNewUser.btnConfirmActionPerformed get error on line 124,"+ex.getMessage());
             }
         }
         else

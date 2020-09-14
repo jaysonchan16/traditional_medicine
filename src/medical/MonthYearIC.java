@@ -159,7 +159,7 @@ public class MonthYearIC extends javax.swing.JFrame {
                     monthlypatientreport(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"));
                 }
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane, "MonthYearIC.btnFindActionPerformed get error on line 162, "+monthyearIC.get("Messages"));
             }
         }
     }//GEN-LAST:event_btnFindActionPerformed
