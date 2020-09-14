@@ -322,7 +322,7 @@ public class Disease extends Patient{
     
     public Disease getDisease(String IC) throws SQLException{
         String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.PeeShit,b.Category, b.History, a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.PeeShit,b.Category, b.History, a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone "
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID where a.IC = '"+IC+"'";
         rs = st.executeQuery(query);
@@ -348,7 +348,7 @@ public class Disease extends Patient{
     public List<Disease> getDiseases() throws SQLException{
         List<Disease> diseaseList = new ArrayList<>();
             String query = "Select b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition,"
-                + "b.TongueQuality, b.TongueCoating, b.PeeShit,b.Category, b.History, a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,"
+                + "b.TongueQuality, b.TongueCoating, b.PeeShit,b.Category, b.History, a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone "
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID";
         rs = st.executeQuery(query);

@@ -14,7 +14,7 @@ import java.util.HashMap;
  *
  * @author Sheng
  */
-public class Prescription {
+public class Prescription extends Disease{
     
     private int chufang;
     private String categorytable;

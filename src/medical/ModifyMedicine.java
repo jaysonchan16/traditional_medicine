@@ -6,10 +6,12 @@
 package medical;
 
 import java.awt.Font;
+import java.awt.ScrollPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -902,6 +904,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     public void widthTable()
     {
         tblMedicine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TableColumnModel columnModel = tblMedicine.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(1).setPreferredWidth(50);
@@ -914,6 +917,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         columnModel.getColumn(8).setPreferredWidth(50);
         columnModel.getColumn(9).setPreferredWidth(100);
         columnModel.getColumn(10).setPreferredWidth(100);
+        
     }
     /**
      * @param args the command line arguments
