@@ -512,7 +512,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             } 
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
-                                                tonguecoating, shit, category, history, patientID);
+                                                tonguecoating, shit, category, history, patientID,"");
                 try {
                     map = disease.AddDisease();
                     if (map.get("returnMessage").equalsIgnoreCase("1")) {
@@ -562,7 +562,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String history = txtHistory.getText();
             String patientID = txtID.getText();
             
-            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID );
+            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID,"" );
             String result = disease.EditDisease();
             if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "更改成功");
@@ -587,7 +587,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String category = txtCategory.getText();
             String history = txtHistory.getText();
             String patientID = txtID.getText();
-            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID);
+            Disease disease = new Disease(symptom,temperature, blood, pulse, tonguequality,tonguecoating, shit, category, history, patientID,"");
             String result = disease.DeleteDisease();
             if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");

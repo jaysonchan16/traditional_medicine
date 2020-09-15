@@ -228,8 +228,7 @@ public class User {
             st.close();
             return "1";
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            return ex.getMessage();
+            return "User.registerUser get error on line 231, "+ex.getMessage();
         }
     }
 }

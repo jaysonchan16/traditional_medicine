@@ -59,7 +59,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
             }
             else
             {
-                returnMessage.put("returnMessage", code1.validateID(name).get("messages"));
+                returnMessage.put("returnMessage","TraditionalMedicinePotion.AddTraditionalMedicinePotion get error on line 62, "+code1.validateID(name).get("messages"));
                 returnMessage.put("ID","");
                 return returnMessage;
             }
@@ -205,7 +205,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         } 
         catch (Exception e)
         {
-            return e.getMessage();
+            return "TraditionalMedicinePotion.findTraditionalMedicinePotionName get error on line 208"+e.getMessage();
         }
         finally
         {
