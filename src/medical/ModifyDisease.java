@@ -27,7 +27,7 @@ public class ModifyDisease extends javax.swing.JFrame {
      */
     private User user;
     List<Disease> disease;
-    
+    DefaultTableModel model;
     public ModifyDisease() {
         initComponents();
     }
@@ -400,6 +400,8 @@ public class ModifyDisease extends javax.swing.JFrame {
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "更改成功！");
+                    model.setRowCount(0);
+                    show_Disease();
                 }
                 else
                 {
@@ -450,6 +452,8 @@ public class ModifyDisease extends javax.swing.JFrame {
             if(result.equalsIgnoreCase("1"))
             {
                 JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                model.setRowCount(0);
+                show_Disease();
             }
             else
             {
@@ -500,12 +504,13 @@ public class ModifyDisease extends javax.swing.JFrame {
         }
     }
     
+    
     public void show_Disease() throws SQLException
     {
         Disease disease = new Disease();
         List<Disease> diseaseList = new ArrayList<Disease>();
         diseaseList = disease.getDiseases();
-        DefaultTableModel model = (DefaultTableModel)tblDisease.getModel();
+        model = (DefaultTableModel)tblDisease.getModel();
         Object row[] = new Object[16];
         for(int i =0; i<diseaseList.size(); i++)
         {

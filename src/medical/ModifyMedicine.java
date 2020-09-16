@@ -413,6 +413,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        model.setRowCount(0);
+                        show_medical();
+                        resetTextBox();
                     }
                     else
                     {
@@ -426,6 +429,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        model.setRowCount(0);
+                        show_medical();
+                        resetTextBox();
                     }
                     else
                     {
@@ -439,6 +445,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        model.setRowCount(0);
+                        show_medical();
+                        resetTextBox();
                     }
                     else
                     {
@@ -452,6 +461,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     if(result.equalsIgnoreCase("1"))
                     {
                        JOptionPane.showMessageDialog(rootPane, "更改成功"); 
+                       model.setRowCount(0);
+                       show_medical();
+                       resetTextBox();
                     }
                     else
                     {
@@ -479,6 +491,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
+                    model.setRowCount(0);
+                    show_medical();
+                    resetTextBox();
                 }
                 else
                 {
@@ -492,6 +507,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
+                    model.setRowCount(0);
+                    show_medical();
+                    resetTextBox();
                 }
                 else
                 {
@@ -505,6 +523,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
+                    model.setRowCount(0);
+                    show_medical();
+                    resetTextBox();
                 }
                 else
                 {
@@ -518,6 +539,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(result.equalsIgnoreCase("1"))
                 {
                    JOptionPane.showMessageDialog(rootPane, "删除成功"); 
+                   model.setRowCount(0);
+                   show_medical();
+                   resetTextBox();
                 }
                 else
                 {
@@ -926,6 +950,28 @@ public class ModifyMedicine extends javax.swing.JFrame {
         columnModel.getColumn(9).setPreferredWidth(100);
         columnModel.getColumn(10).setPreferredWidth(100);
         
+    }
+    
+    public void resetTextBox()
+    {
+        txtID.setText("");
+        txtName.setText("");
+        txtComponent.setText("");
+        txtIndication.setText("");
+        txtEffect.setText("");
+        txtScoop.setText("");
+        txtWeight.setText("");
+        txtCost.setText("");
+        txtPrice.setText("");
+        txtID.setEnabled(true);
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtPrice.setEnabled(false);
     }
     /**
      * @param args the command line arguments
