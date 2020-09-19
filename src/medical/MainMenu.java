@@ -23,6 +23,17 @@ public class MainMenu extends javax.swing.JFrame {
         setResizable(false);
     }
     
+    public MainMenu(int test) {
+        initComponents();
+        if(test == 1)
+        {
+            DiseaseMenu menu = new DiseaseMenu(user);
+            menu.setVisible(true);
+            this.dispose();
+        }
+//        this.lblLoggedIn.setText(user.getUserid());
+        setResizable(false);
+    }
     public MainMenu() {
         initComponents();
         
@@ -95,6 +106,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\cart.png")); // NOI18N
         jButton5.setText("仓库");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5);
         jButton5.setBounds(30, 320, 220, 80);
 
@@ -181,6 +197,12 @@ public class MainMenu extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnlogoutActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        POSsystem pos = new POSsystem();
+        pos.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

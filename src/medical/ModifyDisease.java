@@ -12,8 +12,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -38,6 +40,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         show_Disease();
+        widthTable();
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
         disabledTextBox();
@@ -280,9 +283,6 @@ public class ModifyDisease extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(680, 20, 140, 60);
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
         tblDisease.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -500,7 +500,7 @@ public class ModifyDisease extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "ModifyDisease.Find() get error on line 503, " +ex.getMessage());
         }
     }
     
@@ -590,6 +590,25 @@ public class ModifyDisease extends javax.swing.JFrame {
             result = true;
         }
         return result;
+    }
+    
+    public void widthTable()
+    {
+        tblDisease.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        TableColumnModel columnModel = tblDisease.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(50);
+        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(7).setPreferredWidth(50);
+        columnModel.getColumn(8).setPreferredWidth(50);
+        columnModel.getColumn(9).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(100);
+        
     }
     /**
      * @param args the command line arguments

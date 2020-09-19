@@ -71,14 +71,42 @@ public class ImportJtable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblImport = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblImport = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        btnImport.setText("Import");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnImport);
+        btnImport.setBounds(730, 640, 105, 48);
+
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPrint);
+        btnPrint.setBounds(590, 640, 105, 48);
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack);
+        btnBack.setBounds(860, 640, 102, 50);
 
         tblImport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,37 +133,12 @@ public class ImportJtable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblImport);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 50, 893, 402);
+        jScrollPane2.setViewportView(jScrollPane1);
 
-        btnImport.setText("Import");
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnImport);
-        btnImport.setBounds(730, 490, 105, 48);
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 100, 1140, 500);
 
-        btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPrint);
-        btnPrint.setBounds(590, 490, 105, 48);
-
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBack);
-        btnBack.setBounds(860, 490, 102, 50);
-
-        setBounds(0, 0, 1361, 622);
+        setBounds(0, 0, 1361, 796);
     }// </editor-fold>//GEN-END:initComponents
     DefaultTableModel model;
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -245,6 +248,7 @@ public class ImportJtable extends javax.swing.JFrame {
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblImport;
     // End of variables declaration//GEN-END:variables
 }

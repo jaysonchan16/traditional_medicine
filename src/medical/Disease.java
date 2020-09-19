@@ -44,6 +44,11 @@ public class Disease extends Patient{
         this.diseaseID = diseaseID;
     }
     
+    public Disease(String IC, String name, String phone)
+    {
+        super(IC, name, phone);
+    }
+    
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
             String tongueCoating, String peeshit, String category, String history, String patientID, String DiseaseID){
         this.symptom = symptom;
@@ -57,6 +62,20 @@ public class Disease extends Patient{
         this.category = category;
         this.history = history;
         this.diseaseID = DiseaseID;
+    }
+    
+    public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
+            String tongueCoating, String peeshit, String category, String history, String IC, String name, String phoneNo){
+        super(IC,name,phoneNo);
+        this.symptom = symptom;
+        this.temperature = temperature;
+        this.bloodPressure = bloodPressure;
+        this.pulseCondition = pulseCondition;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.peeshit = peeshit;
+        this.category = category;
+        this.history = history;
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
@@ -75,6 +94,8 @@ public class Disease extends Patient{
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
     }
+    
+    
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
             String tongueCoating, String peeshit, String category, String history, String patientID, String DiseaseID, String lastUpdateDateTime, String createDateTime,

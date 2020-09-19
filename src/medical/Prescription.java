@@ -8,7 +8,10 @@ package medical;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -16,6 +19,7 @@ import java.util.HashMap;
  */
 public class Prescription extends Disease{
     
+    private String prescriptionID;
     private int chufang;
     private String categorytable;
     private String nametable;
@@ -24,6 +28,8 @@ public class Prescription extends Disease{
     private float totalprice;
     private String patientID;
     private String diseaseID;
+    private String lastUpdateDateTime;
+    private String createDateTime;
     public Statement st = connect.connection();
     ResultSet rs;
 
@@ -140,10 +146,73 @@ public class Prescription extends Disease{
         this.diseaseID = diseaseID;
     }
     
+     /**
+     * @return the prscriptionID
+     */
+    public String getPrescriptionID() {
+        return prescriptionID;
+    }
+
+    /**
+     * @param prscriptionID the prscriptionID to set
+     */
+    public void setPrescriptionID(String prescriptionID) {
+        this.prescriptionID = prescriptionID;
+    }
+    
+    /**
+     * @return the lastUpdateDateTime
+     */
+    public String getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    /**
+     * @param lastUpdateDateTime the lastUpdateDateTime to set
+     */
+    public void setLastUpdateDateTime(String lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    /**
+     * @return the createDateTime
+     */
+    public String getCreateDateTime() {
+        return createDateTime;
+    }
+
+    /**
+     * @param createDateTime the createDateTime to set
+     */
+    public void setCreateDateTime(String createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+    
     public Prescription(){}
     
-    public Prescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID)
+    public Prescription(String prescriptionID){
+        this.prescriptionID = prescriptionID;
+    }
+    
+    public Prescription(String prescriptionID, int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String IC, String name, String phone)
     {
+        super(IC, name, phone);
+        this.prescriptionID = prescriptionID;
+        this.categorytable = categorytable;
+        this.nametable = nametable;
+        this.jiliang = jiliang;
+        this.price = price;
+        this.chufang = chufang;
+        this.totalprice = totalprice;
+        this.patientID = patientID;
+        //this.diseaseID = diseaseID;
+    }
+    
+    public Prescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String prescriptionID, String patientID, String diseaseID, 
+            String lastUpdateDateTime, String createDateTime, String symptom, int temperature,String bloodPressure, String pulseCondition, String tongueQuality, String tongueCoating, String peeshit, String category,
+            String history, String IC, String name, String phoneNo)
+    {
+        super(symptom,temperature,bloodPressure,pulseCondition,tongueQuality,tongueCoating,peeshit,category,history,IC,name,phoneNo);
         this.chufang = chufang;
         this.categorytable = categorytable;
         this.nametable = nametable;
@@ -152,6 +221,9 @@ public class Prescription extends Disease{
         this.totalprice = totalprice;
         this.patientID = patientID;
         this.diseaseID = diseaseID;
+        this.prescriptionID = prescriptionID;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
     }
     
     public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode)
@@ -183,5 +255,76 @@ public class Prescription extends Disease{
             return returnMessage;
         }
     }
+    
+    public String EditPrescription() throws SQLException{
+         String query = "Update Prescription Set Category = trim('"+categorytable+"'), Name = "+nametable+","
+                 + " Jiliang = trim('"+jiliang+"'), Price = trim('"+price+"'), TotalPrice = trim('"+totalprice+"'),"
+                 + " lastUpdateDateTime = datetime('now','localtime')"
+                 + " where ID = '"+prescriptionID+"'";
+        System.out.println(query);
+         SQLQuery sql = new SQLQuery();
 
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public String DeleteDisease() throws SQLException{
+        String query = "Delete From Prescription where ID = '"+prescriptionID+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public Prescription getPrescription(String IC) throws SQLException{
+        String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category, a.Name as medicineName, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, "
+                + "b.IC, b.name, b.ID, b.phone "
+                + "from Prescription a Inner Join Patient b "
+                + "ON a.PatientID = b.ID where b.IC = '"+IC+"' limit 1";
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+             while (rs.next()) {
+                 return new Prescription(rs.getString("PrescriptionID"),rs.getInt("Chufang"),
+                         rs.getString("Category"),rs.getString("medicineName"),
+                         rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"), rs.getString("PatientID"), 
+                         rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
+            }   
+        } 
+        catch (NullPointerException e)
+        {
+            //throw(new NoSuchElementException(e.getMessage()));
+            return new Prescription("1");
+        }
+        finally{
+            st.close(); 
+        }
+        return new Prescription("1");
+    }
+    
+    public List<Prescription> getPrescriptions() throws SQLException{
+        List<Prescription> prescriptionList = new ArrayList<>();
+        
+            String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category, a.Name, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, a.lastUpdateDateTime, a.createDateTime, "
+                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone  "
+                + "from Prescription a "
+                + "Inner Join Disease b ON a.DiseaseID = b.ID "
+                + "Inner Join Patient c ON a.PatientID = c.ID";
+            System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 prescriptionList.add(new Prescription(rs.getInt("Chufang"),
+                         rs.getString("Category"),rs.getString("Name"),rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"),
+                         rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
+                         rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
+                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return prescriptionList;
+    }
 }

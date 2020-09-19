@@ -63,8 +63,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         comboMedicine = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblMedicine = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblzhucheng = new javax.swing.JLabel();
@@ -91,6 +89,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtComponent = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         lblWeight = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMedicine = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -108,24 +109,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         });
         getContentPane().add(comboMedicine);
         comboMedicine.setBounds(200, 80, 110, 40);
-
-        tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblMedicineMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblMedicine);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(800, 80, 1090, 880);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
@@ -265,6 +248,26 @@ public class ModifyMedicine extends javax.swing.JFrame {
         lblWeight.setText("GM");
         getContentPane().add(lblWeight);
         lblWeight.setBounds(680, 690, 60, 40);
+
+        tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedicineMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMedicine);
+
+        jScrollPane4.setViewportView(jScrollPane1);
+
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(810, 70, 990, 890);
 
         setBounds(0, 0, 1931, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -1024,6 +1027,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblCost;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblWeight;

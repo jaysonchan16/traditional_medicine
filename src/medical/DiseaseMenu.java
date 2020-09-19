@@ -6,6 +6,7 @@
 package medical;
 
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,6 +87,11 @@ public class DiseaseMenu extends javax.swing.JFrame {
 
         btnModifyChufang.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnModifyChufang.setText("更改处方");
+        btnModifyChufang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyChufangActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModifyChufang);
         btnModifyChufang.setBounds(270, 300, 200, 80);
 
@@ -147,7 +153,7 @@ public class DiseaseMenu extends javax.swing.JFrame {
             patient.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "DiseaseMenu.btnAddDiseaseActionPerformed get an error on line 156,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnAddDiseaseActionPerformed
 
@@ -158,9 +164,20 @@ public class DiseaseMenu extends javax.swing.JFrame {
             modify.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "DiseaseMenu.btnModifyDiseaseActionPerformed get an error on line 167,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnModifyDiseaseActionPerformed
+
+    private void btnModifyChufangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyChufangActionPerformed
+        try {
+            // TODO add your handling code here:
+            ModifyChuFang modify = new ModifyChuFang(user);
+            modify.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "DiseaseMenu.btnModifyChufangActionPerformed get an error on line 178,"+ex.getMessage());
+        }
+    }//GEN-LAST:event_btnModifyChufangActionPerformed
 
     /**
      * @param args the command line arguments
