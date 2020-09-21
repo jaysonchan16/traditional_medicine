@@ -47,7 +47,7 @@ public class DiseaseMenu extends javax.swing.JFrame {
         btnBackupDisease = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnBackupChufang = new javax.swing.JButton();
-        btnPrint = new javax.swing.JButton();
+        btnFindDisease = new javax.swing.JButton();
         lblName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,6 +82,11 @@ public class DiseaseMenu extends javax.swing.JFrame {
 
         btnReportDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnReportDisease.setText("病症报告");
+        btnReportDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportDiseaseActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnReportDisease);
         btnReportDisease.setBounds(30, 300, 200, 80);
 
@@ -120,10 +125,15 @@ public class DiseaseMenu extends javax.swing.JFrame {
         getContentPane().add(btnBackupChufang);
         btnBackupChufang.setBounds(770, 150, 200, 80);
 
-        btnPrint.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnPrint.setText("寻找病症");
-        getContentPane().add(btnPrint);
-        btnPrint.setBounds(770, 300, 200, 80);
+        btnFindDisease.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnFindDisease.setText("寻找病症");
+        btnFindDisease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindDiseaseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFindDisease);
+        btnFindDisease.setBounds(770, 300, 200, 80);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         getContentPane().add(lblName);
@@ -179,6 +189,18 @@ public class DiseaseMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModifyChufangActionPerformed
 
+    private void btnFindDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindDiseaseActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnFindDiseaseActionPerformed
+
+    private void btnReportDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportDiseaseActionPerformed
+        // TODO add your handling code here:
+        MonthYearIC ic = new MonthYearIC(user,5);
+        ic.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReportDiseaseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,10 +241,10 @@ public class DiseaseMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBackupChufang;
     private javax.swing.JButton btnBackupDisease;
+    private javax.swing.JButton btnFindDisease;
     private javax.swing.JButton btnImportDisease;
     private javax.swing.JButton btnModifyChufang;
     private javax.swing.JButton btnModifyDisease;
-    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReportDisease;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

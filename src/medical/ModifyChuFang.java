@@ -5,11 +5,15 @@
  */
 package medical;
 
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -24,6 +28,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private User user;
     DefaultTableModel model;
     public String price;
+    public int updatedelete = 0;
     
     public ModifyChuFang() {
         initComponents();
@@ -49,6 +54,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         medicineCategory();
         txtPrice.setText("");
         show_table();
+        widthTable();
+        txtPrescriptionID.setVisible(false);
+        JTableHeader tableHeader = tblChufang.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,6 +103,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicine = new javax.swing.JTextField();
         txtMedicineName = new javax.swing.JTextField();
         txtJiliang = new javax.swing.JTextField();
+        txtPrescriptionID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -172,10 +182,15 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReset);
-        btnReset.setBounds(160, 850, 100, 40);
+        btnReset.setBounds(150, 850, 100, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDelete);
         btnDelete.setBounds(500, 850, 100, 40);
 
@@ -246,6 +261,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         getContentPane().add(btnFindID);
         btnFindID.setBounds(730, 120, 100, 40);
 
+        tblChufang.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
         tblChufang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -294,7 +310,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModifyMedicine);
-        btnModifyMedicine.setBounds(290, 850, 100, 40);
+        btnModifyMedicine.setBounds(270, 850, 100, 40);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtMedicine);
@@ -308,11 +324,23 @@ public class ModifyChuFang extends javax.swing.JFrame {
         getContentPane().add(txtJiliang);
         txtJiliang.setBounds(130, 620, 590, 40);
 
+        txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(txtPrescriptionID);
+        txtPrescriptionID.setBounds(120, 40, 230, 40);
+
         setBounds(0, 0, 1856, 966);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         // TODO add your handling code here:
+        if(updatedelete == 1)
+        {
+            update();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "你没有更改资料!");
+        }
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -357,6 +385,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         String Jiliang = model.getValueAt(index,7).toString();
         String price = model.getValueAt(index,8).toString();
         String totalprice = model.getValueAt(index,9).toString();
+        String prescriptionID = model.getValueAt(index, 22).toString();
         
         txtID.setText(ID);
         txtIC.setText(IC);
@@ -368,7 +397,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtJiliang.setText(Jiliang);
         txtPrice.setText(price);
         txtTotalPrice.setText(totalprice);
-        
+        txtPrescriptionID.setText(prescriptionID);
+        updatedelete = 0;
         
         //disabledTextBox();
     }//GEN-LAST:event_tblChufangMouseClicked
@@ -384,6 +414,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtTotalPrice.setText("0.00");
         spinnerJiLiang.setValue(0);
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        updatedelete = 1;
     }//GEN-LAST:event_btnModifyMedicineActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -397,6 +428,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         comboBoxMedicine.setVisible(false);
         comboBoxName.setVisible(false);
         spinnerJiLiang.setVisible(false);
+        txtPrescriptionID.setText("");
         txtID.setText("");
         txtIC.setText("");
         txtName.setText("");
@@ -409,6 +441,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         
         txtPrice.setText("");
         txtTotalPrice.setText("");
+        updatedelete = 0;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
@@ -437,6 +470,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
         txtTotalPrice.setText(String.valueOf(total));
     }//GEN-LAST:event_spinnerJiLiangStateChanged
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void createColumns()
     {
@@ -590,6 +628,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     public void Find()
     {
+        updatedelete=0;
         String IC = txtIC.getText();
         String ID = txtID.getText();
         
@@ -609,6 +648,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
                 txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata).getJiliang()));
                 txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata).getPrice()));
                 txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata).getTotalprice()));
+                txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata).getPrescriptionID()));
                 txtIC.setEnabled(false);
                 txtID.setEnabled(false);
             }
@@ -690,6 +730,77 @@ public class ModifyChuFang extends javax.swing.JFrame {
         }
         
     }
+    
+    public void update()
+    {
+        try {
+            String prescriptionID = txtPrescriptionID.getText();
+            String medicine = comboBoxMedicine.getSelectedItem().toString();
+            String name = comboBoxName.getSelectedItem().toString();
+            int jiliang = Integer.parseInt(spinnerJiLiang.getValue().toString());
+            float price = Float.parseFloat(txtPrice.getText());
+            float totalPrice = Float.parseFloat(txtTotalPrice.getText());
+            
+            Prescription pre = new Prescription(prescriptionID, medicine, name, jiliang, price, totalPrice);
+            String result= pre.EditPrescription();
+                    
+            if(result.equalsIgnoreCase("1"))
+            {
+                JOptionPane.showMessageDialog(rootPane, "更新成功！");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.update() on line 744 get error, "+result);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.update() on line 747 get error, "+ex.getMessage());
+        }
+    }
+    
+    public void delete()
+    {
+        try {
+            String prescriptionID = txtPrescriptionID.getText();
+            Prescription pre = new Prescription(prescriptionID);
+            String result = pre.DeletePrescription();
+            if(result.equalsIgnoreCase("1"))
+            {
+                JOptionPane.showMessageDialog(rootPane, "删除成功！");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.delete() on line 763 get error, "+result);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.delete() on line 769 get error, "+ex.getMessage());
+        }
+    }
+    
+    public void widthTable()
+    {
+        tblChufang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        TableColumnModel columnModel = tblChufang.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(50);
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(7).setPreferredWidth(50);
+        columnModel.getColumn(8).setPreferredWidth(50);
+        columnModel.getColumn(9).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(120);
+        columnModel.getColumn(21).setPreferredWidth(170);
+        columnModel.getColumn(22).setPreferredWidth(170);
+        
+        
+        columnModel.getColumn(21).setMinWidth(0);
+        columnModel.getColumn(21).setMaxWidth(0);
+        columnModel.getColumn(22).setMinWidth(0);
+        columnModel.getColumn(22).setMaxWidth(0);
+    }
     /**
      * @param args the command line arguments
      */
@@ -761,6 +872,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JTextField txtMedicineName;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtPrescriptionID;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtTotalPrice;
     // End of variables declaration//GEN-END:variables

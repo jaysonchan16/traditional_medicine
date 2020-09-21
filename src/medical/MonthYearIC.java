@@ -52,6 +52,8 @@ public class MonthYearIC extends javax.swing.JFrame {
         txtToMonth = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtIC = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -87,7 +89,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(244, 374, 128, 45);
+        btnBack.setBounds(240, 470, 128, 45);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnFind.setText("寻找");
@@ -97,7 +99,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFind);
-        btnFind.setBounds(592, 374, 119, 45);
+        btnFind.setBounds(590, 470, 119, 45);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel3.setText("从：");
@@ -126,7 +128,16 @@ public class MonthYearIC extends javax.swing.JFrame {
         getContentPane().add(txtIC);
         txtIC.setBounds(360, 280, 270, 40);
 
-        setBounds(0, 0, 954, 537);
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel6.setText("ID:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(270, 370, 50, 34);
+
+        txtID.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        getContentPane().add(txtID);
+        txtID.setBounds(360, 360, 270, 40);
+
+        setBounds(0, 0, 954, 590);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFromYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromYearActionPerformed
@@ -139,10 +150,11 @@ public class MonthYearIC extends javax.swing.JFrame {
         String fromyear = txtFromYear.getText();
         String toyear = txtToYear.getText();
         String IC = txtIC.getText();
+        String ID = txtID.getText();
         System.out.println(option);
         Excel monthyear = new Excel();
         HashMap<String,String> monthyearIC = new HashMap<String,String>();
-        monthyearIC = monthyear.checkMonthYearIC(frommonth, tomonth, fromyear, toyear, IC);
+        monthyearIC = monthyear.checkMonthYearIC(frommonth, tomonth, fromyear, toyear, IC, ID);
         if(!monthyearIC.get("Messages").equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(rootPane, monthyearIC.get("Messages"));
@@ -152,11 +164,15 @@ public class MonthYearIC extends javax.swing.JFrame {
             try {
                 if(option == 2)
                 {
-                    viewpatientpage(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"));
+                    viewpatientpage(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"), monthyearIC.get("ID"));
+                }
+                else if(option == 5)
+                {
+                    viewdiseasedetail(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"), monthyearIC.get("ID"));
                 }
                 else
                 {
-                    monthlypatientreport(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"));
+                    monthlypatientreport(monthyearIC.get("From"), monthyearIC.get("To"), monthyearIC.get("IC"), monthyearIC.get("ID"));
                 }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, "MonthYearIC.btnFindActionPerformed get error on line 162, "+monthyearIC.get("Messages"));
@@ -164,16 +180,22 @@ public class MonthYearIC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFindActionPerformed
 
-    public void viewpatientpage(String from, String to, String IC) throws SQLException {
-        ViewPatientDetail monthly = new ViewPatientDetail(user, from, to, IC);
+    public void viewpatientpage(String from, String to, String IC, String ID) throws SQLException { //option = 2
+        ViewPatientDetail monthly = new ViewPatientDetail(user, from, to, IC, ID);
         monthly.setVisible(true);
         this.dispose();
     }
 
-    public void monthlypatientreport(String from, String to, String IC)throws SQLException {
-       MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC);
+    public void monthlypatientreport(String from, String to, String IC, String ID)throws SQLException { // option =3
+       MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC, ID);
        monthly.setVisible(true);
        this.dispose();
+    }
+    
+    public void viewdiseasedetail(String from, String to, String IC, String ID)throws SQLException { // option =5
+        ViewDiseaseDetail disease = new ViewDiseaseDetail(user, from, to, IC, ID);
+        disease.setVisible(true);
+        this.dispose();
     }
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -227,9 +249,11 @@ public class MonthYearIC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtFromMonth;
     private javax.swing.JTextField txtFromYear;
     private javax.swing.JTextField txtIC;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtToMonth;
     private javax.swing.JTextField txtToYear;
     // End of variables declaration//GEN-END:variables

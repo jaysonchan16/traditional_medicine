@@ -3,20 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/LoginUI.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MonthYearIC.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ViewPatientDetail.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MonthlyPatientReport.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Prescription.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MainMenu.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/NewPatientDisease.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/POSsystem.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyChuFang.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/PatientDetailMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Disease.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyDisease.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/DiseaseMenu.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/SearchPatient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyMedicine.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Patient.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/Prescription.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/PrintPatientReport.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/ModifyChuFang.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/SearchDieseasePatient.java</file>
         </group>
     </open-files>
 </project-private>

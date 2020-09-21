@@ -194,6 +194,16 @@ public class Prescription extends Disease{
         this.prescriptionID = prescriptionID;
     }
     
+    public Prescription(String prescriptionID, String categorytable, String nametable, int jiliang, float price, float totalprice)
+    {
+        this.prescriptionID = prescriptionID;
+        this.categorytable = categorytable;
+        this.nametable = nametable;
+        this.jiliang = jiliang;
+        this.price = price;
+        this.totalprice = totalprice;
+    }
+    
     public Prescription(String prescriptionID, int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String IC, String name, String phone)
     {
         super(IC, name, phone);
@@ -257,7 +267,7 @@ public class Prescription extends Disease{
     }
     
     public String EditPrescription() throws SQLException{
-         String query = "Update Prescription Set Category = trim('"+categorytable+"'), Name = "+nametable+","
+         String query = "Update Prescription Set Category = trim('"+categorytable+"'), Name = '"+nametable+"',"
                  + " Jiliang = trim('"+jiliang+"'), Price = trim('"+price+"'), TotalPrice = trim('"+totalprice+"'),"
                  + " lastUpdateDateTime = datetime('now','localtime')"
                  + " where ID = '"+prescriptionID+"'";
@@ -267,7 +277,7 @@ public class Prescription extends Disease{
         return sql.AddEditDeleteQuery(query);
     }
     
-    public String DeleteDisease() throws SQLException{
+    public String DeletePrescription() throws SQLException{
         String query = "Delete From Prescription where ID = '"+prescriptionID+"'";
         System.out.println(query);
         SQLQuery sql = new SQLQuery();

@@ -40,25 +40,36 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.swing.ImageIcon;
 import javax.swing.table.JTableHeader;
 /**
  *
  * @author Sheng
  */
-public class ImportJtable extends javax.swing.JFrame {
+public class PrintPatientReport extends javax.swing.JFrame {
 
     /**
      * Creates new form ImportJtable
      */
     private User user;
-    public ImportJtable(User user) {
+    Double bHeight=0.0;
+    public PrintPatientReport(User user) {
         initComponents();
         this.user = user;
         JTableHeader tableHeader = tblImport.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
     }
-    public ImportJtable() {
+    public PrintPatientReport() {
         initComponents();
     }
 
@@ -77,10 +88,13 @@ public class ImportJtable extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblImport = new javax.swing.JTable();
+        printicon = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        btnImport.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnImport.setText("Import");
         btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,25 +102,27 @@ public class ImportJtable extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnImport);
-        btnImport.setBounds(730, 640, 105, 48);
+        btnImport.setBounds(790, 780, 105, 48);
 
-        btnPrint.setText("Print");
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
         getContentPane().add(btnPrint);
-        btnPrint.setBounds(590, 640, 105, 48);
+        btnPrint.setBounds(920, 780, 105, 48);
 
-        btnBack.setText("Back");
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(860, 640, 102, 50);
+        btnBack.setBounds(1050, 780, 102, 50);
 
         tblImport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,9 +152,22 @@ public class ImportJtable extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 100, 1140, 500);
+        jScrollPane2.setBounds(20, 220, 1140, 490);
 
-        setBounds(0, 0, 1361, 796);
+        printicon.setText("print whole");
+        printicon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printiconActionPerformed(evt);
+            }
+        });
+        getContentPane().add(printicon);
+        printicon.setBounds(650, 780, 97, 25);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\heng seng tong-03.png")); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 20, 570, 190);
+
+        setBounds(0, 0, 1361, 929);
     }// </editor-fold>//GEN-END:initComponents
     DefaultTableModel model;
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -207,6 +236,121 @@ public class ImportJtable extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void printiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printiconActionPerformed
+        // TODO add your handling code here:
+        MessageFormat header = new MessageFormat("");
+        //tblImport.print(JTable.PrintMode.NORMAL, header, header);
+        //bHeight = Double.valueOf(itemName.size());
+        //JOptionPane.showMessageDialog(rootPane, bHeight);
+        
+        PrinterJob pj = PrinterJob.getPrinterJob();        
+        pj.setPrintable(new BillPrintable(),getPageFormat(pj));
+        try {
+             pj.print();
+          
+        }
+         catch (PrinterException ex) {
+                 ex.printStackTrace();
+        }
+    }//GEN-LAST:event_printiconActionPerformed
+
+    public PageFormat getPageFormat(PrinterJob pj)
+    {
+    
+        PageFormat pf = pj.defaultPage();
+        Paper paper = pf.getPaper();    
+
+        double bodyHeight = bHeight;  
+        double headerHeight = 5.0;                  
+        double footerHeight = 5.0;        
+        double width = cm_to_pp(8); 
+        double height = cm_to_pp(headerHeight+bodyHeight+footerHeight); 
+        paper.setSize(width, height);
+        paper.setImageableArea(0,10,width,height - cm_to_pp(1));  
+
+        pf.setOrientation(PageFormat.PORTRAIT);  
+        pf.setPaper(paper);    
+
+        return pf;
+    }
+    
+    protected static double cm_to_pp(double cm)
+    {            
+	        return toPPI(cm * 0.393600787);            
+    }
+ 
+    protected static double toPPI(double inch)
+    {            
+                return inch * 72d;            
+    }
+
+    
+    public class BillPrintable implements Printable {
+        public int print(Graphics graphics, PageFormat pageFormat,int pageIndex) throws PrinterException 
+      {   
+          ImageIcon icon=new ImageIcon("C:\\Users\\Sheng\\Desktop\\heng-seng-tong-03.png"); 
+          int result = NO_SUCH_PAGE;    
+            if (pageIndex == 0) {                    
+
+                Graphics2D g2d = (Graphics2D) graphics;                    
+                double width = pageFormat.getImageableWidth();                               
+                g2d.translate((int) pageFormat.getImageableX(),(int) pageFormat.getImageableY()); 
+
+
+
+              //  FontMetrics metrics=g2d.getFontMetrics(new Font("Arial",Font.BOLD,7));
+
+            try{
+                int y=20;
+                int yShift = 10;
+                int headerRectHeight=15;
+               // int headerRectHeighta=40;
+
+
+                g2d.setFont(new Font("Monospaced",Font.PLAIN,9));
+                g2d.drawImage(icon.getImage(), 50, 20, 90, 30, rootPane);y+=yShift+30;
+                g2d.drawString("-------------------------------------",12,y);y+=yShift;
+                g2d.drawString("         CodeGuid.com        ",12,y);y+=yShift;
+                g2d.drawString("   No 00000 Address Line One ",12,y);y+=yShift;
+                g2d.drawString("   Address Line 02 SRI LANKA ",12,y);y+=yShift;
+                g2d.drawString("   www.facebook.com/CodeGuid ",12,y);y+=yShift;
+                g2d.drawString("        +94700000000      ",12,y);y+=yShift;
+                g2d.drawString("-------------------------------------",12,y);y+=headerRectHeight;
+
+                g2d.drawString(" Item Name                  Price   ",10,y);y+=yShift;
+                g2d.drawString("-------------------------------------",10,y);y+=headerRectHeight;
+
+               /* for(int s=0; s<r; s++)
+                {
+                g2d.drawString(" "+itemName.get(s)+"                            ",10,y);y+=yShift;
+                g2d.drawString("      "+quantity.get(s)+" * "+itemPrice.get(s),10,y); g2d.drawString(subtotal.get(s),160,y);y+=yShift;
+
+                }
+
+                g2d.drawString("-------------------------------------",10,y);y+=yShift;
+                g2d.drawString(" Total amount:               "+txttotalAmount.getText()+"   ",10,y);y+=yShift;
+                g2d.drawString("-------------------------------------",10,y);y+=yShift;
+                g2d.drawString(" Cash      :                 "+txtcash.getText()+"   ",10,y);y+=yShift;
+                g2d.drawString("-------------------------------------",10,y);y+=yShift;
+                g2d.drawString(" Balance   :                 "+txtbalance.getText()+"   ",10,y);y+=yShift;
+
+                g2d.drawString("*************************************",10,y);y+=yShift;
+                g2d.drawString("       THANK YOU COME AGAIN            ",10,y);y+=yShift;
+                g2d.drawString("*************************************",10,y);y+=yShift;
+                g2d.drawString("       SOFTWARE BY:CODEGUID          ",10,y);y+=yShift;
+                g2d.drawString("   CONTACT: contact@codeguid.com       ",10,y);y+=yShift; */      
+
+
+        }
+        catch(Exception e){
+        e.printStackTrace();
+        }
+            }
+              result = PAGE_EXISTS;    
+              
+          return result;    
+      }
+    }
     /**
      * @param args the command line arguments
      */
@@ -224,21 +368,22 @@ public class ImportJtable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImportJtable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImportJtable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImportJtable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImportJtable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new ImportJtable().setVisible(true);
+                new PrintPatientReport().setVisible(true);
             }
         });
     }
@@ -247,8 +392,10 @@ public class ImportJtable extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton printicon;
     private javax.swing.JTable tblImport;
     // End of variables declaration//GEN-END:variables
 }

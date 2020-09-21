@@ -89,21 +89,23 @@ public class Excel {
         }
     }
     
-    public HashMap<String, String> checkMonthYearIC(String frommonth, String tomonth, String fromyear, String toyear, String IC){
+    public HashMap<String, String> checkMonthYearIC(String frommonth, String tomonth, String fromyear, String toyear, String IC, String ID){
         String to = "";
         String from = "";
         HashMap<String,String> data = new HashMap<String,String>();
-        if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") && IC.equalsIgnoreCase("")) {
+        if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") && IC.equalsIgnoreCase("") && ID.equalsIgnoreCase("")) {
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
-            data.put("Messages", "请填月份或者IC！");
+            data.put("ID", ID);
+            data.put("Messages", "请填月份或者IC或者ID！");
             return data;
             //JOptionPane.showMessageDialog(rootPane, "请填月份或者IC！");
         } else if (tomonth.length() > 2 || frommonth.length() > 2) {
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
+            data.put("ID", ID);
             data.put("Messages", "月份错误！");
             return data;
             //JOptionPane.showMessageDialog(rootPane, "月份错误！");
@@ -111,13 +113,22 @@ public class Excel {
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
+            data.put("ID", ID);
             data.put("Messages", "年份错误！");
             return data;
             //JOptionPane.showMessageDialog(rootPane, "年份错误！");
-        } else if (!IC.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
+        } else if (!IC.equalsIgnoreCase("") && ID.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
+            data.put("ID",ID);
+            data.put("Messages", "");
+            return data;
+        } else if (!ID.equalsIgnoreCase("") && IC.equalsIgnoreCase("") && (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("IC",IC);
+            data.put("ID",ID);
             data.put("Messages", "");
             return data;
         } else if((!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
@@ -132,12 +143,14 @@ public class Excel {
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
+            data.put("ID",ID);
             data.put("Messages", "请填写完整月份和年份");
             return data;
         } else if(Integer.parseInt(frommonth) > 12){
             data.put("From",from);
             data.put("To", to);
             data.put("IC",IC);
+            data.put("ID",ID);
             data.put("Messages", "月份错误");
             return data;
         } else {
@@ -162,6 +175,7 @@ public class Excel {
                     data.put("From",from);
                     data.put("To", to);
                     data.put("IC",IC);
+                    data.put("ID",ID);
                     data.put("Messages", "");
                     break;
                 case 2:
@@ -170,12 +184,14 @@ public class Excel {
                         data.put("From",from);
                         data.put("To", to);
                         data.put("IC",IC);
+                        data.put("ID",ID);
                         data.put("Messages","");
                     } else {
                         to = toyear + "-" + tomonth + "-28";
                         data.put("From",from);
                         data.put("To", to);
                         data.put("IC",IC);
+                        data.put("ID",ID);
                         data.put("Messages","");
                     }
                     break;
@@ -187,12 +203,14 @@ public class Excel {
                     data.put("From",from);
                     data.put("To", to);
                     data.put("IC",IC);
+                    data.put("ID",ID);
                     data.put("Messages","");
                     break;
                 default:
                     data.put("From",from);
                     data.put("To", to);
                     data.put("IC",IC);
+                    data.put("ID",ID);
                     data.put("Messages","月份错误");
                     break;
             }

@@ -90,7 +90,7 @@ public class LoginUI extends javax.swing.JFrame {
         getContentPane().add(txtPassword);
         txtPassword.setBounds(330, 380, 500, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\heng seng tong-03.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\heng-seng-tong-03.png")); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(-40, -10, 550, 210);

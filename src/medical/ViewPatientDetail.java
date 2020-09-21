@@ -32,6 +32,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private String to="";
     private String initialIC="";
     private int option=0;
+    private String initialID = "";
     public ViewPatientDetail() throws SQLException {
         initComponents();
         show_patient();
@@ -49,12 +50,13 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public ViewPatientDetail(User user,String from,String to, String initialIC) throws SQLException {
+    public ViewPatientDetail(User user,String from,String to, String initialIC, String initialID) throws SQLException {
         initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
         this.initialIC = initialIC;
+        this.initialID = initialID;
         show_patient();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -234,7 +236,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 //        initialPatient is from monthYearIC
         System.out.println(from);
         int option = 4;
-        ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,createDateTime,lastUpdateDateTime, option, from, to, initialIC);
+        ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,createDateTime,lastUpdateDateTime, option, from, to, initialIC, initialID);
         patient.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tblPatientMouseClicked
@@ -288,7 +290,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
          }
          else
          {
-             patientList = patient.getPatients(from, to, initialIC);
+             patientList = patient.getPatients(from, to, initialIC, initialID);
          }
          
          model = (DefaultTableModel)tblPatient.getModel();

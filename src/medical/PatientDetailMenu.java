@@ -166,7 +166,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
         // TODO add your handling code here:
-        ImportJtable i = new ImportJtable(user);
+        PrintPatientReport i = new PrintPatientReport(user);
         i.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnImportActionPerformed
@@ -195,7 +195,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
             search.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "PatientDetailMenu.btnFindActionPerformed get error on line 198,"+ex.getMessage());
         }
     }//GEN-LAST:event_btnFindActionPerformed
 

@@ -37,6 +37,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     private String from;
     private String to;
     private String initialIC;
+    private String initialID; 
     
     public ModifyPatient() {
         initComponents();
@@ -101,7 +102,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         setResizable(false);
     }
     
-        public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to, String initialIC){
+        public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to, String initialIC, String initialID){
         initComponents();
         this.user = user;
         this.ID = ID;
@@ -116,6 +117,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         this.from = from;
         this.to = to;
         this.initialIC = initialIC;
+        this.initialID = initialID;
         
         txtID.setText(ID);
         txtIC.setText(IC);
@@ -427,7 +429,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         } 
         else if(option == 3){
             try {
-                MonthlyPatientReport report = new MonthlyPatientReport(user,from,to,initialIC);
+                MonthlyPatientReport report = new MonthlyPatientReport(user,from,to,initialIC, initialID);
                 report.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
@@ -436,7 +438,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         }
         else if(option == 4){
             try {
-                ViewPatientDetail patient = new ViewPatientDetail(user,from,to,initialIC);
+                ViewPatientDetail patient = new ViewPatientDetail(user,from,to,initialIC, initialID);
                 patient.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

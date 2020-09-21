@@ -281,20 +281,36 @@ public class Patient {
         return patientList;
     }
     
-    public List<Patient> getPatients(String from, String to, String IC) throws SQLException{
+    public List<Patient> getPatients(String from, String to, String IC, String ID) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
-        if(from.equalsIgnoreCase("")|| to.equalsIgnoreCase(""))
+        if(from.equalsIgnoreCase("") || to.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"') and ID=trim('"+ID+"')";
+        }
+        else if(IC.equalsIgnoreCase("") && ID.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+        }
+        else if(IC.equalsIgnoreCase("") && (from.equalsIgnoreCase("") || to.equalsIgnoreCase("")))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID=trim('"+ID+"')";
+        }
+        else if(ID.equalsIgnoreCase("") && (from.equalsIgnoreCase("") || to.equalsIgnoreCase("")))
         {
             query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"')";
         }
         else if(IC.equalsIgnoreCase(""))
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID='"+ID+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+        }
+        else if(ID.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC='"+IC+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
         }
         else
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC='"+IC+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID='"+ID+"' and IC='"+IC+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
         }
         System.out.println(query);
         rs = st.executeQuery(query);

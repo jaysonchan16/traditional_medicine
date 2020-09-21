@@ -26,14 +26,17 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     private String from="";
     private String to="";
     private String IC="";
+    private String ID = "";
     private String initialIC = "";
+    private String initialID = "";
     
-    public MonthlyPatientReport(User user, String from, String to, String initialIC) throws SQLException{
+    public MonthlyPatientReport(User user, String from, String to, String initialIC, String initialID) throws SQLException{
         initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
         this.initialIC = initialIC;
+        this.initialID = initialID;
         show_disease();
         JTableHeader tableHeader = tblMonthlyPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -189,7 +192,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     public void show_disease() throws SQLException{
          Disease disease = new Disease();
          List<Disease> diseaseList = new ArrayList<Disease>();
-         diseaseList = disease.getDiseasePatients(from, to, IC);
+         diseaseList = disease.getDiseasePatients(from, to, IC, ID);
          DefaultTableModel model = (DefaultTableModel)tblMonthlyPatient.getModel();
          Object row[] = new Object[10];
          for(int i =0; i<diseaseList.size(); i++)
