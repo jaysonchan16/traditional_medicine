@@ -456,7 +456,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
         }
-        else if(option == 10)//back to viewdiseasedetail
+        else if(option == 5)//back to viewdiseasedetail
         {
             try {
                 ViewDiseaseDetail detail = new ViewDiseaseDetail(user,from,to,initialIC, initialID);

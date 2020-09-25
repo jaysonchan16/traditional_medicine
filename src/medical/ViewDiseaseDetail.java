@@ -51,7 +51,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
 
@@ -63,10 +63,15 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(750, 540, 100, 40);
 
-        jButton2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jButton2.setText("退出");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(870, 540, 100, 40);
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack);
+        btnBack.setBounds(870, 540, 100, 40);
 
         tblDisease.setFont(new java.awt.Font("STXihei", 0, 18)); // NOI18N
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,7 +133,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         System.out.println(index);
         System.out.println(model.getValueAt(index, index));
         
-        int option =10;
+        int option =5;
         
         if (column >= 0 && column <= 6)
         {
@@ -148,22 +153,19 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         }
         else
         {
-            /*ModifyChuFang chufang = new ModifyChuFang(user,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice);
-            chufang.setVisible(true);
-            this.dispose();*/
+            try {
+                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,from,to,initialIC,initialID,option);
+                chufang.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-            
-            
-           
-             
-        
-        
-        //option = 4 
-//        initialPatient is from monthYearIC
-        System.out.println(from);
-        
-        
     }//GEN-LAST:event_tblDiseaseMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void createColumns()
     {
@@ -277,8 +279,8 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDisease;
     // End of variables declaration//GEN-END:variables

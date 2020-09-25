@@ -29,6 +29,22 @@ public class ModifyChuFang extends javax.swing.JFrame {
     DefaultTableModel model;
     public String price;
     public int updatedelete = 0;
+    private String ID;
+    private String IC;
+    private String Name;
+    private String Phone;
+    private String PrescriptionID;
+    private String Chufang;
+    private String CategoryTable;
+    private String NameTable;
+    private String Jiliang;
+    private String Price;
+    private String TotalPrice;
+    private String from;
+    private String to;
+    private String initialIC;
+    private String initialID;
+    private int option = 0;
     
     public ModifyChuFang() {
         initComponents();
@@ -58,6 +74,39 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrescriptionID.setVisible(false);
         JTableHeader tableHeader = tblChufang.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+    }
+    
+    public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
+            String CategoryTable, String NameTable, String Jiliang, String Price, String TotalPrice, String from, String to,
+            String initialIC, String initialID, int option) throws SQLException
+    {
+        this.user = user;
+        this.ID = ID;
+        this.IC = IC;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.PrescriptionID = PrescriptionID;
+        this.Chufang = Chufang;
+        this.CategoryTable = CategoryTable;
+        this.NameTable = NameTable;
+        this.Jiliang = Jiliang;
+        this.Price = Price;
+        this.TotalPrice = TotalPrice;
+        this.from = from;
+        this.to = to;
+        this.initialIC = initialIC;
+        this.initialID = initialID;
+        this.option = option;
+        createColumns();
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        medicineCategory();
+        txtPrice.setText("");
+        show_table();
+        widthTable();
+        txtPrescriptionID.setVisible(false);
+        JTableHeader tableHeader = tblChufang.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        btnReset.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -345,9 +394,22 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        DiseaseMenu disease = new DiseaseMenu(user);
-        disease.setVisible(true);
-        this.dispose();
+        if(option == 5)
+        {
+            try {
+                ViewDiseaseDetail disease = new ViewDiseaseDetail(user,from,to,initialIC,initialID);
+                disease.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else
+        {
+            DiseaseMenu disease = new DiseaseMenu(user);
+            disease.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnFindIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindIDActionPerformed
@@ -506,38 +568,74 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     public void show_table()
     {
+        Prescription prescription = new Prescription();
+        List<Prescription> prescriptionList = new ArrayList<Prescription>();
         try {
-            Prescription prescription = new Prescription();
-            List<Prescription> prescriptionList = new ArrayList<Prescription>();
-            prescriptionList = prescription.getPrescriptions();
-            model = (DefaultTableModel)tblChufang.getModel();
-            Object row[] = new Object[23];
-            for(int i =0; i<prescriptionList.size(); i++)
+            if(option == 10)
             {
-                row[0] = prescriptionList.get(i).getPatientID();
-                row[1] = prescriptionList.get(i).getIC();
-                row[2] = prescriptionList.get(i).getName();
-                row[3] = prescriptionList.get(i).getPhone();
-                row[4] = prescriptionList.get(i).getChufang();
-                row[5] = prescriptionList.get(i).getCategorytable();
-                row[6] = prescriptionList.get(i).getNametable();
-                row[7] = prescriptionList.get(i).getJiliang();
-                row[8] = prescriptionList.get(i).getPrice();
-                row[9] = prescriptionList.get(i).getTotalprice();
-                row[10] = prescriptionList.get(i).getCreateDateTime();
-                row[11] = prescriptionList.get(i).getLastUpdateDateTime();
-                row[12] = prescriptionList.get(i).getSymptom();
-                row[13] = prescriptionList.get(i).getCategory();
-                row[14] = prescriptionList.get(i).getPulseCondition();
-                row[15] = prescriptionList.get(i).getTongueQuality();
-                row[16] = prescriptionList.get(i).getTongueCoating();
-                row[17] = prescriptionList.get(i).getPeeShit();
-                row[18] = prescriptionList.get(i).getHistory();
-                row[19] = prescriptionList.get(i).getTemperature();
-                row[20] = prescriptionList.get(i).getBloodPressure();
-                row[21] = prescriptionList.get(i).getDiseaseID();
-                row[22] = prescriptionList.get(i).getPrescriptionID();
-                model.addRow(row);
+                prescriptionList = prescription.getPrescriptionsID(PrescriptionID);
+                model = (DefaultTableModel)tblChufang.getModel();
+                Object row[] = new Object[23];
+                for(int i =0; i<prescriptionList.size(); i++)
+                {
+                    row[0] = prescriptionList.get(i).getPatientID();
+                    row[1] = prescriptionList.get(i).getIC();
+                    row[2] = prescriptionList.get(i).getName();
+                    row[3] = prescriptionList.get(i).getPhone();
+                    row[4] = prescriptionList.get(i).getChufang();
+                    row[5] = prescriptionList.get(i).getCategorytable();
+                    row[6] = prescriptionList.get(i).getNametable();
+                    row[7] = prescriptionList.get(i).getJiliang();
+                    row[8] = prescriptionList.get(i).getPrice();
+                    row[9] = prescriptionList.get(i).getTotalprice();
+                    row[10] = prescriptionList.get(i).getCreateDateTime();
+                    row[11] = prescriptionList.get(i).getLastUpdateDateTime();
+                    row[12] = prescriptionList.get(i).getSymptom();
+                    row[13] = prescriptionList.get(i).getCategory();
+                    row[14] = prescriptionList.get(i).getPulseCondition();
+                    row[15] = prescriptionList.get(i).getTongueQuality();
+                    row[16] = prescriptionList.get(i).getTongueCoating();
+                    row[17] = prescriptionList.get(i).getPeeShit();
+                    row[18] = prescriptionList.get(i).getHistory();
+                    row[19] = prescriptionList.get(i).getTemperature();
+                    row[20] = prescriptionList.get(i).getBloodPressure();
+                    row[21] = prescriptionList.get(i).getDiseaseID();
+                    row[22] = prescriptionList.get(i).getPrescriptionID();
+                    model.addRow(row);
+                }
+            }
+            else
+            {
+                prescriptionList = prescription.getPrescriptions();
+                model = (DefaultTableModel)tblChufang.getModel();
+                Object row[] = new Object[23];
+                for(int i =0; i<prescriptionList.size(); i++)
+                {
+                    row[0] = prescriptionList.get(i).getPatientID();
+                    row[1] = prescriptionList.get(i).getIC();
+                    row[2] = prescriptionList.get(i).getName();
+                    row[3] = prescriptionList.get(i).getPhone();
+                    row[4] = prescriptionList.get(i).getChufang();
+                    row[5] = prescriptionList.get(i).getCategorytable();
+                    row[6] = prescriptionList.get(i).getNametable();
+                    row[7] = prescriptionList.get(i).getJiliang();
+                    row[8] = prescriptionList.get(i).getPrice();
+                    row[9] = prescriptionList.get(i).getTotalprice();
+                    row[10] = prescriptionList.get(i).getCreateDateTime();
+                    row[11] = prescriptionList.get(i).getLastUpdateDateTime();
+                    row[12] = prescriptionList.get(i).getSymptom();
+                    row[13] = prescriptionList.get(i).getCategory();
+                    row[14] = prescriptionList.get(i).getPulseCondition();
+                    row[15] = prescriptionList.get(i).getTongueQuality();
+                    row[16] = prescriptionList.get(i).getTongueCoating();
+                    row[17] = prescriptionList.get(i).getPeeShit();
+                    row[18] = prescriptionList.get(i).getHistory();
+                    row[19] = prescriptionList.get(i).getTemperature();
+                    row[20] = prescriptionList.get(i).getBloodPressure();
+                    row[21] = prescriptionList.get(i).getDiseaseID();
+                    row[22] = prescriptionList.get(i).getPrescriptionID();
+                    model.addRow(row);
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.show_table get error on line 328,"+ex.getMessage());

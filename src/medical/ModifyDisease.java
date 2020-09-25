@@ -116,6 +116,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtBlood.setText(BloodPressure);
         disabledTextBox();
         txtDiseaseID.setVisible(false);
+        btnReset.setVisible(false);
         /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
         new JScrollPane(tblDisease, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         */
@@ -454,7 +455,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        if(option == 10)
+        if(option == 5)
         {
             try {
                 ViewDiseaseDetail detail = new ViewDiseaseDetail(user,from,to,initialIC,initialID);
@@ -628,9 +629,9 @@ public class ModifyDisease extends javax.swing.JFrame {
             {
                 row[0] = diseaseList.get(0).getPatientID();
                 //row[1] = diseaseList.get(i).getDiseaseID();
-                row[1] = diseaseList.get(i).getIC();
-                row[2] = diseaseList.get(i).getName();
-                row[3] = diseaseList.get(i).getPhone();
+                row[1] = IC;
+                row[2] = Name;
+                row[3] = Phone;
                 row[4] = diseaseList.get(i).getSymptom();
                 row[5] = diseaseList.get(i).getCategory();
                 row[6] = diseaseList.get(i).getPulseCondition();
