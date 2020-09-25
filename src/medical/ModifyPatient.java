@@ -308,6 +308,8 @@ public class ModifyPatient extends javax.swing.JFrame {
                     Patient patient = new Patient();
                     if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
                     {
+                        txtIC.setText(patient.getPatient(IC, ID).getIC());
+                        txtID.setText(patient.getPatient(IC, ID).getID());
                         txtName.setText(patient.getPatient(IC,ID).getName());
                         txtGender.setText(patient.getPatient(IC,ID).getGender());
                         txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
@@ -331,6 +333,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
          try {
+            String ID = txtID.getText();
             String IC = txtIC.getText();
             String name = txtName.getText();
             String gender = txtGender.getText();
@@ -338,8 +341,8 @@ public class ModifyPatient extends javax.swing.JFrame {
             String phone = txtPhone.getText();
             String address = txtAddress.getText();
             
-            Patient patient = new Patient(IC);
-            String result = patient.EditPatient(IC, name, gender, age, phone, address);
+            Patient patient = new Patient(IC,name,gender,age,phone,address,ID);
+            String result = patient.EditPatient();
             if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "更改成功");
             } else {
@@ -429,7 +432,11 @@ public class ModifyPatient extends javax.swing.JFrame {
         } 
         else if(option == 3){
             try {
-                MonthlyPatientReport report = new MonthlyPatientReport(user,from,to,initialIC, initialID);
+                System.out.println("initialIC:"+initialIC);
+                System.out.println("initialID:"+initialID);
+                System.out.println("IC:"+IC);
+                System.out.println("ID:"+ID);
+                MonthlyPatientDiseaseReport report = new MonthlyPatientDiseaseReport(user,from,to,IC, ID);
                 report.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
@@ -438,13 +445,27 @@ public class ModifyPatient extends javax.swing.JFrame {
         }
         else if(option == 4){
             try {
+                System.out.println("initialIC:"+initialIC);
+                System.out.println("initialID:"+initialID);
+                System.out.println("IC:"+IC);
+                System.out.println("ID:"+ID);
                 ViewPatientDetail patient = new ViewPatientDetail(user,from,to,initialIC, initialID);
                 patient.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage());
             }
-        } 
+        }
+        else if(option == 10)//back to viewdiseasedetail
+        {
+            try {
+                ViewDiseaseDetail detail = new ViewDiseaseDetail(user,from,to,initialIC, initialID);
+                detail.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     

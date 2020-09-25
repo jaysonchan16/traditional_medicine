@@ -17,7 +17,7 @@ import javax.swing.table.TableModel;
  *
  * @author Sheng
  */
-public class MonthlyPatientReport extends javax.swing.JFrame {
+public class MonthlyPatientDiseaseReport extends javax.swing.JFrame {
 
     /**
      * Creates new form MonthlyPatientReport
@@ -30,7 +30,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
     private String initialIC = "";
     private String initialID = "";
     
-    public MonthlyPatientReport(User user, String from, String to, String initialIC, String initialID) throws SQLException{
+    public MonthlyPatientDiseaseReport(User user, String from, String to, String initialIC, String initialID) throws SQLException{
         initComponents();
         this.user = user;
         this.from = from;
@@ -43,7 +43,7 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public MonthlyPatientReport() throws SQLException {
+    public MonthlyPatientDiseaseReport() throws SQLException {
         initComponents();
         show_disease();
         JTableHeader tableHeader = tblMonthlyPatient.getTableHeader();
@@ -167,21 +167,22 @@ public class MonthlyPatientReport extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MonthlyPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyPatientDiseaseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MonthlyPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyPatientDiseaseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MonthlyPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyPatientDiseaseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MonthlyPatientReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyPatientDiseaseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MonthlyPatientReport().setVisible(true);
+                    new MonthlyPatientDiseaseReport().setVisible(true);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

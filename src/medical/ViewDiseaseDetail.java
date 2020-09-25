@@ -5,6 +5,12 @@
  */
 package medical;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Sheng
@@ -17,21 +23,23 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private User user;
     private String from;
     private String to;
-    private String IC;
-    private String ID;
-    
+    private String initialIC;
+    private String initialID;
+    DefaultTableModel model ;
     public ViewDiseaseDetail() {
         initComponents();
     }
 
-    public ViewDiseaseDetail(User user, String from, String to, String IC, String ID)
+    public ViewDiseaseDetail(User user, String from, String to, String initialIC, String initialID) throws SQLException
     {
         initComponents();
         this.user = user;
         this.from = from;
         this.to = to;
-        this.IC = IC;
-        this.ID = ID;
+        this.initialIC = initialIC;
+        this.initialID = initialID;
+        createColumns();
+        show_patient();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,22 +50,197 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDisease = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1069, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
-        );
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton1.setText("打印");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(750, 540, 100, 40);
 
-        pack();
+        jButton2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton2.setText("退出");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(870, 540, 100, 40);
+
+        tblDisease.setFont(new java.awt.Font("STXihei", 0, 18)); // NOI18N
+        tblDisease.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDisease.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDiseaseMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDisease);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(39, 95, 925, 420);
+
+        setBounds(0, 0, 1087, 651);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
+        // TODO add your handling code here:
+        model = (DefaultTableModel) tblDisease.getModel();
+        int index = tblDisease.getSelectedRow();
+        TableModel model = tblDisease.getModel();
+        int column = tblDisease.getSelectedColumn();
+        String ID = model.getValueAt(index, 0).toString();
+        String IC = model.getValueAt(index,1).toString();
+        String Name = model.getValueAt(index,2).toString();
+        String Gender = model.getValueAt(index,3).toString();
+        String Age = model.getValueAt(index,4).toString();
+        String Phone = model.getValueAt(index,5).toString();
+        String Address = model.getValueAt(index,6).toString();
+        String Symptom = model.getValueAt(index,7).toString();
+        String Category = model.getValueAt(index,8).toString();
+        String PulseCondition = model.getValueAt(index,9).toString();
+        String TongueQuality = model.getValueAt(index,10).toString();
+        String TongueCoating = model.getValueAt(index,11).toString();
+        String PeeShit = model.getValueAt(index,12).toString();
+        String History = model.getValueAt(index,13).toString();
+        String Temperature = model.getValueAt(index,14).toString();
+        String BloodPressure = model.getValueAt(index,15).toString();
+        String Chufang = model.getValueAt(index,16).toString();
+        String CategoryTable = model.getValueAt(index,17).toString();
+        String NameTable = model.getValueAt(index,18).toString();
+        String Jiliang = model.getValueAt(index,19).toString();
+        String Price = model.getValueAt(index,20).toString();
+        String TotalPrice = model.getValueAt(index,21).toString();
+        String CreateDateTime = model.getValueAt(index,22).toString();
+        String LastUpdateDateTime = model.getValueAt(index,23).toString();
+        String DiseaseID = model.getValueAt(index,24).toString();
+        String PrescriptionID = model.getValueAt(index,25).toString();
+        
+        System.out.println(model.getValueAt(index, 0).toString());
+        System.out.println(column);
+        System.out.println(index);
+        System.out.println(model.getValueAt(index, index));
+        
+        int option =10;
+        
+        if (column >= 0 && column <= 6)
+        {
+            ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,CreateDateTime,LastUpdateDateTime, option, from, to, initialIC, initialID);
+            patient.setVisible(true);
+            this.dispose();
+        }
+        else if(column >= 7 && column <= 15)
+        {
+            try {
+                ModifyDisease disease = new ModifyDisease(user,ID,IC,Name,Phone,DiseaseID,Symptom,Category,PulseCondition,TongueQuality,TongueCoating,PeeShit,History,Temperature,BloodPressure, from, to, initialIC, initialID, option);
+                disease.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else
+        {
+            /*ModifyChuFang chufang = new ModifyChuFang(user,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice);
+            chufang.setVisible(true);
+            this.dispose();*/
+        }
+            
+            
+           
+             
+        
+        
+        //option = 4 
+//        initialPatient is from monthYearIC
+        System.out.println(from);
+        
+        
+    }//GEN-LAST:event_tblDiseaseMouseClicked
+
+    private void createColumns()
+    {
+        model = (DefaultTableModel) tblDisease.getModel();
+        model.addColumn("ID");
+        model.addColumn("IC");
+        model.addColumn("病人名字");
+        model.addColumn("性别");
+        model.addColumn("年龄");
+        model.addColumn("电话号码");
+        model.addColumn("地址");
+        model.addColumn("主症");
+        model.addColumn("病症分类");
+        model.addColumn("脉象");
+        model.addColumn("舌质");
+        model.addColumn("舌苔");
+        model.addColumn("大小便");  
+        model.addColumn("病史"); 
+        model.addColumn("体温"); 
+        model.addColumn("血压"); 
+        model.addColumn("处方");
+        model.addColumn("药物种类");
+        model.addColumn("药物名称");
+        model.addColumn("剂量");
+        model.addColumn("价格/G");
+        model.addColumn("总价值");
+        model.addColumn("创建时间");
+        model.addColumn("更新时间");
+        model.addColumn("病症ID");
+        model.addColumn("处方ID");
+    }
+    
+    public void show_patient() throws SQLException{
+         Prescription prescription = new Prescription();
+         List<Prescription> prescriptionList = new ArrayList<Prescription>();
+         /*if(option == 3)
+         {
+             patientList = patient.getPatients();
+         }
+         else
+         {*/
+             prescriptionList = prescription.getPrescriptions(from, to, initialIC, initialID);
+         //}
+         
+         model = (DefaultTableModel)tblDisease.getModel();
+         Object row[] = new Object[26];
+         for(int i =0; i<prescriptionList.size(); i++)
+         {
+             row[0] = prescriptionList.get(i).getPatientID();
+             row[1] = prescriptionList.get(i).getIC();
+             row[2] = prescriptionList.get(i).getName();
+             row[3] = prescriptionList.get(i).getGender();
+             row[4] = prescriptionList.get(i).getAge();
+             row[5] = prescriptionList.get(i).getPhone();
+             row[6] = prescriptionList.get(i).getAddress();
+             row[7] = prescriptionList.get(i).getSymptom();
+             row[8] = prescriptionList.get(i).getCategory();
+             row[9] = prescriptionList.get(i).getPulseCondition();
+             row[10] = prescriptionList.get(i).getTongueQuality();
+             row[11] = prescriptionList.get(i).getTongueCoating();
+             row[12] = prescriptionList.get(i).getPeeShit();
+             row[13] = prescriptionList.get(i).getHistory();
+             row[14] = prescriptionList.get(i).getTemperature();
+             row[15] = prescriptionList.get(i).getBloodPressure();
+             row[16] = prescriptionList.get(i).getChufang();
+             row[17] = prescriptionList.get(i).getCategorytable();
+             row[18] = prescriptionList.get(i).getNametable();
+             row[19] = prescriptionList.get(i).getJiliang();
+             row[20] = prescriptionList.get(i).getPrice();
+             row[21] = prescriptionList.get(i).getTotalprice();
+             row[22] = prescriptionList.get(i).getCreateDateTime();
+             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[24] = prescriptionList.get(i).getDiseaseID();
+             row[25] = prescriptionList.get(i).getPrescriptionID();
+             model.addRow(row);
+         }
+    }
     /**
      * @param args the command line arguments
      */
@@ -94,5 +277,9 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblDisease;
     // End of variables declaration//GEN-END:variables
 }

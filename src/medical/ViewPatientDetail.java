@@ -220,7 +220,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
 
     private void tblPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientMouseClicked
         // TODO add your handling code here:
-         int index = tblPatient.getSelectedRow();
+        int index = tblPatient.getSelectedRow();
         TableModel model = tblPatient.getModel();
         String ID = model.getValueAt(index, 0).toString();
         String IC = model.getValueAt(index,1).toString();

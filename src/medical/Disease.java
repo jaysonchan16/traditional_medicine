@@ -95,7 +95,20 @@ public class Disease extends Patient{
         this.createDateTime = createDateTime;
     }
     
-    
+    public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
+            String tongueCoating, String peeshit, String category, String history,
+            String IC, String name, String phoneNo, String gender, String address, int age){
+        super(IC,name,gender,age,phoneNo,address);
+        this.symptom = symptom;
+        this.temperature = temperature;
+        this.bloodPressure = bloodPressure;
+        this.pulseCondition = pulseCondition;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.peeshit = peeshit;
+        this.category = category;
+        this.history = history;
+    }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
             String tongueCoating, String peeshit, String category, String history, String patientID, String DiseaseID, String lastUpdateDateTime, String createDateTime,
@@ -114,7 +127,8 @@ public class Disease extends Patient{
         this.patientID =patientID;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
-    }
+    
+}
     /**
      * @return the symptom
      */
@@ -398,35 +412,8 @@ public class Disease extends Patient{
     public List<Disease> getDiseasePatients(String from, String to, String IC, String ID) throws SQLException{
         List<Disease> patientDisease = new ArrayList<>();
         String query = "";
-        
-        if(from.equalsIgnoreCase("") || to.equalsIgnoreCase(""))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
-        }
-        else if(IC.equalsIgnoreCase("") && ID.equalsIgnoreCase(""))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where d.createDateTime>=trim('"+from+"') and d.createDateTime<=trim('"+to+"')";
-        }
-        else if(ID.equalsIgnoreCase("") && (from.equalsIgnoreCase("") || to.equalsIgnoreCase("")))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"')";
-        }
-        else if(IC.equalsIgnoreCase("") && (from.equalsIgnoreCase("") || to.equalsIgnoreCase("")))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.ID=trim('"+ID+"')";
-        }
-        else if(IC.equalsIgnoreCase(""))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.ID=trim('"+ID+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
-        }
-        else if(ID.equalsIgnoreCase(""))
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
-        }
-        else
-        {
-            query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') and p.ID=trim('"+ID+"') and d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"'";
-        }
+        query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime from Disease d left join Patient p on d.PatientID = p.ID where p.IC=trim('"+IC+"') or p.ID=trim('"+ID+"') or (d.createDateTime>='"+from+"' and d.createDateTime<='"+to+"')";
+
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -444,9 +431,26 @@ public class Disease extends Patient{
         return patientDisease;
     }
 
+    public List<Disease> getDiseaseIDPatients(String diseaseID) throws SQLException{
+        List<Disease> patientDisease = new ArrayList<>();
+        String query = "";
+        query = "Select Symptom,Temperature,BloodPressure,PulseCondition,TongueQuality,TongueCoating,PeeShit,Category, History,d.ID as DiseaseID, d.PatientID as PatientID, d.lastUpdateDateTime as lastUpdateDateTime,d.createDateTime as createDateTime,p.IC, p.name, p.phone "
+                + "from Disease d inner join Patient p on d.PatientID = p.ID where d.ID = '"+diseaseID+"'";
 
-
-
-
-
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 patientDisease.add(new Disease(rs.getString("Symptom"),rs.getInt("Temperature"),
+                         rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"),rs.getString("Category"), rs.getString("History"),
+                         rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return patientDisease;
+    }
 }

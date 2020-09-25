@@ -51,6 +51,16 @@ public class Patient {
         this.address = _address;
     }
     
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address, String _ID){
+        this.name = _name;
+        this.gender = _gender;
+        this.age = _age;
+        this.IC = _IC;
+        this.phone = _phone;
+        this.address = _address;
+        this.ID = _ID;
+    }
+    
     public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime){
         this.name = _name;
         this.gender = _gender;
@@ -221,9 +231,9 @@ public class Patient {
         
     }
     
-    public String EditPatient(String IC, String name, String gender, int age, String phone, String address) throws SQLException{
-        String query = "Update Patient Set name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
-                 + "where IC = '"+IC+"'";
+    public String EditPatient() throws SQLException{
+        String query = "Update Patient Set IC = trim('"+IC+"'), name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
+                 + "where ID = '"+ID+"'";
          
         SQLQuery sql = new SQLQuery();
         
@@ -231,7 +241,7 @@ public class Patient {
     }
     
     public String DeletePatient() throws SQLException{
-        String query = "Delete From Patient where IC = '"+IC+"'";
+        String query = "Delete From Patient where ID = '"+ID+"'";
           
         SQLQuery sql = new SQLQuery();
         
@@ -284,7 +294,8 @@ public class Patient {
     public List<Patient> getPatients(String from, String to, String IC, String ID) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
-        if(from.equalsIgnoreCase("") || to.equalsIgnoreCase(""))
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"') or ID=trim('"+ID+"') or (createDateTime>='"+from+"' and createDateTime<='"+to+"')";
+        /*if(from.equalsIgnoreCase("") || to.equalsIgnoreCase(""))
         {
             query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"') and ID=trim('"+ID+"')";
         }
@@ -311,7 +322,7 @@ public class Patient {
         else
         {
             query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID='"+ID+"' and IC='"+IC+"' and createDateTime>='"+from+"' and createDateTime<='"+to+"'";
-        }
+        }*/
         System.out.println(query);
         rs = st.executeQuery(query);
         try {

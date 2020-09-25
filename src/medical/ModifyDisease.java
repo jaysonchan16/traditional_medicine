@@ -30,6 +30,25 @@ public class ModifyDisease extends javax.swing.JFrame {
     private User user;
     List<Disease> disease;
     DefaultTableModel model;
+    private String ID;
+    private String IC;
+    private String Name;
+    private String Phone;
+    private String DiseaseID;
+    private String Symptom;
+    private String Category;
+    private String PulseCondition;
+    private String TongueQuality;
+    private String TongueCoating;
+    private String PeeShit;
+    private String History;
+    private String Temperature;
+    private String BloodPressure;
+    private String from;
+    private String to;
+    private String initialIC;
+    private String initialID;
+    private int option = 0;        
     public ModifyDisease() {
         initComponents();
     }
@@ -43,6 +62,58 @@ public class ModifyDisease extends javax.swing.JFrame {
         widthTable();
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
+        disabledTextBox();
+        txtDiseaseID.setVisible(false);
+        /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
+        new JScrollPane(tblDisease, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        */
+    }
+    
+    public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
+        initComponents();
+        this.user = user;
+        this.ID = ID;
+        this.IC = IC;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.DiseaseID = DiseaseID;
+        this.Symptom = Symptom;
+        this.Category = Category;
+        this.PulseCondition = PulseCondition;
+        this.TongueQuality = TongueQuality;
+        this.TongueCoating = TongueCoating;
+        this.PeeShit = PeeShit;
+        this.History = History;
+        this.Temperature = Temperature;
+        this.BloodPressure = BloodPressure;
+        this.from = from;
+        this.to = to;
+        this.initialIC = initialIC;
+        this.initialID = initialID;
+        this.option = option;
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        show_Disease();
+        widthTable();
+        txtName.setEnabled(false);
+        txtPhone.setEnabled(false);
+        txtIC.setEnabled(false);
+        txtID.setEnabled(false);
+        btnFindIC.setEnabled(false);
+        btnFindID.setEnabled(false);
+        txtIC.setText(IC);
+        txtID.setText(ID);
+        txtName.setText(Name);
+        txtPhone.setText(Phone);
+        txtSymptom.setText(Symptom);
+        txtCategory.setText(Category);
+        txtPulse.setText(PulseCondition);
+        txtTongueQuality.setText(TongueQuality);
+        txtTongueCoating.setText(TongueCoating);
+        txtShit.setText(PeeShit);
+        txtHistory.setText(History);
+        txtTemperature.setText(Temperature);
+        txtBlood.setText(BloodPressure);
         disabledTextBox();
         txtDiseaseID.setVisible(false);
         /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
@@ -383,9 +454,22 @@ public class ModifyDisease extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        DiseaseMenu menu = new DiseaseMenu(user);
-        menu.setVisible(true);
-        this.dispose();
+        if(option == 10)
+        {
+            try {
+                ViewDiseaseDetail detail = new ViewDiseaseDetail(user,from,to,initialIC,initialID);
+                detail.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else
+        {
+            DiseaseMenu menu = new DiseaseMenu(user);
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -509,29 +593,58 @@ public class ModifyDisease extends javax.swing.JFrame {
     {
         Disease disease = new Disease();
         List<Disease> diseaseList = new ArrayList<Disease>();
-        diseaseList = disease.getDiseases();
-        model = (DefaultTableModel)tblDisease.getModel();
         Object row[] = new Object[16];
-        for(int i =0; i<diseaseList.size(); i++)
+        model = (DefaultTableModel)tblDisease.getModel();
+        
+        if(option == 0)
         {
-            row[0] = diseaseList.get(i).getPatientID();
-            //row[1] = diseaseList.get(i).getDiseaseID();
-            row[1] = diseaseList.get(i).getIC();
-            row[2] = diseaseList.get(i).getName();
-            row[3] = diseaseList.get(i).getPhone();
-            row[4] = diseaseList.get(i).getSymptom();
-            row[5] = diseaseList.get(i).getCategory();
-            row[6] = diseaseList.get(i).getPulseCondition();
-            row[7] = diseaseList.get(i).getTongueQuality();
-            row[8] = diseaseList.get(i).getTongueCoating();
-            row[9] = diseaseList.get(i).getPeeShit();
-            row[10] = diseaseList.get(i).getHistory();
-            row[11] = diseaseList.get(i).getTemperature();
-            row[12] = diseaseList.get(i).getBloodPressure();
-            row[13] = diseaseList.get(i).getCreateDateTime();
-            row[14] = diseaseList.get(i).getLastUpdateDateTime();
-            row[15] = diseaseList.get(i).getDiseaseID();
-            model.addRow(row);
+            diseaseList = disease.getDiseases();
+            for(int i =0; i<diseaseList.size(); i++)
+            {
+                row[0] = diseaseList.get(i).getPatientID();
+                //row[1] = diseaseList.get(i).getDiseaseID();
+                row[1] = diseaseList.get(i).getIC();
+                row[2] = diseaseList.get(i).getName();
+                row[3] = diseaseList.get(i).getPhone();
+                row[4] = diseaseList.get(i).getSymptom();
+                row[5] = diseaseList.get(i).getCategory();
+                row[6] = diseaseList.get(i).getPulseCondition();
+                row[7] = diseaseList.get(i).getTongueQuality();
+                row[8] = diseaseList.get(i).getTongueCoating();
+                row[9] = diseaseList.get(i).getPeeShit();
+                row[10] = diseaseList.get(i).getHistory();
+                row[11] = diseaseList.get(i).getTemperature();
+                row[12] = diseaseList.get(i).getBloodPressure();
+                row[13] = diseaseList.get(i).getCreateDateTime();
+                row[14] = diseaseList.get(i).getLastUpdateDateTime();
+                row[15] = diseaseList.get(i).getDiseaseID();
+                model.addRow(row);
+            }
+        }
+        else
+        {
+            diseaseList = disease.getDiseaseIDPatients(DiseaseID);
+            for(int i =0; i<diseaseList.size(); i++)
+            {
+                row[0] = diseaseList.get(0).getPatientID();
+                //row[1] = diseaseList.get(i).getDiseaseID();
+                row[1] = diseaseList.get(i).getIC();
+                row[2] = diseaseList.get(i).getName();
+                row[3] = diseaseList.get(i).getPhone();
+                row[4] = diseaseList.get(i).getSymptom();
+                row[5] = diseaseList.get(i).getCategory();
+                row[6] = diseaseList.get(i).getPulseCondition();
+                row[7] = diseaseList.get(i).getTongueQuality();
+                row[8] = diseaseList.get(i).getTongueCoating();
+                row[9] = diseaseList.get(i).getPeeShit();
+                row[10] = diseaseList.get(i).getHistory();
+                row[11] = diseaseList.get(i).getTemperature();
+                row[12] = diseaseList.get(i).getBloodPressure();
+                row[13] = diseaseList.get(i).getCreateDateTime();
+                row[14] = diseaseList.get(i).getLastUpdateDateTime();
+                row[15] = diseaseList.get(i).getDiseaseID();
+                model.addRow(row);
+            }
         }
     }
     

@@ -187,7 +187,7 @@ public class MonthYearIC extends javax.swing.JFrame {
     }
 
     public void monthlypatientreport(String from, String to, String IC, String ID)throws SQLException { // option =3
-       MonthlyPatientReport monthly = new MonthlyPatientReport(user, from, to, IC, ID);
+       MonthlyPatientDiseaseReport monthly = new MonthlyPatientDiseaseReport(user, from, to, IC, ID);
        monthly.setVisible(true);
        this.dispose();
     }
