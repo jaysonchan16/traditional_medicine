@@ -5,10 +5,20 @@
  */
 package medical;
 
+import java.awt.Font;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.standard.MediaPrintableArea;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -40,6 +50,10 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         this.initialID = initialID;
         createColumns();
         show_patient();
+        widthTable();
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        setResizable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +64,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
@@ -58,10 +72,15 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jButton1.setText("打印");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(750, 540, 100, 40);
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPrint);
+        btnPrint.setBounds(750, 540, 100, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -165,8 +184,61 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        MonthYearIC ic = new MonthYearIC(user,5);
+        ic.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        /*try {
+            // TODO add your handling code here:
+            HashPrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
+            attr.add(new MediaPrintableArea(500f, 1000f, 750/72f, 1000/72f, MediaPrintableArea.INCH));       
+
+            PrinterJob job = PrinterJob.getPrinterJob();
+            
+            MessageFormat[] header = new MessageFormat[3];
+
+            header[0] = new MessageFormat("");
+            header[1] = new MessageFormat("zhe sheng tang" );
+            header[2] = new MessageFormat("                  n" );
+
+            MessageFormat[] footer = new MessageFormat[2];
+            footer[0] = new MessageFormat("");
+            footer[1] = new MessageFormat("-{1}-");
+            //job.print(attr);
+            job.setPrintable(new MyTablePrintable(tblDisease, JTable.PrintMode.FIT_WIDTH, header, footer));
+            job.printDialog();
+            job.print();
+        } catch (PrinterException ex) {
+            ex.printStackTrace();
+        }*/
+        
+        try {
+            // TODO add your handling code here:
+            model = (DefaultTableModel) tblDisease.getModel();
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("Product: \n");
+            builder.append("Job: \n");
+            builder.append("Task: ");
+
+            MessageFormat header = new MessageFormat(builder.toString());
+            
+            JTable table = new JTable(model) {
+                @Override
+                public Printable getPrintable(JTable.PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat) {
+                    return new TablePrintable(tblDisease, printMode, headerFormat, footerFormat);
+                }
+            };
+            
+            table.print(JTable.PrintMode.FIT_WIDTH, header, null);
+        } catch (PrinterException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    
     private void createColumns()
     {
         model = (DefaultTableModel) tblDisease.getModel();
@@ -243,6 +315,25 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
              model.addRow(row);
          }
     }
+    
+    public void widthTable()
+    {
+        tblDisease.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        TableColumnModel columnModel = tblDisease.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(150);
+        columnModel.getColumn(3).setPreferredWidth(70);
+        columnModel.getColumn(4).setPreferredWidth(50);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(7).setPreferredWidth(80);
+        columnModel.getColumn(8).setPreferredWidth(50);
+        columnModel.getColumn(9).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(100);
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -280,7 +371,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDisease;
     // End of variables declaration//GEN-END:variables

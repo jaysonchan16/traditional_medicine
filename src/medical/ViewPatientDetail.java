@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -38,6 +39,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         show_patient();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        widthTable();
     }
     
     public ViewPatientDetail(User user, int option) throws SQLException {
@@ -45,9 +47,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.user = user;
         this.option = option;
         show_patient();
+        widthTable();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
+        
     }
     
     public ViewPatientDetail(User user,String from,String to, String initialIC, String initialID) throws SQLException {
@@ -58,9 +62,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.initialIC = initialIC;
         this.initialID = initialID;
         show_patient();
+        widthTable();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
+         
     }
     
 
@@ -308,6 +314,23 @@ public class ViewPatientDetail extends javax.swing.JFrame {
              row[8] = patientList.get(i).getCreateDateTime();
              model.addRow(row);
          }
+    }
+    
+    public void widthTable()
+    {
+        tblPatient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        TableColumnModel columnModel = tblPatient.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(50);
+        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(70);
+        columnModel.getColumn(7).setPreferredWidth(50);
+        columnModel.getColumn(8).setPreferredWidth(50);
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
