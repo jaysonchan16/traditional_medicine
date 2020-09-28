@@ -35,8 +35,6 @@ public class NewPatient extends javax.swing.JFrame {
         txtAge.setEnabled(false);
         txtPhone.setEnabled(false);
         txtAddress.setEnabled(false);
-        lblCreateDateTime.setEnabled(false);
-        lblLastUpdateDateTime.setEnabled(false);
         this.user = user;
     }
 
@@ -48,8 +46,6 @@ public class NewPatient extends javax.swing.JFrame {
         txtIC.setEnabled(false);
         btnFind.setVisible(false);
         txtAddress.setEnabled(true);
-        lblCreateDateTime.setEnabled(false);
-        lblLastUpdateDateTime.setEnabled(false);
         
     }
 
@@ -273,11 +269,11 @@ public class NewPatient extends javax.swing.JFrame {
                     lblCreateDateTime.setText(patient.getPatient(IC,"").getCreateDateTime());
                     lblLastUpdateDateTime.setText(patient.getPatient(IC,"").getLastUpdateDateTime());
                     txtIC.setEnabled(false);
-                    txtName.setEnabled(true);
-                    txtGender.setEnabled(true);
-                    txtAge.setEnabled(true);
-                    txtPhone.setEnabled(true);
-                    txtAddress.setEnabled(true);
+                    txtName.setEnabled(false);
+                    txtGender.setEnabled(false);
+                    txtAge.setEnabled(false);
+                    txtPhone.setEnabled(false);
+                    txtAddress.setEnabled(false);
                     btnAdd.setVisible(false);
                 } else{
                     txtIC.setEnabled(false);

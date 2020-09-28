@@ -159,6 +159,10 @@ public class ModifyPatient extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblCreateDateTime = new javax.swing.JLabel();
+        lblLastUpdateDateTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -240,7 +244,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUpdate);
-        btnUpdate.setBounds(560, 700, 110, 50);
+        btnUpdate.setBounds(590, 760, 110, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -250,7 +254,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(720, 700, 110, 50);
+        btnDelete.setBounds(720, 760, 110, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -260,7 +264,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(30, 700, 110, 50);
+        btnBack.setBounds(30, 760, 110, 50);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel7.setText("更改病人资料");
@@ -293,7 +297,25 @@ public class ModifyPatient extends javax.swing.JFrame {
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(10, 250, 860, 2);
 
-        setBounds(0, 0, 912, 815);
+        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel9.setText("创造时间:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(20, 620, 90, 40);
+
+        jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel10.setText("更新时间：");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(20, 690, 100, 40);
+
+        lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblCreateDateTime);
+        lblCreateDateTime.setBounds(120, 620, 710, 40);
+
+        lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        getContentPane().add(lblLastUpdateDateTime);
+        lblLastUpdateDateTime.setBounds(120, 690, 710, 40);
+
+        setBounds(0, 0, 912, 887);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -315,7 +337,8 @@ public class ModifyPatient extends javax.swing.JFrame {
                         txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
                         txtPhone.setText(patient.getPatient(IC,ID).getPhone());
                         txtAddress.setText(patient.getPatient(IC,ID).getAddress());
-
+                        lblCreateDateTime.setText(patient.getPatient(IC,ID).getCreateDateTime());
+                        lblLastUpdateDateTime.setText(patient.getPatient(IC,ID).getLastUpdateDateTime());
                     }
                     else
                     {
@@ -510,6 +533,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     public javax.swing.JButton btnFind;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -517,7 +541,10 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCreateDateTime;
+    private javax.swing.JLabel lblLastUpdateDateTime;
     public javax.swing.JTextField txtAddress;
     public javax.swing.JTextField txtAge;
     public javax.swing.JTextField txtGender;
