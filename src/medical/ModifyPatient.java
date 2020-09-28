@@ -150,7 +150,6 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -163,6 +162,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         lblCreateDateTime = new javax.swing.JLabel();
         lblLastUpdateDateTime = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -232,10 +233,6 @@ public class ModifyPatient extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(50, 550, 60, 30);
 
-        txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtAddress);
-        txtAddress.setBounds(120, 550, 710, 40);
-
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更改");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +241,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUpdate);
-        btnUpdate.setBounds(590, 760, 110, 50);
+        btnUpdate.setBounds(590, 820, 110, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -254,7 +251,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(720, 760, 110, 50);
+        btnDelete.setBounds(720, 820, 110, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -264,7 +261,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(30, 760, 110, 50);
+        btnBack.setBounds(30, 820, 110, 50);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel7.setText("更改病人资料");
@@ -300,22 +297,30 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("创造时间:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 620, 90, 40);
+        jLabel9.setBounds(20, 680, 90, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("更新时间：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(20, 690, 100, 40);
+        jLabel10.setBounds(20, 750, 100, 40);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(120, 620, 710, 40);
+        lblCreateDateTime.setBounds(120, 680, 710, 40);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(120, 690, 710, 40);
+        lblLastUpdateDateTime.setBounds(120, 750, 710, 40);
 
-        setBounds(0, 0, 912, 887);
+        txtAddress.setColumns(20);
+        txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtAddress.setRows(5);
+        jScrollPane1.setViewportView(txtAddress);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(120, 550, 710, 136);
+
+        setBounds(0, 0, 912, 960);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -323,8 +328,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         IC = txtIC.getText();
         ID = txtID.getText();
         
-         if (IC.equalsIgnoreCase("") || ID.equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(rootPane, "IC或ID没填！");
+         if (IC.equalsIgnoreCase("") && ID.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "IC和ID没填！");
         } else {
             try {
                     Patient patient = new Patient();
@@ -339,6 +344,8 @@ public class ModifyPatient extends javax.swing.JFrame {
                         txtAddress.setText(patient.getPatient(IC,ID).getAddress());
                         lblCreateDateTime.setText(patient.getPatient(IC,ID).getCreateDateTime());
                         lblLastUpdateDateTime.setText(patient.getPatient(IC,ID).getLastUpdateDateTime());
+                        txtID.setEnabled(false);
+                        btnFind.setEnabled(false);
                     }
                     else
                     {
@@ -381,7 +388,7 @@ public class ModifyPatient extends javax.swing.JFrame {
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
         // TODO add your handling code here:
-        ID = txtID.getText();
+        /*ID = txtID.getText();
         try {
             Patient patient = new Patient();
             if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
@@ -399,10 +406,10 @@ public class ModifyPatient extends javax.swing.JFrame {
                 /*NewPatient detail = new NewPatient(user,IC);
                 detail.setVisible(true);
                 this.dispose();*/
-            }
+          /*  }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
+        }*/
     }//GEN-LAST:event_txtIDKeyPressed
 
     private void txtICKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtICKeyPressed
@@ -542,10 +549,11 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblLastUpdateDateTime;
-    public javax.swing.JTextField txtAddress;
+    private javax.swing.JTextArea txtAddress;
     public javax.swing.JTextField txtAge;
     public javax.swing.JTextField txtGender;
     public javax.swing.JTextField txtIC;
