@@ -200,9 +200,18 @@ public class MonthYearIC extends javax.swing.JFrame {
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        PatientDetailMenu menu = new PatientDetailMenu(user);
-        menu.setVisible(true);
-        this.dispose();
+        if(option == 5)
+        {
+            DiseaseMenu menu = new DiseaseMenu(user);
+            menu.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            PatientDetailMenu menu = new PatientDetailMenu(user);
+            menu.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

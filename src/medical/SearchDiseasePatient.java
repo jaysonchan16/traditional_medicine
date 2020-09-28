@@ -5,6 +5,14 @@
  */
 package medical;
 
+import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 /**
  *
  * @author Sheng
@@ -15,15 +23,21 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
      * Creates new form SearchDieseasePatient
      */
     private User user;
+    DefaultTableModel model;
     
     public SearchDiseasePatient() {
         initComponents();
     }
     
-    public SearchDiseasePatient(User user)
+    public SearchDiseasePatient(User user) throws SQLException
     {
         initComponents();
         this.user = user;
+        createColumns();
+        show_patient();
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        setResizable(false);
     }
 
     /**
@@ -35,44 +49,737 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDisease = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtSymptom = new javax.swing.JTextField();
+        txtPulse = new javax.swing.JTextField();
+        txtTongueCoating = new javax.swing.JTextField();
+        txtHistory = new javax.swing.JTextField();
+        txtBlood = new javax.swing.JTextField();
+        txtMediName = new javax.swing.JTextField();
+        txtJiliang = new javax.swing.JTextField();
+        txtMediCategory = new javax.swing.JTextField();
+        txtTemperature = new javax.swing.JTextField();
+        txtShit = new javax.swing.JTextField();
+        txtTongueQuality = new javax.swing.JTextField();
+        txtCategory = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
+        txtIC = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnFind = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        txtGender = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDisease.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDisease);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
-        );
+        jScrollPane2.setViewportView(jScrollPane1);
 
-        pack();
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(70, 70, 1020, 420);
+
+        jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel17.setText("寻找病人病症");
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(490, 20, 170, 50);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack);
+        btnBack.setBounds(50, 980, 100, 40);
+
+        jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel15.setText("药物名称:");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(30, 920, 82, 40);
+
+        jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel13.setText("血压:");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(70, 870, 50, 40);
+
+        jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel11.setText("病史:");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(70, 820, 50, 40);
+
+        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel9.setText("舌苔:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(70, 770, 50, 40);
+
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel7.setText("脉象:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(70, 720, 50, 40);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("主症:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(70, 670, 60, 40);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("姓名:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(70, 570, 60, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("ID:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 520, 25, 40);
+
+        txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIDKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtID);
+        txtID.setBounds(120, 520, 400, 40);
+
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtName);
+        txtName.setBounds(120, 570, 400, 40);
+
+        txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtSymptom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSymptomKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtSymptom);
+        txtSymptom.setBounds(120, 670, 400, 40);
+
+        txtPulse.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtPulse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPulseKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtPulse);
+        txtPulse.setBounds(120, 720, 400, 40);
+
+        txtTongueCoating.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtTongueCoating.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTongueCoatingKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtTongueCoating);
+        txtTongueCoating.setBounds(120, 770, 400, 40);
+
+        txtHistory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtHistory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHistoryKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtHistory);
+        txtHistory.setBounds(120, 820, 400, 40);
+
+        txtBlood.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtBlood.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBloodKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtBlood);
+        txtBlood.setBounds(120, 870, 400, 40);
+
+        txtMediName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtMediName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMediNameKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtMediName);
+        txtMediName.setBounds(120, 920, 400, 40);
+
+        txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtJiliang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtJiliangKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtJiliang);
+        txtJiliang.setBounds(630, 920, 450, 40);
+
+        txtMediCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtMediCategory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMediCategoryKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtMediCategory);
+        txtMediCategory.setBounds(630, 870, 450, 40);
+
+        txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtTemperature.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTemperatureKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtTemperature);
+        txtTemperature.setBounds(630, 820, 450, 40);
+
+        txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtShit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtShitKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtShit);
+        txtShit.setBounds(630, 770, 450, 40);
+
+        txtTongueQuality.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtTongueQuality.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTongueQualityKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtTongueQuality);
+        txtTongueQuality.setBounds(630, 720, 450, 40);
+
+        txtCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtCategory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCategoryKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtCategory);
+        txtCategory.setBounds(630, 670, 450, 40);
+
+        txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAgeKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtAge);
+        txtAge.setBounds(630, 570, 450, 40);
+
+        txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtIC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtICKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtIC);
+        txtIC.setBounds(630, 520, 450, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("IC:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(590, 520, 40, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("年龄:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(570, 570, 44, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("病症分类:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(540, 670, 100, 40);
+
+        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel8.setText("舌质:");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(580, 720, 50, 40);
+
+        jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel10.setText("大小便:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(560, 770, 70, 40);
+
+        jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel12.setText("体温:");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(570, 820, 60, 40);
+
+        jLabel14.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel14.setText("药物种类:");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(540, 870, 90, 40);
+
+        jLabel16.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel16.setText("剂量:");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(570, 920, 60, 40);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind.setText("寻找");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFind);
+        btnFind.setBounds(980, 980, 100, 40);
+
+        jLabel18.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel18.setText("电话号码:");
+        getContentPane().add(jLabel18);
+        jLabel18.setBounds(547, 620, 90, 40);
+
+        jLabel19.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel19.setText("性别:");
+        getContentPane().add(jLabel19);
+        jLabel19.setBounds(61, 620, 50, 40);
+
+        txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhoneKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtPhone);
+        txtPhone.setBounds(630, 620, 450, 40);
+
+        txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtGender.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtGenderKeyPressed(evt);
+            }
+        });
+        getContentPane().add(txtGender);
+        txtGender.setBounds(120, 620, 400, 40);
+
+        setBounds(0, 0, 1257, 1078);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        DiseaseMenu menu = new DiseaseMenu(user);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
+        try {
+            // TODO add your handling code here:
+            String ID = txtID.getText();
+            show_selected_patients("a.PatientID",ID);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtIDKeyPressed
+
+    private void txtICKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtICKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String IC = txtIC.getText();
+            show_selected_patients("c.IC",IC);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtICKeyPressed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String name = txtName.getText();
+            show_selected_patients("c.name",name);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtAgeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String age = txtAge.getText();
+            show_selected_patients("c.age",age);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtAgeKeyPressed
+
+    private void txtCategoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoryKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String category = txtCategory.getText();
+            show_selected_patients("b.Category",category);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtCategoryKeyPressed
+
+    private void txtTongueQualityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTongueQualityKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String tonguequality = txtTongueQuality.getText();
+            show_selected_patients("b.TongueQuality",tonguequality);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtTongueQualityKeyPressed
+
+    private void txtShitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtShitKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String shit = txtShit.getText();
+            show_selected_patients("b.PeeShit",shit);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtShitKeyPressed
+
+    private void txtTemperatureKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTemperatureKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String temperature = txtTemperature.getText();
+            show_selected_patients("b.Temperature",temperature);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtTemperatureKeyPressed
+
+    private void txtSymptomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSymptomKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String symptom = txtSymptom.getText();
+            show_selected_patients("b.Symptom",symptom);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtSymptomKeyPressed
+
+    private void txtPulseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPulseKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String pulse = txtPulse.getText();
+            show_selected_patients("b.PulseCondition",pulse);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtPulseKeyPressed
+
+    private void txtTongueCoatingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTongueCoatingKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String tonguecoating = txtTongueCoating.getText();
+            show_selected_patients("b.TongueCoating",tonguecoating);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtTongueCoatingKeyPressed
+
+    private void txtHistoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHistoryKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String history = txtHistory.getText();
+            show_selected_patients("b.History",history);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtHistoryKeyPressed
+
+    private void txtBloodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBloodKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String blood = txtBlood.getText();
+            show_selected_patients("b.BloodPressure",blood);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtBloodKeyPressed
+
+    private void txtMediCategoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMediCategoryKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String medicategory = txtMediCategory.getText();
+            show_selected_patients("a.Category",medicategory);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtMediCategoryKeyPressed
+
+    private void txtMediNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMediNameKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String mediname = txtMediName.getText();
+            show_selected_patients("a.Name",mediname);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtMediNameKeyPressed
+
+    private void txtJiliangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJiliangKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String Jiliang = txtJiliang.getText();
+            show_selected_patients("a.Jiliang",Jiliang);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtJiliangKeyPressed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String ID = txtID.getText();
+            String IC = txtIC.getText();
+            String Name = txtName.getText();
+            String Gender = txtGender.getText();
+            String Age = txtAge.getText();
+            String Phone = txtPhone.getText();
+            String Symptom = txtSymptom.getText();
+            String Category = txtCategory.getText();
+            String Pulse = txtPulse.getText();
+            String Quality =txtTongueQuality.getText();
+            String Coating = txtTongueCoating.getText();
+            String Shit =txtShit.getText();
+            String History = txtHistory.getText();
+            String Temperature = txtTemperature.getText();
+            String Blood = txtBlood.getText();
+            String MedicCategory = txtMediCategory.getText();
+            String MedicName = txtMediName.getText();
+            String Jiliang = txtJiliang.getText();
+            
+            show_all_disease(ID, IC, Name, Gender, Age,Phone,Symptom,Category,Pulse,Quality,Coating,Shit,History,Temperature,Blood,MedicCategory,MedicName,Jiliang);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "SearchPatient.btnFindActionPerformed get error on line 354, "+ex.getMessage());
+        }
+          
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String phone = txtPhone.getText();
+            show_selected_patients("c.phone",phone);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtPhoneKeyPressed
+
+    private void txtGenderKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGenderKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String gender = txtGender.getText();
+            show_selected_patients("c.gender",gender);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtGenderKeyPressed
+
+    public void show_selected_patients(String contribute,String detail) throws SQLException{
+        model.setRowCount(0);
+        Prescription prescription = new Prescription();
+        List<Prescription> prescriptionList = new ArrayList<Prescription>();
+        prescriptionList = prescription.getDetail(contribute,detail);
+        model = (DefaultTableModel)tblDisease.getModel();
+        Object row[] = new Object[26];
+         for(int i =0; i<prescriptionList.size(); i++)
+         {
+             row[0] = prescriptionList.get(i).getPatientID();
+             row[1] = prescriptionList.get(i).getIC();
+             row[2] = prescriptionList.get(i).getName();
+             row[3] = prescriptionList.get(i).getGender();
+             row[4] = prescriptionList.get(i).getAge();
+             row[5] = prescriptionList.get(i).getPhone();
+             row[6] = prescriptionList.get(i).getAddress();
+             row[7] = prescriptionList.get(i).getSymptom();
+             row[8] = prescriptionList.get(i).getCategory();
+             row[9] = prescriptionList.get(i).getPulseCondition();
+             row[10] = prescriptionList.get(i).getTongueQuality();
+             row[11] = prescriptionList.get(i).getTongueCoating();
+             row[12] = prescriptionList.get(i).getPeeShit();
+             row[13] = prescriptionList.get(i).getHistory();
+             row[14] = prescriptionList.get(i).getTemperature();
+             row[15] = prescriptionList.get(i).getBloodPressure();
+             row[16] = prescriptionList.get(i).getChufang();
+             row[17] = prescriptionList.get(i).getCategorytable();
+             row[18] = prescriptionList.get(i).getNametable();
+             row[19] = prescriptionList.get(i).getJiliang();
+             row[20] = prescriptionList.get(i).getPrice();
+             row[21] = prescriptionList.get(i).getTotalprice();
+             row[22] = prescriptionList.get(i).getCreateDateTime();
+             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[24] = prescriptionList.get(i).getDiseaseID();
+             row[25] = prescriptionList.get(i).getPrescriptionID();
+             model.addRow(row);
+         }
+    }
+    
+    private void createColumns()
+    {
+        model = (DefaultTableModel) tblDisease.getModel();
+        model.addColumn("ID");
+        model.addColumn("IC");
+        model.addColumn("病人名字");
+        model.addColumn("性别");
+        model.addColumn("年龄");
+        model.addColumn("电话号码");
+        model.addColumn("地址");
+        model.addColumn("主症");
+        model.addColumn("病症分类");
+        model.addColumn("脉象");
+        model.addColumn("舌质");
+        model.addColumn("舌苔");
+        model.addColumn("大小便");  
+        model.addColumn("病史"); 
+        model.addColumn("体温"); 
+        model.addColumn("血压"); 
+        model.addColumn("处方");
+        model.addColumn("药物种类");
+        model.addColumn("药物名称");
+        model.addColumn("剂量");
+        model.addColumn("价格/G");
+        model.addColumn("总价值");
+        model.addColumn("创建时间");
+        model.addColumn("更新时间");
+        model.addColumn("病症ID");
+        model.addColumn("处方ID");
+    }
+    
+    public void show_patient() throws SQLException{
+         Prescription prescription = new Prescription();
+         List<Prescription> prescriptionList = new ArrayList<Prescription>();
+         /*if(option == 3)
+         {
+             patientList = patient.getPatients();
+         }
+         else
+         {*/
+             prescriptionList = prescription.getPrescriptions();
+         //}
+         
+         model = (DefaultTableModel)tblDisease.getModel();
+         Object row[] = new Object[26];
+         for(int i =0; i<prescriptionList.size(); i++)
+         {
+             row[0] = prescriptionList.get(i).getPatientID();
+             row[1] = prescriptionList.get(i).getIC();
+             row[2] = prescriptionList.get(i).getName();
+             row[3] = prescriptionList.get(i).getGender();
+             row[4] = prescriptionList.get(i).getAge();
+             row[5] = prescriptionList.get(i).getPhone();
+             row[6] = prescriptionList.get(i).getAddress();
+             row[7] = prescriptionList.get(i).getSymptom();
+             row[8] = prescriptionList.get(i).getCategory();
+             row[9] = prescriptionList.get(i).getPulseCondition();
+             row[10] = prescriptionList.get(i).getTongueQuality();
+             row[11] = prescriptionList.get(i).getTongueCoating();
+             row[12] = prescriptionList.get(i).getPeeShit();
+             row[13] = prescriptionList.get(i).getHistory();
+             row[14] = prescriptionList.get(i).getTemperature();
+             row[15] = prescriptionList.get(i).getBloodPressure();
+             row[16] = prescriptionList.get(i).getChufang();
+             row[17] = prescriptionList.get(i).getCategorytable();
+             row[18] = prescriptionList.get(i).getNametable();
+             row[19] = prescriptionList.get(i).getJiliang();
+             row[20] = prescriptionList.get(i).getPrice();
+             row[21] = prescriptionList.get(i).getTotalprice();
+             row[22] = prescriptionList.get(i).getCreateDateTime();
+             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[24] = prescriptionList.get(i).getDiseaseID();
+             row[25] = prescriptionList.get(i).getPrescriptionID();
+             model.addRow(row);
+         }
+    }
+    
+    public void show_all_disease(String ID, String IC, String Name, String Gender, String Age, String Phone, String Symptom,
+            String Category, String Pulse, String Quality, String Coating, String Shit, String History, String Temperature,
+            String Blood, String MedicCategory, String MedicName, String Jiliang) throws SQLException{
+        model.setRowCount(0);
+        Prescription prescription = new Prescription();
+        List<Prescription> prescriptionList = new ArrayList<Prescription>();
+        prescriptionList = prescription.getAllDetail(ID, IC, Name, Gender ,Age ,Phone,Symptom,Category,Pulse,Quality,Coating,Shit,History,Temperature,Blood,MedicCategory,MedicName,Jiliang);
+        model = (DefaultTableModel)tblDisease.getModel();
+        Object row[] = new Object[26];
+         for(int i =0; i<prescriptionList.size(); i++)
+         {
+             row[0] = prescriptionList.get(i).getPatientID();
+             row[1] = prescriptionList.get(i).getIC();
+             row[2] = prescriptionList.get(i).getName();
+             row[3] = prescriptionList.get(i).getGender();
+             row[4] = prescriptionList.get(i).getAge();
+             row[5] = prescriptionList.get(i).getPhone();
+             row[6] = prescriptionList.get(i).getAddress();
+             row[7] = prescriptionList.get(i).getSymptom();
+             row[8] = prescriptionList.get(i).getCategory();
+             row[9] = prescriptionList.get(i).getPulseCondition();
+             row[10] = prescriptionList.get(i).getTongueQuality();
+             row[11] = prescriptionList.get(i).getTongueCoating();
+             row[12] = prescriptionList.get(i).getPeeShit();
+             row[13] = prescriptionList.get(i).getHistory();
+             row[14] = prescriptionList.get(i).getTemperature();
+             row[15] = prescriptionList.get(i).getBloodPressure();
+             row[16] = prescriptionList.get(i).getChufang();
+             row[17] = prescriptionList.get(i).getCategorytable();
+             row[18] = prescriptionList.get(i).getNametable();
+             row[19] = prescriptionList.get(i).getJiliang();
+             row[20] = prescriptionList.get(i).getPrice();
+             row[21] = prescriptionList.get(i).getTotalprice();
+             row[22] = prescriptionList.get(i).getCreateDateTime();
+             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[24] = prescriptionList.get(i).getDiseaseID();
+             row[25] = prescriptionList.get(i).getPrescriptionID();
+             model.addRow(row);
+         }
+    }
     /**
      * @param args the command line arguments
      */
@@ -110,7 +817,47 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblDisease;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBlood;
+    private javax.swing.JTextField txtCategory;
+    private javax.swing.JTextField txtGender;
+    private javax.swing.JTextField txtHistory;
+    private javax.swing.JTextField txtIC;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtJiliang;
+    private javax.swing.JTextField txtMediCategory;
+    private javax.swing.JTextField txtMediName;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtPulse;
+    private javax.swing.JTextField txtShit;
+    private javax.swing.JTextField txtSymptom;
+    private javax.swing.JTextField txtTemperature;
+    private javax.swing.JTextField txtTongueCoating;
+    private javax.swing.JTextField txtTongueQuality;
     // End of variables declaration//GEN-END:variables
 }

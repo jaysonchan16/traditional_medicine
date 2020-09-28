@@ -68,6 +68,7 @@ class TablePrintable implements Printable{
         // derive the header and footer font from the table's font
         headerFont = table.getFont().deriveFont(Font.BOLD, HEADER_FONT_SIZE);
         footerFont = table.getFont().deriveFont(Font.PLAIN, FOOTER_FONT_SIZE);
+        
     }
     
     @Override
@@ -119,7 +120,9 @@ class TablePrintable implements Printable{
             hRect = new Rectangle2D.Double(hRect.getX(), Math.abs(hRect.getY()), hRect.getWidth(),
                     hRect.getHeight() * nbLines);
 
-            headerTextSpace = (int) Math.ceil(hRect.getHeight() * nbLines);
+            //headerTextSpace = (int) Math.ceil(hRect.getHeight() * nbLines);
+            //System.out.println(Math.ceil(hRect.getHeight() * nbLines));
+            headerTextSpace = 150;
             availableSpace -= headerTextSpace + H_F_SPACE;
         }
 

@@ -190,7 +190,15 @@ public class DiseaseMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModifyChufangActionPerformed
 
     private void btnFindDiseaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindDiseaseActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            SearchDiseasePatient detail = new SearchDiseasePatient(user);
+            detail.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
         
     }//GEN-LAST:event_btnFindDiseaseActionPerformed
 

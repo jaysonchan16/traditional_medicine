@@ -92,7 +92,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         getContentPane().add(btnBack);
         btnBack.setBounds(870, 540, 100, 40);
 
-        tblDisease.setFont(new java.awt.Font("STXihei", 0, 18)); // NOI18N
+        tblDisease.setFont(new java.awt.Font("STXihei", 0, 20)); // NOI18N
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -109,7 +109,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDisease);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(39, 95, 925, 420);
+        jScrollPane1.setBounds(50, 60, 925, 420);
 
         setBounds(0, 0, 1087, 651);
     }// </editor-fold>//GEN-END:initComponents
@@ -190,9 +190,10 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        //Option 1: Cannot fitwidth and header too messy
         /*try {
             // TODO add your handling code here:
-            HashPrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
+        /*    HashPrintRequestAttributeSet attr = new HashPrintRequestAttributeSet();
             attr.add(new MediaPrintableArea(500f, 1000f, 750/72f, 1000/72f, MediaPrintableArea.INCH));       
 
             PrinterJob job = PrinterJob.getPrinterJob();
@@ -214,25 +215,60 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
             ex.printStackTrace();
         }*/
         
+        
+        //Option 2: Cannot change the font size for jtable
         try {
             // TODO add your handling code here:
             model = (DefaultTableModel) tblDisease.getModel();
             
             StringBuilder builder = new StringBuilder();
-            builder.append("Product: \n");
-            builder.append("Job: \n");
-            builder.append("Task: ");
-
+            builder.append("\t 杏生堂药行 \n");
+            builder.append("\t Heng Seng Tong Medicall Hall \n");
+            builder.append("\t 107, Jalan PKS2, Pekan Simpang Kuala \n");
+            builder.append("\t 05400 Alor Setar, Kedah \n");
             MessageFormat header = new MessageFormat(builder.toString());
             
             JTable table = new JTable(model) {
                 @Override
                 public Printable getPrintable(JTable.PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat) {
-                    return new TablePrintable(tblDisease, printMode, headerFormat, footerFormat);
+                    return new TablePrintable(tblDisease, JTable.PrintMode.FIT_WIDTH, header, footerFormat);
                 }
             };
             
-            table.print(JTable.PrintMode.FIT_WIDTH, header, null);
+            
+            table.print();
+        
+        //Option 3: use text area
+          /*  StringBuilder builder = new StringBuilder();
+            builder.append("\t\t 杏生堂药行 \n");
+            builder.append("\t\t Heng Seng Tong Medicall Hall \n");
+            builder.append("\t 107, Jalan PKS2, Pekan Simpang Kuala \n");
+            builder.append("\t 05400 Alor Setar, Kedah \n");
+            builder.append("----------------------------------------------------------------------------------------------------------------------\n");
+            builder.append("ID\t\t");
+            builder.append("IC\t\t");
+            builder.append("病人名字\t\t");
+            builder.append("性别\t\t");
+            builder.append("年龄\t\t");
+            builder.append("电话号码\t\t");
+            builder.append("主症\t\t");
+            builder.append("病症分类\t\t");
+            builder.append("脉象\t\t");
+            builder.append("舌质\t\t");
+            builder.append("舌苔\t\t");
+            builder.append("大小便\t\t");
+            builder.append("病史\t\t");
+            builder.append("体温\t\t");
+            builder.append("血压\t\t");
+            builder.append("处方\t\t");
+            builder.append("药物种类\t\t");
+            builder.append("药物名称\t\t");
+            builder.append("剂量\t\t");
+            builder.append("价格/G\t\t");
+            builder.append("总价值\t\t");
+            builder.append("----------------------------------------------------------------------------------------------------------------------\n");
+            txtPrint.setText(builder.toString());
+            txtPrint.print();*/
         } catch (PrinterException ex) {
             ex.printStackTrace();
         }

@@ -417,4 +417,75 @@ public class Prescription extends Disease{
         }
         return prescriptionList;
     }
+    
+    public List<Prescription> getDetail(String contribute, String detail) throws SQLException{
+         List<Prescription> prescriptionList = new ArrayList<>();
+
+            String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, "
+                    + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
+                    + "a.lastUpdateDateTime, a.createDateTime, "
+                    + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
+                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                + "from Prescription a "
+                + "Inner Join Disease b ON a.DiseaseID = b.ID "
+                + "Inner Join Patient c ON a.PatientID = c.ID "
+                + "where "+contribute+" like '%"+detail+"%'";
+            System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 prescriptionList.add(new Prescription(rs.getInt("Chufang"),
+                         rs.getString("categorytable"),rs.getString("nametable"),rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"),
+                         rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
+                         rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
+                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
+                         rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return prescriptionList;
+    }
+    
+    public List<Prescription> getAllDetail(String ID, String IC, String Name, String Gender, String Age, String Phone, String Symptom,
+            String Category, String Pulse, String Quality, String Coating, String Shit, String History, String Temperature,
+            String Blood, String MedicCategory, String MedicName, String Jiliang) throws SQLException{
+        List<Prescription> prescriptionList = new ArrayList<>();
+         
+        String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, "
+                    + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
+                    + "a.lastUpdateDateTime, a.createDateTime, "
+                    + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
+                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                + "from Prescription a "
+                + "Inner Join Disease b ON a.DiseaseID = b.ID "
+                + "Inner Join Patient c ON a.PatientID = c.ID "
+                + "where a.PatientID like '%"+ID+"%' and c.IC like '%"+IC+"%' and c.name like '%"+Name+"%' and "
+                + "c.phone like '%"+Phone+"%' and c.gender like '%"+Gender+"%' and  c.age like '%"+Age+"%' and "
+                + "b.Symptom like '%"+Symptom+"%' and b.Category like '%"+Category+"%' and b.PulseCondition like '%"+Pulse+"%' and "
+                + "b.TongueQuality like '%"+Quality+"%' and b.TongueCoating like '%"+Coating+"%' and "
+                + "b.PeeShit like '%"+Shit+"%' and b.History like '%"+History+"%' and b.Temperature like '%"+Temperature+"%' and "
+                + "b.BloodPressure like '%"+Blood+"%' and a.Category like '%"+MedicCategory+"%' and a.Name like '%"+MedicName+"%' and a.Jiliang like '%"+Jiliang+"%'";          
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 prescriptionList.add(new Prescription(rs.getInt("Chufang"),
+                         rs.getString("categorytable"),rs.getString("nametable"),rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"),
+                         rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
+                         rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
+                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
+                         rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return prescriptionList;
+    }
 }
