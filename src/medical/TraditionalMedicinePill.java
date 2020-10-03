@@ -30,8 +30,8 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         super(name);
     }
     
-    public TraditionalMedicinePill(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance, String code){
-        super(name,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+    public TraditionalMedicinePill(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance, String code,String medicine){
+        super(name,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine);
         this.appliance = appliance;
         this.property = property;
     }
@@ -77,9 +77,9 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             double cost1 = cost;
             if(map.get("messages").equalsIgnoreCase("") && validateAddTraditionalMedicinePill("name",name) == 0)
             {
-                String query = "insert into TraditionalMedicinePill(ID, name, property, appliance, effect, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
+                String query = "insert into TraditionalMedicinePill(ID, name, property, appliance, effect, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+property+"'), trim('"+appliance+"'), trim('"+effect+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
-                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime')";
+                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'),'单味药粉'";
                 
                 SQLQuery sql = new SQLQuery();
                 returnMessage.put("returnMessage",sql.AddEditDeleteQuery(query));
@@ -122,14 +122,14 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     
     public List<TraditionalMedicinePill> getTraditionalMedicinePill() throws SQLException{
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill";
+            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,medicine from TraditionalMedicinePill";
         rs = st.executeQuery(query);
         try {
            while (rs.next()) {
                  traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),
                          rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),
-                         rs.getString("property"), rs.getString("appliance"), rs.getString("ID")));
+                         rs.getString("property"), rs.getString("appliance"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)
@@ -143,7 +143,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     
     public List<TraditionalMedicinePill> findTraditionalMedicinePillDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePill where "+attribute+"='"+data+"' order by 1 desc";
+            String query = "Select ID,name,property,appliance,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,medicine from TraditionalMedicinePill where "+attribute+"='"+data+"' order by 1 desc";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -151,7 +151,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
                  traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),
                          rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),
-                         rs.getString("property"), rs.getString("appliance"), rs.getString("ID")));
+                         rs.getString("property"), rs.getString("appliance"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)

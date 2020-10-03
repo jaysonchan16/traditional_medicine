@@ -30,8 +30,8 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         super(name);
     }
     
-    public TraditionalMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime,String code){
-        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+    public TraditionalMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime,String code,String medicine){
+        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine);
     }
     
     public HashMap<String,String> AddTraditionalMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
@@ -49,7 +49,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
             {
                 String query = "insert into TraditionalMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
-                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime')";
+                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'),'复方药粉'";
                 
                 SQLQuery sql = new SQLQuery();
                 
@@ -120,14 +120,14 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     
     public List<TraditionalMedicinePotion> getTraditionalMedicinePotion() throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion";
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine from TraditionalMedicinePotion";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)
@@ -146,7 +146,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     
     public List<TraditionalMedicinePotion> findTraditionalMedicinePotionDetails(String attribute, String data) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
-        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from TraditionalMedicinePotion where "+attribute+"='"+data+"' order by 1 desc";
+        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine from TraditionalMedicinePotion where "+attribute+"='"+data+"' order by 1 desc";
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -154,7 +154,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
                  traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)

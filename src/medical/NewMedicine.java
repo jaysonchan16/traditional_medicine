@@ -27,6 +27,7 @@ public class NewMedicine extends javax.swing.JFrame {
     public NewMedicine(User user) {        
         this.user = user;
         initComponents();
+        setResizable(false);
         comboMedicine();
         if(comboMedicine.getSelectedItem().equals("单味药粉"))
         {

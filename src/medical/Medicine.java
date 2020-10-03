@@ -10,6 +10,9 @@ package medical;
  * @author Sheng
  */
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 public class Medicine {
@@ -24,6 +27,9 @@ public class Medicine {
     private String lastUpdateDateTime;
     private String createDateTime;
     private String code;
+    private String medicine;
+    protected Statement st = connect.connection();
+    ResultSet rs;
     
     public Medicine(){}
     
@@ -32,7 +38,7 @@ public class Medicine {
         this.name = name;
     }
     
-    public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
+    public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
         this.name = name;
         this.effect = effect;
         this.scoop = scoop;
@@ -42,9 +48,10 @@ public class Medicine {
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
         this.code = code;
+        this.medicine = medicine;
     }
     
-    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
+    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
         this.name = name;
         this.component = component;
         this.indications = indications;
@@ -56,6 +63,7 @@ public class Medicine {
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
         this.code = code;
+        this.medicine = medicine;
     }
     
     /**
@@ -212,4 +220,79 @@ public class Medicine {
         this.code = code;
     }
   
+    /**
+     * @return the medicine
+     */
+    public String getMedicine() {
+        return medicine;
+    }
+
+    /**
+     * @param medicine the medicine to set
+     */
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
+    }
+    
+    public List<Medicine> getDetail(String contribute, String detail, String contribute1) throws SQLException{
+     List<Medicine> medicineList = new ArrayList<>();
+     String query = "";
+     if(contribute1.equalsIgnoreCase(""))
+     {
+        query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill where "+contribute+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%'";
+     }
+     else
+     {
+         query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" ='%"+detail+"%' or "+contribute1+" like '%"+detail+"%'";
+
+     }
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 medicineList.add(new Medicine(rs.getString("name"),
+                         rs.getString("component"),rs.getString("effect"),
+                         rs.getString("indications"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return medicineList;
+    }
+    
+    public List<Medicine> getAllDetail() throws SQLException{
+        List<Medicine> medicineList = new ArrayList<>();
+         
+         String query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion UNION ALL "
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill ";
+
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 medicineList.add(new Medicine(rs.getString("name"),
+                         rs.getString("component"),rs.getString("effect"),
+                         rs.getString("indications"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return medicineList;
+    }
+
+    
 }

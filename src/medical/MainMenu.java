@@ -200,8 +200,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        POSsystem pos = new POSsystem();
-        pos.setVisible(true);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

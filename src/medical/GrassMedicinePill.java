@@ -28,8 +28,8 @@ public class GrassMedicinePill extends Medicine{//药丸
         super(name);
     }
     
-    public GrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code){
-        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code);
+    public GrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
+        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code,medicine);
     }
     
     public HashMap<String,String> AddGrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
@@ -46,9 +46,9 @@ public class GrassMedicinePill extends Medicine{//药丸
             
             if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePill("name", name) == 0)
             {
-                String query = "insert into GrassMedicinePill(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime)"
+                String query = "insert into GrassMedicinePill(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime, medicine)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
-                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime')";
+                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'), '药丸'";
                 
                 SQLQuery sql = new SQLQuery();
                 
@@ -93,14 +93,14 @@ public class GrassMedicinePill extends Medicine{//药丸
     
     public List<GrassMedicinePill> getGrassMedicinePill() throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill";
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine from GrassMedicinePill";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)
@@ -118,7 +118,7 @@ public class GrassMedicinePill extends Medicine{//药丸
     
     public List<GrassMedicinePill> findGrassMedicinePillDetails(String attribute, String data) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime from GrassMedicinePill where "+attribute+" = '"+data+"' order by 1 desc";
+        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine from GrassMedicinePill where "+attribute+" = '"+data+"' order by 1 desc";
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -126,7 +126,7 @@ public class GrassMedicinePill extends Medicine{//药丸
                  grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
             } 
         } 
         catch (Exception e)

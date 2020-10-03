@@ -5,16 +5,20 @@
  */
 package medical;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import menu.MenuItem;
 
 /**
  *
@@ -74,6 +78,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrescriptionID.setVisible(false);
         JTableHeader tableHeader = tblChufang.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        execute();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
     }
     
     public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
@@ -107,6 +113,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         JTableHeader tableHeader = tblChufang.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         btnReset.setVisible(false);
+        execute();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,7 +129,6 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtChufang = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
         txtTotalPrice = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -153,13 +159,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicineName = new javax.swing.JTextField();
         txtJiliang = new javax.swing.JTextField();
         txtPrescriptionID = new javax.swing.JTextField();
+        menus = new javax.swing.JPanel();
+        panelHeader = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtIC);
-        txtIC.setBounds(130, 120, 230, 40);
+        txtIC.setBounds(360, 190, 280, 40);
 
         btnFindIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindIC.setText("寻找");
@@ -169,59 +182,54 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFindIC);
-        btnFindIC.setBounds(370, 120, 100, 40);
+        btnFindIC.setBounds(540, 240, 100, 40);
 
         txtChufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtChufang);
-        txtChufang.setBounds(130, 380, 590, 40);
+        txtChufang.setBounds(360, 450, 590, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrice);
-        txtPrice.setBounds(130, 700, 590, 40);
+        txtPrice.setBounds(360, 770, 590, 40);
 
         txtTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTotalPrice);
-        txtTotalPrice.setBounds(130, 780, 590, 40);
-
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel1.setText("更改处方");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(480, 30, 120, 34);
+        txtTotalPrice.setBounds(360, 850, 590, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("IC：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 120, 60, 40);
+        jLabel2.setBounds(310, 190, 60, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("处方：");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 380, 69, 40);
+        jLabel3.setBounds(310, 450, 69, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("药物种类：");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 460, 110, 40);
+        jLabel4.setBounds(270, 530, 110, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("药物名称：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(40, 540, 100, 40);
+        jLabel5.setBounds(270, 610, 100, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("剂量：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 620, 69, 40);
+        jLabel6.setBounds(300, 690, 69, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("价格/G:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(40, 700, 70, 40);
+        jLabel7.setBounds(270, 770, 70, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("总价值:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(50, 780, 63, 40);
+        jLabel8.setBounds(280, 850, 63, 40);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText("重启");
@@ -231,7 +239,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReset);
-        btnReset.setBounds(150, 850, 100, 40);
+        btnReset.setBounds(440, 910, 100, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -241,7 +249,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(500, 850, 100, 40);
+        btnDelete.setBounds(720, 910, 100, 40);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更新");
@@ -251,7 +259,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModify);
-        btnModify.setBounds(620, 850, 100, 40);
+        btnModify.setBounds(840, 910, 100, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -261,7 +269,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(30, 850, 100, 40);
+        btnBack.setBounds(320, 910, 100, 40);
 
         spinnerJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         spinnerJiLiang.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -270,7 +278,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(spinnerJiLiang);
-        spinnerJiLiang.setBounds(130, 620, 80, 40);
+        spinnerJiLiang.setBounds(360, 690, 80, 40);
 
         comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
@@ -280,7 +288,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboBoxMedicine);
-        comboBoxMedicine.setBounds(130, 460, 260, 40);
+        comboBoxMedicine.setBounds(360, 530, 260, 40);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxName.addActionListener(new java.awt.event.ActionListener() {
@@ -289,16 +297,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboBoxName);
-        comboBoxName.setBounds(130, 540, 260, 40);
+        comboBoxName.setBounds(360, 610, 260, 40);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("ID:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(502, 120, 30, 40);
+        jLabel9.setBounds(660, 190, 30, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtID);
-        txtID.setBounds(530, 120, 190, 40);
+        txtID.setBounds(700, 190, 250, 40);
 
         btnFindID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindID.setText("寻找");
@@ -308,9 +316,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFindID);
-        btnFindID.setBounds(730, 120, 100, 40);
+        btnFindID.setBounds(850, 240, 100, 40);
 
-        tblChufang.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        tblChufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblChufang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -319,6 +331,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
             }
         ));
+        tblChufang.setFocusable(false);
+        tblChufang.setGridColor(new java.awt.Color(255, 255, 255));
+        tblChufang.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblChufang.setRowHeight(25);
+        tblChufang.setShowVerticalLines(false);
         tblChufang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblChufangMouseClicked(evt);
@@ -329,27 +346,27 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(850, 110, 960, 780);
+        jScrollPane2.setBounds(980, 180, 830, 770);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtName);
-        txtName.setBounds(130, 190, 590, 40);
+        txtName.setBounds(360, 290, 590, 40);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
-        txtPhone.setBounds(130, 260, 590, 40);
+        txtPhone.setBounds(360, 360, 590, 40);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(0, 340, 840, 20);
+        jSeparator1.setBounds(230, 420, 730, 20);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("姓名：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(50, 190, 70, 40);
+        jLabel10.setBounds(280, 290, 70, 40);
 
         jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel11.setText("电话号码：");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(30, 260, 95, 40);
+        jLabel11.setBounds(260, 360, 95, 40);
 
         btnModifyMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModifyMedicine.setText("更改");
@@ -359,25 +376,53 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModifyMedicine);
-        btnModifyMedicine.setBounds(270, 850, 100, 40);
+        btnModifyMedicine.setBounds(560, 910, 100, 40);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtMedicine);
-        txtMedicine.setBounds(130, 460, 590, 40);
+        txtMedicine.setBounds(360, 530, 590, 40);
 
         txtMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtMedicineName);
-        txtMedicineName.setBounds(130, 540, 590, 40);
+        txtMedicineName.setBounds(360, 610, 590, 40);
 
         txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtJiliang);
-        txtJiliang.setBounds(130, 620, 590, 40);
+        txtJiliang.setBounds(360, 690, 590, 40);
 
         txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrescriptionID);
-        txtPrescriptionID.setBounds(120, 40, 230, 40);
+        txtPrescriptionID.setBounds(360, 110, 230, 40);
 
-        setBounds(0, 0, 1856, 966);
+        menus.setBackground(new java.awt.Color(204, 204, 255));
+        getContentPane().add(menus);
+        menus.setBounds(0, 60, 230, 930);
+
+        panelHeader.setBackground(new java.awt.Color(204, 255, 255));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel1.setText("更改处方");
+        panelHeader.add(jLabel1);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(230, 0, 1710, 60);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(240, 80, 1610, 890);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Documents\\NetBeansProjects\\medical\\Pictures\\heng seng tong-04.png")); // NOI18N
+        jPanel2.add(jLabel13);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 230, 60);
+
+        setBounds(0, 0, 1896, 1035);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -899,6 +944,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
         columnModel.getColumn(22).setMinWidth(0);
         columnModel.getColumn(22).setMaxWidth(0);
     }
+    
+    public void execute()
+    {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        MenuCoding menu = new MenuCoding(menus);
+        menu.menuIcon();
+    }
     /**
      * @param args the command line arguments
      */
@@ -949,6 +1001,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -957,9 +1010,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel menus;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JSpinner spinnerJiLiang;
     private javax.swing.JTable tblChufang;
     private javax.swing.JTextField txtChufang;
