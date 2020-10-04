@@ -6,6 +6,7 @@
 package menu;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,63 +20,49 @@ public class MenuItem extends javax.swing.JPanel {
     /**
      * Creates new form MenuItem
      */
-    private final ArrayList<MenuItem>subMenu = new ArrayList<>();
-    
+    public void setShowing(boolean showing) {
+        this.showing = showing;
+    }
+
     public ArrayList<MenuItem> getSubMenu() {
         return subMenu;
     }
     
-    public MenuItem(ImageIcon icon, String menuName, MenuItem...subMenu) {
+    private final ArrayList<MenuItem> subMenu = new ArrayList<>();
+    private ActionListener act;
+
+    public MenuItem(Icon icon, String menuName, MenuItem... subMenu) {
         initComponents();
-        System.out.println(icon);
-        
-        lblName.setText(menuName);
-        this.setSize(new Dimension(Integer.MAX_VALUE,45));
-        this.setMaximumSize(new Dimension(Integer.MAX_VALUE,45));
-        this.setMinimumSize(new Dimension(Integer.MAX_VALUE,45));
-        for(int i = 0; i<subMenu.length; i++)
-        {
+        lbIcon.setIcon(icon);
+        lbName.setText(menuName);
+        if (act != null) {
+            this.act = act;
+        }
+        this.setSize(new Dimension(Integer.MAX_VALUE, 45));
+        this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 45));
+        for (int i = 0; i < subMenu.length; i++) {
+            this.subMenu.add(subMenu[i]);
+            subMenu[i].setVisible(false);
+        }
+    }
+    
+    public MenuItem(Icon icon, String menuName, ActionListener act, MenuItem... subMenu) {
+        initComponents();
+        lbIcon.setIcon(icon);
+        lbName.setText(menuName);
+        if (act != null) {
+            this.act = act;
+        }
+        this.setSize(new Dimension(Integer.MAX_VALUE, 45));
+        this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 45));
+        for (int i = 0; i < subMenu.length; i++) {
             this.subMenu.add(subMenu[i]);
             subMenu[i].setVisible(false);
         }
     }
 
-    public void showMenu()
-    {
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                for(int i =0; i<subMenu.size(); i++)
-                {
-                    sleep();
-                    subMenu.get(i).setVisible(true);
-                }
-            }
-        }).start();
-    }
-    
-    private void hideMenu()
-    {
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                for(int i = subMenu.size()-1; i>=0; i--)
-                {
-                    sleep();
-                    subMenu.get(i).setVisible(false);
-                }
-            }
-        }).start();
-    }
-    
-    public void sleep()
-    {
-        try{
-            Thread.sleep(20);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,10 +73,10 @@ public class MenuItem extends javax.swing.JPanel {
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
-        lblName = new javax.swing.JLabel();
-        lblIcon1 = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+        lbIcon = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 153, 153));
         setForeground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,9 +84,9 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
-        lblName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lbName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
 
-        lblIcon1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbIcon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,17 +97,17 @@ public class MenuItem extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
         );
@@ -130,24 +117,57 @@ public class MenuItem extends javax.swing.JPanel {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         
-        if(showing)
-        {
-            System.out.println("true");
+       if (showing) {
             hideMenu();
-            showing = false;
-        }
-        else
-        {
-            System.out.println("false");
+        } else {
             showMenu();
-            showing = true;
+        }
+        if (act != null) {
+            act.actionPerformed(null);
         }
     }//GEN-LAST:event_formMouseClicked
 
+    private void showMenu() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < subMenu.size(); i++) {
+                    sleep();
+                    subMenu.get(i).setVisible(true);
+                }
+                showing = true;
+                getParent().repaint();
+                getParent().revalidate();
+            }
+        }).start();
+    }
+
+    private void hideMenu() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = subMenu.size() - 1; i >= 0; i--) {
+                    sleep();
+                    subMenu.get(i).setVisible(false);
+                    subMenu.get(i).hideMenu();
+                }
+                getParent().repaint();
+                getParent().revalidate();
+                showing = false;
+            }
+        }).start();
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(20);
+        } catch (Exception e) {
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblIcon1;
-    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbIcon;
+    private javax.swing.JLabel lbName;
     // End of variables declaration//GEN-END:variables
 }

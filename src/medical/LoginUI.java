@@ -5,10 +5,13 @@
  */
 package medical;
 
+import javaClass.User;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import form.MainMenu;
+import form.RegisterNewUser;
 
 /**
  *
@@ -151,6 +154,9 @@ public class LoginUI extends javax.swing.JFrame {
                     MainMenu rs = new MainMenu(user);
                     rs.setVisible(true);
                     this.dispose();
+                    /*MainPage page = new MainPage(user);
+                    page.setVisible(true);
+                    this.dispose();*/
                 }
                 else {
                     JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
