@@ -165,11 +165,6 @@ public class ModifyPatient extends javax.swing.JFrame {
         lblLastUpdateDateTime = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        panelHeader = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        menus = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -320,29 +315,6 @@ public class ModifyPatient extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(410, 560, 1470, 136);
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Documents\\NetBeansProjects\\medical\\Pictures\\heng seng tong-04.png")); // NOI18N
-        jPanel2.add(jLabel13);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 230, 60);
-
-        panelHeader.setBackground(new java.awt.Color(204, 255, 255));
-        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
-
-        jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel7.setText("更改病人资料");
-        panelHeader.add(jLabel7);
-
-        getContentPane().add(panelHeader);
-        panelHeader.setBounds(230, 0, 1710, 60);
-
-        menus.setBackground(new java.awt.Color(204, 204, 255));
-        getContentPane().add(menus);
-        menus.setBounds(0, 60, 230, 930);
 
         setBounds(0, 0, 1955, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -565,22 +537,17 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblLastUpdateDateTime;
-    private javax.swing.JPanel menus;
-    private javax.swing.JPanel panelHeader;
     private javax.swing.JTextArea txtAddress;
     public javax.swing.JTextField txtAge;
     public javax.swing.JTextField txtGender;
