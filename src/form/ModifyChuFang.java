@@ -952,6 +952,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
             if(result.equalsIgnoreCase("1"))
             {
                 JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                model.setRowCount(0);
+                show_table();
             }
             else
             {
@@ -971,6 +973,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
             if(result.equalsIgnoreCase("1"))
             {
                 JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                model.setRowCount(0);
+                show_table();
             }
             else
             {
