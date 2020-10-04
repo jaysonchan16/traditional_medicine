@@ -5,6 +5,7 @@
  */
 package form;
 
+import java.awt.Color;
 import javaClass.User;
 import javaClass.Disease;
 import java.awt.Font;
@@ -58,17 +59,13 @@ public class ModifyDisease extends javax.swing.JFrame {
     public ModifyDisease(User user) throws SQLException {
         initComponents();
         this.user = user;
-        JTableHeader tableHeader = tblDisease.getTableHeader();
-        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         show_Disease();
         widthTable();
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
         disabledTextBox();
         txtDiseaseID.setVisible(false);
-        /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
-        new JScrollPane(tblDisease, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        */
+        
     }
     
     public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
@@ -93,8 +90,6 @@ public class ModifyDisease extends javax.swing.JFrame {
         this.initialIC = initialIC;
         this.initialID = initialID;
         this.option = option;
-        JTableHeader tableHeader = tblDisease.getTableHeader();
-        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         show_Disease();
         widthTable();
         txtName.setEnabled(false);
@@ -179,106 +174,111 @@ public class ModifyDisease extends javax.swing.JFrame {
         lblName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
+        panelBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(260, 830, 130, 50);
+        btnBack.setBounds(170, 830, 130, 50);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更新");
+        btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
             }
         });
         getContentPane().add(btnModify);
-        btnModify.setBounds(700, 830, 140, 50);
+        btnModify.setBounds(610, 830, 140, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
+        btnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(550, 830, 140, 50);
+        btnDelete.setBounds(460, 830, 140, 50);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("主症：");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(280, 390, 60, 40);
+        jLabel1.setBounds(190, 390, 60, 40);
 
         txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtSymptom);
-        txtSymptom.setBounds(340, 390, 500, 40);
+        txtSymptom.setBounds(250, 390, 500, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(290, 240, 70, 40);
+        jLabel2.setBounds(200, 240, 70, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("ID:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(600, 140, 25, 40);
+        jLabel4.setBounds(510, 140, 25, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("病症分类:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(250, 450, 90, 40);
+        jLabel6.setBounds(160, 450, 90, 40);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(0, 252, 720, 0);
 
         txtCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtCategory);
-        txtCategory.setBounds(340, 450, 500, 40);
+        txtCategory.setBounds(250, 450, 500, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("脉象：");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(280, 510, 60, 40);
+        jLabel3.setBounds(190, 510, 60, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("IC:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(290, 140, 30, 40);
+        jLabel5.setBounds(200, 140, 30, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("电话号码：");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(250, 300, 100, 40);
+        jLabel7.setBounds(160, 300, 100, 40);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtIC);
-        txtIC.setBounds(330, 140, 260, 40);
+        txtIC.setBounds(240, 140, 260, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtID);
-        txtID.setBounds(630, 140, 210, 40);
+        txtID.setBounds(540, 140, 210, 40);
 
         btnFindIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindIC.setText("寻找");
+        btnFindIC.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFindIC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindICActionPerformed(evt);
             }
         });
         getContentPane().add(btnFindIC);
-        btnFindIC.setBounds(500, 190, 90, 40);
+        btnFindIC.setBounds(410, 190, 90, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtName);
-        txtName.setBounds(340, 240, 500, 40);
+        txtName.setBounds(250, 240, 500, 40);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(280, 20, 0, 110);
         getContentPane().add(jSeparator4);
@@ -286,77 +286,78 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         btnFindID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindID.setText("寻找");
+        btnFindID.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFindID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindIDActionPerformed(evt);
             }
         });
         getContentPane().add(btnFindID);
-        btnFindID.setBounds(750, 190, 90, 40);
+        btnFindID.setBounds(660, 190, 90, 40);
         getContentPane().add(jSeparator3);
-        jSeparator3.setBounds(250, 360, 650, 10);
+        jSeparator3.setBounds(160, 360, 650, 10);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
-        txtPhone.setBounds(340, 300, 500, 40);
+        txtPhone.setBounds(250, 300, 500, 40);
 
         txtPulse.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPulse);
-        txtPulse.setBounds(340, 510, 200, 40);
+        txtPulse.setBounds(250, 510, 200, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("舌质：");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(570, 510, 60, 40);
+        jLabel8.setBounds(480, 510, 60, 40);
 
         txtTongueQuality.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueQuality);
-        txtTongueQuality.setBounds(620, 510, 220, 40);
+        txtTongueQuality.setBounds(530, 510, 220, 40);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("舌苔：");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(280, 570, 57, 40);
+        jLabel9.setBounds(190, 570, 57, 40);
 
         txtTongueCoating.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTongueCoating);
-        txtTongueCoating.setBounds(340, 570, 200, 40);
+        txtTongueCoating.setBounds(250, 570, 200, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("大小便：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(550, 570, 76, 40);
+        jLabel10.setBounds(460, 570, 76, 40);
 
         txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtShit);
-        txtShit.setBounds(620, 570, 220, 40);
+        txtShit.setBounds(530, 570, 220, 40);
 
         jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel11.setText("病史：");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(280, 630, 60, 40);
+        jLabel11.setBounds(190, 630, 60, 40);
 
         txtHistory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtHistory);
-        txtHistory.setBounds(340, 630, 500, 40);
+        txtHistory.setBounds(250, 630, 500, 40);
 
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel12.setText("体温：");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(280, 690, 60, 40);
+        jLabel12.setBounds(190, 690, 60, 40);
 
         txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtTemperature);
-        txtTemperature.setBounds(340, 690, 200, 40);
+        txtTemperature.setBounds(250, 690, 200, 40);
 
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel13.setText("血压：");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(560, 690, 60, 40);
+        jLabel13.setBounds(470, 690, 60, 40);
 
         txtBlood.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtBlood);
-        txtBlood.setBounds(620, 690, 220, 40);
+        txtBlood.setBounds(530, 690, 220, 40);
 
         tblDisease.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
@@ -370,9 +371,16 @@ public class ModifyDisease extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblDisease.setToolTipText("");
@@ -390,17 +398,18 @@ public class ModifyDisease extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(910, 100, 990, 790);
+        jScrollPane2.setBounds(820, 100, 990, 790);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText(" 重启");
+        btnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
         getContentPane().add(btnReset);
-        btnReset.setBounds(400, 830, 140, 50);
+        btnReset.setBounds(310, 830, 140, 50);
 
         txtDiseaseID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtDiseaseID);
@@ -411,7 +420,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel15.setText("更改处方");
+        jLabel15.setText("更改病症");
 
         jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel17.setText("登入：");
@@ -460,6 +469,11 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
+
+        panelBody.setBackground(new java.awt.Color(255, 255, 255));
+        panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        getContentPane().add(panelBody);
+        panelBody.setBounds(100, 90, 1780, 820);
 
         setBounds(0, 0, 1957, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -770,21 +784,31 @@ public class ModifyDisease extends javax.swing.JFrame {
     
     public void widthTable()
     {
+        this.lblName.setText(user.getUserid());
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         tblDisease.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TableColumnModel columnModel = tblDisease.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(100);
-        columnModel.getColumn(1).setPreferredWidth(50);
-        columnModel.getColumn(2).setPreferredWidth(200);
-        columnModel.getColumn(3).setPreferredWidth(200);
+        columnModel.getColumn(0).setPreferredWidth(70);
+        columnModel.getColumn(1).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(150);
+        columnModel.getColumn(3).setPreferredWidth(160);
         columnModel.getColumn(4).setPreferredWidth(100);
         columnModel.getColumn(5).setPreferredWidth(100);
-        columnModel.getColumn(6).setPreferredWidth(70);
-        columnModel.getColumn(7).setPreferredWidth(50);
-        columnModel.getColumn(8).setPreferredWidth(50);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(7).setPreferredWidth(100);
+        columnModel.getColumn(8).setPreferredWidth(100);
         columnModel.getColumn(9).setPreferredWidth(100);
         columnModel.getColumn(10).setPreferredWidth(100);
-        
+        columnModel.getColumn(11).setPreferredWidth(100);
+        columnModel.getColumn(12).setPreferredWidth(100);
+        columnModel.getColumn(13).setPreferredWidth(200);
+        columnModel.getColumn(14).setPreferredWidth(200);
+        columnModel.getColumn(15).setPreferredWidth(200);
+        columnModel.getColumn(15).setMinWidth(0);
+        columnModel.getColumn(15).setMaxWidth(0);
     }
     /**
      * @param args the command line arguments
@@ -853,6 +877,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tblDisease;
     private javax.swing.JTextField txtBlood;

@@ -322,11 +322,33 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblChufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        tblChufang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblChufang.setFocusable(false);
         tblChufang.setGridColor(new java.awt.Color(255, 255, 255));
         tblChufang.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblChufang.setRowHeight(25);
-        tblChufang.setShowVerticalLines(false);
         tblChufang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblChufangMouseClicked(evt);
@@ -625,7 +647,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
     private void createColumns()
     {
-        model = (DefaultTableModel) tblChufang.getModel();
+        /*model = (DefaultTableModel) tblChufang.getModel();
         model.addColumn("病人ID");
         model.addColumn("病人IC");
         model.addColumn("名字");
@@ -648,7 +670,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         model.addColumn("体温");
         model.addColumn("血压");
         model.addColumn("病症ID");
-        model.addColumn("处方ID");
+        model.addColumn("处方ID");*/
     }
     
     public void show_table()
@@ -961,10 +983,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     public void widthTable()
     {
+        this.lblName.setText(user.getUserid());
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblChufang.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         tblChufang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TableColumnModel columnModel = tblChufang.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(70);
         columnModel.getColumn(1).setPreferredWidth(150);

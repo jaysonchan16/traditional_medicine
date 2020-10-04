@@ -552,7 +552,7 @@ public class DiseaseMenu extends javax.swing.JFrame {
     {
         try {
             // TODO add your handling code here:
-            SearchDiseasePatient detail = new SearchDiseasePatient(user);
+            ModifyDisease detail = new ModifyDisease(user);
             detail.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
