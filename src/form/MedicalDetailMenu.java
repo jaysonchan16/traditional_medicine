@@ -395,6 +395,8 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         imgFindMedicine.setIcon(iconFind);
         ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/back.png"));
         imgBack.setIcon(iconBack);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/caoyao.png"));
+        jLabel1.setIcon(iconHeader);
     }
     /**
      * @param args the command line arguments
