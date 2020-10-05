@@ -5,6 +5,7 @@
  */
 package form;
 
+import java.awt.Color;
 import javaClass.Patient;
 import javaClass.User;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +52,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         this.user = user;
         this.option = option;
         setResizable(false);
+        image();
     }
     
     public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option){
@@ -75,6 +78,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnFind.setEnabled(false);
         txtID.setEnabled(false);
         setResizable(false);
+        image();
     }
 
     public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to){
@@ -102,6 +106,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnFind.setEnabled(false);
         txtID.setEnabled(false);
         setResizable(false);
+        image();
     }
     
         public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option, String from, String to, String initialIC, String initialID){
@@ -131,6 +136,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnFind.setEnabled(false);
         txtID.setEnabled(false);
         setResizable(false);
+        image();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -165,6 +171,14 @@ public class ModifyPatient extends javax.swing.JFrame {
         lblLastUpdateDateTime = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        panelBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -172,7 +186,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("IC:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(360, 170, 27, 26);
+        jLabel1.setBounds(220, 180, 27, 26);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtIC.addActionListener(new java.awt.event.ActionListener() {
@@ -186,12 +200,12 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtIC);
-        txtIC.setBounds(410, 170, 1470, 40);
+        txtIC.setBounds(270, 180, 1470, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("姓名：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(350, 320, 60, 40);
+        jLabel2.setBounds(210, 330, 60, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -200,39 +214,39 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtName);
-        txtName.setBounds(410, 320, 1470, 40);
+        txtName.setBounds(270, 330, 1470, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("性别：");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(350, 380, 57, 30);
+        jLabel3.setBounds(210, 390, 57, 30);
 
         txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtGender);
-        txtGender.setBounds(410, 380, 1470, 40);
+        txtGender.setBounds(270, 390, 1470, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("年龄：");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(350, 440, 70, 30);
+        jLabel4.setBounds(210, 450, 70, 30);
 
         txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtAge);
-        txtAge.setBounds(410, 440, 1470, 40);
+        txtAge.setBounds(270, 450, 1470, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("电话号码：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(310, 500, 110, 30);
+        jLabel5.setBounds(170, 510, 110, 30);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
-        txtPhone.setBounds(410, 500, 1470, 40);
+        txtPhone.setBounds(270, 510, 1470, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("地址：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(340, 560, 60, 30);
+        jLabel6.setBounds(200, 570, 60, 30);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更改");
@@ -242,7 +256,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnUpdate);
-        btnUpdate.setBounds(880, 830, 110, 50);
+        btnUpdate.setBounds(1500, 840, 110, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -252,7 +266,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(1010, 830, 110, 50);
+        btnDelete.setBounds(1630, 840, 110, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -262,12 +276,12 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(320, 830, 110, 50);
+        btnBack.setBounds(180, 840, 110, 50);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("ID:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(360, 110, 25, 26);
+        jLabel8.setBounds(220, 120, 25, 26);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -276,7 +290,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtID);
-        txtID.setBounds(410, 110, 1470, 40);
+        txtID.setBounds(270, 120, 1470, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -286,27 +300,27 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFind);
-        btnFind.setBounds(1770, 230, 110, 50);
+        btnFind.setBounds(1630, 240, 110, 50);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(280, 300, 1600, 20);
+        jSeparator1.setBounds(140, 310, 1600, 20);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("创造时间:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(310, 710, 90, 40);
+        jLabel9.setBounds(170, 720, 90, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("更新时间：");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(310, 770, 100, 40);
+        jLabel10.setBounds(170, 780, 100, 40);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(410, 710, 710, 40);
+        lblCreateDateTime.setBounds(270, 720, 710, 40);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(410, 770, 710, 40);
+        lblLastUpdateDateTime.setBounds(270, 780, 710, 40);
 
         txtAddress.setColumns(20);
         txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -314,7 +328,46 @@ public class ModifyPatient extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAddress);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(410, 560, 1470, 136);
+        jScrollPane1.setBounds(270, 570, 1470, 136);
+
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
+
+        jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel17.setText("登入：");
+        panelHeader.add(jLabel17);
+        jLabel17.setBounds(1651, 2, 75, 70);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1733, 5, 160, 60);
+
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel7.setText("更改病人资料");
+        panelHeader.add(jLabel7);
+        jLabel7.setBounds(874, 5, 260, 60);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel18);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        panelBody.setBackground(new java.awt.Color(255, 255, 255));
+        panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        getContentPane().add(panelBody);
+        panelBody.setBounds(70, 90, 1780, 820);
 
         setBounds(0, 0, 1955, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -494,6 +547,24 @@ public class ModifyPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
+    public void image()
+    {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFind.setIcon(iconFind);
+        ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
+        btnDelete.setIcon(iconDelete);
+        ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
+        btnUpdate.setIcon(iconUpdate);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
+        jLabel7.setIcon(iconModify);
+        this.lblName.setText(user.getUserid());
+        setResizable(false);
+    }
     
     /**
      * @param args the command line arguments
@@ -537,17 +608,25 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblLastUpdateDateTime;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelBody;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JTextArea txtAddress;
     public javax.swing.JTextField txtAge;
     public javax.swing.JTextField txtGender;
