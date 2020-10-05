@@ -455,7 +455,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        PatientDetailMenu main = new PatientDetailMenu(user);
+        DiseaseMenu main = new DiseaseMenu(user);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed

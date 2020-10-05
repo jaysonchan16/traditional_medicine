@@ -7,6 +7,7 @@ package form;
 
 import javaClass.User;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +24,9 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         
-        this.lblLoggedIn.setText(user.getUserid());
+        this.lblName.setText(user.getUserid());
         setResizable(false);
+        image();
     }
     public PatientDetailMenu() {
         initComponents();
@@ -39,157 +41,337 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPatientDetail = new javax.swing.JButton();
-        btnBackup = new javax.swing.JButton();
-        btnImport = new javax.swing.JButton();
-        btnEditPatient = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lblLoggedIn = new javax.swing.JLabel();
-        btnFind = new javax.swing.JButton();
-        btnModifyPatient = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        headerPatient = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        btnAddPatient = new javax.swing.JPanel();
+        imgAddPatient = new javax.swing.JLabel();
+        lblAddPatient = new javax.swing.JLabel();
+        btnFindPatient = new javax.swing.JPanel();
+        imgFindPatient = new javax.swing.JLabel();
+        lblFindPatient = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JPanel();
+        imgBack = new javax.swing.JLabel();
+        lblBack = new javax.swing.JLabel();
+        btnModifyPatient = new javax.swing.JPanel();
+        imgModifyPatient = new javax.swing.JLabel();
+        lblModifyPatient = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnPatientDetail.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnPatientDetail.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\report.png")); // NOI18N
-        btnPatientDetail.setText("病人报告");
-        btnPatientDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPatientDetailActionPerformed(evt);
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
+
+        jLabel13.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel13.setText("登入：");
+        panelHeader.add(jLabel13);
+        jLabel13.setBounds(1670, 5, 75, 60);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1752, 5, 127, 60);
+
+        headerPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        headerPatient.setText("病人");
+        panelHeader.add(headerPatient);
+        headerPatient.setBounds(920, 0, 230, 70);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel12);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        btnAddPatient.setBackground(new java.awt.Color(0, 204, 204));
+        btnAddPatient.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnAddPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnPatientDetail);
-        btnPatientDetail.setBounds(740, 140, 240, 70);
 
-        btnBackup.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnBackup.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\export.png")); // NOI18N
-        btnBackup.setText("备用");
-        btnBackup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackupActionPerformed(evt);
+        imgAddPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgAddPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnBackup);
-        btnBackup.setBounds(740, 300, 240, 70);
 
-        btnImport.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnImport.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\import.png")); // NOI18N
-        btnImport.setText("输入资料");
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
+        lblAddPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblAddPatient.setText("病人资料");
+        lblAddPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAddPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnImport);
-        btnImport.setBounds(410, 300, 239, 70);
 
-        btnEditPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnEditPatient.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\edit-user.png")); // NOI18N
-        btnEditPatient.setText("病人资料");
-        btnEditPatient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditPatientActionPerformed(evt);
+        javax.swing.GroupLayout btnAddPatientLayout = new javax.swing.GroupLayout(btnAddPatient);
+        btnAddPatient.setLayout(btnAddPatientLayout);
+        btnAddPatientLayout.setHorizontalGroup(
+            btnAddPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnAddPatientLayout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(imgAddPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAddPatientLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAddPatient)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        btnAddPatientLayout.setVerticalGroup(
+            btnAddPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAddPatientLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(imgAddPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblAddPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        getContentPane().add(btnAddPatient);
+        btnAddPatient.setBounds(230, 150, 470, 350);
+
+        btnFindPatient.setBackground(new java.awt.Color(153, 255, 255));
+        btnFindPatient.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFindPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFindPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnEditPatient);
-        btnEditPatient.setBounds(80, 140, 240, 70);
 
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\back-1.png")); // NOI18N
-        btnBack.setText("退出");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+        imgFindPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgFindPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnBack);
-        btnBack.setBounds(770, 470, 200, 70);
 
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel2.setText("病人");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(480, 30, 80, 40);
-
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel3.setText("登入：");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(760, 40, 90, 40);
-
-        lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(lblLoggedIn);
-        lblLoggedIn.setBounds(860, 40, 140, 40);
-
-        btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnFind.setText("寻找病人资料");
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
+        lblFindPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblFindPatient.setText("寻找病人资料");
+        lblFindPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFindPatientMouseClicked(evt);
             }
         });
-        getContentPane().add(btnFind);
-        btnFind.setBounds(80, 300, 240, 70);
 
-        btnModifyPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnModifyPatient.setText("更改病人资料");
-        btnModifyPatient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyPatientActionPerformed(evt);
+        javax.swing.GroupLayout btnFindPatientLayout = new javax.swing.GroupLayout(btnFindPatient);
+        btnFindPatient.setLayout(btnFindPatientLayout);
+        btnFindPatientLayout.setHorizontalGroup(
+            btnFindPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnFindPatientLayout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(imgFindPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnFindPatientLayout.createSequentialGroup()
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addComponent(lblFindPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
+        );
+        btnFindPatientLayout.setVerticalGroup(
+            btnFindPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnFindPatientLayout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
+                .addComponent(imgFindPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblFindPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        getContentPane().add(btnFindPatient);
+        btnFindPatient.setBounds(230, 560, 470, 350);
+
+        btnBack1.setBackground(new java.awt.Color(255, 204, 204));
+        btnBack1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnBack1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBack1MouseClicked(evt);
             }
         });
+
+        imgBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgBackMouseClicked(evt);
+            }
+        });
+
+        lblBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblBack.setText("退出");
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBackMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnBack1Layout = new javax.swing.GroupLayout(btnBack1);
+        btnBack1.setLayout(btnBack1Layout);
+        btnBack1Layout.setHorizontalGroup(
+            btnBack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnBack1Layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(imgBack, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnBack1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194))
+        );
+        btnBack1Layout.setVerticalGroup(
+            btnBack1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnBack1Layout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(imgBack, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        getContentPane().add(btnBack1);
+        btnBack1.setBounds(1170, 560, 470, 350);
+
+        btnModifyPatient.setBackground(new java.awt.Color(255, 255, 204));
+        btnModifyPatient.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnModifyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModifyPatientMouseClicked(evt);
+            }
+        });
+
+        imgModifyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgModifyPatientMouseClicked(evt);
+            }
+        });
+
+        lblModifyPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblModifyPatient.setText("更改病人资料");
+        lblModifyPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblModifyPatientMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnModifyPatientLayout = new javax.swing.GroupLayout(btnModifyPatient);
+        btnModifyPatient.setLayout(btnModifyPatientLayout);
+        btnModifyPatientLayout.setHorizontalGroup(
+            btnModifyPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnModifyPatientLayout.createSequentialGroup()
+                .addContainerGap(165, Short.MAX_VALUE)
+                .addGroup(btnModifyPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnModifyPatientLayout.createSequentialGroup()
+                        .addComponent(imgModifyPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(168, 168, 168))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnModifyPatientLayout.createSequentialGroup()
+                        .addComponent(lblModifyPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
+        );
+        btnModifyPatientLayout.setVerticalGroup(
+            btnModifyPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnModifyPatientLayout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(imgModifyPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblModifyPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
         getContentPane().add(btnModifyPatient);
-        btnModifyPatient.setBounds(410, 140, 240, 70);
+        btnModifyPatient.setBounds(1170, 160, 470, 350);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1070, 590);
-
-        setBounds(0, 0, 1086, 630);
+        setBounds(0, 0, 1960, 1038);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void imgAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAddPatientMouseClicked
         // TODO add your handling code here:
-        MainMenu detail = new MainMenu(user);
-        detail.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnBackActionPerformed
+        AddPatient();
+    }//GEN-LAST:event_imgAddPatientMouseClicked
 
-    private void btnEditPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPatientActionPerformed
+    private void lblAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddPatientMouseClicked
         // TODO add your handling code here:
+        AddPatient();
+    }//GEN-LAST:event_lblAddPatientMouseClicked
+
+    private void btnAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPatientMouseClicked
+        // TODO add your handling code here:
+        AddPatient();
+    }//GEN-LAST:event_btnAddPatientMouseClicked
+
+    private void imgFindPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgFindPatientMouseClicked
+        // TODO add your handling code here:
+        FindPatient();
+    }//GEN-LAST:event_imgFindPatientMouseClicked
+
+    private void lblFindPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFindPatientMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        FindPatient();
+    }//GEN-LAST:event_lblFindPatientMouseClicked
+
+    private void btnFindPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFindPatientMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        FindPatient();
+    }//GEN-LAST:event_btnFindPatientMouseClicked
+
+    private void imgBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBackMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_imgBackMouseClicked
+
+    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_lblBackMouseClicked
+
+    private void btnBack1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBack1MouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_btnBack1MouseClicked
+
+    private void imgModifyPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgModifyPatientMouseClicked
+        // TODO add your handling code here:
+        ModifyPatient();
+    }//GEN-LAST:event_imgModifyPatientMouseClicked
+
+    private void lblModifyPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblModifyPatientMouseClicked
+        // TODO add your handling code here:
+        ModifyPatient();
+    }//GEN-LAST:event_lblModifyPatientMouseClicked
+
+    private void btnModifyPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyPatientMouseClicked
+        // TODO add your handling code here:
+        ModifyPatient();
+    }//GEN-LAST:event_btnModifyPatientMouseClicked
+
+    public void AddPatient()
+    {
         NewPatient patient = new NewPatient(user);
         patient.setVisible(true);
         this.dispose();
-        
-    }//GEN-LAST:event_btnEditPatientActionPerformed
-
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
-        // TODO add your handling code here:
-        PrintPatientReport i = new PrintPatientReport(user);
-        i.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnImportActionPerformed
-
-    private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
-        try {
-            // TODO add your handling code here:
-            ViewPatientDetail i = new ViewPatientDetail(user,3);
-            i.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "PatientDetailMenu.btnBackupActionPerformed get error on line 181,"+ex.getMessage());
-        }
-    }//GEN-LAST:event_btnBackupActionPerformed
-
-    private void btnPatientDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientDetailActionPerformed
+    }
+    
+    public void PatientDetail()
+    {
         MonthYearIC monthyear = new MonthYearIC(user,2);
         monthyear.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnPatientDetailActionPerformed
-
-    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+    }
+    
+    public void FindPatient()
+    {
         try {
             // TODO add your handling code here:
             SearchPatient search = new SearchPatient(user);
@@ -198,15 +380,37 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "PatientDetailMenu.btnFindActionPerformed get error on line 198,"+ex.getMessage());
         }
-    }//GEN-LAST:event_btnFindActionPerformed
-
-    private void btnModifyPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPatientActionPerformed
-        // TODO add your handling code here:
+    }
+    
+    public void ModifyPatient()
+    {
         ModifyPatient patient = new ModifyPatient(user,1);
         patient.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnModifyPatientActionPerformed
-
+    }
+    
+    public void back()
+    {
+        MainMenu detail = new MainMenu(user);
+        detail.setVisible(true);
+        this.dispose();
+    }
+    
+    public void image()
+    {
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconAdd = new ImageIcon(getClass().getResource("/menu/addbig.png"));
+        imgAddPatient.setIcon(iconAdd);
+        ImageIcon iconEdit = new ImageIcon(getClass().getResource("/menu/edit.png"));
+        imgModifyPatient.setIcon(iconEdit);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/find.png"));
+        imgFindPatient.setIcon(iconFind);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/back.png"));
+        imgBack.setIcon(iconBack);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/patientmedium.png"));
+        headerPatient.setIcon(iconHeader);
+    }
     /**
      * @param args the command line arguments
      */
@@ -243,16 +447,24 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBackup;
-    private javax.swing.JButton btnEditPatient;
-    private javax.swing.JButton btnFind;
-    private javax.swing.JButton btnImport;
-    private javax.swing.JButton btnModifyPatient;
-    private javax.swing.JButton btnPatientDetail;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel lblLoggedIn;
+    private javax.swing.JPanel btnAddPatient;
+    private javax.swing.JPanel btnBack1;
+    private javax.swing.JPanel btnFindPatient;
+    private javax.swing.JPanel btnModifyPatient;
+    private javax.swing.JLabel headerPatient;
+    private javax.swing.JLabel imgAddPatient;
+    private javax.swing.JLabel imgBack;
+    private javax.swing.JLabel imgFindPatient;
+    private javax.swing.JLabel imgModifyPatient;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAddPatient;
+    private javax.swing.JLabel lblBack;
+    private javax.swing.JLabel lblFindPatient;
+    private javax.swing.JLabel lblModifyPatient;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelHeader;
     // End of variables declaration//GEN-END:variables
 }
