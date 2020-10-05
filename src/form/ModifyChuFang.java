@@ -72,6 +72,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         medicineCategory();
         show_table();
         widthTable();
+        image();
 
     }
     
@@ -104,7 +105,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         widthTable();
         txtPrescriptionID.setVisible(false);
         btnReset.setVisible(false);
-
+        image();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1046,6 +1047,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
         lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFindIC.setIcon(iconFind);
+        btnFindID.setIcon(iconFind);
+        ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
+        btnReset.setIcon(iconReset);
+        ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
+        btnDelete.setIcon(iconDelete);
+        ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
+        btnModify.setIcon(iconUpdate);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        btnModifyMedicine.setIcon(iconModify);
+        jLabel1.setIcon(iconModify);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }

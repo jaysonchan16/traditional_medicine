@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -65,6 +66,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtPhone.setEnabled(false);
         disabledTextBox();
         txtDiseaseID.setVisible(false);
+        image();
         
     }
     
@@ -114,6 +116,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         disabledTextBox();
         txtDiseaseID.setVisible(false);
         btnReset.setVisible(false);
+        image();
         /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
         new JScrollPane(tblDisease, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         */
@@ -809,6 +812,28 @@ public class ModifyDisease extends javax.swing.JFrame {
         columnModel.getColumn(15).setPreferredWidth(200);
         columnModel.getColumn(15).setMinWidth(0);
         columnModel.getColumn(15).setMaxWidth(0);
+    }
+    
+    public void image()
+    {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFindIC.setIcon(iconFind);
+        btnFindID.setIcon(iconFind);
+        ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
+        btnReset.setIcon(iconReset);
+        ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
+        btnDelete.setIcon(iconDelete);
+        ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
+        btnModify.setIcon(iconUpdate);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        jLabel15.setIcon(iconModify);
+        this.lblName.setText(user.getUserid());
+        setResizable(false);
     }
     /**
      * @param args the command line arguments
