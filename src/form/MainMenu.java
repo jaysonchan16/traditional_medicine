@@ -56,7 +56,7 @@ public class MainMenu extends javax.swing.JFrame {
         lbllogo = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblhome = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         btnStorage = new javax.swing.JPanel();
@@ -90,46 +90,23 @@ public class MainMenu extends javax.swing.JFrame {
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 63);
 
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel13.setText("登入：");
+        panelHeader.add(jLabel13);
+        jLabel13.setBounds(1612, 5, 100, 60);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1719, 5, 160, 60);
 
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel2.setText("目录");
-
-        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
-        panelHeader.setLayout(panelHeaderLayout);
-        panelHeaderLayout.setHorizontalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(650, 650, 650)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 683, Short.MAX_VALUE)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-        panelHeaderLayout.setVerticalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelHeaderLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 3, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        lblhome.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblhome.setText("目录");
+        panelHeader.add(lblhome);
+        lblhome.setBounds(882, 2, 127, 63);
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1930, 70);
@@ -707,6 +684,8 @@ public class MainMenu extends javax.swing.JFrame {
         imgSetting.setIcon(iconSetting);
         ImageIcon iconLogout = new ImageIcon(getClass().getResource("/menu/logout.png"));
         imgLogout.setIcon(iconLogout);
+        ImageIcon iconHome = new ImageIcon(getClass().getResource("/menu/homemedium.png"));
+        lblhome.setIcon(iconHome);
     }
     /**
      * @param args the command line arguments
@@ -762,7 +741,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel imgStorage;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDisease;
     private javax.swing.JLabel lblLogout;
@@ -773,6 +751,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblReference;
     private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblStorage;
+    private javax.swing.JLabel lblhome;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
     // End of variables declaration//GEN-END:variables

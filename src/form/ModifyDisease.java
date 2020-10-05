@@ -421,44 +421,23 @@ public class ModifyDisease extends javax.swing.JFrame {
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
 
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel15.setText("更改病症");
+        panelHeader.add(jLabel15);
+        jLabel15.setBounds(873, -1, 180, 70);
 
         jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel17.setText("登入：");
+        panelHeader.add(jLabel17);
+        jLabel17.setBounds(1651, 5, 100, 60);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-
-        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
-        panelHeader.setLayout(panelHeaderLayout);
-        panelHeaderLayout.setHorizontalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 708, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(598, 598, 598)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        panelHeaderLayout.setVerticalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel17)
-                        .addComponent(jLabel15)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        panelHeader.add(lblName);
+        lblName.setBounds(1758, -1, 160, 70);
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
@@ -830,7 +809,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnDelete.setIcon(iconDelete);
         ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
         btnModify.setIcon(iconUpdate);
-        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel15.setIcon(iconModify);
         this.lblName.setText(user.getUserid());
         setResizable(false);

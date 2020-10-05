@@ -17,6 +17,7 @@ import java.awt.ScrollPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -56,6 +57,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         changeLabel();
         createColumns(1,"");
         widthTable();
+        image();
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
     }
@@ -294,44 +296,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
 
         jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel17.setText("登入：");
+        panelHeader.add(jLabel17);
+        jLabel17.setBounds(1651, 2, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1733, 5, 160, 60);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel4.setText("更改药资料");
-
-        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
-        panelHeader.setLayout(panelHeaderLayout);
-        panelHeaderLayout.setHorizontalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 696, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(570, 570, 570)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        panelHeaderLayout.setVerticalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel17)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        panelHeader.add(jLabel4);
+        jLabel4.setBounds(874, 5, 207, 60);
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
@@ -1030,16 +1011,17 @@ public class ModifyMedicine extends javax.swing.JFrame {
         TableColumnModel columnModel = tblMedicine.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(200);
-        columnModel.getColumn(3).setPreferredWidth(200);
-        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(1000);
+        columnModel.getColumn(3).setPreferredWidth(1000);
+        columnModel.getColumn(4).setPreferredWidth(600);
         columnModel.getColumn(5).setPreferredWidth(100);
         columnModel.getColumn(6).setPreferredWidth(100);
         columnModel.getColumn(7).setPreferredWidth(100);
         columnModel.getColumn(8).setPreferredWidth(100);
         columnModel.getColumn(9).setPreferredWidth(200);
         columnModel.getColumn(10).setPreferredWidth(200);
-        
+        columnModel.getColumn(0).setMinWidth(0);
+        columnModel.getColumn(0).setMaxWidth(0);
     }
     
     public void resetTextBox()
@@ -1063,6 +1045,26 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
     }
+    
+    public void image()
+    {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFind.setIcon(iconFind);
+        ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
+        btnDelete.setIcon(iconDelete);
+        ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
+        btnModify.setIcon(iconUpdate);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
+        jLabel4.setIcon(iconModify);
+        this.lblName.setText(user.getUserid());
+        setResizable(false);
+    }
+    
     
     
     /**

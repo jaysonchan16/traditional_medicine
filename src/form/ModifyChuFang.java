@@ -412,44 +412,23 @@ public class ModifyChuFang extends javax.swing.JFrame {
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("更改处方");
+        panelHeader.add(jLabel1);
+        jLabel1.setBounds(953, 5, 160, 60);
 
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel13.setText("登入：");
+        panelHeader.add(jLabel13);
+        jLabel13.setBounds(1651, -1, 100, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-
-        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
-        panelHeader.setLayout(panelHeaderLayout);
-        panelHeaderLayout.setHorizontalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 708, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(598, 598, 598)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        panelHeaderLayout.setVerticalGroup(
-            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel1)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        panelHeader.add(lblName);
+        lblName.setBounds(1758, 5, 160, 60);
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
@@ -1060,7 +1039,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnModify.setIcon(iconUpdate);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
         btnModifyMedicine.setIcon(iconModify);
-        jLabel1.setIcon(iconModify);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
+        jLabel1.setIcon(iconHeader);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
