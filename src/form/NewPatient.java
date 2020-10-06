@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,7 @@ public class NewPatient extends javax.swing.JFrame {
         txtPhone.setEnabled(false);
         txtAddress.setEnabled(false);
         this.user = user;
+        image();
     }
 
     public NewPatient(User user, String DiseaseIC) {
@@ -48,6 +50,7 @@ public class NewPatient extends javax.swing.JFrame {
         txtIC.setEnabled(false);
         btnFind.setVisible(false);
         txtAddress.setEnabled(true);
+        image();
         
     }
 
@@ -74,7 +77,6 @@ public class NewPatient extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         btnFind = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
@@ -86,6 +88,14 @@ public class NewPatient extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblCreateDateTime = new javax.swing.JLabel();
         lblLastUpdateDateTime = new javax.swing.JLabel();
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        headerAdd = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        panelBody = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -93,36 +103,36 @@ public class NewPatient extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("名字：");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 150, 70, 40);
+        jLabel1.setBounds(440, 250, 70, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("性别：");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 200, 145, 30);
+        jLabel2.setBounds(440, 320, 145, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("年龄：");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(540, 200, 60, 40);
+        jLabel3.setBounds(940, 320, 60, 40);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtIC);
-        txtIC.setBounds(110, 100, 730, 40);
+        txtIC.setBounds(530, 180, 730, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("IC:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 100, 130, 40);
+        jLabel4.setBounds(440, 180, 130, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("电话：");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 250, 154, 30);
+        jLabel5.setBounds(440, 400, 154, 30);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("地址：");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 300, 154, 40);
+        jLabel6.setBounds(440, 480, 154, 40);
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnAdd.setText("新增");
@@ -132,7 +142,7 @@ public class NewPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdd);
-        btnAdd.setBounds(760, 580, 126, 51);
+        btnAdd.setBounds(1310, 770, 126, 51);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -142,12 +152,7 @@ public class NewPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBack);
-        btnBack.setBounds(900, 580, 126, 50);
-
-        jLabel7.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel7.setText("病人资料");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(480, 20, 260, 41);
+        btnBack.setBounds(420, 780, 126, 50);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -157,23 +162,23 @@ public class NewPatient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFind);
-        btnFind.setBounds(860, 90, 151, 50);
+        btnFind.setBounds(1280, 170, 151, 50);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtName);
-        txtName.setBounds(110, 150, 920, 40);
+        txtName.setBounds(530, 250, 900, 40);
 
         txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtGender);
-        txtGender.setBounds(110, 200, 380, 40);
+        txtGender.setBounds(530, 320, 380, 40);
 
         txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtAge);
-        txtAge.setBounds(620, 200, 410, 40);
+        txtAge.setBounds(1020, 320, 410, 40);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPhone);
-        txtPhone.setBounds(110, 250, 920, 40);
+        txtPhone.setBounds(530, 400, 900, 40);
 
         txtAddress.setColumns(20);
         txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -181,27 +186,66 @@ public class NewPatient extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtAddress);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(110, 300, 920, 150);
+        jScrollPane2.setBounds(530, 480, 900, 150);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("更新时间：");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(510, 470, 100, 40);
+        jLabel8.setBounds(910, 670, 100, 40);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("创建时间：");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 470, 100, 40);
+        jLabel9.setBounds(420, 670, 100, 40);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(110, 470, 390, 40);
+        lblCreateDateTime.setBounds(510, 670, 390, 40);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(610, 470, 420, 40);
+        lblLastUpdateDateTime.setBounds(1010, 670, 420, 40);
 
-        setBounds(0, 0, 1089, 704);
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
+
+        jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel17.setText("登入：");
+        panelHeader.add(jLabel17);
+        jLabel17.setBounds(1651, 2, 75, 70);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1720, 0, 160, 70);
+
+        headerAdd.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        headerAdd.setText("新增病人");
+        panelHeader.add(headerAdd);
+        headerAdd.setBounds(820, 0, 260, 70);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel18);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        panelBody.setBackground(new java.awt.Color(255, 255, 255));
+        panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        getContentPane().add(panelBody);
+        panelBody.setBounds(330, 100, 1200, 810);
+
+        setBounds(0, 0, 1955, 1037);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -310,6 +354,21 @@ public class NewPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
+    public void image()
+    {
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconAdd = new ImageIcon(getClass().getResource("/menu/addsmall.png"));
+        btnAdd.setIcon(iconAdd);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFind.setIcon(iconFind);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
+        headerAdd.setIcon(iconHeader);
+        this.lblName.setText(user.getUserid());
+        setResizable(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -349,18 +408,25 @@ public class NewPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
+    private javax.swing.JLabel headerAdd;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblLastUpdateDateTime;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelBody;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtGender;
