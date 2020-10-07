@@ -68,26 +68,6 @@ public class NewPatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtIC = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        btnFind = new javax.swing.JButton();
-        txtName = new javax.swing.JTextField();
-        txtGender = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
-        txtPhone = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAddress = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        lblCreateDateTime = new javax.swing.JLabel();
-        lblLastUpdateDateTime = new javax.swing.JLabel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -96,115 +76,29 @@ public class NewPatient extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtIC = new javax.swing.JTextField();
+        btnFind = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtGender = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAddress = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        lblCreateDateTime = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblLastUpdateDateTime = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("名字：");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(440, 250, 70, 40);
-
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel2.setText("性别：");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(440, 320, 145, 40);
-
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel3.setText("年龄：");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(940, 320, 60, 40);
-
-        txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtIC);
-        txtIC.setBounds(530, 180, 730, 40);
-
-        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel4.setText("IC:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(440, 180, 130, 40);
-
-        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel5.setText("电话：");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(440, 400, 154, 30);
-
-        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel6.setText("地址：");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 480, 154, 40);
-
-        btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnAdd.setText("新增");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAdd);
-        btnAdd.setBounds(1310, 770, 126, 51);
-
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnBack.setText("退出");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBack);
-        btnBack.setBounds(420, 780, 126, 50);
-
-        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnFind.setText("寻找");
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnFind);
-        btnFind.setBounds(1280, 170, 151, 50);
-
-        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtName);
-        txtName.setBounds(530, 250, 900, 40);
-
-        txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtGender);
-        txtGender.setBounds(530, 320, 380, 40);
-
-        txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtAge);
-        txtAge.setBounds(1020, 320, 410, 40);
-
-        txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtPhone);
-        txtPhone.setBounds(530, 400, 900, 40);
-
-        txtAddress.setColumns(20);
-        txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtAddress.setRows(5);
-        jScrollPane2.setViewportView(txtAddress);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(530, 480, 900, 150);
-
-        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel8.setText("更新时间：");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(910, 670, 100, 40);
-
-        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel9.setText("创建时间：");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(420, 670, 100, 40);
-
-        lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(lblCreateDateTime);
-        lblCreateDateTime.setBounds(510, 670, 390, 40);
-
-        lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(1010, 670, 420, 40);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -242,6 +136,114 @@ public class NewPatient extends javax.swing.JFrame {
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("IC:");
+        panelBody.add(jLabel4);
+        jLabel4.setBounds(110, 80, 130, 40);
+
+        txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtIC);
+        txtIC.setBounds(200, 80, 730, 40);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind.setText("寻找");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnFind);
+        btnFind.setBounds(950, 70, 151, 50);
+
+        txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtName);
+        txtName.setBounds(200, 150, 900, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("名字：");
+        panelBody.add(jLabel1);
+        jLabel1.setBounds(110, 150, 70, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("性别：");
+        panelBody.add(jLabel2);
+        jLabel2.setBounds(110, 220, 145, 40);
+
+        txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtGender);
+        txtGender.setBounds(200, 220, 380, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("年龄：");
+        panelBody.add(jLabel3);
+        jLabel3.setBounds(610, 220, 60, 40);
+
+        txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtAge);
+        txtAge.setBounds(690, 220, 410, 40);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("电话：");
+        panelBody.add(jLabel5);
+        jLabel5.setBounds(110, 300, 154, 40);
+
+        txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtPhone);
+        txtPhone.setBounds(200, 300, 900, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("地址：");
+        panelBody.add(jLabel6);
+        jLabel6.setBounds(110, 380, 154, 40);
+
+        txtAddress.setColumns(20);
+        txtAddress.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtAddress.setRows(5);
+        jScrollPane2.setViewportView(txtAddress);
+
+        panelBody.add(jScrollPane2);
+        jScrollPane2.setBounds(200, 380, 900, 150);
+
+        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel9.setText("创建时间：");
+        panelBody.add(jLabel9);
+        jLabel9.setBounds(90, 570, 100, 40);
+
+        lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblCreateDateTime);
+        lblCreateDateTime.setBounds(180, 570, 390, 40);
+
+        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel8.setText("更新时间：");
+        panelBody.add(jLabel8);
+        jLabel8.setBounds(580, 570, 100, 40);
+
+        lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblLastUpdateDateTime);
+        lblLastUpdateDateTime.setBounds(680, 570, 420, 40);
+
+        btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnAdd.setText("新增");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnAdd);
+        btnAdd.setBounds(980, 670, 126, 51);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnBack);
+        btnBack.setBounds(90, 680, 126, 50);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(330, 100, 1200, 810);
 

@@ -45,20 +45,6 @@ public class MonthYearIC extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtFromYear = new javax.swing.JTextField();
-        txtToYear = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
-        btnFind = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtFromMonth = new javax.swing.JTextField();
-        txtToMonth = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtIC = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -67,90 +53,23 @@ public class MonthYearIC extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtIC = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtToMonth = new javax.swing.JTextField();
+        txtToYear = new javax.swing.JTextField();
+        txtFromYear = new javax.swing.JTextField();
+        txtFromMonth = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel1.setText("月份：");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(870, 150, 75, 34);
-
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel2.setText("年份：");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(1050, 150, 75, 40);
-
-        txtFromYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        txtFromYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFromYearActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtFromYear);
-        txtFromYear.setBounds(1040, 270, 86, 42);
-
-        txtToYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(txtToYear);
-        txtToYear.setBounds(1040, 390, 86, 40);
-
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnBack.setText("退出");
-        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBack);
-        btnBack.setBounds(730, 780, 128, 45);
-
-        btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        btnFind.setText("寻找");
-        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnFind);
-        btnFind.setBounds(1080, 780, 119, 45);
-
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel3.setText("从：");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(780, 270, 50, 34);
-
-        jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel4.setText("到：");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(780, 390, 50, 34);
-
-        txtFromMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(txtFromMonth);
-        txtFromMonth.setBounds(860, 270, 90, 40);
-
-        txtToMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(txtToMonth);
-        txtToMonth.setBounds(860, 390, 90, 40);
-
-        jLabel5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel5.setText("IC:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(770, 510, 50, 40);
-
-        txtIC.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(txtIC);
-        txtIC.setBounds(860, 510, 270, 40);
-
-        jLabel6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel6.setText("ID:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(770, 640, 50, 34);
-
-        txtID.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        getContentPane().add(txtID);
-        txtID.setBounds(860, 630, 270, 40);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -188,6 +107,89 @@ public class MonthYearIC extends javax.swing.JFrame {
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.setLayout(null);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel6.setText("ID:");
+        panelBody.add(jLabel6);
+        jLabel6.setBounds(330, 540, 50, 40);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel5.setText("IC:");
+        panelBody.add(jLabel5);
+        jLabel5.setBounds(330, 420, 50, 40);
+
+        txtIC.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelBody.add(txtIC);
+        txtIC.setBounds(420, 420, 270, 40);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel4.setText("到：");
+        panelBody.add(jLabel4);
+        jLabel4.setBounds(340, 300, 50, 34);
+
+        txtToMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelBody.add(txtToMonth);
+        txtToMonth.setBounds(420, 300, 90, 40);
+
+        txtToYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelBody.add(txtToYear);
+        txtToYear.setBounds(600, 300, 86, 40);
+
+        txtFromYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        txtFromYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFromYearActionPerformed(evt);
+            }
+        });
+        panelBody.add(txtFromYear);
+        txtFromYear.setBounds(600, 180, 86, 42);
+
+        txtFromMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelBody.add(txtFromMonth);
+        txtFromMonth.setBounds(420, 180, 90, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel3.setText("从：");
+        panelBody.add(jLabel3);
+        jLabel3.setBounds(340, 180, 50, 34);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel2.setText("年份：");
+        panelBody.add(jLabel2);
+        jLabel2.setBounds(610, 60, 75, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel1.setText("月份：");
+        panelBody.add(jLabel1);
+        jLabel1.setBounds(430, 60, 75, 40);
+
+        txtID.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelBody.add(txtID);
+        txtID.setBounds(420, 540, 270, 40);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnBack);
+        btnBack.setBounds(280, 680, 128, 45);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnFind.setText("寻找");
+        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnFind);
+        btnFind.setBounds(630, 680, 119, 45);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(370, 90, 1200, 820);
 
