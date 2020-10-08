@@ -667,10 +667,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="720" y="40" width="990" height="750"/>
+              <AbsoluteConstraints x="710" y="40" width="990" height="750"/>
             </Constraint>
           </Constraints>
 
@@ -690,25 +690,24 @@
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="16" rowCount="0">
-                        <Column editable="false" title="&#x75c5;&#x4eba;ID" type="java.lang.Integer"/>
+                        <Column editable="false" title="&#x75c5;&#x4eba;ID" type="java.lang.String"/>
                         <Column editable="false" title="IC" type="java.lang.String"/>
                         <Column editable="false" title="&#x540d;&#x5b57;" type="java.lang.String"/>
                         <Column editable="false" title="&#x7535;&#x8bdd;&#x53f7;&#x7801;" type="java.lang.String"/>
-                        <Column editable="false" title="&#x4e3b;&#x75c7; " type="java.lang.String"/>
+                        <Column editable="false" title="&#x4e3b;&#x75c7;" type="java.lang.String"/>
                         <Column editable="false" title="&#x75c5;&#x75c7;&#x5206;&#x7c7b;" type="java.lang.String"/>
                         <Column editable="false" title="&#x8109;&#x8c61;" type="java.lang.String"/>
                         <Column editable="false" title="&#x820c;&#x8d28;" type="java.lang.String"/>
                         <Column editable="false" title="&#x820c;&#x82d4;" type="java.lang.String"/>
                         <Column editable="false" title="&#x5927;&#x5c0f;&#x4fbf;" type="java.lang.String"/>
                         <Column editable="false" title="&#x75c5;&#x53f2;" type="java.lang.String"/>
-                        <Column editable="false" title="&#x4f53;&#x6e29;" type="java.lang.Integer"/>
+                        <Column editable="false" title="&#x4f53;&#x6e29;" type="java.lang.Float"/>
                         <Column editable="false" title="&#x8840;&#x538b;" type="java.lang.String"/>
                         <Column editable="false" title="&#x521b;&#x5efa;&#x65f6;&#x95f4;" type="java.lang.String"/>
                         <Column editable="false" title="&#x66f4;&#x65b0;&#x65f6;&#x95f4;" type="java.lang.String"/>
                         <Column editable="false" title="&#x75c5;&#x75c7;ID" type="java.lang.String"/>
                       </Table>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -793,12 +792,10 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[0, 0]"/>
                     </Property>
                     <Property name="rowHeight" type="int" value="25"/>
-                    <Property name="showVerticalLines" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>

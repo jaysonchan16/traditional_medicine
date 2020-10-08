@@ -175,7 +175,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnFindID = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
 
@@ -421,11 +421,11 @@ public class ModifyDisease extends javax.swing.JFrame {
 
             },
             new String [] {
-                "病人ID", "IC", "名字", "电话号码", "主症 ", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "创建时间", "更新时间", "病症ID"
+                "病人ID", "IC", "名字", "电话号码", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "创建时间", "更新时间", "病症ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
@@ -439,11 +439,8 @@ public class ModifyDisease extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDisease.setToolTipText("");
-        tblDisease.setFocusable(false);
         tblDisease.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblDisease.setRowHeight(25);
-        tblDisease.setShowVerticalLines(false);
         tblDisease.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDiseaseMouseClicked(evt);
@@ -451,10 +448,10 @@ public class ModifyDisease extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDisease);
 
-        jScrollPane2.setViewportView(jScrollPane1);
+        jScrollPane3.setViewportView(jScrollPane1);
 
-        panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(720, 40, 990, 750);
+        panelBody.add(jScrollPane3);
+        jScrollPane3.setBounds(710, 40, 990, 750);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 820);
@@ -471,47 +468,6 @@ public class ModifyDisease extends javax.swing.JFrame {
         // TODO add your handling code here:
         Find();
     }//GEN-LAST:event_btnFindIDActionPerformed
-
-    private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
-        // TODO add your handling code here:
-        int index = tblDisease.getSelectedRow();
-        TableModel model = tblDisease.getModel();
-        String patientID = model.getValueAt(index, 0).toString();
-        String IC = model.getValueAt(index,1).toString();
-        String Name = model.getValueAt(index,2).toString(); //property
-        String Phone = model.getValueAt(index,3).toString();//appliance
-        String Symptom = model.getValueAt(index,4).toString();//appliance
-        String Category = model.getValueAt(index,5).toString();
-        String PulseCondition = model.getValueAt(index,6).toString();
-        String TongueQuality = model.getValueAt(index,7).toString();
-        String TongueCoating = model.getValueAt(index,8).toString();
-        String Shit = model.getValueAt(index,9).toString();
-        String History = model.getValueAt(index,10).toString();
-        String Temperature = model.getValueAt(index,11).toString();
-        String BloodPressure = model.getValueAt(index,12).toString();
-        String DiseaseID = model.getValueAt(index, 15).toString();
-        
-        txtDiseaseID.setText(DiseaseID);
-        txtID.setText(patientID);
-        txtIC.setText(IC);
-        txtName.setText(Name);
-        txtPhone.setText(Phone);
-        txtSymptom.setText(Symptom);
-        txtCategory.setText(Category);
-        txtPulse.setText(PulseCondition);
-        txtTongueQuality.setText(TongueQuality);
-        txtTongueCoating.setText(TongueCoating);
-        txtHistory.setText(History);
-        txtTemperature.setText(Temperature);
-        txtBlood.setText(BloodPressure);
-        txtShit.setText(Shit);
-        txtIC.setEnabled(false);
-        txtID.setEnabled(false);
-        btnFindIC.setEnabled(false);
-        btnFindID.setEnabled(false);
-        
-        disabledTextBox();
-    }//GEN-LAST:event_tblDiseaseMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -608,6 +564,47 @@ public class ModifyDisease extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "ModifyDisease.btnDeleteActionPerformed get error on line 433, "+ex.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
+        // TODO add your handling code here:
+        int index = tblDisease.getSelectedRow();
+        TableModel model = tblDisease.getModel();
+        String patientID = model.getValueAt(index, 0).toString();
+        String IC = model.getValueAt(index,1).toString();
+        String Name = model.getValueAt(index,2).toString(); //property
+        String Phone = model.getValueAt(index,3).toString();//appliance
+        String Symptom = model.getValueAt(index,4).toString();//appliance
+        String Category = model.getValueAt(index,5).toString();
+        String PulseCondition = model.getValueAt(index,6).toString();
+        String TongueQuality = model.getValueAt(index,7).toString();
+        String TongueCoating = model.getValueAt(index,8).toString();
+        String Shit = model.getValueAt(index,9).toString();
+        String History = model.getValueAt(index,10).toString();
+        String Temperature = model.getValueAt(index,11).toString();
+        String BloodPressure = model.getValueAt(index,12).toString();
+        String DiseaseID = model.getValueAt(index, 15).toString();
+        
+        txtDiseaseID.setText(DiseaseID);
+        txtID.setText(patientID);
+        txtIC.setText(IC);
+        txtName.setText(Name);
+        txtPhone.setText(Phone);
+        txtSymptom.setText(Symptom);
+        txtCategory.setText(Category);
+        txtPulse.setText(PulseCondition);
+        txtTongueQuality.setText(TongueQuality);
+        txtTongueCoating.setText(TongueCoating);
+        txtHistory.setText(History);
+        txtTemperature.setText(Temperature);
+        txtBlood.setText(BloodPressure);
+        txtShit.setText(Shit);
+        txtIC.setEnabled(false);
+        txtID.setEnabled(false);
+        btnFindIC.setEnabled(false);
+        btnFindID.setEnabled(false);
+        
+        disabledTextBox();
+    }//GEN-LAST:event_tblDiseaseMouseClicked
 
     public void Find()
     {
@@ -876,7 +873,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

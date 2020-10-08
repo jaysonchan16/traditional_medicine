@@ -158,10 +158,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnModifyMedicine = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblChufang = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblChufang = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
@@ -398,50 +398,6 @@ public class ModifyChuFang extends javax.swing.JFrame {
         panelBody.add(btnBack);
         btnBack.setBounds(30, 750, 100, 40);
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        tblChufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        tblChufang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblChufang.setFocusable(false);
-        tblChufang.setGridColor(new java.awt.Color(255, 255, 255));
-        tblChufang.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        tblChufang.setRowHeight(25);
-        tblChufang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblChufangMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblChufang);
-
-        jScrollPane2.setViewportView(jScrollPane1);
-
-        panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(780, 20, 1000, 770);
-
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
         btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -453,8 +409,46 @@ public class ModifyChuFang extends javax.swing.JFrame {
         panelBody.add(btnPrint);
         btnPrint.setBounds(380, 750, 100, 40);
 
+        tblChufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        tblChufang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblChufang.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblChufang.setRowHeight(25);
+        tblChufang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblChufangMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblChufang);
+
+        jScrollPane1.setViewportView(jScrollPane3);
+
+        panelBody.add(jScrollPane1);
+        jScrollPane1.setBounds(780, 30, 970, 760);
+
         getContentPane().add(panelBody);
-        panelBody.setBounds(50, 90, 1830, 820);
+        panelBody.setBounds(50, 90, 1810, 820);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -643,8 +637,6 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtTotalPrice.setText(totalprice);
         txtPrescriptionID.setText(prescriptionID);
         updatedelete = 0;
-
-        //disabledTextBox();
     }//GEN-LAST:event_tblChufangMouseClicked
 
     private void createColumns()
@@ -994,6 +986,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         JTableHeader tableHeader = tblChufang.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         tblChufang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TableColumnModel columnModel = tblChufang.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(70);
         columnModel.getColumn(1).setPreferredWidth(150);
@@ -1136,7 +1129,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
