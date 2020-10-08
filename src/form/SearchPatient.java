@@ -15,9 +15,11 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -43,6 +45,7 @@ public class SearchPatient extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         show_patients();
         image();
+        widthTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -225,6 +228,7 @@ public class SearchPatient extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -235,6 +239,7 @@ public class SearchPatient extends javax.swing.JFrame {
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
+        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
@@ -527,6 +532,25 @@ public class SearchPatient extends javax.swing.JFrame {
         setResizable(false);
     }
     
+    public void widthTable()
+    {
+        this.lblName.setText(user.getUserid());
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        JTableHeader tableHeader = tblPatient.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        tblPatient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tblPatient.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(200);
+        columnModel.getColumn(6).setPreferredWidth(1000);
+        columnModel.getColumn(7).setPreferredWidth(200);
+        columnModel.getColumn(8).setPreferredWidth(200);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
