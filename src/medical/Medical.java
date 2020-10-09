@@ -5,6 +5,7 @@
  */
 package medical;
 
+import form.ModifyChuFang;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ public class Medical {
                 new LoginUI().setVisible(true);
             }
         });
+        
 
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
