@@ -65,10 +65,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         image();
         txtchufang.setText("1");
         lblCreateDateTime.setText(dtf.format(localDate));
-        txtMedicine.setVisible(false);
-        txtMedicineName.setVisible(false);
-        txtJiliang.setVisible(false);
         btnReset.setVisible(false);
+        btnModify.setVisible(false);
+        spinnerJiLiang.setValue(1);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
@@ -96,10 +95,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTotalPrice.setEnabled(false);
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
-        txtMedicine.setVisible(false);
-        txtMedicineName.setVisible(false);
-        txtJiliang.setVisible(false);
         btnReset.setVisible(false);
+        btnModify.setVisible(false);
+        spinnerJiLiang.setValue(1);
     }
     public NewPatientDisease() {
         initComponents();
@@ -177,9 +175,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         tblDisease = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        txtMedicine = new javax.swing.JTextField();
-        txtMedicineName = new javax.swing.JTextField();
-        txtJiliang = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         lblTotalJiliang = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
@@ -555,18 +550,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         panelBody.add(btnDelete);
         btnDelete.setBounds(330, 730, 120, 40);
 
-        txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtMedicine);
-        txtMedicine.setBounds(160, 460, 410, 40);
-
-        txtMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtMedicineName);
-        txtMedicineName.setBounds(160, 510, 410, 40);
-
-        txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtJiliang);
-        txtJiliang.setBounds(160, 560, 410, 40);
-
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel12.setText("total:");
         panelBody.add(jLabel12);
@@ -583,6 +566,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
         btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
         panelBody.add(btnModify);
         btnModify.setBounds(200, 730, 120, 40);
 
@@ -727,9 +715,17 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
         else
         {
-            if(save.get("medicine").equalsIgnoreCase(comboBoxMedicine.getSelectedItem().toString()) && save.get("name").equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+            if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
             {
-                JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
+                if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
+                }
+                else
+                {
+                    System.out.println("c");
+                    saveDataTable();
+                }
             }
             else
             {
@@ -742,8 +738,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     {
         populate(String.valueOf(model.getRowCount()+1),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
                      spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText());
-        save.put("medicine", comboBoxMedicine.getSelectedItem().toString());
-        save.put("name",comboBoxName.getSelectedItem().toString());
+        save.put(comboBoxMedicine.getSelectedItem().toString(), comboBoxName.getSelectedItem().toString());
         chufang();
         return save;
     }
@@ -760,28 +755,17 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
         // TODO add your handling code here:
-        txtMedicine.setVisible(true);
-        txtMedicineName.setVisible(true);
-        txtJiliang.setVisible(true);
-        comboBoxMedicine.setVisible(false);
-        comboBoxName.setVisible(false);
-        spinnerJiLiang.setVisible(false);
-        btnReset.setVisible(true);
         btnAddRow.setVisible(false);
-        
+        btnReset.setVisible(true);
+        btnDelete.setVisible(false);
+        btnModify.setVisible(true);
         int index = tblDisease.getSelectedRow();
         TableModel tblmodel = tblDisease.getModel();
         String chufang = tblmodel.getValueAt(index, 0).toString();
-        String medicine = tblmodel.getValueAt(index,1).toString();
-        String medicinename = tblmodel.getValueAt(index,2).toString();
-        String jiliang = tblmodel.getValueAt(index,3).toString();
         String price = tblmodel.getValueAt(index,4).toString();
         String totalprice = tblmodel.getValueAt(index,5).toString();
         
         txtchufang.setText(chufang);
-        txtMedicine.setText(medicine);
-        txtMedicineName.setText(medicinename);
-        txtJiliang.setText(jiliang);
         txtPrice.setText(price);
         txtTotalPrice.setText(totalprice);
     }//GEN-LAST:event_tblDiseaseMouseClicked
@@ -831,26 +815,45 @@ public class NewPatientDisease extends javax.swing.JFrame {
         TableModel tableModel = tblDisease.getModel();
         String medicine = tableModel.getValueAt(index,1).toString();
         String name = tableModel.getValueAt(index,2).toString();
-        if(save.get("medicine").equalsIgnoreCase(medicine) && save.get("name").equalsIgnoreCase(name))
+        if(save.get(medicine).equalsIgnoreCase(name))
         {
-            save.remove("medicine");
-            save.remove("name");
+            save.remove(medicine);
             model.removeRow(model.getRowCount() - 1);
             chufang();
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        
+        if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
+        {
+            if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+            {
+                JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
+            }
+            else
+            {
+                modify();
+            }
+        }
+        else
+        {
+            modify();
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
+
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtMedicine.setVisible(false);
-        txtMedicineName.setVisible(false);
-        txtJiliang.setVisible(false);
         comboBoxMedicine.setVisible(true);
         comboBoxName.setVisible(true);
         spinnerJiLiang.setVisible(true);
         btnReset.setVisible(false);
+        btnModify.setVisible(false);
         btnAddRow.setVisible(true);
+        btnDelete.setVisible(true);
+        txtchufang.setText(String.valueOf(tblDisease.getRowCount()+1));
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice)
@@ -858,6 +861,31 @@ public class NewPatientDisease extends javax.swing.JFrame {
         model = (DefaultTableModel)tblDisease.getModel();
         String []rowData ={chufang,medicine,name,jiliang,price,totalPrice};
         model.addRow(rowData);
+    }
+    
+    public void modify()
+    {
+        int i = tblDisease.getSelectedRow();
+        int index = tblDisease.getSelectedRow();
+        TableModel model = tblDisease.getModel();
+        String medicine = model.getValueAt(index, 1).toString();
+        String name = model.getValueAt(index,2).toString();
+        if(save.get(medicine).equalsIgnoreCase(name))
+        {
+            save.remove(medicine);
+            if(i >= 0) 
+            {
+                model.setValueAt(comboBoxMedicine.getSelectedItem().toString(), i, 1);
+                model.setValueAt(comboBoxName.getSelectedItem().toString(), i, 2);
+                model.setValueAt(spinnerJiLiang.getValue().toString(), i, 3);
+                model.setValueAt(txtPrice.getText(), i, 4);
+                model.setValueAt(txtTotalPrice.getText(), i, 5);
+                save.put(comboBoxMedicine.getSelectedItem().toString(), comboBoxName.getSelectedItem().toString());
+            }
+            else{
+                System.out.println("更新失败");
+            }
+        }
     }
     
     private void createColumns()
@@ -1092,6 +1120,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
         btnDelete.setIcon(iconDelete);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        btnModify.setIcon(iconModify);
+        ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
+        btnReset.setIcon(iconReset);
         ImageIcon iconAdd = new ImageIcon(getClass().getResource("/menu/addsmall.png"));
         btnAddRow.setIcon(iconAdd);
         btnAddData.setIcon(iconAdd);
@@ -1205,9 +1237,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JTextField txtHistory;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtJiliang;
-    private javax.swing.JTextField txtMedicine;
-    private javax.swing.JTextField txtMedicineName;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrice;
