@@ -821,6 +821,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
             model.removeRow(model.getRowCount() - 1);
             chufang();
         }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "删除失败！");
+        }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -883,8 +887,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 save.put(comboBoxMedicine.getSelectedItem().toString(), comboBoxName.getSelectedItem().toString());
             }
             else{
-                System.out.println("更新失败");
+                JOptionPane.showMessageDialog(rootPane, "更新失败！");
             }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "更新失败！");
         }
     }
     
