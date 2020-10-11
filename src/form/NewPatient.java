@@ -96,6 +96,7 @@ public class NewPatient extends javax.swing.JFrame {
         lblLastUpdateDateTime = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -149,6 +150,7 @@ public class NewPatient extends javax.swing.JFrame {
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
+        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
@@ -226,6 +228,7 @@ public class NewPatient extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnAdd.setText("新增");
+        btnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -236,6 +239,7 @@ public class NewPatient extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -243,6 +247,17 @@ public class NewPatient extends javax.swing.JFrame {
         });
         panelBody.add(btnBack);
         btnBack.setBounds(90, 680, 126, 50);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(830, 670, 130, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(330, 100, 1200, 810);
@@ -356,6 +371,11 @@ public class NewPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     public void image()
     {
         ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
@@ -366,6 +386,8 @@ public class NewPatient extends javax.swing.JFrame {
         btnAdd.setIcon(iconAdd);
         ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
         btnFind.setIcon(iconFind);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
         headerAdd.setIcon(iconHeader);
         this.lblName.setText(user.getUserid());
@@ -410,6 +432,7 @@ public class NewPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JLabel headerAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;

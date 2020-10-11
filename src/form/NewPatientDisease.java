@@ -26,6 +26,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import javaClass.PrintTemplate;
 import javax.swing.*;
 import javax.swing.table.*;
 import javax.swing.table.DefaultTableModel;
@@ -64,6 +65,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTotalPrice.setEnabled(false);
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
+        txtMedicine.setVisible(false);
+        txtMedicineCategory.setVisible(false);
+        txtJiliang.setVisible(false);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
@@ -91,6 +95,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtTotalPrice.setEnabled(false);
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
+        txtMedicine.setVisible(false);
+        txtMedicineCategory.setVisible(false);
+        txtJiliang.setVisible(false);
     }
     public NewPatientDisease() {
         initComponents();
@@ -166,6 +173,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
+        btnPrint = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        txtMedicine = new javax.swing.JTextField();
+        txtMedicineCategory = new javax.swing.JTextField();
+        txtJiliang = new javax.swing.JTextField();
 
         buttonAdd.setText("jButton1");
 
@@ -391,7 +404,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboBoxMedicine);
-        comboBoxMedicine.setBounds(160, 460, 410, 40);
+        comboBoxMedicine.setBounds(160, 460, 210, 40);
 
         jLabel18.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel18.setText("药物名称：");
@@ -405,7 +418,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboBoxName);
-        comboBoxName.setBounds(160, 510, 410, 40);
+        comboBoxName.setBounds(160, 510, 210, 40);
 
         spinnerJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         spinnerJiLiang.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 1));
@@ -498,6 +511,51 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         panelBody.add(jScrollPane2);
         jScrollPane2.setBounds(590, 410, 810, 360);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(1140, 800, 120, 40);
+
+        btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnDelete.setText("删除");
+        btnDelete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnDelete);
+        btnDelete.setBounds(330, 730, 120, 40);
+
+        btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnReset.setText("重启");
+        btnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnReset);
+        btnReset.setBounds(200, 730, 120, 40);
+
+        txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtMedicine);
+        txtMedicine.setBounds(160, 460, 410, 40);
+
+        txtMedicineCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtMedicineCategory);
+        txtMedicineCategory.setBounds(160, 510, 410, 40);
+
+        txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtJiliang);
+        txtJiliang.setBounds(160, 560, 410, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(270, 80, 1450, 850);
@@ -612,7 +670,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
             // TODO add your handling code here:
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-
+        
     }//GEN-LAST:event_comboBoxNameActionPerformed
 
     private void btnFindIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindIDActionPerformed
@@ -662,7 +720,65 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
         // TODO add your handling code here:
+        txtMedicine.setVisible(true);
+        txtMedicineCategory.setVisible(true);
+        txtJiliang.setVisible(true);
+        comboBoxMedicine.setVisible(false);
+        comboBoxName.setVisible(false);
+        spinnerJiLiang.setVisible(false);
     }//GEN-LAST:event_tblDiseaseMouseClicked
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        String IC = txtIC.getText();
+        String ID = txtID.getText();
+        String Name = txtName.getText();
+        String Phone = txtPhone.getText();
+        String Date = lblCreateDateTime.getText();
+        String symptom = txtSymptom.getText();
+        String category = txtCategory.getText();
+        String pulse = txtPulse.getText();
+        String tongueQuality = txtTongueQuality.getText();
+        String tongueCoating = txtTongueCoating.getText();
+        String shit = txtShit.getText();
+        String history = txtHistory.getText();
+        String temperature = txtTemperature.getText();  
+        String blood = txtBlood.getText();
+        ArrayList<String> chufang = new ArrayList<String>();
+        ArrayList<String> medicine = new ArrayList<String>();
+        ArrayList<String> medicinecategory = new ArrayList<String>();
+        ArrayList<String> jiliang = new ArrayList<String>();
+        ArrayList<String> price = new ArrayList<String>();
+        ArrayList<String> totalprice = new ArrayList<String>();
+        for (int count = 0; count < model.getRowCount(); count++){
+            chufang.add(model.getValueAt(count, 0).toString());
+            medicine.add(model.getValueAt(count, 1).toString());
+            medicinecategory.add(model.getValueAt(count, 2).toString());
+            jiliang.add(model.getValueAt(count, 3).toString());
+            price.add(model.getValueAt(count, 4).toString());
+            totalprice.add(model.getValueAt(count, 5).toString());
+          }
+        String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
+                chufang,medicine,medicinecategory,jiliang,price, totalprice);
+        PrintForm main = new PrintForm(user,1,bodyContent);
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        model.removeRow(model.getRowCount() - 1);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtMedicine.setVisible(false);
+        txtMedicineCategory.setVisible(false);
+        txtJiliang.setVisible(false);
+        comboBoxMedicine.setVisible(true);
+        comboBoxName.setVisible(true);
+        spinnerJiLiang.setVisible(true);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice)
     {
@@ -870,6 +986,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lbllogo.setIcon(iconLogo);
         ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
         btnBack.setIcon(iconBack);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         ImageIcon iconAdd = new ImageIcon(getClass().getResource("/menu/addsmall.png"));
         btnAddRow.setIcon(iconAdd);
         btnAddData.setIcon(iconAdd);
@@ -880,6 +998,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
         headerAdd.setIcon(iconHeader);
         this.lblName.setText(user.getUserid());
         setResizable(false);
+    }
+    
+    public String printPreview(String IC, String ID, String Name, String Phone, String Date,String symptom, String category, String pulse,
+                             String tongueQuality, String tongueCoating, String shit, String history, String temperature, 
+                             String blood, ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
+                             ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice)
+    {
+        PrintTemplate print = new PrintTemplate();
+        return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice);
     }
     /**
      * @param args the command line arguments
@@ -920,8 +1047,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnAddData;
     private javax.swing.JButton btnAddRow;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFindIC;
     private javax.swing.JButton btnFindID;
+    private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;
@@ -967,6 +1097,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JTextField txtHistory;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtJiliang;
+    private javax.swing.JTextField txtMedicine;
+    private javax.swing.JTextField txtMedicineCategory;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrice;

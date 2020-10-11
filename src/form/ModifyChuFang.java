@@ -183,14 +183,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
             },
             new String [] {
-                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间 ", "更新时间", "主症", "病症分类", "脉象", "Title 16", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
+                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间 ", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, false, false, false, false, true, false, true, true, true, true, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -390,7 +390,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(390, 710, 100, 40);
+        btnPrint.setBounds(400, 710, 100, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("药物名称：");
@@ -561,6 +561,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
+        /*PrintForm print = new PrintForm(user,1);
+        print.setVisible(true);
+        this.dispose();*/
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -1045,10 +1048,17 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnModify.setIcon(iconUpdate);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
         btnModifyMedicine.setIcon(iconModify);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel1.setIcon(iconHeader);
         this.lblName.setText(user.getUserid());
         setResizable(false);
+    }
+    
+    public void print()
+    {
+        
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
