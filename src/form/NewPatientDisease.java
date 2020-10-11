@@ -59,16 +59,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
         medicineCategory();
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         setResizable(false);
-        txtchufang.setText("1");
         txtchufang.setEnabled(false);
         txtPrice.setEnabled(false);
         txtTotalPrice.setEnabled(false);
         image();
+        txtchufang.setText("1");
         lblCreateDateTime.setText(dtf.format(localDate));
         txtMedicine.setVisible(false);
         txtMedicineName.setVisible(false);
         txtJiliang.setVisible(false);
-        btnDelete.setVisible(false);
         btnReset.setVisible(false);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
@@ -91,16 +90,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lblID.setText(String.valueOf(id));
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
-        txtchufang.setText("1");
         txtchufang.setEnabled(false);
         txtPrice.setEnabled(false);
+        txtchufang.setText("1");
         txtTotalPrice.setEnabled(false);
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
         txtMedicine.setVisible(false);
         txtMedicineName.setVisible(false);
         txtJiliang.setVisible(false);
-        btnDelete.setVisible(false);
         btnReset.setVisible(false);
     }
     public NewPatientDisease() {
@@ -179,13 +177,14 @@ public class NewPatientDisease extends javax.swing.JFrame {
         tblDisease = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
         txtMedicine = new javax.swing.JTextField();
         txtMedicineName = new javax.swing.JTextField();
         txtJiliang = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         lblTotalJiliang = new javax.swing.JLabel();
         lblTotalPrice = new javax.swing.JLabel();
+        btnModify = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         buttonAdd.setText("jButton1");
 
@@ -556,17 +555,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         panelBody.add(btnDelete);
         btnDelete.setBounds(330, 730, 120, 40);
 
-        btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnReset.setText("重启");
-        btnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
-        panelBody.add(btnReset);
-        btnReset.setBounds(200, 730, 120, 40);
-
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtMedicine);
         txtMedicine.setBounds(160, 460, 410, 40);
@@ -591,6 +579,23 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lblTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(lblTotalPrice);
         lblTotalPrice.setBounds(1270, 730, 110, 40);
+
+        btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnModify.setText("更改");
+        btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnModify);
+        btnModify.setBounds(200, 730, 120, 40);
+
+        btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnReset.setText("重启");
+        btnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnReset);
+        btnReset.setBounds(70, 730, 120, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(270, 80, 1450, 850);
@@ -735,7 +740,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public HashMap<String,String> saveDataTable()
     {
-        populate(txtchufang.getText(),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
+        populate(String.valueOf(model.getRowCount()+1),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
                      spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText());
         save.put("medicine", comboBoxMedicine.getSelectedItem().toString());
         save.put("name",comboBoxName.getSelectedItem().toString());
@@ -761,7 +766,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         comboBoxMedicine.setVisible(false);
         comboBoxName.setVisible(false);
         spinnerJiLiang.setVisible(false);
-        btnDelete.setVisible(true);
         btnReset.setVisible(true);
         btnAddRow.setVisible(false);
         
@@ -823,16 +827,17 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-//        int index = model.getRowCount() - 1;
-//        //TableModel model = tblDisease.getModel();
-//        String chufang = model.getValueAt(index, 0).toString();
-//        String medicine = model.getValueAt(index,1).toString();
-//        String medicinename = model.getValueAt(index,2).toString();
-//        String jiliang = model.getValueAt(index,3).toString();
-//        String price = model.getValueAt(index,4).toString();
-//        String totalprice = model.getValueAt(index,5).toString();
-//        System.out.println(chufang+","+medicine+","+medicinename);
-//        model.removeRow(model.getRowCount() - 1); 
+        int index = model.getRowCount()-1;
+        TableModel tableModel = tblDisease.getModel();
+        String medicine = tableModel.getValueAt(index,1).toString();
+        String name = tableModel.getValueAt(index,2).toString();
+        if(save.get("medicine").equalsIgnoreCase(medicine) && save.get("name").equalsIgnoreCase(name))
+        {
+            save.remove("medicine");
+            save.remove("name");
+            model.removeRow(model.getRowCount() - 1);
+            chufang();
+        }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -844,7 +849,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         comboBoxMedicine.setVisible(true);
         comboBoxName.setVisible(true);
         spinnerJiLiang.setVisible(true);
-        btnDelete.setVisible(false);
         btnReset.setVisible(false);
         btnAddRow.setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
@@ -868,6 +872,23 @@ public class NewPatientDisease extends javax.swing.JFrame {
     }
     
     public void chufang()
+    {
+        float totalprice = 0;
+        float totalweight = 0;
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
+            totalprice = AmountPrice+totalprice;
+        }
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
+            totalweight = AmountWeight+totalweight;
+        }
+        txtchufang.setText(String.valueOf(model.getRowCount()+1));
+        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
+    }
+    
+    public void minuschufang()
     {
         int chufang = Integer.valueOf(txtchufang.getText()) + 1;
         float totalprice = 0;
@@ -1069,6 +1090,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnBack.setIcon(iconBack);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
+        ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
+        btnDelete.setIcon(iconDelete);
         ImageIcon iconAdd = new ImageIcon(getClass().getResource("/menu/addsmall.png"));
         btnAddRow.setIcon(iconAdd);
         btnAddData.setIcon(iconAdd);
@@ -1131,6 +1154,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFindIC;
     private javax.swing.JButton btnFindID;
+    private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton buttonAdd;
