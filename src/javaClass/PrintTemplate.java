@@ -54,4 +54,42 @@ public class PrintTemplate {
         content.append("日期: "+date+"\n\n");
         return content.toString();
     }
+
+    public String printMedicine(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
+    {
+        StringBuilder content = new StringBuilder(); 
+        content.append("药: "+medicine+"\n\n");
+        content.append("名字: "+Name+"\n\n");
+        if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            content.append("药性: "+component+"\n\n");
+            content.append("应用: "+indication+"\n\n");
+        }
+        else
+        {
+            content.append("组成: "+component+"\n\n");
+            content.append("主治: "+indication+"\n\n");
+        }
+        content.append("功效: "+effect+"\n\n");
+        content.append("每次每日分量: "+scoop+"\n\n");
+        if(medicine.equalsIgnoreCase("单味药粉") || medicine.equalsIgnoreCase("复方药粉"))
+        {
+            content.append("重量: "+weight+"GM\n\n");
+            content.append("本钱RM/GM: RM"+cost+"\n\n");
+            content.append("价格RM/GM: RM"+price+"\n\n");
+        }
+        else if(medicine.equalsIgnoreCase("药丸"))
+        {
+            content.append("重量: "+weight+"'S\n\n");
+            content.append("本钱RM/'S: RM"+cost+"\n\n");
+            content.append("价格RM/'S: RM"+price+"\n\n");
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            content.append("重量: "+weight+"'ML\n\n");
+            content.append("本钱RM/10 ML: RM"+cost+"\n\n");
+            content.append("价格RM/10 ML: RM"+price+"\n\n");
+        }
+        return content.toString();
+    }
 }

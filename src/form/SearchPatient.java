@@ -9,9 +9,13 @@ import java.awt.Color;
 import javaClass.Patient;
 import javaClass.User;
 import java.awt.Font;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.TablePrintable;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -83,6 +87,7 @@ public class SearchPatient extends javax.swing.JFrame {
         btnFind = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -276,6 +281,17 @@ public class SearchPatient extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(680, 60, 1110, 630);
 
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnPrint);
+        btnPrint.setBounds(370, 640, 130, 50);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 90, 1840, 780);
 
@@ -410,6 +426,34 @@ public class SearchPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFindActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        try {
+            tblPatient.print();
+            // TODO add your handling code here:
+            /*model = (DefaultTableModel) tblPatient.getModel();
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("\t 杏生堂药行 \n");
+            builder.append("\t Heng Seng Tong Medicall Hall \n");
+            builder.append("\t 107, Jalan PKS2, Pekan Simpang Kuala \n");
+            builder.append("\t 05400 Alor Setar, Kedah \n");
+            MessageFormat header = new MessageFormat(builder.toString());
+            
+            JTable table = new JTable(model) {
+                @Override
+                public Printable getPrintable(JTable.PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat) {
+                    return new TablePrintable(tblPatient, JTable.PrintMode.FIT_WIDTH, header, footerFormat);
+                }
+            };
+            
+            
+            table.print();*/
+            } catch (PrinterException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,6 +572,8 @@ public class SearchPatient extends javax.swing.JFrame {
         btnFind.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         jLabel9.setIcon(iconHeader);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
@@ -554,6 +600,7 @@ public class SearchPatient extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboArrange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

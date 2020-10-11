@@ -39,7 +39,8 @@ public class PrintForm extends javax.swing.JFrame {
         //1 option from modifypatient
         //2 option from modifypatient
         //3 option from newPatient
-        //3 option from newPatientDisease
+        //4 option from newPatientDisease
+        //5 option for new medicine
     }
     
     
@@ -184,7 +185,14 @@ public class PrintForm extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+        }
+        else if(option == 5)
+        {
+            NewMedicine modify = new NewMedicine(user);
+            modify.setVisible(true);
+            this.dispose();
         }  
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     public void printPreview(String bodyContent)

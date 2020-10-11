@@ -59,7 +59,6 @@ public class TablePrintable implements Printable{
             // the header clip height can be set once since it's unchanging
             hclip.height = header.getHeight();
         }
-
         this.printMode = printMode;
 
         this.headerFormat = headerFormat;
@@ -77,7 +76,7 @@ public class TablePrintable implements Printable{
         // for easy access to these values
         final int imgWidth = (int) pageFormat.getImageableWidth();
         final int imgHeight = (int) pageFormat.getImageableHeight();
-
+        
         if (imgWidth <= 0) {
             throw new PrinterException("Width of printable area is too small.");
         }
@@ -279,8 +278,8 @@ public class TablePrintable implements Printable{
     private void printText(Graphics2D g2d, String[] lines, Rectangle2D rect, Font font, int imgWidth) {
 
         g2d.setColor(Color.BLACK);
-        g2d.setFont(font);
-
+        //g2d.setFont(font);
+        g2d.setFont(new Font("Serif", Font.BOLD, 20));
         for (int i = 0; i < lines.length; i++) {
             int tx;
 

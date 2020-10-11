@@ -13,6 +13,7 @@ import javaClass.User;
 import javaClass.Code;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -90,6 +91,7 @@ public class NewMedicine extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         lblWeight = new javax.swing.JLabel();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -248,7 +250,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(140, 710, 130, 60);
+        btnBack.setBounds(140, 700, 130, 60);
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnAdd.setText("新增");
@@ -259,12 +261,23 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnAdd);
-        btnAdd.setBounds(980, 710, 130, 60);
+        btnAdd.setBounds(980, 700, 130, 60);
 
         lblWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblWeight.setText("GM");
         panelBody.add(lblWeight);
         lblWeight.setBounds(1060, 520, 50, 40);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(840, 700, 130, 60);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(390, 100, 1200, 820);
@@ -440,6 +453,24 @@ public class NewMedicine extends javax.swing.JFrame {
         
         clearTextBox();
     }//GEN-LAST:event_comboMedicineActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        String medicine = comboMedicine.getSelectedItem().toString();
+        String Name = txtName.getText();
+        String component = txtComponent.getText();
+        String indication = txtIndication.getText();
+        String effect = txtEffect.getText();
+        String scoop = txtScoop.getText();
+        String weight = txtWeight.getText();
+        String cost = txtCost.getText();
+        String price = txtPrice.getText();
+        
+        String bodyContent = printPreview(medicine,Name,component,indication,effect,scoop,weight,cost,price);
+        PrintForm main = new PrintForm(user,5,bodyContent);
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPrintActionPerformed
     
     public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price){
         if(!comboMedicine.getSelectedItem().equals("单味药粉"))
@@ -557,8 +588,16 @@ public class NewMedicine extends javax.swing.JFrame {
         btnAdd.setIcon(iconAdd);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
         headerMedic.setIcon(iconHeader);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(user.getUserid());
         setResizable(false);
+    }
+    
+    public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
+    {
+        PrintTemplate print = new PrintTemplate();
+        return print.printMedicine(medicine,Name,component,indication,effect,scoop,weight,cost,price);
     }
     /**
      * @param args the command line arguments
@@ -598,6 +637,7 @@ public class NewMedicine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboMedicine;
     private javax.swing.JLabel headerMedic;
     private javax.swing.JLabel jLabel1;

@@ -79,6 +79,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         txtAge.setText(Age);
         txtPhone.setText(Phone);
         txtAddress.setText(Address);
+        lblCreateDateTime.setText(createDateTime);
+        lblLastUpdateDateTime.setText(lastUpdateDateTime);
         btnFind.setEnabled(false);
         txtID.setEnabled(false);
         setResizable(false);
