@@ -16,7 +16,7 @@ public class PrintTemplate {
     public String printDiseasePatient(String IC, String ID, String name, String phone, String date, 
             String symptom, String category, String pulse, String tongueQuality, String tongueCoating, String shit, String history,
             String temperature, String bloodPressure, ArrayList<String> chufang, ArrayList<String> medicineCategory,
-            ArrayList<String> medicineName, ArrayList<String> jiliang, ArrayList<String> price,ArrayList<String> totalprice)
+            ArrayList<String> medicineName, ArrayList<String> jiliang, ArrayList<String> price,ArrayList<String> totalprice, String totalweight, String mainprice)
     {
         StringBuilder content = new StringBuilder(); 
         content.append("IC: "+IC+"\t\t\t               ID: "+ID+"\n");
@@ -34,6 +34,8 @@ public class PrintTemplate {
         {
             content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"\t"+price.get(i)+"\t"+totalprice.get(i)+"\n");
         }
+        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
         return content.toString();
     }
 }

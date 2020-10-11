@@ -66,8 +66,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
         txtMedicine.setVisible(false);
-        txtMedicineCategory.setVisible(false);
+        txtMedicineName.setVisible(false);
         txtJiliang.setVisible(false);
+        btnDelete.setVisible(false);
+        btnReset.setVisible(false);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
         medicineCategory();
@@ -96,8 +98,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
         txtMedicine.setVisible(false);
-        txtMedicineCategory.setVisible(false);
+        txtMedicineName.setVisible(false);
         txtJiliang.setVisible(false);
+        btnDelete.setVisible(false);
+        btnReset.setVisible(false);
     }
     public NewPatientDisease() {
         initComponents();
@@ -177,8 +181,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         txtMedicine = new javax.swing.JTextField();
-        txtMedicineCategory = new javax.swing.JTextField();
+        txtMedicineName = new javax.swing.JTextField();
         txtJiliang = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        lblTotalJiliang = new javax.swing.JLabel();
+        lblTotalPrice = new javax.swing.JLabel();
 
         buttonAdd.setText("jButton1");
 
@@ -495,9 +502,24 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "处方", "药物种类", "药物名称", "剂量 (GM)", "价格/G (RM)", "总价值 (RM)"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblDisease.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblDisease.setRowHeight(25);
         tblDisease.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -510,7 +532,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(590, 410, 810, 360);
+        jScrollPane2.setBounds(590, 410, 810, 320);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -549,13 +571,26 @@ public class NewPatientDisease extends javax.swing.JFrame {
         panelBody.add(txtMedicine);
         txtMedicine.setBounds(160, 460, 410, 40);
 
-        txtMedicineCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtMedicineCategory);
-        txtMedicineCategory.setBounds(160, 510, 410, 40);
+        txtMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtMedicineName);
+        txtMedicineName.setBounds(160, 510, 410, 40);
 
         txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtJiliang);
         txtJiliang.setBounds(160, 560, 410, 40);
+
+        jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel12.setText("total:");
+        panelBody.add(jLabel12);
+        jLabel12.setBounds(590, 730, 60, 40);
+
+        lblTotalJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblTotalJiliang);
+        lblTotalJiliang.setBounds(990, 730, 140, 40);
+
+        lblTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblTotalPrice);
+        lblTotalPrice.setBounds(1270, 730, 110, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(270, 80, 1450, 850);
@@ -721,11 +756,30 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
         // TODO add your handling code here:
         txtMedicine.setVisible(true);
-        txtMedicineCategory.setVisible(true);
+        txtMedicineName.setVisible(true);
         txtJiliang.setVisible(true);
         comboBoxMedicine.setVisible(false);
         comboBoxName.setVisible(false);
         spinnerJiLiang.setVisible(false);
+        btnDelete.setVisible(true);
+        btnReset.setVisible(true);
+        btnAddRow.setVisible(false);
+        
+        int index = tblDisease.getSelectedRow();
+        TableModel tblmodel = tblDisease.getModel();
+        String chufang = tblmodel.getValueAt(index, 0).toString();
+        String medicine = tblmodel.getValueAt(index,1).toString();
+        String medicinename = tblmodel.getValueAt(index,2).toString();
+        String jiliang = tblmodel.getValueAt(index,3).toString();
+        String price = tblmodel.getValueAt(index,4).toString();
+        String totalprice = tblmodel.getValueAt(index,5).toString();
+        
+        txtchufang.setText(chufang);
+        txtMedicine.setText(medicine);
+        txtMedicineName.setText(medicinename);
+        txtJiliang.setText(jiliang);
+        txtPrice.setText(price);
+        txtTotalPrice.setText(totalprice);
     }//GEN-LAST:event_tblDiseaseMouseClicked
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -744,6 +798,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String history = txtHistory.getText();
         String temperature = txtTemperature.getText();  
         String blood = txtBlood.getText();
+        String totalweight = lblTotalJiliang.getText();
+        String mainPrice = lblTotalPrice.getText();
         ArrayList<String> chufang = new ArrayList<String>();
         ArrayList<String> medicine = new ArrayList<String>();
         ArrayList<String> medicinecategory = new ArrayList<String>();
@@ -754,12 +810,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
             chufang.add(model.getValueAt(count, 0).toString());
             medicine.add(model.getValueAt(count, 1).toString());
             medicinecategory.add(model.getValueAt(count, 2).toString());
-            jiliang.add(model.getValueAt(count, 3).toString());
-            price.add(model.getValueAt(count, 4).toString());
-            totalprice.add(model.getValueAt(count, 5).toString());
+            jiliang.add(model.getValueAt(count, 3).toString()+"GM");
+            price.add("RM"+model.getValueAt(count, 4).toString());
+            totalprice.add("RM"+model.getValueAt(count, 5).toString());
           }
         String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
-                chufang,medicine,medicinecategory,jiliang,price, totalprice);
+                chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
         PrintForm main = new PrintForm(user,1,bodyContent);
         main.setVisible(true);
         this.dispose();
@@ -767,17 +823,30 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        model.removeRow(model.getRowCount() - 1);
+//        int index = model.getRowCount() - 1;
+//        //TableModel model = tblDisease.getModel();
+//        String chufang = model.getValueAt(index, 0).toString();
+//        String medicine = model.getValueAt(index,1).toString();
+//        String medicinename = model.getValueAt(index,2).toString();
+//        String jiliang = model.getValueAt(index,3).toString();
+//        String price = model.getValueAt(index,4).toString();
+//        String totalprice = model.getValueAt(index,5).toString();
+//        System.out.println(chufang+","+medicine+","+medicinename);
+//        model.removeRow(model.getRowCount() - 1); 
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         txtMedicine.setVisible(false);
-        txtMedicineCategory.setVisible(false);
+        txtMedicineName.setVisible(false);
         txtJiliang.setVisible(false);
         comboBoxMedicine.setVisible(true);
         comboBoxName.setVisible(true);
         spinnerJiLiang.setVisible(true);
+        btnDelete.setVisible(false);
+        btnReset.setVisible(false);
+        btnAddRow.setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice)
@@ -790,18 +859,30 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void createColumns()
     {
         model = (DefaultTableModel) tblDisease.getModel();
-        model.addColumn("处方");
+        /*model.addColumn("处方");
         model.addColumn("药物种类");
         model.addColumn("药物名称");
         model.addColumn("剂量");
         model.addColumn("价格/G");
-        model.addColumn("总价值");
+        model.addColumn("总价值");*/
     }
     
     public void chufang()
     {
         int chufang = Integer.valueOf(txtchufang.getText()) + 1;
+        float totalprice = 0;
+        float totalweight = 0;
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
+            totalprice = AmountPrice+totalprice;
+        }
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
+            totalweight = AmountWeight+totalweight;
+        }
         txtchufang.setText(String.valueOf(chufang));
+        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
     }
     
     public void Find()
@@ -1003,10 +1084,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
     public String printPreview(String IC, String ID, String Name, String Phone, String Date,String symptom, String category, String pulse,
                              String tongueQuality, String tongueCoating, String shit, String history, String temperature, 
                              String blood, ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
-                             ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice)
+                             ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice)
     {
         PrintTemplate print = new PrintTemplate();
-        return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice);
+        return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice,totalweight, mainprice);
     }
     /**
      * @param args the command line arguments
@@ -1059,6 +1140,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -1087,6 +1169,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblTotalJiliang;
+    private javax.swing.JLabel lblTotalPrice;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
@@ -1099,7 +1183,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJiliang;
     private javax.swing.JTextField txtMedicine;
-    private javax.swing.JTextField txtMedicineCategory;
+    private javax.swing.JTextField txtMedicineName;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrice;
