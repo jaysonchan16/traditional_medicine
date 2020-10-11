@@ -1050,10 +1050,10 @@ public class ModifyMedicine extends javax.swing.JFrame {
         TableColumnModel columnModel = tblMedicine.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(1000);
-        columnModel.getColumn(3).setPreferredWidth(1000);
+        columnModel.getColumn(2).setPreferredWidth(1500);
+        columnModel.getColumn(3).setPreferredWidth(1500);
         columnModel.getColumn(4).setPreferredWidth(600);
-        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(150);
         columnModel.getColumn(6).setPreferredWidth(100);
         columnModel.getColumn(7).setPreferredWidth(100);
         columnModel.getColumn(8).setPreferredWidth(100);

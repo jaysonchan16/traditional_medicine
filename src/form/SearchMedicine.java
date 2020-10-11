@@ -13,25 +13,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author Sheng
  */
-public class SearchMedical extends javax.swing.JFrame {
+public class SearchMedicine extends javax.swing.JFrame {
 
     /**
      * Creates new form SearchMedical
      */
     private User user;
     DefaultTableModel model;
-    public SearchMedical() {
+    public SearchMedicine() {
         initComponents();
     }
 
-    public SearchMedical(User user) {
+    public SearchMedicine(User user) {
         initComponents();
         this.user = user;
         createColumns();
@@ -39,6 +41,7 @@ public class SearchMedical extends javax.swing.JFrame {
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
+        widthTable();
         image();
     }
     /**
@@ -286,9 +289,24 @@ public class SearchMedical extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "药", "名字", "组成/药性", "主治/应用", "功效", "每次每日分量", "重量", "本钱", "价格"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblMedicine.setRowHeight(25);
         jScrollPane1.setViewportView(tblMedicine);
 
@@ -419,15 +437,15 @@ public class SearchMedical extends javax.swing.JFrame {
     private void createColumns()
     {
         model = (DefaultTableModel) tblMedicine.getModel();
-        model.addColumn("药");
-        model.addColumn("名字");
-        model.addColumn("组成/药性");
-        model.addColumn("主治/应用");
-        model.addColumn("功效");
-        model.addColumn("每次每日分量");
-        model.addColumn("重量");
-        model.addColumn("本钱");
-        model.addColumn("价格");
+//        model.addColumn("药");
+//        model.addColumn("名字");
+//        model.addColumn("组成/药性");
+//        model.addColumn("主治/应用");
+//        model.addColumn("功效");
+//        model.addColumn("每次每日分量");
+//        model.addColumn("重量");
+//        model.addColumn("本钱");
+//        model.addColumn("价格");
     }
     
     public void show_selected_medical(String contribute,String detail, String contribute1) throws SQLException{
@@ -495,6 +513,25 @@ public class SearchMedical extends javax.swing.JFrame {
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
+    
+    public void widthTable()
+    {
+        this.lblName.setText(user.getUserid());
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        JTableHeader tableHeader = tblMedicine.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        tblMedicine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        TableColumnModel columnModel = tblMedicine.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(1500);
+        columnModel.getColumn(3).setPreferredWidth(1500);
+        columnModel.getColumn(4).setPreferredWidth(600);
+        columnModel.getColumn(5).setPreferredWidth(150);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(7).setPreferredWidth(100);
+        columnModel.getColumn(8).setPreferredWidth(100);
+    }
     /**
      * @param args the command line arguments
      */
@@ -512,20 +549,21 @@ public class SearchMedical extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchMedical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchMedicine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchMedical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchMedicine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchMedical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchMedicine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchMedical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchMedicine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchMedical().setVisible(true);
+                new SearchMedicine().setVisible(true);
             }
         });
     }

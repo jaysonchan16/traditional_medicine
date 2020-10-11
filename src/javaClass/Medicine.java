@@ -272,18 +272,18 @@ public class Medicine {
     public List<Medicine> getAllDetail() throws SQLException{
         List<Medicine> medicineList = new ArrayList<>();
          
-         String query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill ";
+         String query = "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill UNION ALL "
+                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion UNION ALL "
+                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion UNION ALL "
+                + "Select ID, name, property as component, appliance as indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill ";
 
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  medicineList.add(new Medicine(rs.getString("name"),
-                         rs.getString("component"),rs.getString("effect"),
-                         rs.getString("indications"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
+                         rs.getString("component"),rs.getString("indications"),
+                         rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
                          rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine")));
             } 
         } 

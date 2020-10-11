@@ -490,10 +490,66 @@
                           <Font name="STXihei" size="18" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="0" rowCount="0"/>
+                          <Table columnCount="9" rowCount="0">
+                            <Column editable="false" title="&#x836f;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x540d;&#x5b57;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x7ec4;&#x6210;/&#x836f;&#x6027;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x4e3b;&#x6cbb;/&#x5e94;&#x7528;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x529f;&#x6548;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x6bcf;&#x6b21;&#x6bcf;&#x65e5;&#x5206;&#x91cf;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x91cd;&#x91cf;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x672c;&#x94b1;" type="java.lang.String"/>
+                            <Column editable="false" title="&#x4ef7;&#x683c;" type="java.lang.String"/>
+                          </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                          <TableColumnModel selectionModel="0"/>
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
                         </Property>
                         <Property name="rowHeight" type="int" value="25"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

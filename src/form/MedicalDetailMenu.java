@@ -378,7 +378,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     
     public void FindMedicine()
     {
-        SearchMedical medical = new SearchMedical(user);
+        SearchMedicine medical = new SearchMedicine(user);
         medical.setVisible(true);
         this.dispose();
     }
