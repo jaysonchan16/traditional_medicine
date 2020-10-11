@@ -179,33 +179,6 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     DefaultTableModel model ;
-    private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
-        // TODO add your handling code here:
-       
-        int nRow = model.getRowCount(), nCol = model.getColumnCount();
-        Object columnsName[] = new Object[nCol];
-        Object[][] tableData = new Object[nRow][nCol];
-        for(int z=0; z< nCol;z++)
-        {
-            columnsName[z] = model.getColumnName(z);
-            System.out.print(model.getColumnName(z));
-        }
-        
-        for (int i = 0 ; i < nRow ; i++){
-            for (int j = 0 ; j < nCol ; j++){
-                tableData[i][j] = model.getValueAt(i,j);
-                System.out.print(tableData[i][j]);
-            }
-        }
-        JTable table = new JTable(tableData,columnsName);
-        Excel excel = new Excel();
-        try {
-            excel.exportToExcel(table, "C:/Users/Sheng/Desktop/test.xlsx");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_btnBackupActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         if(option == 3){
@@ -249,6 +222,33 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         patient.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tblPatientMouseClicked
+
+    private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
+        // TODO add your handling code here:
+
+        int nRow = model.getRowCount(), nCol = model.getColumnCount();
+        Object columnsName[] = new Object[nCol];
+        Object[][] tableData = new Object[nRow][nCol];
+        for(int z=0; z< nCol;z++)
+        {
+            columnsName[z] = model.getColumnName(z);
+            System.out.print(model.getColumnName(z));
+        }
+
+        for (int i = 0 ; i < nRow ; i++){
+            for (int j = 0 ; j < nCol ; j++){
+                tableData[i][j] = model.getValueAt(i,j);
+                System.out.print(tableData[i][j]);
+            }
+        }
+        JTable table = new JTable(tableData,columnsName);
+        Excel excel = new Excel();
+        try {
+            excel.exportToExcel(table, "C:/Users/Sheng/Desktop/test.xlsx");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnBackupActionPerformed
 
     /**
      * @param args the command line arguments

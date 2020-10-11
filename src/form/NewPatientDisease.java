@@ -804,7 +804,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
           }
         String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
                 chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
-        PrintForm main = new PrintForm(user,1,bodyContent);
+        PrintForm main = new PrintForm(user,4,bodyContent);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed

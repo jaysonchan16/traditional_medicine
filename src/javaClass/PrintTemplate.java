@@ -6,7 +6,6 @@
 package javaClass;
 
 import java.util.ArrayList;
-
 /**
  *
  * @author Sheng
@@ -36,6 +35,23 @@ public class PrintTemplate {
         }
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
         content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
+        return content.toString();
+    }
+    
+    public String printPatient(String ID, String IC, String name, String gender, String age, String phone, String address, String date)
+    {
+        StringBuilder content = new StringBuilder(); 
+        if(!ID.equalsIgnoreCase(""))
+        {
+            content.append("ID: "+ID+"\n\n");
+        }
+        content.append("IC: "+IC+"\n\n");
+        content.append("姓名: "+name+"\n\n");
+        content.append("性别: "+gender+"\n\n");
+        content.append("年龄: "+age+"\n\n");
+        content.append("电话号码: "+phone+"\n\n");
+        content.append("地址: "+address+"\n\n");
+        content.append("日期: "+date+"\n\n");
         return content.toString();
     }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +48,9 @@ public class ModifyPatient extends javax.swing.JFrame {
         initComponents();
     }
 
+    //option 2 from printform
+    //option 1 back to disease menu
+    //option 1 back to search patient
     public ModifyPatient(User user, int option) {
         initComponents();
         this.user = user;
@@ -179,6 +183,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -372,6 +377,17 @@ public class ModifyPatient extends javax.swing.JFrame {
         panelBody.add(btnFind);
         btnFind.setBounds(1570, 150, 110, 50);
 
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(1310, 750, 110, 50);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(70, 90, 1780, 820);
 
@@ -553,6 +569,29 @@ public class ModifyPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        String IC = txtIC.getText();
+        String ID = txtID.getText();
+        String Name = txtName.getText();
+        String Gender = txtGender.getText();
+        String Age = txtAge.getText();
+        String Phone = txtPhone.getText();
+        String Address = txtAddress.getText();
+        String Date = lblCreateDateTime.getText();
+        
+        String bodyContent = printPreview(ID,IC, Name, Gender, Age, Phone, Address, Date);
+        PrintForm main = new PrintForm(user,1,bodyContent);
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    public String printPreview(String ID, String IC, String Name, String Gender, String Age, String Phone, String Address, String Date)
+    {
+        PrintTemplate print = new PrintTemplate();
+        return print.printPatient(ID, IC, Name, Gender, Age, Phone, Address, Date);
+    }
+    
     public void image()
     {
         jScrollPane1.getViewport().setBackground(Color.WHITE);
@@ -568,6 +607,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnUpdate.setIcon(iconUpdate);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel7.setIcon(iconModify);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
@@ -611,6 +652,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     public javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -36,7 +36,10 @@ public class PrintForm extends javax.swing.JFrame {
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
-        //1 option from modifyChuFang
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //3 option from newPatientDisease
     }
     
     
@@ -152,6 +155,12 @@ public class PrintForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(option == 1)
         {
+            ModifyPatient modify = new ModifyPatient(user,option);
+            modify.setVisible(true);
+            this.dispose();
+        }
+        else if(option == 2)
+        {
             try {
                 ModifyChuFang modify = new ModifyChuFang(user);
                 modify.setVisible(true);
@@ -160,6 +169,22 @@ public class PrintForm extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+        else if(option == 3)
+        {
+            NewPatient modify = new NewPatient(user);
+            modify.setVisible(true);
+            this.dispose();
+        }  
+        else if(option == 4)
+        {
+            try {
+                NewPatientDisease modify = new NewPatientDisease(user);
+                modify.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }  
     }//GEN-LAST:event_btnBackActionPerformed
 
     public void printPreview(String bodyContent)

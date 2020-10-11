@@ -10,9 +10,12 @@ import javaClass.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -30,7 +33,9 @@ public class NewPatient extends javax.swing.JFrame {
     private String DiseaseIC = "";
     
     NewPatientDisease diseasepage;
-
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    LocalDate localDate = LocalDate.now();
+    
     public NewPatient(User user) {
         initComponents();
         txtName.setEnabled(false);
@@ -38,6 +43,7 @@ public class NewPatient extends javax.swing.JFrame {
         txtAge.setEnabled(false);
         txtPhone.setEnabled(false);
         txtAddress.setEnabled(false);
+        lblCreateDateTime.setText(dtf.format(localDate));
         this.user = user;
         image();
     }
@@ -50,6 +56,7 @@ public class NewPatient extends javax.swing.JFrame {
         txtIC.setEnabled(false);
         btnFind.setVisible(false);
         txtAddress.setEnabled(true);
+        lblCreateDateTime.setText(dtf.format(localDate));
         image();
         
     }
@@ -373,9 +380,26 @@ public class NewPatient extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
+        String IC = txtIC.getText();
+        String Name = txtName.getText();
+        String Gender = txtGender.getText();
+        String Age = txtAge.getText();
+        String Phone = txtPhone.getText();
+        String Address = txtAddress.getText();
+        String Date = lblCreateDateTime.getText();
         
+        String bodyContent = printPreview("",IC, Name, Gender, Age, Phone, Address, Date);
+        PrintForm main = new PrintForm(user,3,bodyContent);
+        main.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    public String printPreview(String ID, String IC, String Name, String Gender, String Age, String Phone, String Address, String Date)
+    {
+        PrintTemplate print = new PrintTemplate();
+        return print.printPatient(ID, IC, Name, Gender, Age, Phone, Address, Date);
+    }
+    
     public void image()
     {
         ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
