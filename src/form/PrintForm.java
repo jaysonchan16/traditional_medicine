@@ -41,6 +41,7 @@ public class PrintForm extends javax.swing.JFrame {
         //3 option from newPatient
         //4 option from newPatientDisease
         //5 option for new medicine
+        //6 option for modify medicine
     }
     
     
@@ -192,6 +193,12 @@ public class PrintForm extends javax.swing.JFrame {
             modify.setVisible(true);
             this.dispose();
         }  
+        else if(option == 6)
+        {
+            ModifyMedicine modify = new ModifyMedicine(user);
+            modify.setVisible(true);
+            this.dispose();
+        }
         
     }//GEN-LAST:event_btnBackActionPerformed
 

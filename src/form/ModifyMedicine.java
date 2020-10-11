@@ -17,6 +17,7 @@ import java.awt.ScrollPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -108,6 +109,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicine = new javax.swing.JTable();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -294,7 +296,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnModify);
-        btnModify.setBounds(390, 750, 130, 50);
+        btnModify.setBounds(440, 750, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -330,6 +332,17 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         panelBody.add(jScrollPane4);
         jScrollPane4.setBounds(760, 20, 900, 780);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(300, 750, 130, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 820);
@@ -628,6 +641,30 @@ public class ModifyMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        String medicine = comboMedicine.getSelectedItem().toString();
+        String Name = txtName.getText();
+        String component = txtComponent.getText();
+        String indication = txtIndication.getText();
+        String effect = txtEffect.getText();
+        String scoop = txtScoop.getText();
+        String weight = txtWeight.getText();
+        String cost = txtCost.getText();
+        String price = txtPrice.getText();
+        
+        String bodyContent = printPreview(medicine,Name,component,indication,effect,scoop,weight,cost,price);
+        PrintForm main = new PrintForm(user,5,bodyContent);
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
+    {
+        PrintTemplate print = new PrintTemplate();
+        return print.printMedicine(medicine,Name,component,indication,effect,scoop,weight,cost,price);
+    }
+    
     public void createColumns(int count, String ID)
     {
         // count 0 就是我们一按进这个page的
@@ -1063,6 +1100,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnModify.setIcon(iconUpdate);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel4.setIcon(iconModify);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
@@ -1109,6 +1148,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboMedicine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
