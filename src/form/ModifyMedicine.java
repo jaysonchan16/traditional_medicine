@@ -654,7 +654,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         String price = txtPrice.getText();
         
         String bodyContent = printPreview(medicine,Name,component,indication,effect,scoop,weight,cost,price);
-        PrintForm main = new PrintForm(user,5,bodyContent);
+        PrintForm main = new PrintForm(user,6,bodyContent);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
