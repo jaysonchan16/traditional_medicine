@@ -782,8 +782,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnUpdate.setVisible(true);
         btnModify.setVisible(false);
-        comboMedicine.setVisible(true);
-        txtMedicine.setVisible(false);
+        //comboMedicine.setVisible(true);
+        //txtMedicine.setVisible(false);
         txtID.setEnabled(false);
         btnFind.setEnabled(false);
         txtName.setEnabled(true);
@@ -794,6 +794,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(true);
         txtCost.setEnabled(true);
         txtPrice.setEnabled(true);
+        
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -810,6 +811,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        btnReset.setVisible(false);
+        txtID.setText("");
+        txtName.setText("");
+        txtComponent.setText("");
+        txtIndication.setText("");
+        txtEffect.setText("");
+        txtScoop.setText("");
+        txtWeight.setText("");
+        txtCost.setText("");
+        txtPrice.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
