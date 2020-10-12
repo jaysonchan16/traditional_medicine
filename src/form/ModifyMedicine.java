@@ -75,6 +75,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         btnUpdate.setVisible(false);
         txtMedicine.setVisible(false);
+        btnReset.setVisible(false);
     }
     
     public ModifyMedicine(User user,String medicine, String medicinename,String component,String indications,
@@ -112,6 +113,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         btnModify.setVisible(true);
         btnUpdate.setVisible(false);
+        btnReset.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -500,6 +502,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtID.setEnabled(false);
         txtPrice.setEnabled(false);
         btnModify.setVisible(true);
+        btnReset.setVisible(true);
         btnUpdate.setVisible(false);
         //disabledTextBox();
         
@@ -522,6 +525,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnUpdate.setVisible(false);
         comboMedicine.setVisible(false);
         txtMedicine.setVisible(true);
+        btnReset.setVisible(true);
         if(ID.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "ID没填！");
         }
@@ -794,6 +798,18 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        comboMedicine.setVisible(true);
+        txtMedicine.setVisible(false);
+        txtID.setEnabled(true);
+        btnFind.setEnabled(true);
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtPrice.setEnabled(false);
     }//GEN-LAST:event_btnResetActionPerformed
 
     public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
@@ -1254,6 +1270,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
         btnModify.setIcon(iconModify);
+        ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
+        btnReset.setIcon(iconReset);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
