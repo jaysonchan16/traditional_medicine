@@ -163,7 +163,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnPrint = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         txtMedicine = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -413,11 +413,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
         panelBody.add(txtMedicine);
         txtMedicine.setBounds(230, 40, 600, 40);
 
-        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jButton1.setText("重启");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(jButton1);
-        jButton1.setBounds(290, 750, 130, 50);
+        btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnReset.setText("重启");
+        btnReset.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnReset);
+        btnReset.setBounds(290, 750, 130, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 820);
@@ -445,6 +450,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        btnFind.setEnabled(true);
+        btnModify.setVisible(true);
+        btnUpdate.setVisible(false);
         createColumns(1,"");
         changeLabel();
         widthTable();
@@ -456,16 +464,18 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnFind.setEnabled(false);
         int index = tblMedicine.getSelectedRow();
         TableModel model = tblMedicine.getModel();
-        String ID = model.getValueAt(index, 0).toString();
-        String Name = model.getValueAt(index,1).toString();
-        String Component = model.getValueAt(index,2).toString(); //property
-        String Indications = model.getValueAt(index,3).toString();//appliance
-        String Effect = model.getValueAt(index,4).toString();//appliance
-        String Scoop = model.getValueAt(index,5).toString();
-        String Gram = model.getValueAt(index,6).toString();
-        String Cost = model.getValueAt(index,7).toString();
-        String Sellprice = model.getValueAt(index,8).toString();
+        String medicine = model.getValueAt(index, 0).toString();
+        String ID = model.getValueAt(index, 1).toString();
+        String Name = model.getValueAt(index,2).toString();
+        String Component = model.getValueAt(index,3).toString(); //property
+        String Indications = model.getValueAt(index,4).toString();//appliance
+        String Effect = model.getValueAt(index,5).toString();//appliance
+        String Scoop = model.getValueAt(index,6).toString();
+        String Gram = model.getValueAt(index,7).toString();
+        String Cost = model.getValueAt(index,8).toString();
+        String Sellprice = model.getValueAt(index,9).toString();
         
+        txtMedicine.setText(medicine);
         txtID.setText(ID);
         txtName.setText(Name);
         txtComponent.setText(Component);
@@ -479,14 +489,39 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtMedicine.setVisible(true);
         txtMedicine.setEnabled(false);
         comboMedicine.setVisible(false);
-        disabledTextBox();
+        btnFind.setEnabled(false);
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtID.setEnabled(false);
+        txtPrice.setEnabled(false);
+        btnModify.setVisible(true);
+        btnUpdate.setVisible(false);
+        //disabledTextBox();
         
     }//GEN-LAST:event_tblMedicineMouseClicked
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
         String ID = txtID.getText();
-        
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtPrice.setEnabled(false);
+        txtID.setEnabled(false);
+        btnFind.setEnabled(false);
+        btnModify.setVisible(true);
+        btnUpdate.setVisible(false);
+        comboMedicine.setVisible(false);
+        txtMedicine.setVisible(true);
         if(ID.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "ID没填！");
         }
@@ -757,6 +792,10 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtPrice.setEnabled(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResetActionPerformed
+
     public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
     {
         PrintTemplate print = new PrintTemplate();
@@ -780,6 +819,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             try {
                 lblzhucheng.setText("药性:");
                 lblzhuzi.setText("应用:");
+                model.addColumn("药");
                 model.addColumn("ID");
                 model.addColumn("名字");
                 model.addColumn("药性");
@@ -808,6 +848,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             try {
                 lblzhucheng.setText("组成:");
                 lblzhuzi.setText("主治:");
+                model.addColumn("药");
                 model.addColumn("ID");
                 model.addColumn("名字");
                 model.addColumn("组成");
@@ -841,20 +882,21 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
             medicList = medic.getTraditionalMedicinePill();
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getProperty();
-                row[3] = medicList.get(i).getAppliance();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getProperty();
+                row[4] = medicList.get(i).getAppliance();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -864,20 +906,21 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
             medicList = medic.getTraditionalMedicinePotion();
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -887,20 +930,21 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
             medicList = medic.getGrassMedicinePill();
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -910,20 +954,21 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
             medicList = medic.getGrassMedicinePotion();
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -951,23 +996,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
                 txtCost.setText(String.valueOf(medicList.get(0).getCost()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                disabledTextBox();
+                //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getProperty();
-                row[3] = medicList.get(i).getAppliance();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getProperty();
+                row[4] = medicList.get(i).getAppliance();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -990,23 +1036,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
                 txtCost.setText(String.valueOf(medicList.get(0).getCost()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                disabledTextBox();
+                //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -1029,23 +1076,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
                 txtCost.setText(String.valueOf(medicList.get(0).getCost()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                disabledTextBox();
+                //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -1068,23 +1116,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
                 txtCost.setText(String.valueOf(medicList.get(0).getCost()));
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                disabledTextBox();
+                //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[11];
+            Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
             {
-                row[0] = medicList.get(i).getCode();
-                row[1] = medicList.get(i).getName();
-                row[2] = medicList.get(i).getComponent();
-                row[3] = medicList.get(i).getIndications();
-                row[4] = medicList.get(i).getEffect();
-                row[5] = medicList.get(i).getScoop();
-                row[6] = medicList.get(i).getGram();
-                row[7] = medicList.get(i).getCost();
-                row[8] = medicList.get(i).getSellprice();
-                row[9] = medicList.get(i).getLastUpdateDateTime();
-                row[10] = medicList.get(i).getCreateDateTime();
+                row[0] = medicList.get(i).getMedicine();
+                row[1] = medicList.get(i).getCode();
+                row[2] = medicList.get(i).getName();
+                row[3] = medicList.get(i).getComponent();
+                row[4] = medicList.get(i).getIndications();
+                row[5] = medicList.get(i).getEffect();
+                row[6] = medicList.get(i).getScoop();
+                row[7] = medicList.get(i).getGram();
+                row[8] = medicList.get(i).getCost();
+                row[9] = medicList.get(i).getSellprice();
+                row[10] = medicList.get(i).getLastUpdateDateTime();
+                row[11] = medicList.get(i).getCreateDateTime();
                 model.addRow(row);
             }
         }
@@ -1151,16 +1200,17 @@ public class ModifyMedicine extends javax.swing.JFrame {
         tblMedicine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tblMedicine.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(150);
-        columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(1500);
+        columnModel.getColumn(1).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(100);
         columnModel.getColumn(3).setPreferredWidth(1500);
-        columnModel.getColumn(4).setPreferredWidth(600);
-        columnModel.getColumn(5).setPreferredWidth(150);
-        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(1500);
+        columnModel.getColumn(5).setPreferredWidth(600);
+        columnModel.getColumn(6).setPreferredWidth(150);
         columnModel.getColumn(7).setPreferredWidth(100);
         columnModel.getColumn(8).setPreferredWidth(100);
-        columnModel.getColumn(9).setPreferredWidth(200);
+        columnModel.getColumn(9).setPreferredWidth(100);
         columnModel.getColumn(10).setPreferredWidth(200);
+        columnModel.getColumn(11).setPreferredWidth(200);
     }
     
     public void resetTextBox()
@@ -1251,9 +1301,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboMedicine;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
