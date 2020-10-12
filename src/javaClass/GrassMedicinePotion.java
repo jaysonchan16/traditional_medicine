@@ -60,7 +60,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
             }
             else
             {
-                returnMessage.put("returnMessage", "GrassMedicinePotion.AddGrassMedicinePotion get error on line 60, "+code1.validateID(name).get("messages"));
+                returnMessage.put("returnMessage", code1.validateID(name).get("messages"));
                 returnMessage.put("ID", "");
                 return returnMessage;
             }

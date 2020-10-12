@@ -38,6 +38,18 @@ public class ModifyMedicine extends javax.swing.JFrame {
      */
     DefaultTableModel model ;
     private User user;
+    private String modifyMedicine;
+    private String modifyMedicinename;
+    private String modifyComponent;
+    private String modifyIndications;
+    private String modifyEffect;
+    private String modifyScoop;
+    private String modifyWeight;
+    private String modifyCost;
+    private String modifyTotalprice;
+    private String modifyID;
+    private String modifyCreateDateTime;
+    private String modifyLastUpdateTime;
     
     public ModifyMedicine() {
         initComponents();
@@ -61,6 +73,45 @@ public class ModifyMedicine extends javax.swing.JFrame {
         image();
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        btnUpdate.setVisible(false);
+        txtMedicine.setVisible(false);
+    }
+    
+    public ModifyMedicine(User user,String medicine, String medicinename,String component,String indications,
+            String effect,String scoop,String weight, String cost, 
+            String totalprice,String ID,String createDateTime,String lastUpdateTime)
+    {
+        this.user = user;
+        this.modifyMedicine = medicine;
+        this.modifyMedicinename =medicinename;
+        this.modifyComponent = component;
+        this.modifyIndications =indications;
+        this.modifyEffect = effect;
+        this.modifyScoop = scoop;
+        this.modifyWeight = weight;
+        this.modifyCost = cost;
+        this.modifyTotalprice = totalprice;
+        this.modifyID  = ID;
+        this.modifyCreateDateTime =createDateTime;
+        this.modifyLastUpdateTime = lastUpdateTime;
+        initComponents();
+        txtName.setEnabled(false);
+        txtComponent.setEnabled(false);
+        txtIndication.setEnabled(false);
+        txtEffect.setEnabled(false);
+        txtScoop.setEnabled(false);
+        txtWeight.setEnabled(false);
+        txtCost.setEnabled(false);
+        txtPrice.setEnabled(false);
+        comboMedicine();
+        changeLabel();
+        createColumns(1,"");
+        widthTable();
+        image();
+        JTableHeader tableHeader = tblMedicine.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        btnModify.setVisible(true);
+        btnUpdate.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,12 +155,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight = new javax.swing.JTextField();
         lblWeight = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
-        btnModify = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicine = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
+        btnModify = new javax.swing.JButton();
+        txtMedicine = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -164,7 +218,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboMedicine);
-        comboMedicine.setBounds(230, 40, 110, 40);
+        comboMedicine.setBounds(230, 40, 220, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("ID:");
@@ -173,7 +227,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(230, 100, 380, 40);
+        txtID.setBounds(230, 100, 500, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -184,7 +238,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(620, 100, 90, 40);
+        btnFind.setBounds(740, 100, 90, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +247,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtName);
-        txtName.setBounds(230, 160, 480, 40);
+        txtName.setBounds(230, 160, 600, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
@@ -211,7 +265,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtComponent);
 
         panelBody.add(jScrollPane3);
-        jScrollPane3.setBounds(230, 220, 480, 100);
+        jScrollPane3.setBounds(230, 220, 600, 100);
 
         lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhuzi.setText("主治：");
@@ -224,7 +278,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtIndication);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(230, 350, 480, 90);
+        jScrollPane2.setBounds(230, 350, 600, 90);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("功效：");
@@ -233,7 +287,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtEffect);
-        txtEffect.setBounds(230, 460, 480, 40);
+        txtEffect.setBounds(230, 460, 600, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("每次每日分量：");
@@ -242,7 +296,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtScoop);
-        txtScoop.setBounds(230, 520, 480, 40);
+        txtScoop.setBounds(230, 520, 600, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量：");
@@ -261,20 +315,20 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtPrice);
-        txtPrice.setBounds(230, 700, 480, 40);
+        txtPrice.setBounds(230, 700, 610, 40);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtCost);
-        txtCost.setBounds(230, 640, 480, 40);
+        txtCost.setBounds(230, 640, 610, 40);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtWeight);
-        txtWeight.setBounds(230, 580, 480, 40);
+        txtWeight.setBounds(230, 580, 540, 40);
 
         lblWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblWeight.setText("GM");
         panelBody.add(lblWeight);
-        lblWeight.setBounds(710, 580, 60, 40);
+        lblWeight.setBounds(780, 580, 60, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -285,18 +339,18 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnDelete);
-        btnDelete.setBounds(580, 750, 130, 50);
+        btnDelete.setBounds(710, 750, 130, 50);
 
-        btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnModify.setText("更改");
-        btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnUpdate.setText("更新");
+        btnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        panelBody.add(btnModify);
-        btnModify.setBounds(440, 750, 130, 50);
+        panelBody.add(btnUpdate);
+        btnUpdate.setBounds(570, 750, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -307,7 +361,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(40, 750, 130, 50);
+        btnBack.setBounds(10, 750, 130, 50);
 
         tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
@@ -331,7 +385,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane4);
-        jScrollPane4.setBounds(760, 20, 900, 780);
+        jScrollPane4.setBounds(870, 20, 860, 780);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -342,7 +396,28 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnPrint);
-        btnPrint.setBounds(300, 750, 130, 50);
+        btnPrint.setBounds(430, 750, 130, 50);
+
+        btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnModify.setText("更改");
+        btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnModify);
+        btnModify.setBounds(150, 750, 130, 50);
+
+        txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtMedicine);
+        txtMedicine.setBounds(230, 40, 600, 40);
+
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jButton1.setText("重启");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jButton1);
+        jButton1.setBounds(290, 750, 130, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 820);
@@ -378,6 +453,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
     private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
         // TODO add your handling code here:
+        btnFind.setEnabled(false);
         int index = tblMedicine.getSelectedRow();
         TableModel model = tblMedicine.getModel();
         String ID = model.getValueAt(index, 0).toString();
@@ -399,8 +475,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setText(Gram);
         txtCost.setText(Cost);
         txtPrice.setText(Sellprice);
-        
+        btnFind.setEnabled(true);
+        txtMedicine.setVisible(true);
+        txtMedicine.setEnabled(false);
+        comboMedicine.setVisible(false);
         disabledTextBox();
+        
     }//GEN-LAST:event_tblMedicineMouseClicked
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -424,7 +504,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText();
         String component = txtComponent.getText();
@@ -556,7 +636,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyMedicine.btnModifyActionPerformed get error on line 464, "+ex.getMessage());
         }
-    }//GEN-LAST:event_btnModifyActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -659,6 +739,24 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        btnUpdate.setVisible(true);
+        btnModify.setVisible(false);
+        comboMedicine.setVisible(true);
+        txtMedicine.setVisible(false);
+        txtID.setEnabled(false);
+        btnFind.setEnabled(false);
+        txtName.setEnabled(true);
+        txtComponent.setEnabled(true);
+        txtIndication.setEnabled(true);
+        txtEffect.setEnabled(true);
+        txtScoop.setEnabled(true);
+        txtWeight.setEnabled(true);
+        txtCost.setEnabled(true);
+        txtPrice.setEnabled(true);
+    }//GEN-LAST:event_btnModifyActionPerformed
+
     public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
     {
         PrintTemplate print = new PrintTemplate();
@@ -667,6 +765,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void createColumns(int count, String ID)
     {
+        
         // count 0 就是我们一按进这个page的
         // count 1 就是换combo box
         // count 2 就是按寻找的时候
@@ -828,6 +927,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
+        widthTable();
     }
     
     public void show_medical_ID(String ID) throws SQLException{
@@ -988,10 +1088,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 model.addRow(row);
             }
         }
+        widthTable();
     }
 
     public void disabledTextBox()
     {
+        
         txtName.setEnabled(true);
         txtComponent.setEnabled(true);
         txtIndication.setEnabled(true);
@@ -1048,7 +1150,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         tblMedicine.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumnModel columnModel = tblMedicine.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(0).setPreferredWidth(150);
         columnModel.getColumn(1).setPreferredWidth(100);
         columnModel.getColumn(2).setPreferredWidth(1500);
         columnModel.getColumn(3).setPreferredWidth(1500);
@@ -1059,8 +1161,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         columnModel.getColumn(8).setPreferredWidth(100);
         columnModel.getColumn(9).setPreferredWidth(200);
         columnModel.getColumn(10).setPreferredWidth(200);
-        columnModel.getColumn(0).setMinWidth(0);
-        columnModel.getColumn(0).setMaxWidth(0);
     }
     
     public void resetTextBox()
@@ -1097,11 +1197,13 @@ public class ModifyMedicine extends javax.swing.JFrame {
         ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
         btnDelete.setIcon(iconDelete);
         ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
-        btnModify.setIcon(iconUpdate);
-        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
-        jLabel4.setIcon(iconModify);
+        btnUpdate.setIcon(iconUpdate);
+        ImageIcon iconUpdateMedium = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
+        jLabel4.setIcon(iconUpdateMedium);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        btnModify.setIcon(iconModify);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
@@ -1149,7 +1251,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> comboMedicine;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1179,6 +1283,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtIndication;
+    private javax.swing.JTextField txtMedicine;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;

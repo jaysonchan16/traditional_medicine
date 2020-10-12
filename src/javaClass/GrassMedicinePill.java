@@ -61,7 +61,7 @@ public class GrassMedicinePill extends Medicine{//药丸
             }
             else
             {
-                returnMessage.put("returnMessage","GrassMedicinePill.AddGrassMedicinePill line 61 get error," +code1.validateID(name).get("messages"));
+                returnMessage.put("returnMessage",code1.validateID(name).get("messages"));
                 returnMessage.put("ID","");
                 return returnMessage;
             }
