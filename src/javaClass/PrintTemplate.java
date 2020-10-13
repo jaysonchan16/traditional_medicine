@@ -5,7 +5,9 @@
  */
 package javaClass;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Sheng
@@ -91,5 +93,54 @@ public class PrintTemplate {
             content.append("价格RM/10 ML: RM"+price+"\n\n");
         }
         return content.toString();
+    }
+    
+    public String printDisease(String IC, String ID, String name, String phone, String date, 
+            String symptom, String category, String pulse, String tongueQuality, String tongueCoating, String shit, String history,
+            String temperature, String bloodPressure)
+    {
+        StringBuilder content = new StringBuilder(); 
+        content.append("IC: "+IC+"\t\t\t               ID: "+ID+"\n");
+        content.append("姓名: "+name+"\n");
+        content.append("电话号码: "+phone+"\t\t\t               日期: "+date+"\n");
+        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("主症: "+symptom+"\t\t\t                    病症分类: "+category+"\n");
+        content.append("脉象: "+pulse+"\t\t     舌质: "+tongueQuality+"\t\t     舌苔: "+tongueCoating+"\n");
+        content.append("大小便: "+shit+"\t\t\t         病史: "+history+"\n");
+        content.append("体温"+temperature+"\t\t\t          血压: "+bloodPressure+"\n");
+        
+        return content.toString();
+    }
+    
+    public String printAllDisease(String IC, String ID, String name, String phone, String diseaseID)
+    {
+        try {
+            Prescription pre = new Prescription();
+            List<Prescription> prescriptionList = new ArrayList<Prescription>();
+            prescriptionList = pre.getDiseaseDetail("a.DiseaseID",diseaseID);
+            
+            StringBuilder content = new StringBuilder();
+            content.append("IC: "+IC+"\t\t\t               ID: "+ID+"\n");
+            content.append("姓名: "+name+"\n");
+            content.append("电话号码: "+phone+"\t\t\t          日期: "+prescriptionList.get(0).getCreateDateTime()+"\n");
+            content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+            content.append("主症: "+prescriptionList.get(0).getSymptom()+"\t\t\t                    病症分类: "+prescriptionList.get(0).getCategory()+"\n");
+            content.append("脉象: "+prescriptionList.get(0).getPulseCondition()+"\t\t     舌质: "+prescriptionList.get(0).getTongueQuality()+"\t\t     舌苔: "+prescriptionList.get(0).getTongueCoating()+"\n");
+            content.append("大小便: "+prescriptionList.get(0).getPeeShit()+"\t\t\t         病史: "+prescriptionList.get(0).getHistory()+"\n");
+            content.append("体温"+prescriptionList.get(0).getTemperature()+"\t\t\t          血压: "+prescriptionList.get(0).getBloodPressure()+"\n");
+            content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+            content.append("处方\t药物种类\t药物名称\t剂量\t价格/G\t总价值\n");
+            content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+            for(int i = 0; i<prescriptionList.size(); i++)
+            {
+                content.append(prescriptionList.get(i).getChufang()+"\t"+prescriptionList.get(i).getCategorytable()+"\t"+prescriptionList.get(i).getNametable()+"\t"+prescriptionList.get(i).getJiliang()+"GM\tRM"+prescriptionList.get(i).getPrice()+"\tRM"+prescriptionList.get(i).getTotalprice()+"\n");
+            }
+            content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+            //content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
+            return content.toString();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return "0";
     }
 }

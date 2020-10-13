@@ -347,7 +347,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnBack.setBounds(120, 750, 110, 50);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnUpdate.setText("更改");
+        btnUpdate.setText("更新");
         btnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

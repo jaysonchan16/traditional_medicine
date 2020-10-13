@@ -14,6 +14,7 @@ import javaClass.Code;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
 import javaClass.Prescription;
+import javaClass.PrintTemplate;
 import javaClass.TraditionalMedicinePill;
 import javaClass.TraditionalMedicinePotion;
 import javaClass.User;
@@ -153,6 +154,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrice = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         spinnerJiLiang = new javax.swing.JSpinner();
+        txtDisease = new javax.swing.JTextField();
         txtPrescriptionID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -420,6 +422,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         });
         jPanel2.add(spinnerJiLiang);
         spinnerJiLiang.setBounds(160, 490, 80, 40);
+        jPanel2.add(txtDisease);
+        txtDisease.setBounds(520, 10, 90, 22);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(110, 100, 1700, 790);
@@ -561,6 +565,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
+        String IC = txtIC.getText();
+        String ID = txtID.getText();
+        String name = txtName.getText();
+        String phone = txtPhone.getText();
+        String diseaseID = txtDisease.getText();
+        
+        String bodyContent = printPreview(IC,ID,name,phone,diseaseID);
+        PrintForm main = new PrintForm(user,7,bodyContent);
+        main.setVisible(true);
+        this.dispose();
         /*PrintForm print = new PrintForm(user,1);
         print.setVisible(true);
         this.dispose();*/
@@ -618,8 +632,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
         String Jiliang = model.getValueAt(index,7).toString();
         String price = model.getValueAt(index,8).toString();
         String totalprice = model.getValueAt(index,9).toString();
+        String diseaseID = model.getValueAt(index,21).toString();
         String prescriptionID = model.getValueAt(index, 22).toString();
-
+        
         txtID.setText(ID);
         txtIC.setText(IC);
         txtName.setText(Name);
@@ -631,6 +646,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrice.setText(price);
         txtTotalPrice.setText(totalprice);
         txtPrescriptionID.setText(prescriptionID);
+        txtDisease.setText(diseaseID);
         updatedelete = 0;
     }//GEN-LAST:event_tblChufangMouseClicked
 
@@ -1056,10 +1072,12 @@ public class ModifyChuFang extends javax.swing.JFrame {
         setResizable(false);
     }
     
-    public void print()
+    public String printPreview(String IC,String ID,String name,String phone,String diseaseID)
     {
-        
+        PrintTemplate print = new PrintTemplate();
+        return print.printAllDisease(IC, ID, name, phone, diseaseID);
     }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1127,6 +1145,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerJiLiang;
     private javax.swing.JTable tblChufang;
     private javax.swing.JTextField txtChufang;
+    private javax.swing.JTextField txtDisease;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJiliang;

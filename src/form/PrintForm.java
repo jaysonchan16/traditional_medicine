@@ -199,7 +199,26 @@ public class PrintForm extends javax.swing.JFrame {
             modify.setVisible(true);
             this.dispose();
         }
-        
+        else if(option == 7)
+        {
+            try {
+                ModifyDisease modify = new ModifyDisease(user);
+                modify.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else if(option == 8)
+        {
+            try {
+                ModifyChuFang modify = new ModifyChuFang(user);
+                modify.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     public void printPreview(String bodyContent)
