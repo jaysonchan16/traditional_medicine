@@ -5,6 +5,7 @@
  */
 package form;
 
+import java.awt.Color;
 import javaClass.Prescription;
 import javaClass.TablePrintable;
 import javaClass.User;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaPrintableArea;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -53,10 +55,12 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         this.initialID = initialID;
         createColumns();
         show_patient();
-        widthTable();
+        this.lblName.setText(user.getUserid());
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
+        widthTable();
+        image();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -408,23 +412,55 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
          }
     }
     
+    public void image()
+    {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
+        ImageIcon iconLabel = new ImageIcon(getClass().getResource("/menu/report.png"));
+        headerPatient.setIcon(iconLabel);
+    }
+    
     public void widthTable()
     {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        JTableHeader tableHeader = tblDisease.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         tblDisease.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         //new JScrollPane(tblMedicine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TableColumnModel columnModel = tblDisease.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(150);
-        columnModel.getColumn(2).setPreferredWidth(150);
-        columnModel.getColumn(3).setPreferredWidth(70);
-        columnModel.getColumn(4).setPreferredWidth(50);
-        columnModel.getColumn(5).setPreferredWidth(100);
-        columnModel.getColumn(6).setPreferredWidth(70);
-        columnModel.getColumn(7).setPreferredWidth(80);
-        columnModel.getColumn(8).setPreferredWidth(50);
-        columnModel.getColumn(9).setPreferredWidth(100);
-        columnModel.getColumn(10).setPreferredWidth(100);
-        
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(200);
+        columnModel.getColumn(3).setPreferredWidth(160);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(200);
+        columnModel.getColumn(6).setPreferredWidth(1000);
+        columnModel.getColumn(7).setPreferredWidth(200);
+        columnModel.getColumn(8).setPreferredWidth(200);
+        columnModel.getColumn(9).setPreferredWidth(200);
+        columnModel.getColumn(10).setPreferredWidth(200);
+        columnModel.getColumn(11).setPreferredWidth(200);
+        columnModel.getColumn(12).setPreferredWidth(200);
+        columnModel.getColumn(13).setPreferredWidth(200);
+        columnModel.getColumn(14).setPreferredWidth(100);
+        columnModel.getColumn(15).setPreferredWidth(100);
+        columnModel.getColumn(16).setPreferredWidth(100);
+        columnModel.getColumn(17).setPreferredWidth(200);
+        columnModel.getColumn(18).setPreferredWidth(200);
+        columnModel.getColumn(19).setPreferredWidth(100);
+        columnModel.getColumn(20).setPreferredWidth(100);
+        columnModel.getColumn(21).setPreferredWidth(200);
+        columnModel.getColumn(22).setPreferredWidth(200);
+        columnModel.getColumn(23).setPreferredWidth(200);
+        columnModel.getColumn(24).setPreferredWidth(200);
+        columnModel.getColumn(25).setPreferredWidth(200);
     }
     /**
      * @param args the command line arguments

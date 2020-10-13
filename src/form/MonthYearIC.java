@@ -112,29 +112,29 @@ public class MonthYearIC extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel6.setText("ID:");
         panelBody.add(jLabel6);
-        jLabel6.setBounds(330, 540, 50, 40);
+        jLabel6.setBounds(380, 540, 50, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel5.setText("IC:");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(330, 420, 50, 40);
+        jLabel5.setBounds(380, 420, 50, 40);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtIC);
-        txtIC.setBounds(420, 420, 270, 40);
+        txtIC.setBounds(470, 420, 270, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel4.setText("到：");
         panelBody.add(jLabel4);
-        jLabel4.setBounds(340, 300, 50, 34);
+        jLabel4.setBounds(390, 300, 50, 34);
 
         txtToMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtToMonth);
-        txtToMonth.setBounds(420, 300, 90, 40);
+        txtToMonth.setBounds(470, 300, 90, 40);
 
         txtToYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtToYear);
-        txtToYear.setBounds(600, 300, 86, 40);
+        txtToYear.setBounds(650, 300, 86, 40);
 
         txtFromYear.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         txtFromYear.addActionListener(new java.awt.event.ActionListener() {
@@ -143,30 +143,30 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtFromYear);
-        txtFromYear.setBounds(600, 180, 86, 42);
+        txtFromYear.setBounds(650, 180, 86, 42);
 
         txtFromMonth.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtFromMonth);
-        txtFromMonth.setBounds(420, 180, 90, 40);
+        txtFromMonth.setBounds(470, 180, 90, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel3.setText("从：");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(340, 180, 50, 34);
+        jLabel3.setBounds(390, 180, 50, 34);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel2.setText("年份：");
         panelBody.add(jLabel2);
-        jLabel2.setBounds(610, 60, 75, 40);
+        jLabel2.setBounds(650, 70, 75, 40);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel1.setText("月份：");
         panelBody.add(jLabel1);
-        jLabel1.setBounds(430, 60, 75, 40);
+        jLabel1.setBounds(470, 70, 75, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(420, 540, 270, 40);
+        txtID.setBounds(470, 540, 270, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setText("退出");
@@ -177,7 +177,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(280, 680, 128, 45);
+        btnBack.setBounds(330, 680, 128, 45);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnFind.setText("寻找");
@@ -188,7 +188,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(630, 680, 119, 45);
+        btnFind.setBounds(680, 680, 119, 45);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(370, 90, 1200, 820);

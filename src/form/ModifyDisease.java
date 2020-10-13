@@ -851,6 +851,8 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnModify.setIcon(iconUpdate);
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel15.setIcon(iconModify);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(user.getUserid());
         setResizable(false);
     }
