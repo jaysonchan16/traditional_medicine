@@ -118,11 +118,12 @@ public class PrintTemplate {
             Prescription pre = new Prescription();
             List<Prescription> prescriptionList = new ArrayList<Prescription>();
             prescriptionList = pre.getDiseaseDetail("a.DiseaseID",diseaseID);
-            
+            float totalweight = 0;
+            float mainprice = 0;
             StringBuilder content = new StringBuilder();
             content.append("IC: "+IC+"\t\t\t               ID: "+ID+"\n");
             content.append("姓名: "+name+"\n");
-            content.append("电话号码: "+phone+"\t\t\t          日期: "+prescriptionList.get(0).getCreateDateTime()+"\n");
+            content.append("电话号码: "+phone+"\t\t\t    日期: "+prescriptionList.get(0).getCreateDateTime()+"\n");
             content.append("------------------------------------------------------------------------------------------------------------------------------\n");
             content.append("主症: "+prescriptionList.get(0).getSymptom()+"\t\t\t                    病症分类: "+prescriptionList.get(0).getCategory()+"\n");
             content.append("脉象: "+prescriptionList.get(0).getPulseCondition()+"\t\t     舌质: "+prescriptionList.get(0).getTongueQuality()+"\t\t     舌苔: "+prescriptionList.get(0).getTongueCoating()+"\n");
@@ -133,10 +134,12 @@ public class PrintTemplate {
             content.append("------------------------------------------------------------------------------------------------------------------------------\n");
             for(int i = 0; i<prescriptionList.size(); i++)
             {
+                totalweight = totalweight + prescriptionList.get(i).getJiliang();
+                mainprice = mainprice + prescriptionList.get(i).getTotalprice();
                 content.append(prescriptionList.get(i).getChufang()+"\t"+prescriptionList.get(i).getCategorytable()+"\t"+prescriptionList.get(i).getNametable()+"\t"+prescriptionList.get(i).getJiliang()+"GM\tRM"+prescriptionList.get(i).getPrice()+"\tRM"+prescriptionList.get(i).getTotalprice()+"\n");
             }
             content.append("------------------------------------------------------------------------------------------------------------------------------\n");
-            //content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
+            content.append("\t\t\t"+totalweight+"GM\t\tRM"+mainprice+"\n");
             return content.toString();
         } catch (SQLException ex) {
             ex.printStackTrace();
