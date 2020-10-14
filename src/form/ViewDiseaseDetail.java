@@ -131,9 +131,24 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "ID", "IC", "病人名字", "性别", "年龄", "电话号码", "地址", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创建时间", "更新时间", "病症ID", "处方ID"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblDisease.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblDisease.setRowHeight(25);
         tblDisease.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,7 +353,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private void createColumns()
     {
         model = (DefaultTableModel) tblDisease.getModel();
-        model.addColumn("ID");
+       /* model.addColumn("ID");
         model.addColumn("IC");
         model.addColumn("病人名字");
         model.addColumn("性别");
@@ -363,7 +378,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         model.addColumn("创建时间");
         model.addColumn("更新时间");
         model.addColumn("病症ID");
-        model.addColumn("处方ID");
+        model.addColumn("处方ID");*/
     }
     
     public void show_patient() throws SQLException{

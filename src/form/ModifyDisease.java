@@ -499,6 +499,16 @@ public class ModifyDisease extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+        else if(option == 8) //back to searchdiseasepatient
+        {
+            try {
+                SearchDiseasePatient menu = new SearchDiseasePatient(user);
+                menu.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         else
         {
             DiseaseMenu menu = new DiseaseMenu(user);

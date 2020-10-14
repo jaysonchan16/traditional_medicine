@@ -569,6 +569,16 @@ public class ModifyPatient extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }
+        else if(option == 8) //back to searchdiseasepatient
+        {
+            try {
+                SearchDiseasePatient patient = new SearchDiseasePatient(user);
+                patient.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed

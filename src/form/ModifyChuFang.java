@@ -50,10 +50,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private String Jiliang;
     private String Price;
     private String TotalPrice;
-    private String from;
-    private String to;
-    private String initialIC;
-    private String initialID;
+    private String from="";
+    private String to="";
+    private String initialIC="";
+    private String initialID="";
     private int option = 0;
     
     public ModifyChuFang() {
@@ -72,6 +72,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         show_table();
         widthTable();
         image();
+        txtDisease.setVisible(false);
 
     }
     
@@ -79,6 +80,22 @@ public class ModifyChuFang extends javax.swing.JFrame {
             String CategoryTable, String NameTable, String Jiliang, String Price, String TotalPrice, String from, String to,
             String initialIC, String initialID, int option) throws SQLException
     {
+        System.out.println(ID);
+        System.out.println(IC);
+        System.out.println(Name);
+        System.out.println(Phone);
+        System.out.println(PrescriptionID);
+        System.out.println(Chufang);
+        System.out.println(CategoryTable);
+        System.out.println(NameTable);
+        System.out.println(Jiliang);
+        System.out.println(Price);
+        System.out.println(TotalPrice);
+        System.out.println(from);
+        System.out.println(to);
+        System.out.println(initialIC);
+        System.out.println(initialID);
+        System.out.println(option);
         this.user = user;
         this.ID = ID;
         this.IC = IC;
@@ -106,6 +123,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrescriptionID.setVisible(false);
         btnReset.setVisible(false);
         image();
+        txtDisease.setVisible(false);
     }
 
     /**
@@ -509,6 +527,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
             try {
                 ViewDiseaseDetail disease = new ViewDiseaseDetail(user,from,to,initialIC,initialID);
                 disease.setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else if(option == 8)//back to searchdiseasepatient
+        {
+            try {
+                SearchDiseasePatient patient = new SearchDiseasePatient(user);
+                patient.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
                 ex.printStackTrace();
