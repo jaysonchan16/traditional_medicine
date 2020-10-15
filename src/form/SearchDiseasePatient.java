@@ -743,11 +743,6 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         String DiseaseID = model.getValueAt(index,24).toString();
         String PrescriptionID = model.getValueAt(index,25).toString();
         
-        System.out.println(model.getValueAt(index, 0).toString());
-        System.out.println(column);
-        System.out.println(index);
-        System.out.println(model.getValueAt(index, index));
-        
         int option =8;
         
         if (column >= 0 && column <= 6)
@@ -769,7 +764,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         else
         {
             try {
-                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,"","","","",option);
+                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,DiseaseID,"","","","",option);
                 chufang.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

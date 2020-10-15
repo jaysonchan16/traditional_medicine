@@ -50,6 +50,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private String Jiliang;
     private String Price;
     private String TotalPrice;
+    private String DiseaseID;
     private String from="";
     private String to="";
     private String initialIC="";
@@ -77,25 +78,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
     }
     
     public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
-            String CategoryTable, String NameTable, String Jiliang, String Price, String TotalPrice, String from, String to,
+            String CategoryTable, String NameTable, String Jiliang, String Price, String TotalPrice, String DiseaseID, String from, String to,
             String initialIC, String initialID, int option) throws SQLException
     {
-        System.out.println(ID);
-        System.out.println(IC);
-        System.out.println(Name);
-        System.out.println(Phone);
-        System.out.println(PrescriptionID);
-        System.out.println(Chufang);
-        System.out.println(CategoryTable);
-        System.out.println(NameTable);
-        System.out.println(Jiliang);
-        System.out.println(Price);
-        System.out.println(TotalPrice);
-        System.out.println(from);
-        System.out.println(to);
-        System.out.println(initialIC);
-        System.out.println(initialID);
-        System.out.println(option);
+        initComponents();
         this.user = user;
         this.ID = ID;
         this.IC = IC;
@@ -108,13 +94,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
         this.Jiliang = Jiliang;
         this.Price = Price;
         this.TotalPrice = TotalPrice;
+        this.DiseaseID = DiseaseID;
         this.from = from;
         this.to = to;
         this.initialIC = initialIC;
         this.initialID = initialID;
         this.option = option;
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
         createColumns();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         medicineCategory();
         txtPrice.setText("");
@@ -124,6 +111,26 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnReset.setVisible(false);
         image();
         txtDisease.setVisible(false);
+        txtPrescriptionID.setText(PrescriptionID);
+        txtIC.setText(IC);
+        txtIC.setEnabled(false);
+        txtID.setText(ID);
+        txtID.setEnabled(false);
+        txtName.setText(Name);
+        txtName.setEnabled(false);
+        txtPhone.setText(Phone);
+        txtPhone.setEnabled(false);
+        btnFindIC.setEnabled(false);
+        btnFindID.setEnabled(false);
+        txtChufang.setText(Chufang);
+        comboBoxMedicine.setVisible(false);
+        comboBoxName.setVisible(false);
+        txtMedicine.setText(CategoryTable);
+        txtMedicineName.setText(NameTable);
+        txtJiliang.setText(Jiliang);
+        txtPrice.setText(Price);
+        txtTotalPrice.setText(TotalPrice);
+        txtDisease.setText(DiseaseID);
     }
 
     /**
@@ -444,7 +451,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtDisease.setBounds(520, 10, 90, 22);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(110, 100, 1700, 790);
+        jPanel2.setBounds(110, 100, 1720, 790);
 
         txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrescriptionID);
@@ -684,8 +691,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     private void createColumns()
     {
-        /*model = (DefaultTableModel) tblChufang.getModel();
-        model.addColumn("病人ID");
+        model = (DefaultTableModel) tblChufang.getModel();
+        /*model.addColumn("病人ID");
         model.addColumn("病人IC");
         model.addColumn("名字");
         model.addColumn("电话号码");
@@ -715,7 +722,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
         Prescription prescription = new Prescription();
         List<Prescription> prescriptionList = new ArrayList<Prescription>();
         try {
-            if(option == 10)
+            //option 5 is from ViewDiseaseDetail
+            //option 8 is from SearchDiseasePatient
+            if(option == 10 || option == 5 || option == 8)
             {
                 prescriptionList = prescription.getPrescriptionsID(PrescriptionID);
                 model = (DefaultTableModel)tblChufang.getModel();

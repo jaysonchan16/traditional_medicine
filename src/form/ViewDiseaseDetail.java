@@ -36,10 +36,10 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
      * Creates new form ViewDiseaseDetail
      */
     private User user;
-    private String from;
-    private String to;
-    private String initialIC;
-    private String initialID;
+    private String from="";
+    private String to="";
+    private String initialIC="";
+    private String initialID="";
     DefaultTableModel model ;
     public ViewDiseaseDetail() {
         initComponents();
@@ -222,10 +222,6 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         String DiseaseID = model.getValueAt(index,24).toString();
         String PrescriptionID = model.getValueAt(index,25).toString();
         
-        System.out.println(model.getValueAt(index, 0).toString());
-        System.out.println(column);
-        System.out.println(index);
-        System.out.println(model.getValueAt(index, index));
         
         int option =5;
         
@@ -248,7 +244,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         else
         {
             try {
-                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,from,to,initialIC,initialID,option);
+                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,DiseaseID,from,to,initialIC,initialID,option);
                 chufang.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
