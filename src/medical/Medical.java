@@ -22,7 +22,7 @@ public class Medical {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginUI().setVisible(true);
+                new LoginUI2().setVisible(true);
             }
         });
         

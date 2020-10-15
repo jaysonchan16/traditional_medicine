@@ -55,8 +55,9 @@ public class LoginUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnLogin.setFont(new java.awt.Font("Yu Gothic", 0, 24)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnLogin.setText("登入");
+        btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -79,8 +80,9 @@ public class LoginUI extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(170, 380, 171, 39);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton1.setText("退出");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -111,7 +113,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("This product is license to Heng Seng Tong");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(550, 120, 560, 30);
+        jLabel6.setBounds(550, 120, 500, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setText("Version: 1.0");
