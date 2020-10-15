@@ -8,6 +8,7 @@ package form;
 import medical.LoginUI;
 import javaClass.User;
 import javax.swing.ImageIcon;
+import medical.LoginUI2;
 
 /**
  *
@@ -659,7 +660,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public void logout()
     {
-        LoginUI login = new LoginUI();
+        LoginUI2 login = new LoginUI2();
         login.setVisible(true);
         this.dispose();
     }
