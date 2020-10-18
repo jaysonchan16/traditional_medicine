@@ -251,7 +251,15 @@ public class Patient {
     }
     
     public Patient getPatient(String IC, String ID) throws SQLException{
-        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC = '"+IC+"' OR ID = '"+ID+"'";
+        String query ="";
+        if(ID.equalsIgnoreCase(""))
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC = '"+IC+"'";
+        }
+        else
+        {
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID = '"+ID+"'";
+        }
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {

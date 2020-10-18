@@ -988,7 +988,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             int jiliang = Integer.parseInt(spinnerJiLiang.getValue().toString());
             float price = Float.parseFloat(txtPrice.getText());
             float totalPrice = Float.parseFloat(txtTotalPrice.getText());
-            
+            String userid = user.getUserid();
             Prescription pre = new Prescription(prescriptionID, medicine, name, jiliang, price, totalPrice);
             String result= pre.EditPrescription();
                     
@@ -1011,6 +1011,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     {
         try {
             String prescriptionID = txtPrescriptionID.getText();
+            String userid = user.getUserid();
             Prescription pre = new Prescription(prescriptionID);
             String result = pre.DeletePrescription();
             if(result.equalsIgnoreCase("1"))

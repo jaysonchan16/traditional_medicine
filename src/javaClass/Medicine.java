@@ -249,7 +249,7 @@ public class Medicine {
          query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
                 + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
                 + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" ='%"+detail+"%' or "+contribute1+" like '%"+detail+"%'";
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%'";
 
      }
         System.out.println(query);

@@ -33,6 +33,7 @@ public class Prescription extends Disease{
     private String diseaseID;
     private String lastUpdateDateTime;
     private String createDateTime;
+    private String userid;
     public Statement st = connect.connection();
     ResultSet rs;
 
@@ -191,6 +192,20 @@ public class Prescription extends Disease{
         this.createDateTime = createDateTime;
     }
     
+    /**
+     * @return the userid
+     */
+    public String getUserid() {
+        return userid;
+    }
+
+    /**
+     * @param userid the userid to set
+     */
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+    
     public Prescription(){}
     
     public Prescription(String prescriptionID){
@@ -267,7 +282,7 @@ public class Prescription extends Disease{
             map = code.validateID(maintcode);
             if(map.get("messages").equalsIgnoreCase(""))
             {
-                String query = "Insert into Prescription(ID, Chufang, Category, Name, Jiliang, Price, TotalPrice, PatientID, DiseaseID, lastUpdateDateTime, createDateTime)"
+                String query = "Insert into Prescription(ID, Chufang, Category, Name, Jiliang, Price, TotalPrice, PatientID, DiseaseID, lastUpdateDateTime, createDateTime, User)"
                         + "Select '"+map.get("data")+"', trim('"+chufang+"'), trim('"+categorytable+"'), trim('"+nametable+"'), trim('"+jiliang+"'),"
                         + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime')";
                 SQLQuery sql = new SQLQuery();
@@ -523,4 +538,6 @@ public class Prescription extends Disease{
        }
        return prescriptionList;
     }
+
+    
 }

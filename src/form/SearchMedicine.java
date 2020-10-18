@@ -160,6 +160,11 @@ public class SearchMedicine extends javax.swing.JFrame {
         jLabel9.setBounds(40, 530, 60, 30);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
         txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPriceKeyPressed(evt);
@@ -294,14 +299,14 @@ public class SearchMedicine extends javax.swing.JFrame {
 
             },
             new String [] {
-                "药", "名字", "组成/药性", "主治/应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
+                "药", "名字", "组成", "主治", "药性", "应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -492,6 +497,10 @@ public class SearchMedicine extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_txtIDKeyPressed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
 
     
     private void createColumns()

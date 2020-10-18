@@ -265,7 +265,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnDisease);
-        btnDisease.setBounds(530, 140, 390, 290);
+        btnDisease.setBounds(510, 140, 390, 290);
 
         btnProfit.setBackground(new java.awt.Color(0, 255, 153));
         btnProfit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -313,7 +313,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnProfit);
-        btnProfit.setBounds(530, 490, 390, 290);
+        btnProfit.setBounds(510, 490, 390, 290);
 
         btnReference.setBackground(new java.awt.Color(241, 216, 171));
         btnReference.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -359,7 +359,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnReference);
-        btnReference.setBounds(1490, 140, 390, 290);
+        btnReference.setBounds(1460, 140, 390, 290);
 
         btnMedicine.setBackground(new java.awt.Color(255, 255, 204));
         btnMedicine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -408,7 +408,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnMedicine);
-        btnMedicine.setBounds(1030, 140, 390, 290);
+        btnMedicine.setBounds(980, 140, 390, 290);
 
         btnSetting.setBackground(new java.awt.Color(255, 204, 204));
         btnSetting.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -456,7 +456,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnSetting);
-        btnSetting.setBounds(1030, 490, 390, 290);
+        btnSetting.setBounds(980, 490, 390, 290);
 
         btnLogout.setBackground(new java.awt.Color(255, 153, 255));
         btnLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -505,7 +505,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnLogout);
-        btnLogout.setBounds(1490, 490, 390, 290);
+        btnLogout.setBounds(1460, 490, 390, 290);
 
         setBounds(0, 0, 1955, 1035);
     }// </editor-fold>//GEN-END:initComponents

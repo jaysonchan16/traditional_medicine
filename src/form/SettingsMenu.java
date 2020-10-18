@@ -37,23 +37,19 @@ public class SettingsMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        findHeader = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jButton1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jButton1.setText("输入路径");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(170, 140, 180, 80);
 
         jButton2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton2.setText("更改密码");
@@ -65,20 +61,10 @@ public class SettingsMenu extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(170, 310, 190, 80);
 
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel1.setText("设定");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(520, 40, 50, 34);
-
         jButton4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jButton4.setText("删除账号");
         getContentPane().add(jButton4);
         jButton4.setBounds(740, 320, 180, 80);
-
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel2.setText("登入：");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(730, 50, 90, 40);
 
         lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         getContentPane().add(lblLoggedIn);
@@ -95,12 +81,31 @@ public class SettingsMenu extends javax.swing.JFrame {
         getContentPane().add(btnExit);
         btnExit.setBounds(890, 470, 140, 70);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sheng\\Desktop\\Pictures\\background.jpeg")); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1070, 600);
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
 
-        setBounds(0, 0, 1086, 645);
+        jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel20.setText("登入：");
+        panelHeader.add(jLabel20);
+        jLabel20.setBounds(1670, 5, 75, 60);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1752, 5, 127, 60);
+
+        findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        findHeader.setText("设定");
+        panelHeader.add(findHeader);
+        findHeader.setBounds(870, 0, 200, 70);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        setBounds(0, 0, 1958, 1633);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -147,13 +152,14 @@ public class SettingsMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel findHeader;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel lblLoggedIn;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelHeader;
     // End of variables declaration//GEN-END:variables
 }

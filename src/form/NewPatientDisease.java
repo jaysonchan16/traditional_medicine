@@ -664,6 +664,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                         }
                         if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
                         {
+                            
                             JOptionPane.showMessageDialog(rootPane, "病症已新增！ID 是 "+map.get("ID"));
                         }
                         else
@@ -944,19 +945,55 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public void Find()
     {
-        String IC = txtIC.getText();
-        String ID = txtID.getText();
+        String IC = "";
+        String ID = "";
+        
+        IC = txtIC.getText();
+        ID = txtID.getText();
         
         Patient patient = new Patient();
+        
         try {
-            if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
-            {    
-                txtName.setText(patient.getPatient(IC,ID).getName());
-                txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                txtID.setText(patient.getPatient(IC,ID).getID());
-                txtIC.setText(patient.getPatient(IC,ID).getIC());
-                txtIC.setEnabled(false);
-                txtID.setEnabled(false);
+            String resultIC = patient.getPatient(IC,ID).getIC();
+            String resultID = patient.getPatient(IC,ID).getID();
+            
+            if(ID.equalsIgnoreCase(""))
+            {
+                if(resultIC.equalsIgnoreCase(IC))
+                {    
+                    txtName.setText(patient.getPatient(IC,ID).getName());
+                    txtPhone.setText(patient.getPatient(IC,ID).getPhone());
+                    txtID.setText(patient.getPatient(IC,ID).getID());
+                    txtIC.setText(patient.getPatient(IC,ID).getIC());
+                    txtIC.setEnabled(false);
+                    txtID.setEnabled(false);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                    NewPatient detail = new NewPatient(user,IC);
+                    detail.setVisible(true);
+                    this.dispose();
+                }
+            }
+            else if(IC.equalsIgnoreCase(""))
+            {
+                if(resultID != null && resultID.equalsIgnoreCase(ID))
+                {
+                    txtName.setText(patient.getPatient(IC,ID).getName());
+                    txtPhone.setText(patient.getPatient(IC,ID).getPhone());
+                    txtID.setText(patient.getPatient(IC,ID).getID());
+                    txtIC.setText(patient.getPatient(IC,ID).getIC());
+                    txtIC.setEnabled(false);
+                    txtID.setEnabled(false);
+                }
+                else 
+                {
+                    JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                    /*NewPatient detail = new NewPatient(user,IC);
+                    detail.setVisible(true);
+                    this.dispose();*/
+                }
             }
             else
             {
