@@ -42,6 +42,8 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private String initialIC="";
     private String initialID="";
     DefaultTableModel model ;
+    private String userid = "";
+    
     public ViewDiseaseDetail() {
         initComponents();
     }
@@ -54,9 +56,10 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         this.to = to;
         this.initialIC = initialIC;
         this.initialID = initialID;
+        userid = user.getUserid();
         createColumns();
         show_patient();
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
@@ -387,7 +390,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
          }
          else
          {*/
-             prescriptionList = prescription.getPrescriptions(from, to, initialIC, initialID);
+             prescriptionList = prescription.getPrescriptions(from, to, initialIC, initialID,userid);
          //}
          
          model = (DefaultTableModel)tblDisease.getModel();

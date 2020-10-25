@@ -56,6 +56,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private String initialIC="";
     private String initialID="";
     private int option = 0;
+    private String userid = "";
     
     public ModifyChuFang() {
         initComponents();
@@ -66,6 +67,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         initComponents();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         this.user = user;
+        userid = user.getUserid();
         textboxShow();
         createColumns();
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
@@ -100,6 +102,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         this.initialIC = initialIC;
         this.initialID = initialID;
         this.option = option;
+        userid = user.getUserid();
         createColumns();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
@@ -726,7 +729,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             //option 8 is from SearchDiseasePatient
             if(option == 10 || option == 5 || option == 8)
             {
-                prescriptionList = prescription.getPrescriptionsID(PrescriptionID);
+                prescriptionList = prescription.getPrescriptionsID(PrescriptionID,userid);
                 model = (DefaultTableModel)tblChufang.getModel();
                 Object row[] = new Object[23];
                 for(int i =0; i<prescriptionList.size(); i++)
@@ -759,7 +762,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
             else
             {
-                prescriptionList = prescription.getPrescriptions();
+                prescriptionList = prescription.getPrescriptions(userid);
                 model = (DefaultTableModel)tblChufang.getModel();
                 Object row[] = new Object[23];
                 for(int i =0; i<prescriptionList.size(); i++)
@@ -805,29 +808,29 @@ public class ModifyChuFang extends javax.swing.JFrame {
             if(medicine.equalsIgnoreCase("单味药粉"))
             {
                 List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-                TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
-                medicList = pill.findTraditionalMedicinePillDetails("name", name);
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
                 List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-                GrassMedicinePotion potion = new GrassMedicinePotion(name);
-                medicList = potion.findGrassMedicinePotionDetails("name", name);
+                GrassMedicinePotion potion = new GrassMedicinePotion();
+                medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
                 List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
                 GrassMedicinePill pill = new GrassMedicinePill();
-                medicList = pill.findGrassMedicinePillDetails("name", name);
+                medicList = pill.findGrassMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
                 List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                medicList = potion.findTraditionalMedicinePotionDetails("name", name);
+                medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
         }
@@ -846,27 +849,27 @@ public class ModifyChuFang extends javax.swing.JFrame {
         {
             if(medicine.equalsIgnoreCase("单味药粉"))
             {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
-                price = pill.findTraditionalMedicinePillName(name);
-                txtPrice.setText(pill.findTraditionalMedicinePillName(name));
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                price = pill.findTraditionalMedicinePillName(name,userid);
+                txtPrice.setText(price);
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
-                GrassMedicinePotion pill = new GrassMedicinePotion(name);
-                price = pill.findGrassMedicinePotionName(name);
-                txtPrice.setText(pill.findGrassMedicinePotionName(name));
+                GrassMedicinePotion pill = new GrassMedicinePotion();
+                price = pill.findGrassMedicinePotionName(name,userid);
+                txtPrice.setText(price);
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
-                GrassMedicinePill pill =new GrassMedicinePill(name);
-                price = pill.findGrassMedicinePillName(name);
-                txtPrice.setText(pill.findGrassMedicinePillName(name));
+                GrassMedicinePill pill =new GrassMedicinePill();
+                price = pill.findGrassMedicinePillName(name,userid);
+                txtPrice.setText(price);
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion(name);
-                price = potion.findTraditionalMedicinePotionName(name);
-                txtPrice.setText(potion.findTraditionalMedicinePotionName(name));
+                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                price = potion.findTraditionalMedicinePotionName(name,userid);
+                txtPrice.setText(price);
             }
         }
         catch(SQLException ex)
@@ -883,21 +886,21 @@ public class ModifyChuFang extends javax.swing.JFrame {
         
         Prescription prescription = new Prescription();
         try {
-            if(prescription.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || prescription.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
+            if(prescription.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || prescription.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
             {
-                String ICdata = prescription.getPatient(IC,ID).getIC();
-                String IDdata = prescription.getPatient(IC,ID).getID();
-                txtName.setText(prescription.getPatient(IC,ID).getName());
-                txtPhone.setText(prescription.getPatient(IC,ID).getPhone());
+                String ICdata = prescription.getPatient(IC,ID,userid).getIC();
+                String IDdata = prescription.getPatient(IC,ID,userid).getID();
+                txtName.setText(prescription.getPatient(IC,ID,userid).getName());
+                txtPhone.setText(prescription.getPatient(IC,ID,userid).getPhone());
                 txtID.setText(IDdata);
                 txtIC.setText(ICdata);
-                txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata).getChufang()));
-                txtMedicine.setText(prescription.getPrescription(ICdata).getCategorytable());
-                txtMedicineName.setText(prescription.getPrescription(ICdata).getNametable());
-                txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata).getJiliang()));
-                txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata).getPrice()));
-                txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata).getTotalprice()));
-                txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata).getPrescriptionID()));
+                txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getChufang()));
+                txtMedicine.setText(prescription.getPrescription(ICdata,userid).getCategorytable());
+                txtMedicineName.setText(prescription.getPrescription(ICdata,userid).getNametable());
+                txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getJiliang()));
+                txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrice()));
+                txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getTotalprice()));
+                txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrescriptionID()));
                 txtIC.setEnabled(false);
                 txtID.setEnabled(false);
             }
@@ -919,42 +922,78 @@ public class ModifyChuFang extends javax.swing.JFrame {
         if(name.equalsIgnoreCase("单味药粉"))
         {
             TraditionalMedicinePill pill = new TraditionalMedicinePill();
-            
-            for(int i = 0; i < pill.comboName().size(); i++)
+            if(pill.comboName(userid).size() <= 0)
             {
-                comboBoxName.addItem(pill.comboName().get(i).getName());
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
             }
-            FindByMedicineName(pill.comboName().get(0).getName());
+            else
+            {
+                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(pill.comboName(userid).get(0).getName());
+            }
         }
         else if(name.equalsIgnoreCase("药水"))
         {
             GrassMedicinePotion potion = new GrassMedicinePotion();
-            
-            for(int i = 0; i < potion.comboName().size(); i++)
+            if(potion.comboName(userid).size() <= 0)
             {
-                comboBoxName.addItem(potion.comboName().get(i).getName());
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
             }
-            FindByMedicineName(potion.comboName().get(0).getName());
+            else
+            {
+                for(int i = 0; i < potion.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(potion.comboName(userid).get(0).getName());
+            }
         }
         else if(name.equalsIgnoreCase("药丸"))
         {
             GrassMedicinePill pill = new GrassMedicinePill();
-            
-            for(int i = 0; i < pill.comboName().size(); i++)
+            if(pill.comboName(userid).size() <= 0)
             {
-                comboBoxName.addItem(pill.comboName().get(i).getName());
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
             }
-            FindByMedicineName(pill.comboName().get(0).getName());
+            else
+            {
+                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(pill.comboName(userid).get(0).getName());
+            }
         }
         else if(name.equalsIgnoreCase("复方药粉"))
         {
             TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-            
-            for(int i = 0; i < potion.comboName().size(); i++)
+            if(potion.comboName(userid).size() <= 0)
             {
-                comboBoxName.addItem(potion.comboName().get(i).getName());
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
             }
-            FindByMedicineName(potion.comboName().get(0).getName());
+            else
+            {
+                for(int i = 0; i < potion.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(potion.comboName(userid).get(0).getName());
+            }
         }
         
     }
@@ -964,14 +1003,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
         try {
             Code code = new Code();
             
-            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
             {
                 if(i != 0)
                 {
-                    comboBoxMedicine.addItem(code.getComboMedicine().get(i).getCode());
+                    comboBoxMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
                 }
             }
-            medicineName(code.getComboMedicine().get(0).getCode());
+            medicineName(code.getComboMedicine(userid).get(0).getCode());
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.medicineCategory() get error on line 737,"+ex.getMessage());
@@ -988,8 +1027,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             int jiliang = Integer.parseInt(spinnerJiLiang.getValue().toString());
             float price = Float.parseFloat(txtPrice.getText());
             float totalPrice = Float.parseFloat(txtTotalPrice.getText());
-            String userid = user.getUserid();
-            Prescription pre = new Prescription(prescriptionID, medicine, name, jiliang, price, totalPrice);
+            Prescription pre = new Prescription(prescriptionID, medicine, name, jiliang, price, totalPrice,userid);
             String result= pre.EditPrescription();
                     
             if(result.equalsIgnoreCase("1"))
@@ -1011,8 +1049,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     {
         try {
             String prescriptionID = txtPrescriptionID.getText();
-            String userid = user.getUserid();
-            Prescription pre = new Prescription(prescriptionID);
+            Prescription pre = new Prescription(prescriptionID,userid);
             String result = pre.DeletePrescription();
             if(result.equalsIgnoreCase("1"))
             {
@@ -1106,7 +1143,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel1.setIcon(iconHeader);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     

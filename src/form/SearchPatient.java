@@ -37,6 +37,7 @@ public class SearchPatient extends javax.swing.JFrame {
      */
     private User user;
     DefaultTableModel model;
+    private String userid="";
     
     public SearchPatient() {
         initComponents();
@@ -44,6 +45,7 @@ public class SearchPatient extends javax.swing.JFrame {
 
     public SearchPatient(User user) throws SQLException {
         this.user = user;
+        userid = user.getUserid();
         initComponents();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -541,7 +543,7 @@ public class SearchPatient extends javax.swing.JFrame {
         List<Patient> patientList = new ArrayList<Patient>();
         String arrangement;
         arrangement = comboArrange.getSelectedItem() == "顺序" ? "asc" : comboArrange.getSelectedItem() == "逆序" ? "desc" : "系统有问题！";
-        patientList = patient.getAllDetail(ID, IC, Name, Gender ,Age ,Phone ,arrangement);
+        patientList = patient.getAllDetail(ID, IC, Name, Gender ,Age ,Phone ,arrangement, userid);
         model = (DefaultTableModel)tblPatient.getModel();
         Object row[] = new Object[9];
         for(int i =0; i<patientList.size(); i++)
@@ -574,13 +576,12 @@ public class SearchPatient extends javax.swing.JFrame {
         jLabel9.setIcon(iconHeader);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     
     public void widthTable()
     {
-        this.lblName.setText(user.getUserid());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));

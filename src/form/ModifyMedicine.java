@@ -50,6 +50,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private String modifyID;
     private String modifyCreateDateTime;
     private String modifyLastUpdateTime;
+    private String userid = "";
     
     public ModifyMedicine() {
         initComponents();
@@ -66,6 +67,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        userid = user.getUserid();
         comboMedicine();
         changeLabel();
         createColumns(1,"");
@@ -96,6 +98,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.modifyCreateDateTime =createDateTime;
         this.modifyLastUpdateTime = lastUpdateTime;
         initComponents();
+        userid = user.getUserid();
         txtName.setEnabled(false);
         txtComponent.setEnabled(false);
         txtIndication.setEnabled(false);
@@ -609,7 +612,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(code.equalsIgnoreCase("GrasMedPi"))
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
-                    result = pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    result = pill.EditGrassMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price,userid);
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
@@ -625,7 +628,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("GrasMedPo"))
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
-                    result = pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    result = pill.EditGrassMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price, userid);
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
@@ -641,7 +644,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("TradMedPi"))
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    result = pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    result = pill.EditTraditionalMedicinePill(ID, name, component, indication, effect, scoop, gram, cost, price,userid);
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "更改成功");
@@ -657,7 +660,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("TradMedPo"))
                 {
                     TraditionalMedicinePotion pill = new TraditionalMedicinePotion();    
-                    result = pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price);
+                    result = pill.EditTraditionalMedicinePotion(ID, name, component, indication, effect, scoop, gram, cost, price,userid);
                     if(result.equalsIgnoreCase("1"))
                     {
                        JOptionPane.showMessageDialog(rootPane, "更改成功"); 
@@ -687,7 +690,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             if(code.equalsIgnoreCase("GrasMedPi"))
             {
                 GrassMedicinePill pill = new GrassMedicinePill();
-                result =pill.DeleteGrassMedicinePill(ID);
+                result =pill.DeleteGrassMedicinePill(ID,userid);
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -703,7 +706,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             else if(code.equalsIgnoreCase("GrasMedPo"))
             {
                 GrassMedicinePotion pill = new GrassMedicinePotion();    
-                result = pill.DeleteGrassMedicinePotion(ID);
+                result = pill.DeleteGrassMedicinePotion(ID,userid);
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -719,7 +722,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             else if(code.equalsIgnoreCase("TradMedPi"))
             {
                 TraditionalMedicinePill pill = new TraditionalMedicinePill(); 
-                result = pill.DeleteTraditionalMedicinePill(ID);
+                result = pill.DeleteTraditionalMedicinePill(ID,userid);
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -735,7 +738,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             else if(code.equalsIgnoreCase("TradMedPo"))
             {
                 TraditionalMedicinePotion pill = new TraditionalMedicinePotion();  
-                result = pill.DeleteTraditionalMedicinePotion(ID);
+                result = pill.DeleteTraditionalMedicinePotion(ID,userid);
                 if(result.equalsIgnoreCase("1"))
                 {
                    JOptionPane.showMessageDialog(rootPane, "删除成功"); 
@@ -907,7 +910,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-            medicList = medic.getTraditionalMedicinePill();
+            medicList = medic.getTraditionalMedicinePill(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
             Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
@@ -931,7 +934,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
-            medicList = medic.getTraditionalMedicinePotion();
+            medicList = medic.getTraditionalMedicinePotion(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
             Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
@@ -955,7 +958,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePill medic = new GrassMedicinePill();
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
-            medicList = medic.getGrassMedicinePill();
+            medicList = medic.getGrassMedicinePill(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
             Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
@@ -979,7 +982,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePotion medic = new GrassMedicinePotion();
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-            medicList = medic.getGrassMedicinePotion();
+            medicList = medic.getGrassMedicinePotion(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
             Object row[] = new Object[12];
             for(int i =0; i<medicList.size(); i++)
@@ -1008,8 +1011,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePill medic = new TraditionalMedicinePill();
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-            medicList = medic.findTraditionalMedicinePillDetails("ID",ID);
-            if(medic.validateAddTraditionalMedicinePill("ID", ID) == 0)
+            medicList = medic.findTraditionalMedicinePillDetails("ID",ID,userid);
+            if(medic.validateAddTraditionalMedicinePill("ID", ID,userid) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
             }
@@ -1048,8 +1051,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             TraditionalMedicinePotion medic = new TraditionalMedicinePotion();
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
-            medicList = medic.findTraditionalMedicinePotionDetails("ID",ID);
-            if(medic.validateTraditionalMedicinePotion("ID", ID) == 0)
+            medicList = medic.findTraditionalMedicinePotionDetails("ID",ID,userid);
+            if(medic.validateTraditionalMedicinePotion("ID", ID, userid) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
             }
@@ -1088,8 +1091,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePill medic = new GrassMedicinePill();
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
-            medicList = medic.findGrassMedicinePillDetails("ID",ID);
-            if(medic.validateGrassMedicinePill("ID", ID) == 0)
+            medicList = medic.findGrassMedicinePillDetails("ID",ID, userid);
+            if(medic.validateGrassMedicinePill("ID", ID, userid) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
             }
@@ -1128,8 +1131,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         {
             GrassMedicinePotion medic = new GrassMedicinePotion();
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-            medicList = medic.findGrassMedicinePotionDetails("ID",ID);
-            if(medic.validateAddGrassMedicinePotion("ID", ID) == 0)
+            medicList = medic.findGrassMedicinePotionDetails("ID",ID,userid);
+            if(medic.validateAddGrassMedicinePotion("ID", ID,userid) == 0)
             {
                 JOptionPane.showMessageDialog(rootPane, "ID错误或是药选项错误");
             }
@@ -1186,10 +1189,10 @@ public class ModifyMedicine extends javax.swing.JFrame {
         try {
             Code code = new Code();
             
-            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
             {
-                System.out.println(code.getComboMedicine().get(i).toString());
-                comboMedicine.addItem(code.getComboMedicine().get(i).getCode());
+                System.out.println(code.getComboMedicine(userid).get(i).toString());
+                comboMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "comboMedicine get error on line 886, "+ex.getMessage());
@@ -1220,7 +1223,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     
     public void widthTable()
     {
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -1283,7 +1286,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnModify.setIcon(iconModify);
         ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
         btnReset.setIcon(iconReset);
-        this.lblName.setText(user.getUserid());
         setResizable(false);
     }
     

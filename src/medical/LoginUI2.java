@@ -5,6 +5,7 @@
  */
 package medical;
 
+import form.BeginnerNewMedicine;
 import form.MainMenu;
 import form.RegisterNewUser;
 import java.awt.Color;
@@ -231,19 +232,34 @@ public class LoginUI2 extends javax.swing.JFrame {
             }
             else
             {
-                user.validateID();
-                if( user.login(userid, password)){
-                    user = user.getUser(userid);
-
-                    MainMenu rs = new MainMenu(user);
-                    rs.setVisible(true);
-                    this.dispose();
-                    /*MainPage page = new MainPage(user);
-                    page.setVisible(true);
-                    this.dispose();*/
+                user.validateID(txtUserID.getText());
+                if(user.validateBeginner(txtUserID.getText()))
+                {
+                    if( user.login(userid, password)){
+                        user = user.getUser(userid);
+                        BeginnerNewMedicine medic = new BeginnerNewMedicine(user,"单味药粉");
+                        medic.setVisible(true);
+                        this.dispose();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
+                    }
                 }
-                else {
-                    JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
+                else
+                {
+                    if( user.login(userid, password)){
+                        user = user.getUser(userid);
+
+                        MainMenu rs = new MainMenu(user);
+                        rs.setVisible(true);
+                        this.dispose();
+                        /*MainPage page = new MainPage(user);
+                        page.setVisible(true);
+                        this.dispose();*/
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
+                    }
                 }
             }
         } catch (SQLException ex) {

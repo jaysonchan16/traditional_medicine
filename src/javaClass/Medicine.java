@@ -28,6 +28,7 @@ public class Medicine {
     private String createDateTime;
     private String code;
     private String medicine;
+    private String user;
     protected Statement st = connect.connection();
     ResultSet rs;
     
@@ -38,7 +39,13 @@ public class Medicine {
         this.name = name;
     }
     
-    public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
+    public Medicine(String name, String user)
+    {
+        this.name = name;
+        this.user = user;
+    }
+    
+    public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
         this.name = name;
         this.effect = effect;
         this.scoop = scoop;
@@ -49,9 +56,10 @@ public class Medicine {
         this.createDateTime = createDateTime;
         this.code = code;
         this.medicine = medicine;
+        this.user = user;
     }
     
-    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
+    public Medicine(String name,String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
         this.name = name;
         this.component = component;
         this.indications = indications;
@@ -64,6 +72,7 @@ public class Medicine {
         this.createDateTime = createDateTime;
         this.code = code;
         this.medicine = medicine;
+        this.user = user;
     }
     
     /**
@@ -234,22 +243,36 @@ public class Medicine {
         this.medicine = medicine;
     }
     
-    public List<Medicine> getDetail(String contribute, String detail, String contribute1) throws SQLException{
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+    
+    public List<Medicine> getDetail(String contribute, String detail, String contribute1, String User) throws SQLException{
      List<Medicine> medicineList = new ArrayList<>();
      String query = "";
      if(contribute1.equalsIgnoreCase(""))
      {
-        query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill where "+contribute+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%'";
+        query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"'";
      }
      else
      {
-         query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%' UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%'";
+         query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"'";
 
      }
         System.out.println(query);
@@ -259,7 +282,7 @@ public class Medicine {
                  medicineList.add(new Medicine(rs.getString("name"),
                          rs.getString("component"),rs.getString("effect"),
                          rs.getString("indications"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
-                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine")));
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"), rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -269,13 +292,13 @@ public class Medicine {
         return medicineList;
     }
     
-    public List<Medicine> getAllDetail() throws SQLException{
+    public List<Medicine> getAllDetail(String User) throws SQLException{
         List<Medicine> medicineList = new ArrayList<>();
          
-         String query = "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePill UNION ALL "
-                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From GrassMedicinePotion UNION ALL "
-                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePotion UNION ALL "
-                + "Select ID, name, property as component, appliance as indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine From TraditionalMedicinePill ";
+         String query = "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where User ='"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where User ='"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where User ='"+User+"' UNION ALL "
+                + "Select ID, name, property as component, appliance as indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where User ='"+User+"'";
 
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -284,7 +307,7 @@ public class Medicine {
                  medicineList.add(new Medicine(rs.getString("name"),
                          rs.getString("component"),rs.getString("indications"),
                          rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
-                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine")));
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -293,6 +316,8 @@ public class Medicine {
         }
         return medicineList;
     }
+
+    
 
     
 }

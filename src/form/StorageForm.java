@@ -44,8 +44,17 @@ public class StorageForm extends javax.swing.JFrame {
         txtCost = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -68,12 +77,18 @@ public class StorageForm extends javax.swing.JFrame {
         panelHeader.add(findHeader);
         findHeader.setBounds(870, 0, 200, 70);
 
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel21);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 1029, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -88,17 +103,17 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(870, 630, 130, 50);
+        btnFind.setBounds(330, 780, 130, 50);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量:");
         panelBody.add(jLabel7);
-        jLabel7.setBounds(40, 440, 60, 40);
+        jLabel7.setBounds(100, 520, 60, 40);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("价格:");
         panelBody.add(jLabel9);
-        jLabel9.setBounds(40, 530, 60, 30);
+        jLabel9.setBounds(100, 640, 60, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtPrice.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +127,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtPrice);
-        txtPrice.setBounds(150, 530, 330, 40);
+        txtPrice.setBounds(170, 640, 250, 40);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtWeight.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -121,12 +136,12 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtWeight);
-        txtWeight.setBounds(150, 440, 330, 40);
+        txtWeight.setBounds(170, 520, 250, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("本钱:");
         panelBody.add(jLabel8);
-        jLabel8.setBounds(540, 440, 50, 40);
+        jLabel8.setBounds(100, 290, 50, 40);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtCost.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -135,7 +150,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtCost);
-        txtCost.setBounds(680, 440, 330, 40);
+        txtCost.setBounds(170, 290, 250, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -144,39 +159,80 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtID);
-        txtID.setBounds(680, 530, 330, 40);
+        txtID.setBounds(170, 400, 250, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("ID:");
         panelBody.add(jLabel10);
-        jLabel10.setBounds(540, 530, 110, 40);
+        jLabel10.setBounds(110, 400, 60, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(114, 114, 114)
-                    .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1752, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(74, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 959, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(120, 120, 120)
-                    .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(97, Short.MAX_VALUE)))
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "药", "病症分类", "本钱", "ID", "重量", "价格"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        pack();
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        panelBody.add(jScrollPane1);
+        jScrollPane1.setBounds(490, 50, 1200, 780);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("打印");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnBack);
+        btnBack.setBounds(180, 780, 130, 50);
+
+        jComboBox1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panelBody.add(jComboBox1);
+        jComboBox1.setBounds(170, 180, 170, 40);
+
+        jComboBox2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panelBody.add(jComboBox2);
+        jComboBox2.setBounds(170, 70, 170, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("病症分类:");
+        panelBody.add(jLabel1);
+        jLabel1.setBounds(70, 180, 90, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("药:");
+        panelBody.add(jLabel2);
+        jLabel2.setBounds(120, 70, 40, 40);
+
+        btnBack1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack1.setText("退出");
+        btnBack1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnBack1);
+        btnBack1.setBounds(30, 780, 130, 50);
+
+        getContentPane().add(panelBody);
+        panelBody.setBounds(114, 120, 1752, 862);
+
+        setBounds(0, 0, 1958, 1126);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -267,15 +323,23 @@ public class StorageForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel findHeader;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;

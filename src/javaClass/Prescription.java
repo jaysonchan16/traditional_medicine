@@ -34,6 +34,7 @@ public class Prescription extends Disease{
     private String lastUpdateDateTime;
     private String createDateTime;
     private String userid;
+    private String user;
     public Statement st = connect.connection();
     ResultSet rs;
 
@@ -206,13 +207,32 @@ public class Prescription extends Disease{
         this.userid = userid;
     }
     
-    public Prescription(){}
-    
-    public Prescription(String prescriptionID){
-        this.prescriptionID = prescriptionID;
+        /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
     }
     
-    public Prescription(String prescriptionID, String categorytable, String nametable, int jiliang, float price, float totalprice)
+    public Prescription(){}
+    
+    /*public Prescription(String prescriptionID){
+        this.prescriptionID = prescriptionID;
+    }*/
+    
+    public Prescription(String prescriptionID, String user){
+        this.prescriptionID = prescriptionID;
+        this.user = user;
+    }
+    
+    public Prescription(String prescriptionID, String categorytable, String nametable, int jiliang, float price, float totalprice, String user)
     {
         this.prescriptionID = prescriptionID;
         this.categorytable = categorytable;
@@ -220,11 +240,12 @@ public class Prescription extends Disease{
         this.jiliang = jiliang;
         this.price = price;
         this.totalprice = totalprice;
+        this.user = user;
     }
     
-    public Prescription(String prescriptionID, int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String IC, String name, String phone)
+    public Prescription(String prescriptionID, int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String IC, String name, String phone, String user)
     {
-        super(IC, name, phone);
+        super(IC, name, phone, user);
         this.prescriptionID = prescriptionID;
         this.categorytable = categorytable;
         this.nametable = nametable;
@@ -238,9 +259,9 @@ public class Prescription extends Disease{
     
     public Prescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String prescriptionID, String patientID, String diseaseID, 
             String lastUpdateDateTime, String createDateTime, String symptom, int temperature,String bloodPressure, String pulseCondition, String tongueQuality, String tongueCoating, String peeshit, String category,
-            String history, String IC, String name, String phoneNo)
+            String history, String IC, String name, String phoneNo, String user)
     {
-        super(symptom,temperature,bloodPressure,pulseCondition,tongueQuality,tongueCoating,peeshit,category,history,IC,name,phoneNo);
+        super(symptom,temperature,bloodPressure,pulseCondition,tongueQuality,tongueCoating,peeshit,category,history,IC,name,phoneNo, user);
         this.chufang = chufang;
         this.categorytable = categorytable;
         this.nametable = nametable;
@@ -256,10 +277,10 @@ public class Prescription extends Disease{
     
     public Prescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String prescriptionID, String patientID, String diseaseID, 
             String lastUpdateDateTime, String createDateTime, String symptom, int temperature,String bloodPressure, String pulseCondition, String tongueQuality, String tongueCoating, String peeshit, String category,
-            String history, String IC, String name, String phoneNo, int age, String gender, String address)
+            String history, String IC, String name, String phoneNo, int age, String gender, String address, String user)
     {
         super(symptom,temperature,bloodPressure,pulseCondition,tongueQuality,tongueCoating,
-                peeshit,category,history,IC,name,phoneNo,gender,address,age);
+                peeshit,category,history,IC,name,phoneNo,gender,address,age, user);
         this.chufang = chufang;
         this.categorytable = categorytable;
         this.nametable = nametable;
@@ -273,18 +294,18 @@ public class Prescription extends Disease{
         this.createDateTime = createDateTime;
     }
     
-    public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode)
+    public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode, String user)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
-            map = code.validateID(maintcode);
+            map = code.validateID(maintcode,user);
             if(map.get("messages").equalsIgnoreCase(""))
             {
                 String query = "Insert into Prescription(ID, Chufang, Category, Name, Jiliang, Price, TotalPrice, PatientID, DiseaseID, lastUpdateDateTime, createDateTime, User)"
                         + "Select '"+map.get("data")+"', trim('"+chufang+"'), trim('"+categorytable+"'), trim('"+nametable+"'), trim('"+jiliang+"'),"
-                        + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime')";
+                        + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"')";
                 SQLQuery sql = new SQLQuery();
                 returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
                 returnMessage.put("ID", map.get("data"));
@@ -292,7 +313,7 @@ public class Prescription extends Disease{
             }
             else
             {
-                returnMessage.put("returnMessage","Prescription.addPrescription get error on line 176, "+code.validateID(maintcode).get("messages"));
+                returnMessage.put("returnMessage","Prescription.addPrescription get error on line 176, "+map.get("messages"));
                 returnMessage.put("ID", "");
                 return returnMessage;
             }
@@ -307,7 +328,7 @@ public class Prescription extends Disease{
          String query = "Update Prescription Set Category = trim('"+categorytable+"'), Name = '"+nametable+"',"
                  + " Jiliang = trim('"+jiliang+"'), Price = trim('"+price+"'), TotalPrice = trim('"+totalprice+"'),"
                  + " lastUpdateDateTime = datetime('now','localtime')"
-                 + " where ID = '"+prescriptionID+"'";
+                 + " where ID = '"+prescriptionID+"' and User = '"+user+"'";
         System.out.println(query);
          SQLQuery sql = new SQLQuery();
 
@@ -315,18 +336,18 @@ public class Prescription extends Disease{
     }
     
     public String DeletePrescription() throws SQLException{
-        String query = "Delete From Prescription where ID = '"+prescriptionID+"'";
+        String query = "Delete From Prescription where ID = '"+prescriptionID+"' and User ='"+user+"'";
         System.out.println(query);
         SQLQuery sql = new SQLQuery();
 
         return sql.AddEditDeleteQuery(query);
     }
     
-    public Prescription getPrescription(String IC) throws SQLException{
+    public Prescription getPrescription(String IC, String User) throws SQLException{
         String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, a.Name as medicineName, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, "
-                + "b.IC, b.name, b.ID, b.phone "
+                + "b.IC, b.name, b.ID, b.phone,b.User as User "
                 + "from Prescription a Inner Join Patient b "
-                + "ON a.PatientID = b.ID where b.IC = '"+IC+"' limit 1";
+                + "ON a.PatientID = b.ID where b.IC = '"+IC+"' and b.User = '"+User+"' limit 1";
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -334,28 +355,29 @@ public class Prescription extends Disease{
                  return new Prescription(rs.getString("PrescriptionID"),rs.getInt("Chufang"),
                          rs.getString("categorytable"),rs.getString("medicineName"),
                          rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"), rs.getString("PatientID"), 
-                         rs.getString("IC"), rs.getString("name"), rs.getString("phone"));
+                         rs.getString("IC"), rs.getString("name"), rs.getString("phone"),rs.getString("User"));
             }   
         } 
         catch (NullPointerException e)
         {
             //throw(new NoSuchElementException(e.getMessage()));
-            return new Prescription("1");
+            return new Prescription("1",user);
         }
         finally{
             st.close(); 
         }
-        return new Prescription("1");
+        return new Prescription("1",user);
     }
     
-    public List<Prescription> getPrescriptions() throws SQLException{
+    public List<Prescription> getPrescriptions(String User) throws SQLException{
         List<Prescription> prescriptionList = new ArrayList<>();
                 
             String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, a.lastUpdateDateTime, a.createDateTime, "
-                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone,c.age, c.gender, c.address  "
+                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone,c.age, c.gender, c.address,c.User as User  "
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
-                + "Inner Join Patient c ON a.PatientID = c.ID";
+                + "Inner Join Patient c ON a.PatientID = c.ID "
+                + "where c.User = '"+User+"' ";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -365,7 +387,7 @@ public class Prescription extends Disease{
                          rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
                          rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
-                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"), rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"), rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -375,19 +397,20 @@ public class Prescription extends Disease{
         return prescriptionList;
     }
     
-    public List<Prescription> getPrescriptions(String from, String to, String IC, String ID) throws SQLException{
+    public List<Prescription> getPrescriptions(String from, String to, String IC, String ID, String User) throws SQLException{
             List<Prescription> prescriptionList = new ArrayList<>();
 
             String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, "
                     + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
                     + "a.lastUpdateDateTime, a.createDateTime, "
                     + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
-                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address,c.User as User  "
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
-                + "where (b.createDateTime>='"+from+"' and b.createDateTime<='"+to+"') or "
-                + "c.IC=trim('"+IC+"') or c.ID=trim('"+ID+"')";
+                + "where ((b.createDateTime>='"+from+"' and b.createDateTime<='"+to+"') or "
+                + "c.IC=trim('"+IC+"') or c.ID=trim('"+ID+"')) "
+                + "and c.User='"+User+"'";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -398,7 +421,7 @@ public class Prescription extends Disease{
                          rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
                          rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
-                         rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+                         rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -408,11 +431,11 @@ public class Prescription extends Disease{
         return prescriptionList;
     }
     
-    public List<Prescription> getPrescriptionsID(String PrescriptionID) throws SQLException{
+    public List<Prescription> getPrescriptionsID(String PrescriptionID, String User) throws SQLException{
         List<Prescription> prescriptionList = new ArrayList<>();
         
             String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, a.lastUpdateDateTime, a.createDateTime, "
-                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone  "
+                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.User as User  "
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
@@ -426,7 +449,7 @@ public class Prescription extends Disease{
                          rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
                          rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
-                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone")));
+                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -436,14 +459,14 @@ public class Prescription extends Disease{
         return prescriptionList;
     }
     
-    public List<Prescription> getDetail(String contribute, String detail) throws SQLException{
+    public List<Prescription> getPrescriptionDetail(String contribute, String detail, String User) throws SQLException{
          List<Prescription> prescriptionList = new ArrayList<>();
 
             String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, "
                     + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
                     + "a.lastUpdateDateTime, a.createDateTime, "
                     + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
-                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address, c.User as User  "
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
@@ -458,7 +481,7 @@ public class Prescription extends Disease{
                          rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
                          rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
-                         rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+                         rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -470,14 +493,14 @@ public class Prescription extends Disease{
     
     public List<Prescription> getAllDetail(String ID, String IC, String Name, String Gender, String Age, String Phone, String Symptom,
             String Category, String Pulse, String Quality, String Coating, String Shit, String History, String Temperature,
-            String Blood, String MedicCategory, String MedicName, String Jiliang) throws SQLException{
+            String Blood, String MedicCategory, String MedicName, String Jiliang, String User) throws SQLException{
         List<Prescription> prescriptionList = new ArrayList<>();
          
         String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, "
                     + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
                     + "a.lastUpdateDateTime, a.createDateTime, "
                     + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
-                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                    + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address, c.User as User  "
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
@@ -486,7 +509,7 @@ public class Prescription extends Disease{
                 + "b.Symptom like '%"+Symptom+"%' and b.Category like '%"+Category+"%' and b.PulseCondition like '%"+Pulse+"%' and "
                 + "b.TongueQuality like '%"+Quality+"%' and b.TongueCoating like '%"+Coating+"%' and "
                 + "b.PeeShit like '%"+Shit+"%' and b.History like '%"+History+"%' and b.Temperature like '%"+Temperature+"%' and "
-                + "b.BloodPressure like '%"+Blood+"%' and a.Category like '%"+MedicCategory+"%' and a.Name like '%"+MedicName+"%' and a.Jiliang like '%"+Jiliang+"%'";          
+                + "b.BloodPressure like '%"+Blood+"%' and a.Category like '%"+MedicCategory+"%' and a.Name like '%"+MedicName+"%' and a.Jiliang like '%"+Jiliang+"%' and c.User ='"+User+"'";          
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -497,7 +520,7 @@ public class Prescription extends Disease{
                          rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                          rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
                          rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
-                         rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+                         rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -514,7 +537,7 @@ public class Prescription extends Disease{
                    + "a.Name as nametable, a.Jiliang, a.Price, a.TotalPrice, a.PatientID, a.DiseaseID, "
                    + "a.lastUpdateDateTime, a.createDateTime, "
                    + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, "
-                   + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address  "
+                   + "b.PeeShit, b.Category, b.History, c.IC, c.name, c.phone, c.gender, c.age, c.address, c.User as User  "
                + "from Prescription a "
                + "Inner Join Disease b ON a.DiseaseID = b.ID "
                + "Inner Join Patient c ON a.PatientID = c.ID "
@@ -529,7 +552,7 @@ public class Prescription extends Disease{
                         rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
                         rs.getString("History"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"),
-                        rs.getInt("age"), rs.getString("gender"), rs.getString("address")));
+                        rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
            } 
        } 
        catch (Exception e)
@@ -538,6 +561,8 @@ public class Prescription extends Disease{
        }
        return prescriptionList;
     }
+
+
 
     
 }

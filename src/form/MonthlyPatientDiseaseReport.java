@@ -195,7 +195,7 @@ public class MonthlyPatientDiseaseReport extends javax.swing.JFrame {
     public void show_disease() throws SQLException{
          Disease disease = new Disease();
          List<Disease> diseaseList = new ArrayList<Disease>();
-         diseaseList = disease.getDiseasePatients(from, to, IC, ID);
+         diseaseList = disease.getDiseasePatients(from, to, IC, ID,user.getUserid());
          DefaultTableModel model = (DefaultTableModel)tblMonthlyPatient.getModel();
          Object row[] = new Object[10];
          for(int i =0; i<diseaseList.size(); i++)

@@ -49,11 +49,13 @@ public class NewPatientDisease extends javax.swing.JFrame {
     HashMap<String,String> save = new HashMap<String,String>();
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
-        
+    private String userid = "";
+    
     public NewPatientDisease(User user) throws SQLException {
         initComponents();
-        createColumns();
         this.user = user;
+        userid = user.getUserid();
+        createColumns();
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
         medicineCategory();
@@ -70,9 +72,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         spinnerJiLiang.setValue(1);
     }
     public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
+        initComponents();
+        userid = user.getUserid();
         medicineCategory();
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-        initComponents();
          createColumns();
         this.user = user;
         this.id = id;
@@ -180,6 +183,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lblTotalPrice = new javax.swing.JLabel();
         btnModify = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         buttonAdd.setText("jButton1");
 
@@ -419,7 +423,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboBoxName);
-        comboBoxName.setBounds(160, 510, 210, 40);
+        comboBoxName.setBounds(380, 510, 190, 40);
 
         spinnerJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         spinnerJiLiang.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 1));
@@ -585,6 +589,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
         panelBody.add(btnReset);
         btnReset.setBounds(70, 730, 120, 40);
 
+        jTextField1.setText("jTextField1");
+        panelBody.add(jTextField1);
+        jTextField1.setBounds(160, 510, 210, 40);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(270, 80, 1450, 850);
 
@@ -646,7 +654,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             } 
             else {
                 Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
-                                                tonguecoating, shit, category, history, patientID,"");
+                                                tonguecoating, shit, category, history, patientID,"",userid);
                 try {
                     map = disease.AddDisease();
                     if (map.get("returnMessage").equalsIgnoreCase("1")) {
@@ -660,7 +668,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                             String jiliang = (String)tblDisease.getValueAt(row, 3);
                             String price = (String)tblDisease.getValueAt(row, 4);
                             String totalprice = (String)tblDisease.getValueAt(row, 5);
-                            prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription");
+                            prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription",userid);
                         }
                         if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
                         {
@@ -954,17 +962,17 @@ public class NewPatientDisease extends javax.swing.JFrame {
         Patient patient = new Patient();
         
         try {
-            String resultIC = patient.getPatient(IC,ID).getIC();
-            String resultID = patient.getPatient(IC,ID).getID();
+            String resultIC = patient.getPatient(IC,ID,userid).getIC();
+            String resultID = patient.getPatient(IC,ID,userid).getID();
             
             if(ID.equalsIgnoreCase(""))
             {
                 if(resultIC.equalsIgnoreCase(IC))
                 {    
-                    txtName.setText(patient.getPatient(IC,ID).getName());
-                    txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                    txtID.setText(patient.getPatient(IC,ID).getID());
-                    txtIC.setText(patient.getPatient(IC,ID).getIC());
+                    txtName.setText(patient.getPatient(IC,ID,userid).getName());
+                    txtPhone.setText(patient.getPatient(IC,ID,userid).getPhone());
+                    txtID.setText(patient.getPatient(IC,ID,userid).getID());
+                    txtIC.setText(patient.getPatient(IC,ID,userid).getIC());
                     txtIC.setEnabled(false);
                     txtID.setEnabled(false);
                 }
@@ -980,10 +988,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
             {
                 if(resultID != null && resultID.equalsIgnoreCase(ID))
                 {
-                    txtName.setText(patient.getPatient(IC,ID).getName());
-                    txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                    txtID.setText(patient.getPatient(IC,ID).getID());
-                    txtIC.setText(patient.getPatient(IC,ID).getIC());
+                    txtName.setText(patient.getPatient(IC,ID,userid).getName());
+                    txtPhone.setText(patient.getPatient(IC,ID,userid).getPhone());
+                    txtID.setText(patient.getPatient(IC,ID,userid).getID());
+                    txtIC.setText(patient.getPatient(IC,ID,userid).getIC());
                     txtIC.setEnabled(false);
                     txtID.setEnabled(false);
                 }
@@ -1012,14 +1020,14 @@ public class NewPatientDisease extends javax.swing.JFrame {
         try {
             Code code = new Code();
             
-            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
             {
                 if(i != 0)
                 {
-                    comboBoxMedicine.addItem(code.getComboMedicine().get(i).getCode());
+                    comboBoxMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
                 }
             }
-            medicineName(code.getComboMedicine().get(0).getCode());
+            medicineName(code.getComboMedicine(userid).get(0).getCode());
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.medicineCategory() get error on line 737,"+ex.getMessage());
@@ -1034,42 +1042,40 @@ public class NewPatientDisease extends javax.swing.JFrame {
         if(name.equalsIgnoreCase("单味药粉"))
         {
             TraditionalMedicinePill pill = new TraditionalMedicinePill();
-            
-            for(int i = 0; i < pill.comboName().size(); i++)
+            for(int i = 0; i < pill.comboName(userid).size(); i++)
             {
-                comboBoxName.addItem(pill.comboName().get(i).getName());
+                comboBoxName.addItem(pill.comboName(userid).get(i).getName());
             }
-            FindByMedicineName(pill.comboName().get(0).getName());
+            FindByMedicineName(pill.comboName(userid).get(0).getName());
         }
         else if(name.equalsIgnoreCase("药水"))
         {
             GrassMedicinePotion potion = new GrassMedicinePotion();
-            
-            for(int i = 0; i < potion.comboName().size(); i++)
+            for(int i = 0; i < potion.comboName(userid).size(); i++)
             {
-                comboBoxName.addItem(potion.comboName().get(i).getName());
+                comboBoxName.addItem(potion.comboName(userid).get(i).getName());
             }
-            FindByMedicineName(potion.comboName().get(0).getName());
+            FindByMedicineName(potion.comboName(userid).get(0).getName());
         }
         else if(name.equalsIgnoreCase("药丸"))
         {
             GrassMedicinePill pill = new GrassMedicinePill();
             
-            for(int i = 0; i < pill.comboName().size(); i++)
-            {
-                comboBoxName.addItem(pill.comboName().get(i).getName());
-            }
-            FindByMedicineName(pill.comboName().get(0).getName());
+                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(pill.comboName(userid).get(0).getName());
+            
         }
         else if(name.equalsIgnoreCase("复方药粉"))
         {
             TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-            
-            for(int i = 0; i < potion.comboName().size(); i++)
+            for(int i = 0; i < potion.comboName(userid).size(); i++)
             {
-                comboBoxName.addItem(potion.comboName().get(i).getName());
+                comboBoxName.addItem(potion.comboName(userid).get(i).getName());
             }
-            FindByMedicineName(potion.comboName().get(0).getName());
+            FindByMedicineName(potion.comboName(userid).get(0).getName());
         }
         
     }
@@ -1085,29 +1091,29 @@ public class NewPatientDisease extends javax.swing.JFrame {
             if(medicine.equalsIgnoreCase("单味药粉"))
             {
                 List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-                TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
-                medicList = pill.findTraditionalMedicinePillDetails("name", name);
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
                 List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-                GrassMedicinePotion potion = new GrassMedicinePotion(name);
-                medicList = potion.findGrassMedicinePotionDetails("name", name);
+                GrassMedicinePotion potion = new GrassMedicinePotion();
+                medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
                 List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
                 GrassMedicinePill pill = new GrassMedicinePill();
-                medicList = pill.findGrassMedicinePillDetails("name", name);
+                medicList = pill.findGrassMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
                 List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                medicList = potion.findTraditionalMedicinePotionDetails("name", name);
+                medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
         }
@@ -1127,23 +1133,23 @@ public class NewPatientDisease extends javax.swing.JFrame {
         {
             if(medicine.equalsIgnoreCase("单味药粉"))
             {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill(name);
-                txtPrice.setText(pill.findTraditionalMedicinePillName(name));
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                txtPrice.setText(pill.findTraditionalMedicinePillName(name,userid));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
-                GrassMedicinePotion pill = new GrassMedicinePotion(name);
-                txtPrice.setText(pill.findGrassMedicinePotionName(name));
+                GrassMedicinePotion pill = new GrassMedicinePotion();
+                txtPrice.setText(pill.findGrassMedicinePotionName(name,userid));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
-                GrassMedicinePill pill =new GrassMedicinePill(name);
-                txtPrice.setText(pill.findGrassMedicinePillName(name));
+                GrassMedicinePill pill =new GrassMedicinePill();
+                txtPrice.setText(pill.findGrassMedicinePillName(name,userid));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion(name);
-                txtPrice.setText(potion.findTraditionalMedicinePotionName(name));
+                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                txtPrice.setText(potion.findTraditionalMedicinePotionName(name,userid));
             }
         }
         catch(SQLException ex)
@@ -1177,7 +1183,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnFindID.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
         headerAdd.setIcon(iconHeader);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     
@@ -1267,6 +1273,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblName;

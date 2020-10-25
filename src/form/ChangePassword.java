@@ -48,6 +48,7 @@ public class ChangePassword extends javax.swing.JFrame {
         txtWeight = new javax.swing.JTextField();
         txtOldID = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
+        btnFind1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +71,7 @@ public class ChangePassword extends javax.swing.JFrame {
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("更改密码");
         panelHeader.add(findHeader);
-        findHeader.setBounds(870, 0, 200, 70);
+        findHeader.setBounds(960, 0, 200, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -86,16 +87,16 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("旧账号:");
         panelBody.add(jLabel1);
-        jLabel1.setBounds(400, 50, 80, 40);
+        jLabel1.setBounds(400, 100, 80, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("新账号:");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(400, 140, 63, 40);
+        jLabel3.setBounds(400, 200, 63, 40);
 
         txtNewID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtNewID);
-        txtNewID.setBounds(490, 140, 600, 40);
+        txtNewID.setBounds(490, 200, 600, 40);
 
         txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtConfirmID.addActionListener(new java.awt.event.ActionListener() {
@@ -104,46 +105,46 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtConfirmID);
-        txtConfirmID.setBounds(490, 230, 600, 40);
+        txtConfirmID.setBounds(490, 300, 600, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("确认新账号:");
         panelBody.add(jLabel2);
-        jLabel2.setBounds(360, 230, 120, 40);
+        jLabel2.setBounds(360, 300, 120, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("旧密码:");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(390, 320, 63, 40);
+        jLabel5.setBounds(390, 390, 63, 40);
 
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtEffect);
-        txtEffect.setBounds(490, 320, 600, 40);
+        txtEffect.setBounds(490, 390, 600, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("新密码:");
         panelBody.add(jLabel6);
-        jLabel6.setBounds(390, 410, 80, 40);
+        jLabel6.setBounds(390, 480, 80, 40);
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtScoop);
-        txtScoop.setBounds(490, 410, 600, 40);
+        txtScoop.setBounds(490, 480, 600, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("确认密码：");
         panelBody.add(jLabel7);
-        jLabel7.setBounds(370, 520, 95, 40);
+        jLabel7.setBounds(370, 570, 95, 40);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtWeight);
-        txtWeight.setBounds(490, 520, 600, 40);
+        txtWeight.setBounds(490, 570, 600, 40);
 
         txtOldID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldID);
-        txtOldID.setBounds(490, 50, 600, 40);
+        txtOldID.setBounds(490, 100, 600, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnFind.setText("寻找");
+        btnFind.setText("退出");
         btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,15 +152,26 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(1210, 640, 130, 50);
+        btnFind.setBounds(240, 640, 130, 50);
+
+        btnFind1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind1.setText("更改");
+        btnFind1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFind1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFind1ActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnFind1);
+        btnFind1.setBounds(1110, 640, 130, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(348, 348, 348)
+                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(254, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -194,6 +206,10 @@ public class ChangePassword extends javax.swing.JFrame {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnFind1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFind1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +248,7 @@ public class ChangePassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnFind1;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

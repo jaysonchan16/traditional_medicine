@@ -58,6 +58,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     private int option = 0;        
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
+    private String userid="";
     
     public ModifyDisease() {
         initComponents();
@@ -66,6 +67,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     public ModifyDisease(User user) throws SQLException {
         initComponents();
         this.user = user;
+        userid = user.getUserid();
         show_Disease();
         widthTable();
         txtName.setEnabled(false);
@@ -73,7 +75,6 @@ public class ModifyDisease extends javax.swing.JFrame {
         disabledTextBox();
         txtDiseaseID.setVisible(false);
         image();
-        
     }
     
     public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
@@ -98,6 +99,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         this.initialIC = initialIC;
         this.initialID = initialID;
         this.option = option;
+        userid = user.getUserid();
         show_Disease();
         widthTable();
         txtName.setEnabled(false);
@@ -524,7 +526,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             try {
                 Disease disease = new Disease(txtSymptom.getText(),Integer.parseInt(txtTemperature.getText()),txtBlood.getText(),
                         txtPulse.getText(),txtTongueQuality.getText(),txtTongueCoating.getText(),txtShit.getText(),txtCategory.getText(),
-                        txtHistory.getText(),txtID.getText(),txtDiseaseID.getText());
+                        txtHistory.getText(),txtID.getText(),txtDiseaseID.getText(),userid);
                 String result = disease.EditDisease();
                 if(result.equalsIgnoreCase("1"))
                 {
@@ -576,7 +578,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
             // TODO add your handling code here:
-            Disease disease = new Disease(txtDiseaseID.getText());
+            Disease disease = new Disease(txtDiseaseID.getText(),userid);
             String result = disease.DeleteDisease();
             if(result.equalsIgnoreCase("1"))
             {
@@ -664,24 +666,24 @@ public class ModifyDisease extends javax.swing.JFrame {
         
         Disease disease = new Disease();
         try {
-            if(disease.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || disease.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
+            if(disease.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || disease.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
             {   
-                String ICdata = disease.getPatient(IC,ID).getIC();
-                String IDdata = disease.getPatient(IC,ID).getID();
-                txtName.setText(disease.getPatient(IC,ID).getName());
-                txtPhone.setText(disease.getPatient(IC,ID).getPhone());
+                String ICdata = disease.getPatient(IC,ID,userid).getIC();
+                String IDdata = disease.getPatient(IC,ID,userid).getID();
+                txtName.setText(disease.getPatient(IC,ID,userid).getName());
+                txtPhone.setText(disease.getPatient(IC,ID,userid).getPhone());
                 txtID.setText(IDdata);
                 txtIC.setText(ICdata);
-                txtDiseaseID.setText(disease.getDisease(ICdata).getDiseaseID());
-                txtSymptom.setText(disease.getDisease(ICdata).getSymptom());
-                txtCategory.setText(disease.getDisease(ICdata).getCategory());
-                txtPulse.setText(disease.getDisease(ICdata).getPulseCondition());
-                txtTongueQuality.setText(disease.getDisease(ICdata).getTongueQuality());
-                txtTongueCoating.setText(disease.getDisease(ICdata).getTongueCoating());
-                txtHistory.setText(disease.getDisease(ICdata).getHistory());
-                txtTemperature.setText(String.valueOf(disease.getDisease(ICdata).getTemperature()));
-                txtBlood.setText(disease.getDisease(ICdata).getBloodPressure());
-                txtShit.setText(disease.getDisease(ICdata).getPeeShit());
+                txtDiseaseID.setText(disease.getDisease(ICdata,userid).getDiseaseID());
+                txtSymptom.setText(disease.getDisease(ICdata,userid).getSymptom());
+                txtCategory.setText(disease.getDisease(ICdata,userid).getCategory());
+                txtPulse.setText(disease.getDisease(ICdata,userid).getPulseCondition());
+                txtTongueQuality.setText(disease.getDisease(ICdata,userid).getTongueQuality());
+                txtTongueCoating.setText(disease.getDisease(ICdata,userid).getTongueCoating());
+                txtHistory.setText(disease.getDisease(ICdata,userid).getHistory());
+                txtTemperature.setText(String.valueOf(disease.getDisease(ICdata,userid).getTemperature()));
+                txtBlood.setText(disease.getDisease(ICdata,userid).getBloodPressure());
+                txtShit.setText(disease.getDisease(ICdata,userid).getPeeShit());
                 txtIC.setEnabled(false);
                 txtID.setEnabled(false);
             }
@@ -707,7 +709,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         
         if(option == 0)
         {
-            diseaseList = disease.getDiseases();
+            diseaseList = disease.getDiseases(userid);
             for(int i =0; i<diseaseList.size(); i++)
             {
                 row[0] = diseaseList.get(i).getPatientID();
@@ -732,7 +734,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         }
         else
         {
-            diseaseList = disease.getDiseaseIDPatients(DiseaseID);
+            diseaseList = disease.getDiseaseIDPatients(DiseaseID,userid);
             for(int i =0; i<diseaseList.size(); i++)
             {
                 row[0] = diseaseList.get(0).getPatientID();
@@ -816,7 +818,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     
     public void widthTable()
     {
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -863,7 +865,6 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel15.setIcon(iconModify);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
-        this.lblName.setText(user.getUserid());
         setResizable(false);
     }
     

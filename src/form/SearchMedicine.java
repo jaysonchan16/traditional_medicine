@@ -30,6 +30,8 @@ public class SearchMedicine extends javax.swing.JFrame {
      */
     private User user;
     DefaultTableModel model;
+    private String userid = "";
+    
     public SearchMedicine() {
         initComponents();
     }
@@ -37,6 +39,7 @@ public class SearchMedicine extends javax.swing.JFrame {
     public SearchMedicine(User user) {
         initComponents();
         this.user = user;
+        userid = user.getUserid();
         createColumns();
         show_all_medical();
         JTableHeader tableHeader = tblMedicine.getTableHeader();
@@ -521,7 +524,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         model.setRowCount(0);
         Medicine medicine = new Medicine();
         List<Medicine> medicineList = new ArrayList<Medicine>();
-        medicineList = medicine.getDetail(contribute,detail,contribute1);
+        medicineList = medicine.getDetail(contribute,detail,contribute1,userid);
         model = (DefaultTableModel)tblMedicine.getModel();
         Object row[] = new Object[12];
         for(int i =0; i<medicineList.size(); i++)
@@ -548,7 +551,7 @@ public class SearchMedicine extends javax.swing.JFrame {
             model.setRowCount(0);
             Medicine medicine = new Medicine();
             List<Medicine> medicineList = new ArrayList<Medicine>();
-            medicineList = medicine.getAllDetail();
+            medicineList = medicine.getAllDetail(userid);
             model = (DefaultTableModel)tblMedicine.getModel();
             Object row[] = new Object[12];
             for(int i =0; i<medicineList.size(); i++)
@@ -585,13 +588,12 @@ public class SearchMedicine extends javax.swing.JFrame {
         btnFind.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         findHeader.setIcon(iconHeader);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     
     public void widthTable()
     {
-        this.lblName.setText(user.getUserid());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));

@@ -27,6 +27,7 @@ public class NewMedicine extends javax.swing.JFrame {
      * Creates new form NewMedicine
      */
     private User user;
+    private String userid = "";
     
     public NewMedicine() {
         initComponents();
@@ -35,6 +36,7 @@ public class NewMedicine extends javax.swing.JFrame {
     public NewMedicine(User user) {        
         this.user = user;
         initComponents();
+        userid = user.getUserid();
         image();
         setResizable(false);
         comboMedicine();
@@ -268,7 +270,7 @@ public class NewMedicine extends javax.swing.JFrame {
         panelBody.add(lblWeight);
         lblWeight.setBounds(1060, 520, 50, 40);
 
-        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnPrint.setText("打印");
         btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -358,7 +360,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 if(comboMedicine.getSelectedItem().equals("复方药粉")) // traitional medicine potion
                 {
                     TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
-                    map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo");
+                    map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo",userid);
                     if(map.get("returnMessage").equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "复方药粉已新增！ID 是 "+map.get("ID"));
@@ -372,7 +374,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 else if(comboMedicine.getSelectedItem().equals("药丸")) //grass medicine pill
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
-                    map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi");
+                    map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi",userid);
                     if(map.get("returnMessage").equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "药丸已新增！ID 是 "+map.get("ID"));
@@ -386,7 +388,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 else if(comboMedicine.getSelectedItem().equals("药水"))// grass medicine potion
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
-                    map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo");
+                    map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo",userid);
                     if(map.get("returnMessage").equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "药水已新增！ID 是 "+map.get("ID"));
@@ -400,7 +402,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 else if(comboMedicine.getSelectedItem().equals("单味药粉"))// traitional medicine pill
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi");
+                    map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi",userid);
                     if(map.get("returnMessage").equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "单调药粉已新增！ID 是 "+map.get("ID"));
@@ -534,10 +536,10 @@ public class NewMedicine extends javax.swing.JFrame {
         try {
             Code code = new Code();
             
-            for(int i = 0; i < code.getComboMedicine().size(); i++)
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
             {
-                System.out.println(code.getComboMedicine().get(i).toString());
-                comboMedicine.addItem(code.getComboMedicine().get(i).getCode());
+                System.out.println(code.getComboMedicine(userid).get(i).toString());
+                comboMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());

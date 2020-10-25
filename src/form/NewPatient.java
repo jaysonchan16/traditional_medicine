@@ -31,20 +31,21 @@ public class NewPatient extends javax.swing.JFrame {
     //private static Statement st;
     private User user;
     private String DiseaseIC = "";
-    
+    private String userid = "";
     NewPatientDisease diseasepage;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
     
     public NewPatient(User user) {
         initComponents();
+        this.user = user;
+        userid = user.getUserid();
         txtName.setEnabled(false);
         txtGender.setEnabled(false);
         txtAge.setEnabled(false);
         txtPhone.setEnabled(false);
         txtAddress.setEnabled(false);
         lblCreateDateTime.setText(dtf.format(localDate));
-        this.user = user;
         image();
     }
 
@@ -52,6 +53,7 @@ public class NewPatient extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         this.DiseaseIC = DiseaseIC;
+        userid = user.getUserid();
         txtIC.setText(DiseaseIC);
         txtIC.setEnabled(false);
         btnFind.setVisible(false);
@@ -294,17 +296,17 @@ public class NewPatient extends javax.swing.JFrame {
             } else if (address.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "地址没填！");
             } else {
-                Patient patient = new Patient(IC, name, gender, age, phone, address);
+                Patient patient = new Patient(IC, name, gender, age, phone, address,userid);
                 map = patient.AddNewPatient();
                 System.out.println(map.get("returnMessage"));
                 if (map.get("returnMessage").equalsIgnoreCase("1")) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功,你的ID是：" +map.get("ID"));
                     try {
-                        if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,"0").getIC().equalsIgnoreCase(IC)) {
-                            diseasepage = new NewPatientDisease(user, patient.getPatient(DiseaseIC,"0").getID(),
+                        if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,"0",userid).getIC().equalsIgnoreCase(IC)) {
+                            diseasepage = new NewPatientDisease(user, patient.getPatient(DiseaseIC,"0",userid).getID(),
                                     DiseaseIC,
-                                    patient.getPatient(DiseaseIC,"0").getName(),
-                                    patient.getPatient(DiseaseIC,"0").getPhone());
+                                    patient.getPatient(DiseaseIC,"0",userid).getName(),
+                                    patient.getPatient(DiseaseIC,"0",userid).getPhone());
                             diseasepage.setVisible(true);
                             this.dispose();
                         }
@@ -330,14 +332,14 @@ public class NewPatient extends javax.swing.JFrame {
         } else {
             Patient patient = new Patient();
             try {
-                if (patient.getPatient(IC,"").getIC().equalsIgnoreCase(IC)) {
-                    txtName.setText(patient.getPatient(IC,"").getName());
-                    txtGender.setText(patient.getPatient(IC,"").getGender());
-                    txtAge.setText(String.valueOf(patient.getPatient(IC,"").getAge()));
-                    txtPhone.setText(patient.getPatient(IC,"").getPhone());
-                    txtAddress.setText(patient.getPatient(IC,"").getAddress());
-                    lblCreateDateTime.setText(patient.getPatient(IC,"").getCreateDateTime());
-                    lblLastUpdateDateTime.setText(patient.getPatient(IC,"").getLastUpdateDateTime());
+                if (patient.getPatient(IC,"",userid).getIC().equalsIgnoreCase(IC)) {
+                    txtName.setText(patient.getPatient(IC,"",userid).getName());
+                    txtGender.setText(patient.getPatient(IC,"",userid).getGender());
+                    txtAge.setText(String.valueOf(patient.getPatient(IC,"",userid).getAge()));
+                    txtPhone.setText(patient.getPatient(IC,"",userid).getPhone());
+                    txtAddress.setText(patient.getPatient(IC,"",userid).getAddress());
+                    lblCreateDateTime.setText(patient.getPatient(IC,"",userid).getCreateDateTime());
+                    lblLastUpdateDateTime.setText(patient.getPatient(IC,"",userid).getLastUpdateDateTime());
                     txtIC.setEnabled(false);
                     txtName.setEnabled(false);
                     txtGender.setEnabled(false);
@@ -414,7 +416,7 @@ public class NewPatient extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
         headerAdd.setIcon(iconHeader);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     /**

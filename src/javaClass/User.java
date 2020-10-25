@@ -122,17 +122,17 @@ public class User {
         return(password.equals(theUser.getPassword()));
     }
     
-    public int validateID()
+    public int validateID(String User)
     {
         int count = 0;
         try {
-            String countID = "Select count(*)as ID from Maintcode";
+            String countID = "Select count(*)as ID from Maintcode where User ='"+User+"'";
             rs = st.executeQuery(countID);
             try {
                 count = rs.getInt("ID");
                 if(count == 0)
                 {
-                    return registerMaintcode();
+                    return registerMaintcode(User);
                 }
                 else
                 {
@@ -169,46 +169,47 @@ public class User {
         
     }
     
-    public int registerMaintcode() throws SQLException
+    public int registerMaintcode(String User) throws SQLException
     {
         try {
-            String query = "insert into Maintcode(Code,Number,Remark)"
-                    + "Select 'A',0,'PatientID' UNION ALL "
-                    + "Select 'B',0,'PatientID' UNION ALL "
-                    + "Select 'C',0,'PatientID' UNION ALL "
-                    + "Select 'D',0,'PatientID' UNION ALL "
-                    + "Select 'E',0,'PatientID' UNION ALL "
-                    + "Select 'F',0,'PatientID' UNION ALL "
-                    + "Select 'G',0,'PatientID' UNION ALL "
-                    + "Select 'H',0,'PatientID' UNION ALL "
-                    + "Select 'I',0,'PatientID' UNION ALL "
-                    + "Select 'J',0,'PatientID' UNION ALL "
-                    + "Select 'K',0,'PatientID' UNION ALL "
-                    + "Select 'L',0,'PatientID' UNION ALL "
-                    + "Select 'M',0,'PatientID' UNION ALL "
-                    + "Select 'N',0,'PatientID' UNION ALL "
-                    + "Select 'O',0,'PatientID' UNION ALL "
-                    + "Select 'P',0,'PatientID' UNION ALL "
-                    + "Select 'Q',0,'PatientID' UNION ALL "
-                    + "Select 'R',0,'PatientID' UNION ALL "
-                    + "Select 'S',0,'PatientID' UNION ALL "
-                    + "Select 'T',0,'PatientID' UNION ALL "
-                    + "Select 'U',0,'PatientID' UNION ALL "
-                    + "Select 'V',0,'PatientID' UNION ALL "
-                    + "Select 'W',0,'PatientID' UNION ALL "
-                    + "Select 'X',0,'PatientID' UNION ALL "
-                    + "Select 'Y',0,'PatientID' UNION ALL "
-                    + "Select 'Z',0,'PatientID' UNION ALL "
-                    + "Select 'GrasMedPi',0,'MedicineID' UNION ALL "
-                    + "Select 'GrasMedPo',0,'MedicineID' UNION ALL "
-                    + "Select 'TradMedPi',0,'MedicineID' UNION ALL "
-                    + "Select 'TradMedPo',0,'MedicineID' UNION ALL "
-                    + "Select '复方药粉',0,'ComboMedicine' UNION ALL "
-                    + "Select '药丸', 0,'ComboMedicine' UNION ALL "
-                    + "Select '药水', 0,'ComboMedicine' UNION ALL "
-                    + "Select '单味药粉', 0,'ComboMedicine' UNION ALL "
-                    + "Select 'Disease', 0, 'DiseaseID' UNION ALL "
-                    + "Select 'Prescription', 0, 'PrescriptionID'";
+            String query = "insert into Maintcode(Code,Number,Remark,User)"
+                    + "Select 'A',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'B',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'C',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'D',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'E',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'F',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'G',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'H',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'I',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'J',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'K',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'L',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'M',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'N',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'O',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'P',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'Q',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'R',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'S',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'T',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'U',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'V',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'W',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'X',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'Y',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'Z',0,'PatientID','"+User+"' UNION ALL "
+                    + "Select 'GrasMedPi',0,'MedicineID','"+User+"' UNION ALL "
+                    + "Select 'GrasMedPo',0,'MedicineID','"+User+"' UNION ALL "
+                    + "Select 'TradMedPi',0,'MedicineID','"+User+"' UNION ALL "
+                    + "Select 'TradMedPo',0,'MedicineID','"+User+"' UNION ALL "
+                    + "Select '复方药粉',0,'ComboMedicine','"+User+"' UNION ALL "
+                    + "Select '药丸', 0,'ComboMedicine','"+User+"' UNION ALL "
+                    + "Select '药水', 0,'ComboMedicine','"+User+"' UNION ALL "
+                    + "Select '单味药粉', 0,'ComboMedicine','"+User+"' UNION ALL "
+                    + "Select 'Disease', 0, 'DiseaseID','"+User+"' UNION ALL "
+                    + "Select 'Prescription', 0, 'PrescriptionID','"+User+"' UNION ALL "
+                    + "Select 'isUpgrade', 0, 'Begineer','"+User+"'";
             
             st.executeUpdate(query);
             st.close();
@@ -231,6 +232,33 @@ public class User {
         } catch (SQLException ex) {
             return "User.registerUser get error on line 231, "+ex.getMessage();
         }
+    }
+    
+    public Boolean validateBeginner(String username) throws SQLException
+    {
+        System.out.println(username);
+        int isBeginner = 0;
+        String isUpgrade = "Select Number from Maintcode where Code='isUpgrade' and User = '"+username+"'";
+        rs = st.executeQuery(isUpgrade);
+        isBeginner = rs.getInt("Number");
+        if(isBeginner == 0)
+        {
+            rs.close();
+            return true;
+        }
+        else
+        {
+            rs.close();
+            return false;
+        }
+    }
+    
+    public String UpdateMaintcode(String user) throws SQLException{
+        String query = "Update Maintcode Set Number = trim('1') where Code = 'isUpgrade' and User = '"+user+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
     }
 }
 

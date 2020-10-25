@@ -37,8 +37,11 @@ public class ViewPatientDetail extends javax.swing.JFrame {
     private String initialIC="";
     private int option=0;
     private String initialID = "";
+    private String userid = "";
+    
     public ViewPatientDetail() throws SQLException {
         initComponents();
+        userid = user.getUserid();
         show_patient();
         JTableHeader tableHeader = tblPatient.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
@@ -49,6 +52,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         this.option = option;
+        userid = user.getUserid();
         show_patient();
         widthTable();
         JTableHeader tableHeader = tblPatient.getTableHeader();
@@ -64,6 +68,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
         this.to = to;
         this.initialIC = initialIC;
         this.initialID = initialID;
+        userid = user.getUserid();
         show_patient();
         widthTable();
         JTableHeader tableHeader = tblPatient.getTableHeader();
@@ -299,7 +304,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
          }
          else
          {
-             patientList = patient.getPatients(from, to, initialIC, initialID);
+             patientList = patient.getPatients(from, to, initialIC, initialID,userid);
          }
          
          model = (DefaultTableModel)tblPatient.getModel();

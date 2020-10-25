@@ -149,7 +149,7 @@ public class LoginUI extends javax.swing.JFrame {
             }
             else
             {
-                user.validateID();
+                user.validateID(txtUserID.getText());
                 if( user.login(userid, password)){
                     user = user.getUser(userid);
 

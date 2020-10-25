@@ -31,6 +31,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
      */
     private User user;
     DefaultTableModel model;
+    private String userid = "";
     
     public SearchDiseasePatient() {
         initComponents();
@@ -40,6 +41,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     {
         initComponents();
         this.user = user;
+        userid = user.getUserid();
         createColumns();
         show_patient();
         JTableHeader tableHeader = tblDisease.getTableHeader();
@@ -777,7 +779,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         model.setRowCount(0);
         Prescription prescription = new Prescription();
         List<Prescription> prescriptionList = new ArrayList<Prescription>();
-        prescriptionList = prescription.getDetail(contribute,detail);
+        prescriptionList = prescription.getPrescriptionDetail(contribute,detail,userid);
         model = (DefaultTableModel)tblDisease.getModel();
         Object row[] = new Object[26];
          for(int i =0; i<prescriptionList.size(); i++)
@@ -852,7 +854,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
          }
          else
          {*/
-             prescriptionList = prescription.getPrescriptions();
+             prescriptionList = prescription.getPrescriptions(userid);
          //}
          
          model = (DefaultTableModel)tblDisease.getModel();
@@ -895,7 +897,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         model.setRowCount(0);
         Prescription prescription = new Prescription();
         List<Prescription> prescriptionList = new ArrayList<Prescription>();
-        prescriptionList = prescription.getAllDetail(ID, IC, Name, Gender ,Age ,Phone,Symptom,Category,Pulse,Quality,Coating,Shit,History,Temperature,Blood,MedicCategory,MedicName,Jiliang);
+        prescriptionList = prescription.getAllDetail(ID, IC, Name, Gender ,Age ,Phone,Symptom,Category,Pulse,Quality,Coating,Shit,History,Temperature,Blood,MedicCategory,MedicName,Jiliang,userid);
         model = (DefaultTableModel)tblDisease.getModel();
         Object row[] = new Object[26];
          for(int i =0; i<prescriptionList.size(); i++)
@@ -943,13 +945,12 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         btnFind.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         findHeader.setIcon(iconHeader);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     
     public void widthTable()
     {
-        this.lblName.setText(user.getUserid());
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));

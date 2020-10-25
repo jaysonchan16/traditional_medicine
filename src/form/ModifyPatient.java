@@ -43,6 +43,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     private String to;
     private String initialIC;
     private String initialID; 
+    private String userid = "";
     
     public ModifyPatient() {
         initComponents();
@@ -55,6 +56,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         this.option = option;
+        userid = user.getUserid();
         setResizable(false);
         image();
     }
@@ -71,7 +73,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         this.createDateTime = createDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.option = option;
-        
+        userid = user.getUserid();
         txtID.setText(ID);
         txtIC.setText(IC);
         txtName.setText(Name);
@@ -101,7 +103,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         this.option = option;
         this.from = from;
         this.to = to;
-        
+        userid = user.getUserid();
         txtID.setText(ID);
         txtIC.setText(IC);
         txtName.setText(Name);
@@ -131,7 +133,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         this.to = to;
         this.initialIC = initialIC;
         this.initialID = initialID;
-        
+        userid = user.getUserid();
         txtID.setText(ID);
         txtIC.setText(IC);
         txtName.setText(Name);
@@ -406,17 +408,17 @@ public class ModifyPatient extends javax.swing.JFrame {
         } else {
             try {
                     Patient patient = new Patient();
-                    if(patient.getPatient(IC,ID).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID).getID().equalsIgnoreCase(ID))
+                    if(patient.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
                     {
-                        txtIC.setText(patient.getPatient(IC, ID).getIC());
-                        txtID.setText(patient.getPatient(IC, ID).getID());
-                        txtName.setText(patient.getPatient(IC,ID).getName());
-                        txtGender.setText(patient.getPatient(IC,ID).getGender());
-                        txtAge.setText(String.valueOf(patient.getPatient(IC, ID).getAge()));
-                        txtPhone.setText(patient.getPatient(IC,ID).getPhone());
-                        txtAddress.setText(patient.getPatient(IC,ID).getAddress());
-                        lblCreateDateTime.setText(patient.getPatient(IC,ID).getCreateDateTime());
-                        lblLastUpdateDateTime.setText(patient.getPatient(IC,ID).getLastUpdateDateTime());
+                        txtIC.setText(patient.getPatient(IC, ID,userid).getIC());
+                        txtID.setText(patient.getPatient(IC, ID,userid).getID());
+                        txtName.setText(patient.getPatient(IC,ID,userid).getName());
+                        txtGender.setText(patient.getPatient(IC,ID,userid).getGender());
+                        txtAge.setText(String.valueOf(patient.getPatient(IC, ID,userid).getAge()));
+                        txtPhone.setText(patient.getPatient(IC,ID,userid).getPhone());
+                        txtAddress.setText(patient.getPatient(IC,ID,userid).getAddress());
+                        lblCreateDateTime.setText(patient.getPatient(IC,ID,userid).getCreateDateTime());
+                        lblLastUpdateDateTime.setText(patient.getPatient(IC,ID,userid).getLastUpdateDateTime());
                         txtID.setEnabled(false);
                         btnFind.setEnabled(false);
                     }
@@ -444,7 +446,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             String phone = txtPhone.getText();
             String address = txtAddress.getText();
             
-            Patient patient = new Patient(IC,name,gender,age,phone,address,ID);
+            Patient patient = new Patient(IC,name,gender,age,phone,address,ID,userid);
             String result = patient.EditPatient();
             if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "更改成功");
@@ -502,7 +504,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         try {                                          
             // TODO add your handling code here:
             String IC = txtIC.getText();
-            Patient patient = new Patient(IC);
+            Patient patient = new Patient(IC,userid);
             String result = patient.DeletePatient();
             if (result.equalsIgnoreCase("1")) {
                 JOptionPane.showMessageDialog(rootPane, "删除成功");
@@ -621,7 +623,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel7.setIcon(iconModify);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
-        this.lblName.setText(user.getUserid());
+        this.lblName.setText(userid);
         setResizable(false);
     }
     

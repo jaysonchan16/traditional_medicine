@@ -24,6 +24,7 @@ public class Code {
     private String remark;
     protected Statement st = connect.connection();
     ResultSet rs;
+    private String user;
     
     public Code() {}
     
@@ -81,18 +82,32 @@ public class Code {
         this.remark = remark;
     }
     
-    public HashMap<String,String> validatePatientID(String name) throws SQLException{
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+    
+    public HashMap<String,String> validatePatientID(String name, String User) throws SQLException{
         HashMap<String,String> data= new HashMap<String,String>();
         String upperName = name.substring(0,1).toUpperCase();
         
         int Number;
         System.out.println(upperName);
         
-        if(countID(upperName) == 1) //英文名
+        if(countID(upperName,User) == 1) //英文名
         {
-            if(plusOneID(upperName).equalsIgnoreCase("1")) // ID + 1
+            if(plusOneID(upperName,User).equalsIgnoreCase("1")) // ID + 1
             {
-                String query = "Select Number from Maintcode where Code = '"+upperName+"'";
+                String query = "Select Number from Maintcode where Code = '"+upperName+"' and User ='"+User+"'";
                 try {
                     rs = st.executeQuery(query);
                     Number = rs.getInt("Number");
@@ -116,7 +131,7 @@ public class Code {
             else
             {
                 data.put("data", "");
-                data.put("messages", plusOneID(upperName));
+                data.put("messages", plusOneID(upperName,User));
                 return data;
             }
         }
@@ -128,19 +143,18 @@ public class Code {
         }
     }
     
-    public String plusOneID(String upperName) throws SQLException{
+    public String plusOneID(String upperName, String User) throws SQLException{
         String query = "Update Maintcode Set Number = Number + 1 "
-                 + "where Code = '"+upperName+"'";
+                 + "where Code = '"+upperName+"' and User = '"+User+"'";
         
         System.out.println(query);
         SQLQuery sql = new SQLQuery();
-        st.close();
         return sql.AddEditDeleteQuery(query);
     }
 
-    public int countID(String upperName) throws SQLException
+    public int countID(String upperName, String User) throws SQLException
     {
-        String query = "Select count(*) as Number from Maintcode where Code = '"+upperName+"'";
+        String query = "Select count(*) as Number from Maintcode where Code = '"+upperName+"' and User='"+User+"'";
         
         int Number;
         
@@ -165,15 +179,16 @@ public class Code {
         }
     }
     
-    public HashMap<String,String> validateID(String name) throws SQLException{
+    public HashMap<String,String> validateID(String name, String User) throws SQLException{
         HashMap<String,String> data= new HashMap<String,String>();        
         System.out.println(name);
         int Number;
-        if(countID(name) == 1)
+        String resultplus = plusOneID(name,User);
+        if(countID(name,User) == 1)
         {
-            if(plusOneID(name).equalsIgnoreCase("1"))
+            if(resultplus.equalsIgnoreCase("1"))
             {
-                String query = "Select Number from Maintcode where Code = '"+name+"'";
+                String query = "Select Number from Maintcode where Code = '"+name+"' and User='"+User+"'";
                 System.out.println(query);
                 try {
                     rs = st.executeQuery(query);
@@ -199,7 +214,7 @@ public class Code {
             else
             {
                 data.put("data", "");
-                data.put("messages", plusOneID(name));
+                data.put("messages", resultplus);
                 return data;
             }
         }
@@ -211,12 +226,12 @@ public class Code {
         }
     }
     
-    public List<Code> getComboMedicine() throws SQLException
+    public List<Code> getComboMedicine(String User) throws SQLException
     {
         List<Code> comboMedicine = new ArrayList<>();
         String query;
 
-        query = "Select Code from Maintcode where Remark = 'ComboMedicine'";
+        query = "Select Code from Maintcode where Remark = 'ComboMedicine' and User='"+User+"'";
 
         rs = st.executeQuery(query);
         try {
@@ -235,4 +250,6 @@ public class Code {
         }
         return comboMedicine;
     }
+
+    
 }

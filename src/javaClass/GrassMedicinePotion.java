@@ -31,26 +31,30 @@ public class GrassMedicinePotion extends Medicine {// 药水
         super(name);
     }
     
-    public GrassMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine){
-        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine);
+    public GrassMedicinePotion(String name, String user){
+        super(name,user);
     }
     
-    public HashMap<String,String> AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code)
+    public GrassMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
+        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine,user);
+    }
+    
+    public HashMap<String,String> AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String User)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code1 = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
-            map = code1.validateID(code);
+            map = code1.validateID(code,User);
             double scoop1 = scoop;
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
-            if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion("name",name) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion("name",name,User) == 0)
             {
-                String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine)"
+                String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine,User)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
-                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'),'药水'";
+                        + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'),'药水', trim('"+User+"')";
                 
                 SQLQuery sql = new SQLQuery();
                 
@@ -60,7 +64,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
             }
             else
             {
-                returnMessage.put("returnMessage", code1.validateID(name).get("messages"));
+                returnMessage.put("returnMessage", code1.validateID(name,User).get("messages"));
                 returnMessage.put("ID", "");
                 return returnMessage;
             }
@@ -72,10 +76,10 @@ public class GrassMedicinePotion extends Medicine {// 药水
         
     }
     
-    public int validateAddGrassMedicinePotion(String attribute, String data) throws SQLException
+    public int validateAddGrassMedicinePotion(String attribute, String data, String User) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from GrassMedicinePotion where "+attribute+" = '"+data+"'";
+            String query = "Select count(1) as count from GrassMedicinePotion where "+attribute+" = '"+data+"' and User = '"+User+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -94,16 +98,16 @@ public class GrassMedicinePotion extends Medicine {// 药水
         
     }
     
-    public List<GrassMedicinePotion> getGrassMedicinePotion() throws SQLException{
+    public List<GrassMedicinePotion> getGrassMedicinePotion(String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine from GrassMedicinePotion";
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine,User from GrassMedicinePotion where User = '"+User+"'";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -117,9 +121,9 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return grassMedicinePotionList;
     }
     
-    public List<GrassMedicinePotion> findGrassMedicinePotionDetails(String attribute, String data) throws SQLException{
+    public List<GrassMedicinePotion> findGrassMedicinePotionDetails(String attribute, String data, String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine from GrassMedicinePotion where "+attribute+" = '"+data+"' order by 1 desc";
+            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePotion where "+attribute+" = '"+data+"' and User = '"+User+"' order by 1 desc";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -127,7 +131,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
                  grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
-                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine")));
+                         rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -142,12 +146,12 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return grassMedicinePotionList;
     }
     
-    public String EditGrassMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price) throws SQLException{
-        if(validateAddGrassMedicinePotion("name",name) == 0)
+    public String EditGrassMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
+        if(validateAddGrassMedicinePotion("name",name,User) == 0)
         {
             String query = "Update GrassMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
                     + " scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'), gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
-                     + "where ID = '"+ID+"'";
+                     + "where ID = '"+ID+"' and User ='"+User+"'";
 
             SQLQuery sql = new SQLQuery();
 
@@ -159,17 +163,17 @@ public class GrassMedicinePotion extends Medicine {// 药水
         }
     }
     
-    public String DeleteGrassMedicinePotion(String ID) throws SQLException{
-        String query = "Delete From GrassMedicinePotion where ID = '"+ID+"'";
+    public String DeleteGrassMedicinePotion(String ID, String User) throws SQLException{
+        String query = "Delete From GrassMedicinePotion where ID = '"+ID+"' and User ='"+User+"'";
           
         SQLQuery sql = new SQLQuery();
         
         return sql.AddEditDeleteQuery(query);
     }
     
-    public List<GrassMedicinePotion> comboName() throws SQLException{
+    public List<GrassMedicinePotion> comboName(String User) throws SQLException{
         List<GrassMedicinePotion> name = new ArrayList<>();
-        String query = "Select name from GrassMedicinePotion";
+        String query = "Select name from GrassMedicinePotion where User ='"+User+"'";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -190,9 +194,9 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return name;
     }
     
-    public String findGrassMedicinePotionName(String name) throws SQLException{
+    public String findGrassMedicinePotionName(String name, String User) throws SQLException{
         
-        String query = "Select sellprice from GrassMedicinePotion where name='"+name+"' order by 1 desc";
+        String query = "Select sellprice from GrassMedicinePotion where name='"+name+"' and User = '"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             return rs.getString("sellprice");
@@ -202,6 +206,24 @@ public class GrassMedicinePotion extends Medicine {// 药水
             return e.getMessage();
         }
         finally{
+            rs.close();
+            st.close();
+        }
+    }
+    
+    public String countGrassMedicinePotionName(String User) throws SQLException
+    {
+        String query = "Select count(1) as count from GrassMedicinePotion where User='"+User+"'";
+        rs = st.executeQuery(query);
+        try {
+            return rs.getString("count");
+        } 
+        catch (Exception e)
+        {
+            return "GrassMedicinePotion.validateGrassMedicinePotionName get error on line 223"+e.getMessage();
+        }
+        finally
+        {
             rs.close();
             st.close();
         }

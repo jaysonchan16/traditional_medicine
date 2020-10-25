@@ -29,6 +29,7 @@ public class Patient {
     protected String ID;
     protected String lastUpdateDateTime;
     protected String createDateTime;
+    private String user;
     protected Statement st = connect.connection();
     ResultSet rs;
     
@@ -38,22 +39,29 @@ public class Patient {
         this.IC = _IC;
     }
     
-    public Patient(String _IC, String _name, String _phone){
+    public Patient(String _IC, String user){
+        this.IC = _IC;
+        this.user = user;
+    }
+    
+    public Patient(String _IC, String _name, String _phone, String user){
         this.IC = _IC;
         this.name = _name;
         this.phone = _phone;
+        this.user = user;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String _user){
         this.name = _name;
         this.gender = _gender;
         this.age = _age;
         this.IC = _IC;
         this.phone = _phone;
         this.address = _address;
+        this.user = _user;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address, String _ID){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address, String _ID, String _user){
         this.name = _name;
         this.gender = _gender;
         this.age = _age;
@@ -61,9 +69,10 @@ public class Patient {
         this.phone = _phone;
         this.address = _address;
         this.ID = _ID;
+        this.user = _user;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime, String _user){
         this.name = _name;
         this.gender = _gender;
         this.age = _age;
@@ -72,9 +81,10 @@ public class Patient {
         this.address = _address;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
+        this.user = _user;
     }
     
-    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime,String _ID){
+    public Patient(String _IC, String _name, String _gender, int _age, String _phone, String _address,String lastUpdateDateTime, String createDateTime,String _ID, String _user){
         this.ID = _ID;
         this.name = _name;
         this.gender = _gender;
@@ -84,6 +94,7 @@ public class Patient {
         this.address = _address;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
+        this.user = _user;
     }
 
     public String getID() {
@@ -209,15 +220,29 @@ public class Patient {
         this.createDateTime = createDateTime;
     }
     
+        /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+    
     public HashMap<String,String> AddNewPatient() throws SQLException{
         Code code = new Code();
         HashMap<String, String> map = new HashMap<String,String>();
-        map = code.validatePatientID(name);
+        map = code.validatePatientID(name,user);
         HashMap<String,String> returnMessage = new HashMap<String,String>();
-        if(map.get("messages").equalsIgnoreCase("") && validatePatient(IC) == 0)
+        if(map.get("messages").equalsIgnoreCase("") && validatePatient(IC,user) == 0)
         {        
-            String query = "insert into Patient(ID, IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime)"
-                    + "Select '"+map.get("data")+"',trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime')";
+            String query = "insert into Patient(ID, IC, name, gender, age, phone, address,lastUpdateDateTime,createDateTime,User)"
+                    + "Select '"+map.get("data")+"',trim('"+IC+"'), trim('"+name+"'), trim('"+gender+"'), trim('"+age+"'), trim('"+phone+"'), trim('"+address+"'), datetime('now','localtime'),datetime('now','localtime'), trim('"+user+"')";
 
             SQLQuery sql = new SQLQuery();
             returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
@@ -226,7 +251,7 @@ public class Patient {
         }
         else
         {
-            returnMessage.put("returnMessage","Patient.AddNewPatient() get error on line 217, "+code.validatePatientID(name).get("messages"));
+            returnMessage.put("returnMessage","Patient.AddNewPatient() get error on line 217, "+map.get("messages"));
             returnMessage.put("ID","");
             return returnMessage;
         }
@@ -235,7 +260,7 @@ public class Patient {
     
     public String EditPatient() throws SQLException{
         String query = "Update Patient Set IC = trim('"+IC+"'), name = trim('"+name+"'), gender = trim('"+gender+"'), age = "+age+", phone = trim('"+phone+"'), address = trim('"+address+"'), lastUpdateDateTime = datetime('now','localtime')"
-                 + "where ID = '"+ID+"'";
+                 + "where ID = '"+ID+"' and User = '"+user+"'";
          
         SQLQuery sql = new SQLQuery();
         
@@ -243,29 +268,29 @@ public class Patient {
     }
     
     public String DeletePatient() throws SQLException{
-        String query = "Delete From Patient where ID = '"+ID+"'";
+        String query = "Delete From Patient where ID = '"+ID+"' and User = '"+user+"'";
           
         SQLQuery sql = new SQLQuery();
         
         return sql.AddEditDeleteQuery(query);
     }
     
-    public Patient getPatient(String IC, String ID) throws SQLException{
+    public Patient getPatient(String IC, String ID, String user) throws SQLException{
         String query ="";
         if(ID.equalsIgnoreCase(""))
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC = '"+IC+"'";
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where IC = '"+IC+"' and User = '"+user+"'";
         }
         else
         {
-            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID = '"+ID+"'";
+            query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where ID = '"+ID+"' and User = '"+user+"'";
         }
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {
                  return new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"),
-                         rs.getString("ID")
+                         rs.getString("ID"),rs.getString("User")
                  );
             }   
         } 
@@ -301,10 +326,10 @@ public class Patient {
         return patientList;
     }
     
-    public List<Patient> getPatients(String from, String to, String IC, String ID) throws SQLException{
+    public List<Patient> getPatients(String from, String to, String IC, String ID, String user) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
-        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"') or ID=trim('"+ID+"') or (createDateTime>='"+from+"' and createDateTime<='"+to+"')";
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where (IC=trim('"+IC+"') or ID=trim('"+ID+"') or (createDateTime>='"+from+"' and createDateTime<='"+to+"')) and User ='"+user+"'";
         /*if(from.equalsIgnoreCase("") || to.equalsIgnoreCase(""))
         {
             query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where IC=trim('"+IC+"') and ID=trim('"+ID+"')";
@@ -339,7 +364,7 @@ public class Patient {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
-                 rs.getString("createDateTime"),rs.getString("ID")));
+                 rs.getString("createDateTime"),rs.getString("ID"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -349,10 +374,10 @@ public class Patient {
         return patientList;
     }
 
-    public int validatePatient(String IC) throws SQLException
+    public int validatePatient(String IC, String user) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from Patient where IC = '"+IC+"'";
+            String query = "Select count(1) as count from Patient where IC = '"+IC+"' and User = '"+user+"'";
             int count = 0;
             rs = st.executeQuery(query);
             count = rs.getInt("count");
@@ -374,7 +399,7 @@ public class Patient {
         List<Patient> patientList = new ArrayList<>();
         String query="";
         
-        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where "+contribute+" like '%"+detail+"%' order by "+contribute+" "+arrangement+"";
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where "+contribute+" like '%"+detail+"%' order by "+contribute+" "+arrangement+"";
           
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -382,7 +407,7 @@ public class Patient {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
-                 rs.getString("createDateTime"),rs.getString("ID")));
+                 rs.getString("createDateTime"),rs.getString("ID"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -392,12 +417,12 @@ public class Patient {
         return patientList;
     }
     
-    public List<Patient> getAllDetail(String ID, String IC, String name, String gender, String age, String phone, String arrangement) throws SQLException{
+    public List<Patient> getAllDetail(String ID, String IC, String name, String gender, String age, String phone, String arrangement, String user) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
         
-        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient where ID like '%"+ID+"%' and IC like '%"+IC+"%' and "
-                + "name like '%"+name+"%' and gender like '%"+gender+"%' and age like '%"+age+"%' and phone like '%"+phone+"%' order by ID "+arrangement+"";
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime, User from Patient where ID like '%"+ID+"%' and IC like '%"+IC+"%' and "
+                + "name like '%"+name+"%' and gender like '%"+gender+"%' and age like '%"+age+"%' and phone like '%"+phone+"%' and User ='"+user+"' order by ID "+arrangement+"";
           
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -405,7 +430,7 @@ public class Patient {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
-                 rs.getString("createDateTime"),rs.getString("ID")));
+                 rs.getString("createDateTime"),rs.getString("ID"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -414,6 +439,8 @@ public class Patient {
         }
         return patientList;
     }
+
+
     
     
 }

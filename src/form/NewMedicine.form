@@ -481,7 +481,7 @@
         <Component class="javax.swing.JButton" name="btnPrint">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="STXihei" size="18" style="1"/>
+              <Font name="STXihei" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x6253;&#x5370;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
