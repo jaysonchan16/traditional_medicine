@@ -256,4 +256,10 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             st.close();
         }
     }
+    
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("TraditionalMedicinePill", oldUser, newUser);
+    }
 }

@@ -35,4 +35,13 @@ public class SQLQuery {
             st.close();
         }
     }
+    
+    public String UpdateUser(String table, String oldUser, String newUser) throws SQLException
+    {
+        String query = "Update '"+table+"' Set User ='"+newUser+"' "
+                + " where User = '"+oldUser+"'";
+        System.out.println(query);
+        
+        return AddEditDeleteQuery(query);
+    }
 }

@@ -260,5 +260,24 @@ public class User {
 
         return sql.AddEditDeleteQuery(query);
     }
+    
+    public String UpdateUsername(String olduser, String newuser) throws SQLException{
+        String query = "Update User Set userid = '"+newuser+"' where userid = '"+olduser+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+        String result = sql.AddEditDeleteQuery(query);
+        setUserid(newuser);
+        return result;
+    }
+    
+    public String UpdatePassword(String userid, String newPassword) throws SQLException
+    {
+        String query = "Update User Set password = '"+newPassword+"' where userid = '"+userid+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+        String result = sql.AddEditDeleteQuery(query);
+        setPassword(newPassword);
+        return result;
+    }
 }
 

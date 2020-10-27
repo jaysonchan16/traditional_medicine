@@ -486,5 +486,9 @@ public class Disease extends Patient{
         return patientDisease;
     }
 
-    
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("Disease", oldUser, newUser);
+    }
 }

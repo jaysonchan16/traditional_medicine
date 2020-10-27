@@ -562,6 +562,11 @@ public class Prescription extends Disease{
        return prescriptionList;
     }
 
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("Prescription", oldUser, newUser);
+    }
 
 
     

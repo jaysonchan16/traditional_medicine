@@ -439,8 +439,12 @@ public class Patient {
         }
         return patientList;
     }
-
-
+    
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("Patient", oldUser, newUser);
+    }
     
     
 }

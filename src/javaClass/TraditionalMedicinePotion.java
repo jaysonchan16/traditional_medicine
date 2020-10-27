@@ -238,4 +238,10 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
             st.close();
         }
     }
+    
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("TraditionalMedicinePotion", oldUser, newUser);
+    }
 }

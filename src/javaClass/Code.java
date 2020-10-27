@@ -251,5 +251,10 @@ public class Code {
         return comboMedicine;
     }
 
+    public String UpdateUser(String oldUser, String newUser) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.UpdateUser("Maintcode", oldUser, newUser);
+    }
     
 }

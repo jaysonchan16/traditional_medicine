@@ -5,6 +5,17 @@
  */
 package form;
 
+import java.sql.SQLException;
+import javaClass.Code;
+import javaClass.Disease;
+import javaClass.GrassMedicinePill;
+import javaClass.GrassMedicinePotion;
+import javaClass.Patient;
+import javaClass.TraditionalMedicinePill;
+import javaClass.TraditionalMedicinePotion;
+import javaClass.User;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sheng
@@ -14,10 +25,19 @@ public class ChangePassword extends javax.swing.JFrame {
     /**
      * Creates new form ChangePassword
      */
+    private User user;
+    
     public ChangePassword() {
         initComponents();
     }
 
+    public ChangePassword(User user)
+    {
+        this.user = user;
+        initComponents();
+        lblName.setText(user.getUserid());
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,14 +61,14 @@ public class ChangePassword extends javax.swing.JFrame {
         txtConfirmID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtEffect = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtScoop = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtWeight = new javax.swing.JTextField();
         txtOldID = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
         btnFind = new javax.swing.JButton();
-        btnFind1 = new javax.swing.JButton();
+        txtConfirmPassword = new javax.swing.JPasswordField();
+        txtNewPassword = new javax.swing.JPasswordField();
+        txtOldPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,34 +137,33 @@ public class ChangePassword extends javax.swing.JFrame {
         panelBody.add(jLabel5);
         jLabel5.setBounds(390, 390, 63, 40);
 
-        txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtEffect);
-        txtEffect.setBounds(490, 390, 600, 40);
-
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("新密码:");
         panelBody.add(jLabel6);
         jLabel6.setBounds(390, 480, 80, 40);
-
-        txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtScoop);
-        txtScoop.setBounds(490, 480, 600, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("确认密码：");
         panelBody.add(jLabel7);
         jLabel7.setBounds(370, 570, 95, 40);
 
-        txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(txtWeight);
-        txtWeight.setBounds(490, 570, 600, 40);
-
         txtOldID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldID);
         txtOldID.setBounds(490, 100, 600, 40);
 
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnBack);
+        btnBack.setBounds(240, 640, 130, 50);
+
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnFind.setText("退出");
+        btnFind.setText("更改");
         btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,18 +171,19 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(240, 640, 130, 50);
+        btnFind.setBounds(1110, 640, 130, 50);
 
-        btnFind1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnFind1.setText("更改");
-        btnFind1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnFind1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFind1ActionPerformed(evt);
-            }
-        });
-        panelBody.add(btnFind1);
-        btnFind1.setBounds(1110, 640, 130, 50);
+        txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtConfirmPassword);
+        txtConfirmPassword.setBounds(490, 570, 600, 40);
+
+        txtNewPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtNewPassword);
+        txtNewPassword.setBounds(490, 480, 600, 40);
+
+        txtOldPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtOldPassword);
+        txtOldPassword.setBounds(490, 390, 600, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,14 +223,166 @@ public class ChangePassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConfirmIDActionPerformed
 
-    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        SettingsMenu menu = new SettingsMenu(user);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        try {
+            // TODO add your handling code here:
+            Find();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnFindActionPerformed
 
-    private void btnFind1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFind1ActionPerformed
-
+    public void Find() throws SQLException
+    {
+        String oldID = txtOldID.getText();
+        String newID = txtNewID.getText();
+        String confirmID = txtConfirmID.getText();
+        String oldPassword = txtOldPassword.getText();
+        String newPassword = txtNewPassword.getText();
+        String confirmPassword = txtConfirmPassword.getText();
+        
+        if(newID.equalsIgnoreCase(confirmID))
+        {
+            if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase(""))
+            {
+                UpdatePassword(newPassword, confirmPassword, oldPassword,user.getUserid());
+            }
+            else if(oldID.equalsIgnoreCase(user.getUserid()))
+            {
+                User user = new User();
+                Code code = new Code();
+                Disease disease = new Disease();
+                GrassMedicinePill  medicinepill = new GrassMedicinePill();
+                GrassMedicinePotion medicinepotion = new GrassMedicinePotion();
+                Patient  patient = new Patient();
+                TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+                TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+                String resultDisease = disease.UpdateUser(oldID, newID);
+                String resultCode = code.UpdateUser(oldID, newID);
+                String resultmedicinepill = medicinepill.UpdateUser(oldID, newID);
+                String resultmedicinepotion = medicinepotion.UpdateUser(oldID, newID);
+                String resultpatient = patient.UpdateUser(oldID, newID);
+                String resulttraditionalpill = traditionalpill.UpdateUser(oldID, newID);
+                String resulttraditionalpotion = traditionalpotion.UpdateUser(oldID, newID);
+                String resultUser = user.UpdateUsername(oldID, newID);
+                
+                if(!oldID.equalsIgnoreCase("") && !newID.equalsIgnoreCase("") && !confirmID.equalsIgnoreCase(""))
+                {
+                    if(resultDisease != null && resultDisease.equalsIgnoreCase("1"))
+                    {
+                        if(resultmedicinepill != null && resultmedicinepill.equalsIgnoreCase("1"))
+                        {
+                            if(resultmedicinepotion != null && resultmedicinepotion.equalsIgnoreCase("1"))
+                            {
+                                if(resultpatient != null && resultpatient.equalsIgnoreCase("1"))
+                                {
+                                    if(resulttraditionalpill != null && resulttraditionalpill.equalsIgnoreCase("1"))
+                                    {
+                                        if(resulttraditionalpotion != null && resulttraditionalpotion.equalsIgnoreCase("1"))
+                                        {
+                                            if(resultCode != null && resultCode.equalsIgnoreCase("1"))
+                                            {
+                                                if(resultUser != null && resultUser.equalsIgnoreCase("1"))
+                                                {
+                                                    JOptionPane.showMessageDialog(rootPane, "ID 更改！");
+                                                    lblName.setText(user.getUserid());
+                                                    this.user = user;
+                                                    UpdatePassword(newPassword, confirmPassword, oldPassword,newID);
+                                                }
+                                                else
+                                                {
+                                                    JOptionPane.showMessageDialog(rootPane, "ID不能更改！");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                JOptionPane.showMessageDialog(rootPane, "系统 ID 在 database不能更改！");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            JOptionPane.showMessageDialog(rootPane, "复方药粉 ID 在 database不能更改！");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        JOptionPane.showMessageDialog(rootPane, "单味药粉 ID 在 database不能更改！");
+                                    }
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "病人database不能更改！");
+                                }
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
+                            }
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "病症 ID 在 database不能更改！");
+                    }
+                }
+                else if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase(""))
+                {
+                    UpdatePassword(newPassword, confirmPassword, oldPassword,user.getUserid());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "ID 资料没填");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "原本的ID不一致！");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "ID不一致！");
+        }
+        
+    }
+    
+    public void UpdatePassword(String newPassword, String confirmPassword, String oldPassword, String userid) throws SQLException
+    {
+        if(newPassword.equalsIgnoreCase(confirmPassword))
+        {
+            if(oldPassword.equalsIgnoreCase(user.getPassword()))
+            {
+                String resultUser = user.UpdatePassword(userid,newPassword);
+                if(resultUser != null && resultUser.equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更新密码成功！");
+                }
+                else
+                {
+                     JOptionPane.showMessageDialog(rootPane, "更新密码失败！");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "原本的密码不一致！");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "密码不一致！");
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -247,8 +419,8 @@ public class ChangePassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
-    private javax.swing.JButton btnFind1;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -264,10 +436,10 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTextField txtConfirmID;
-    private javax.swing.JTextField txtEffect;
+    private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtNewID;
+    private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JTextField txtOldID;
-    private javax.swing.JTextField txtScoop;
-    private javax.swing.JTextField txtWeight;
+    private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables
 }
