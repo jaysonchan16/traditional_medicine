@@ -5,10 +5,14 @@
  */
 package form;
 
+import java.awt.Color;
+import java.awt.Font;
 import medical.LoginUI;
 import javaClass.User;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -21,6 +25,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
      */
     public RegisterNewUser() {
         initComponents();
+        image();
     }
 
     /**
@@ -32,6 +37,14 @@ public class RegisterNewUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JPasswordField();
         txtUserid = new javax.swing.JTextField();
         txtConfirmPassword = new javax.swing.JPasswordField();
@@ -40,64 +53,101 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
+
+        jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel20.setText("登入：");
+        panelHeader.add(jLabel20);
+        jLabel20.setBounds(1670, 5, 75, 60);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1752, 5, 127, 60);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel4.setText("注册新账号");
+        panelHeader.add(jLabel4);
+        jLabel4.setBounds(880, 0, 260, 70);
+
+        getContentPane().add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel21);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 787, 1940, 50);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.setLayout(null);
+
         txtPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtPassword);
-        txtPassword.setBounds(140, 180, 390, 39);
+        jPanel2.add(txtPassword);
+        txtPassword.setBounds(330, 210, 390, 39);
 
         txtUserid.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtUserid);
-        txtUserid.setBounds(140, 110, 390, 37);
+        jPanel2.add(txtUserid);
+        txtUserid.setBounds(330, 100, 390, 37);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(140, 250, 390, 37);
+        jPanel2.add(txtConfirmPassword);
+        txtConfirmPassword.setBounds(330, 340, 390, 37);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("账号：");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 110, 80, 40);
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(230, 100, 80, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("密码：");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 190, 60, 26);
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(230, 220, 60, 26);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("确认密码：");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 250, 100, 40);
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(230, 340, 100, 40);
 
         btnConfirm.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnConfirm.setText("确认");
+        btnConfirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
             }
         });
-        getContentPane().add(btnConfirm);
-        btnConfirm.setBounds(400, 330, 130, 50);
+        jPanel2.add(btnConfirm);
+        btnConfirm.setBounds(650, 490, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack);
-        btnBack.setBounds(40, 330, 130, 50);
+        jPanel2.add(btnBack);
+        btnBack.setBounds(190, 490, 130, 50);
 
-        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel4.setText("注册新账号");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(230, 30, 120, 40);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(490, 120, 940, 610);
 
-        setBounds(0, 0, 633, 444);
+        setBounds(0, 0, 1956, 885);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
@@ -139,6 +189,18 @@ public class RegisterNewUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    public void image()
+    {
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/accountmedium.png"));
+        jLabel4.setIcon(iconHeader);
+        ImageIcon iconConfrim = new ImageIcon(getClass().getResource("/menu/smallconfirm.png"));
+        btnConfirm.setIcon(iconConfrim);
+        setResizable(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -179,8 +241,15 @@ public class RegisterNewUser extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lbllogo;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserid;

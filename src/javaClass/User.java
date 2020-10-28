@@ -209,7 +209,7 @@ public class User {
                     + "Select '单味药粉', 0,'ComboMedicine','"+User+"' UNION ALL "
                     + "Select 'Disease', 0, 'DiseaseID','"+User+"' UNION ALL "
                     + "Select 'Prescription', 0, 'PrescriptionID','"+User+"' UNION ALL "
-                    + "Select 'isUpgrade', 0, 'Begineer','"+User+"'";
+                    + "Select 'isUpgrade', 0, 'Admin','"+User+"'";
             
             st.executeUpdate(query);
             st.close();

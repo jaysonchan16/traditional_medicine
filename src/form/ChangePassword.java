@@ -299,36 +299,64 @@ public class ChangePassword extends javax.swing.JFrame {
                                                 else
                                                 {
                                                     JOptionPane.showMessageDialog(rootPane, "ID不能更改！");
+                                                    disease.UpdateUser(oldID, user.getUserid());
+                                                    medicinepill.UpdateUser(oldID, user.getUserid());
+                                                    medicinepotion.UpdateUser(oldID, user.getUserid());
+                                                    patient.UpdateUser(oldID, user.getUserid());
+                                                    traditionalpill.UpdateUser(oldID, user.getUserid());
+                                                    traditionalpotion.UpdateUser(oldID, user.getUserid());
+                                                    user.UpdateUsername(oldID, user.getUserid());
                                                 }
                                             }
                                             else
                                             {
                                                 JOptionPane.showMessageDialog(rootPane, "系统 ID 在 database不能更改！");
+                                                disease.UpdateUser(oldID, user.getUserid());
+                                                medicinepill.UpdateUser(oldID, user.getUserid());
+                                                medicinepotion.UpdateUser(oldID, user.getUserid());
+                                                patient.UpdateUser(oldID, user.getUserid());
+                                                traditionalpill.UpdateUser(oldID, user.getUserid());
+                                                traditionalpotion.UpdateUser(oldID, user.getUserid());
                                             }
                                         }
                                         else
                                         {
                                             JOptionPane.showMessageDialog(rootPane, "复方药粉 ID 在 database不能更改！");
+                                            disease.UpdateUser(oldID, user.getUserid());
+                                            medicinepill.UpdateUser(oldID, user.getUserid());
+                                            medicinepotion.UpdateUser(oldID, user.getUserid());
+                                            patient.UpdateUser(oldID, user.getUserid());
+                                            traditionalpill.UpdateUser(oldID, user.getUserid());
                                         }
                                     }
                                     else
                                     {
                                         JOptionPane.showMessageDialog(rootPane, "单味药粉 ID 在 database不能更改！");
+                                        disease.UpdateUser(oldID, user.getUserid());
+                                        medicinepill.UpdateUser(oldID, user.getUserid());
+                                        medicinepotion.UpdateUser(oldID, user.getUserid());
+                                        patient.UpdateUser(oldID, user.getUserid());
                                     }
                                 }
                                 else
                                 {
                                     JOptionPane.showMessageDialog(rootPane, "病人database不能更改！");
+                                    disease.UpdateUser(oldID, user.getUserid());
+                                    medicinepill.UpdateUser(oldID, user.getUserid());
+                                    medicinepotion.UpdateUser(oldID, user.getUserid());
                                 }
                             }
                             else
                             {
                                 JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
+                                disease.UpdateUser(oldID, user.getUserid());
+                                medicinepill.UpdateUser(oldID, user.getUserid());
                             }
                         }
                         else
                         {
                             JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
+                            disease.UpdateUser(oldID, user.getUserid());
                         }
                     }
                     else
