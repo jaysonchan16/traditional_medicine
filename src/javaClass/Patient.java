@@ -446,5 +446,10 @@ public class Patient {
         return sql.UpdateUser("Patient", oldUser, newUser);
     }
     
+    public String DeleteUser(String User) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("Patient", user);
+    }
     
 }

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
+import medical.LoginUI2;
 
 /**
  *
@@ -42,8 +43,6 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JPasswordField();
         txtUserid = new javax.swing.JTextField();
@@ -53,6 +52,8 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -80,16 +81,6 @@ public class RegisterNewUser extends javax.swing.JFrame {
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 787, 1940, 50);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -145,9 +136,19 @@ public class RegisterNewUser extends javax.swing.JFrame {
         btnBack.setBounds(190, 490, 130, 50);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(490, 120, 940, 610);
+        jPanel2.setBounds(460, 240, 940, 610);
 
-        setBounds(0, 0, 1956, 885);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel18);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 954, 1940, 36);
+
+        setBounds(0, 0, 1956, 1037);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
@@ -160,11 +161,11 @@ public class RegisterNewUser extends javax.swing.JFrame {
         {
             try {
                 User user = new User(userid, password);
-                String result = user.registerUser();
+                String result = user.registerUser("Admin");
                 if(result.equalsIgnoreCase("1"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "注册成功！");
-                    LoginUI loginui = new LoginUI();
+                    LoginUI2 loginui = new LoginUI2();
                     loginui.setVisible(true);
                     this.dispose();
                 }
@@ -184,7 +185,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        LoginUI loginui = new LoginUI();
+        LoginUI2 loginui = new LoginUI2();
         loginui.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
@@ -240,9 +241,9 @@ public class RegisterNewUser extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

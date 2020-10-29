@@ -257,4 +257,9 @@ public class Code {
         return sql.UpdateUser("Maintcode", oldUser, newUser);
     }
     
+    public String DeleteUser(String user) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("Maintcode", user);
+    }
 }

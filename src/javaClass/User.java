@@ -26,6 +26,11 @@ public class User {
     
     public User(){}
     
+    public User(String userid)
+    {
+        this.userid = userid;
+    }
+    
     public User(String userid, String password){
         this.userid = userid;
         this.password = password;
@@ -209,7 +214,7 @@ public class User {
                     + "Select '单味药粉', 0,'ComboMedicine','"+User+"' UNION ALL "
                     + "Select 'Disease', 0, 'DiseaseID','"+User+"' UNION ALL "
                     + "Select 'Prescription', 0, 'PrescriptionID','"+User+"' UNION ALL "
-                    + "Select 'isUpgrade', 0, 'Admin','"+User+"'";
+                    + "Select 'isUpgrade', 0, 'User','"+User+"'";
             
             st.executeUpdate(query);
             st.close();
@@ -220,11 +225,11 @@ public class User {
         }
     }
     
-    public String registerUser() throws SQLException
+    public String registerUser(String position) throws SQLException
     {
         try {
-            String query = "insert into User(userid,password) "
-                    + "Select '"+userid+"','"+password+"'";
+            String query = "insert into User(userid,password,position) "
+                    + "Select '"+userid+"','"+password+"','"+position+"'";
             System.out.println(query);
             st.executeUpdate(query);
             st.close();
@@ -278,6 +283,95 @@ public class User {
         String result = sql.AddEditDeleteQuery(query);
         setPassword(newPassword);
         return result;
+    }
+    
+    public Boolean ValidateUser(String username) throws SQLException
+    {
+        System.out.println(username);
+        int user = 0;
+        String isUpgrade = "Select count(1) as Number from User where userid = '"+username+"'";
+        rs = st.executeQuery(isUpgrade);
+        user = rs.getInt("Number");
+        if(user == 0)
+        {
+            rs.close();
+            return true;
+        }
+        else
+        {
+            rs.close();
+            return false;
+        }
+    }
+    
+    public Boolean ValidateAdmin(String username) throws SQLException
+    {
+        System.out.println(username);
+        int user = 0;
+        String isUpgrade = "Select count(1) as Number from User where userid = '"+username+"' and position = 'Admin'";
+        rs = st.executeQuery(isUpgrade);
+        user = rs.getInt("Number");
+        if(user == 0)
+        {
+            rs.close();
+            return true;
+        }
+        else
+        {
+            rs.close();
+            return false;
+        }
+    }
+    
+    public String DeleteUser(String User) throws SQLException{
+        String query = "Delete From User where userid ='"+User+"' and position ='Supervisor'";
+          
+        SQLQuery sql = new SQLQuery();
+        
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public String DeleteUsername(String user) throws SQLException
+    {
+        String query = "Delete From User where userid ='"+user+"'";
+        SQLQuery sql = new SQLQuery();
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public Boolean ValidateSupervisor() throws SQLException
+    {
+        int user = 0;
+        String isUpgrade = "Select count(1) as Number from User where position = 'Supervisor'";
+        rs = st.executeQuery(isUpgrade);
+        user = rs.getInt("Number");
+        if(user == 0)
+        {
+            rs.close();
+            return true;
+        }
+        else
+        {
+            rs.close();
+            return false;
+        }
+    }
+    
+    public List<User> comboName() throws SQLException{
+        List<User> name = new ArrayList<>();
+        String query = "Select userid from User where position ='Supervisor'";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 name.add(new User(rs.getString("userid")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        rs.close();
+        st.close();
+        return name;
     }
 }
 

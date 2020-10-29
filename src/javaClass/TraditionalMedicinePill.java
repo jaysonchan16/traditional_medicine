@@ -262,4 +262,10 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         SQLQuery sql = new SQLQuery();
         return sql.UpdateUser("TraditionalMedicinePill", oldUser, newUser);
     }
+    
+    public String DeleteUser(String user) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("TraditionalMedicinePill", user);
+    }
 }

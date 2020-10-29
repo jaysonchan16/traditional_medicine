@@ -5,6 +5,7 @@
  */
 package form;
 
+import java.sql.SQLException;
 import medical.LoginUI;
 import javaClass.User;
 import javax.swing.ImageIcon;
@@ -20,9 +21,12 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     private User user;
+    private String userid = "";
+    
     public MainMenu(User user) {
         initComponents();
         this.user = user;
+        userid = user.getUserid();
         this.lblName.setText(user.getUserid());
         image();
         setResizable(false);
@@ -601,18 +605,30 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMedicineMouseClicked
 
     private void imgSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgSettingMouseClicked
-        // TODO add your handling code here:
-        setting();
+        try {
+            // TODO add your handling code here:
+            setting();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_imgSettingMouseClicked
 
     private void lblSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSettingMouseClicked
-        // TODO add your handling code here:
-        setting();
+        try {
+            // TODO add your handling code here:
+            setting();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_lblSettingMouseClicked
 
     private void btnSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseClicked
-        // TODO add your handling code here:
-        setting();
+        try {
+            // TODO add your handling code here:
+            setting();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnSettingMouseClicked
 
     private void imgLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgLogoutMouseClicked
@@ -651,11 +667,22 @@ public class MainMenu extends javax.swing.JFrame {
         this.dispose();
     }
     
-    public void setting()
+    public void setting() throws SQLException
     {
-        SettingsMenu detail = new SettingsMenu(user);
-        detail.setVisible(true);
-        this.dispose();
+        User usert = new User();
+        boolean result = usert.ValidateAdmin(userid);
+        if(result)
+        {
+            SettingsMenuSupervisor visor = new SettingsMenuSupervisor(user);
+            visor.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            SettingsMenu detail = new SettingsMenu(user);
+            detail.setVisible(true);
+            this.dispose();
+        }
     }
     
     public void logout()

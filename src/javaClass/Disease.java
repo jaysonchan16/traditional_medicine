@@ -491,4 +491,10 @@ public class Disease extends Patient{
         SQLQuery sql = new SQLQuery();
         return sql.UpdateUser("Disease", oldUser, newUser);
     }
+    
+    public String DeleteUser(String user) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("Disease", user);
+    }
 }

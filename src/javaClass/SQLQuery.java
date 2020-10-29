@@ -44,4 +44,12 @@ public class SQLQuery {
         
         return AddEditDeleteQuery(query);
     }
+    
+    public String DeleteUser(String table, String User) throws SQLException
+    {
+        String query = "Delete From '"+table+"' Where User ='"+User+"'";
+        System.out.println(query);
+        
+        return AddEditDeleteQuery(query);
+    }
 }

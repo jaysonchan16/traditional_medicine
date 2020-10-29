@@ -236,4 +236,10 @@ public class GrassMedicinePill extends Medicine{//药丸
         SQLQuery sql = new SQLQuery();
         return sql.UpdateUser("GrassMedicinePill", oldUser, newUser);
     }
+    
+    public String DeleteUser(String user) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("GrassMedicinePill", user);
+    }
 }

@@ -5,8 +5,10 @@
  */
 package form;
 
+import java.sql.SQLException;
 import javaClass.User;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +20,16 @@ public class SettingsMenu extends javax.swing.JFrame {
      * Creates new form SettingsMenu
      */
     private User user;
+    private String userid ="";
     
     public SettingsMenu() {
         initComponents();
     }
     
-    public SettingsMenu(User user) {
+    public SettingsMenu(User user) throws SQLException {
         initComponents();
         this.user = user;
+        userid = user.getUserid();
         image();
         lblLoggedIn.setText(user.getUserid());
         setResizable(false);
@@ -149,7 +153,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnBack);
-        btnBack.setBounds(1180, 540, 470, 350);
+        btnBack.setBounds(1180, 530, 470, 350);
 
         btnDeleteAccount.setBackground(new java.awt.Color(204, 204, 255));
         btnDeleteAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -166,7 +170,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         });
 
         lblDeleteAccount.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        lblDeleteAccount.setText("删除账号");
+        lblDeleteAccount.setText("删除下线账号");
         lblDeleteAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblDeleteAccountMouseClicked(evt);
@@ -178,11 +182,13 @@ public class SettingsMenu extends javax.swing.JFrame {
         btnDeleteAccountLayout.setHorizontalGroup(
             btnDeleteAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnDeleteAccountLayout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addGroup(btnDeleteAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ImgDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(179, 179, 179)
+                .addComponent(ImgDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDeleteAccountLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDeleteAccount)
+                .addGap(127, 127, 127))
         );
         btnDeleteAccountLayout.setVerticalGroup(
             btnDeleteAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +201,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnDeleteAccount);
-        btnDeleteAccount.setBounds(250, 530, 470, 350);
+        btnDeleteAccount.setBounds(1180, 130, 470, 350);
 
         btnUpdateAccount.setBackground(new java.awt.Color(255, 204, 204));
         btnUpdateAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -241,7 +247,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         getContentPane().add(btnUpdateAccount);
-        btnUpdateAccount.setBounds(1180, 130, 470, 350);
+        btnUpdateAccount.setBounds(250, 530, 470, 350);
 
         btnAddAccount.setBackground(new java.awt.Color(204, 255, 204));
         btnAddAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -258,7 +264,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         });
 
         lblAddAccount.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        lblAddAccount.setText("注册账号");
+        lblAddAccount.setText("注册下线账号");
         lblAddAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAddAccountMouseClicked(evt);
@@ -270,11 +276,13 @@ public class SettingsMenu extends javax.swing.JFrame {
         btnAddAccountLayout.setHorizontalGroup(
             btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnAddAccountLayout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addGroup(btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ImgAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(179, 179, 179)
+                .addComponent(ImgAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAddAccountLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAddAccount)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnAddAccountLayout.setVerticalGroup(
             btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,15 +317,30 @@ public class SettingsMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void ImgDeleteAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImgDeleteAccountMouseClicked
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            delete();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_ImgDeleteAccountMouseClicked
 
     private void lblDeleteAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteAccountMouseClicked
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            delete();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_lblDeleteAccountMouseClicked
 
     private void btnDeleteAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteAccountMouseClicked
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            delete();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnDeleteAccountMouseClicked
 
     private void ImgUpdateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImgUpdateAccountMouseClicked
@@ -337,14 +360,17 @@ public class SettingsMenu extends javax.swing.JFrame {
 
     private void ImgAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImgAddAccountMouseClicked
         // TODO add your handling code here:
+        register();
     }//GEN-LAST:event_ImgAddAccountMouseClicked
 
     private void lblAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddAccountMouseClicked
         // TODO add your handling code here:
+        register();
     }//GEN-LAST:event_lblAddAccountMouseClicked
 
     private void btnAddAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddAccountMouseClicked
         // TODO add your handling code here:
+        register();
     }//GEN-LAST:event_btnAddAccountMouseClicked
 
     public void back()
@@ -359,6 +385,28 @@ public class SettingsMenu extends javax.swing.JFrame {
         ChangePassword pass = new ChangePassword(user);
         pass.setVisible(true);
         this.dispose();
+    }
+    
+    public void register()
+    {
+        RegisterSupervisor visor = new RegisterSupervisor(user);
+        visor.setVisible(true);
+        this.dispose();
+    }
+    
+    public void delete() throws SQLException
+    {
+        User usert = new User();
+        if(usert.ValidateSupervisor())
+        {
+            JOptionPane.showMessageDialog(rootPane, "没有第二个账号！");
+        }
+        else
+        {   
+            DeleteSupervisorAcc acc = new DeleteSupervisorAcc(user);
+            acc.setVisible(true);
+            this.dispose();
+        }
     }
     
     public void image()
@@ -376,6 +424,8 @@ public class SettingsMenu extends javax.swing.JFrame {
         ImageIcon iconSettings = new ImageIcon(getClass().getResource("/menu/settingsmedium.png"));
         findHeader.setIcon(iconSettings);
     }
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -14,6 +14,7 @@ import javaClass.Patient;
 import javaClass.TraditionalMedicinePill;
 import javaClass.TraditionalMedicinePotion;
 import javaClass.User;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,7 @@ public class ChangePassword extends javax.swing.JFrame {
      * Creates new form ChangePassword
      */
     private User user;
+    private String userid = "";
     
     public ChangePassword() {
         initComponents();
@@ -35,7 +37,10 @@ public class ChangePassword extends javax.swing.JFrame {
     {
         this.user = user;
         initComponents();
-        lblName.setText(user.getUserid());
+        userid = user.getUserid();
+        lblName.setText(userid);
+        image();
+        setResizable(false);
         
     }
     /**
@@ -65,7 +70,7 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtOldID = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
-        btnFind = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         txtConfirmPassword = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtOldPassword = new javax.swing.JPasswordField();
@@ -162,16 +167,16 @@ public class ChangePassword extends javax.swing.JFrame {
         panelBody.add(btnBack);
         btnBack.setBounds(240, 640, 130, 50);
 
-        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnFind.setText("更改");
-        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnUpdate.setText("更改");
+        btnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        panelBody.add(btnFind);
-        btnFind.setBounds(1110, 640, 130, 50);
+        panelBody.add(btnUpdate);
+        btnUpdate.setBounds(1110, 640, 130, 50);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtConfirmPassword);
@@ -224,20 +229,35 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmIDActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        SettingsMenu menu = new SettingsMenu(user);
-        menu.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            User usert = new User();
+            boolean result = usert.ValidateAdmin(userid);
+            if(result)
+            {
+                SettingsMenuSupervisor visor = new SettingsMenuSupervisor(user);
+                visor.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                SettingsMenu detail = new SettingsMenu(user);
+                detail.setVisible(true);
+                this.dispose();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             // TODO add your handling code here:
             Find();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_btnFindActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     public void Find() throws SQLException
     {
@@ -247,6 +267,7 @@ public class ChangePassword extends javax.swing.JFrame {
         String oldPassword = txtOldPassword.getText();
         String newPassword = txtNewPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
+        boolean resultValidateUsername = user.ValidateUser(userid);
         
         if(newID.equalsIgnoreCase(confirmID))
         {
@@ -256,121 +277,128 @@ public class ChangePassword extends javax.swing.JFrame {
             }
             else if(oldID.equalsIgnoreCase(user.getUserid()))
             {
-                User user = new User();
-                Code code = new Code();
-                Disease disease = new Disease();
-                GrassMedicinePill  medicinepill = new GrassMedicinePill();
-                GrassMedicinePotion medicinepotion = new GrassMedicinePotion();
-                Patient  patient = new Patient();
-                TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
-                TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
-                String resultDisease = disease.UpdateUser(oldID, newID);
-                String resultCode = code.UpdateUser(oldID, newID);
-                String resultmedicinepill = medicinepill.UpdateUser(oldID, newID);
-                String resultmedicinepotion = medicinepotion.UpdateUser(oldID, newID);
-                String resultpatient = patient.UpdateUser(oldID, newID);
-                String resulttraditionalpill = traditionalpill.UpdateUser(oldID, newID);
-                String resulttraditionalpotion = traditionalpotion.UpdateUser(oldID, newID);
-                String resultUser = user.UpdateUsername(oldID, newID);
-                
-                if(!oldID.equalsIgnoreCase("") && !newID.equalsIgnoreCase("") && !confirmID.equalsIgnoreCase(""))
+                if(resultValidateUsername)
                 {
-                    if(resultDisease != null && resultDisease.equalsIgnoreCase("1"))
+                    User user = new User();
+                    Code code = new Code();
+                    Disease disease = new Disease();
+                    GrassMedicinePill  medicinepill = new GrassMedicinePill();
+                    GrassMedicinePotion medicinepotion = new GrassMedicinePotion();
+                    Patient  patient = new Patient();
+                    TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+                    TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+                    String resultDisease = disease.UpdateUser(oldID, newID);
+                    String resultCode = code.UpdateUser(oldID, newID);
+                    String resultmedicinepill = medicinepill.UpdateUser(oldID, newID);
+                    String resultmedicinepotion = medicinepotion.UpdateUser(oldID, newID);
+                    String resultpatient = patient.UpdateUser(oldID, newID);
+                    String resulttraditionalpill = traditionalpill.UpdateUser(oldID, newID);
+                    String resulttraditionalpotion = traditionalpotion.UpdateUser(oldID, newID);
+                    String resultUser = user.UpdateUsername(oldID, newID);
+
+                    if(!oldID.equalsIgnoreCase("") && !newID.equalsIgnoreCase("") && !confirmID.equalsIgnoreCase(""))
                     {
-                        if(resultmedicinepill != null && resultmedicinepill.equalsIgnoreCase("1"))
+                        if(resultDisease != null && resultDisease.equalsIgnoreCase("1"))
                         {
-                            if(resultmedicinepotion != null && resultmedicinepotion.equalsIgnoreCase("1"))
+                            if(resultmedicinepill != null && resultmedicinepill.equalsIgnoreCase("1"))
                             {
-                                if(resultpatient != null && resultpatient.equalsIgnoreCase("1"))
+                                if(resultmedicinepotion != null && resultmedicinepotion.equalsIgnoreCase("1"))
                                 {
-                                    if(resulttraditionalpill != null && resulttraditionalpill.equalsIgnoreCase("1"))
+                                    if(resultpatient != null && resultpatient.equalsIgnoreCase("1"))
                                     {
-                                        if(resulttraditionalpotion != null && resulttraditionalpotion.equalsIgnoreCase("1"))
+                                        if(resulttraditionalpill != null && resulttraditionalpill.equalsIgnoreCase("1"))
                                         {
-                                            if(resultCode != null && resultCode.equalsIgnoreCase("1"))
+                                            if(resulttraditionalpotion != null && resulttraditionalpotion.equalsIgnoreCase("1"))
                                             {
-                                                if(resultUser != null && resultUser.equalsIgnoreCase("1"))
+                                                if(resultCode != null && resultCode.equalsIgnoreCase("1"))
                                                 {
-                                                    JOptionPane.showMessageDialog(rootPane, "ID 更改！");
-                                                    lblName.setText(user.getUserid());
-                                                    this.user = user;
-                                                    UpdatePassword(newPassword, confirmPassword, oldPassword,newID);
+                                                    if(resultUser != null && resultUser.equalsIgnoreCase("1"))
+                                                    {
+                                                        JOptionPane.showMessageDialog(rootPane, "ID 更改！");
+                                                        lblName.setText(user.getUserid());
+                                                        this.user = user;
+                                                        UpdatePassword(newPassword, confirmPassword, oldPassword,newID);
+                                                    }
+                                                    else
+                                                    {
+                                                        JOptionPane.showMessageDialog(rootPane, "ID不能更改！");
+                                                        disease.UpdateUser(oldID, user.getUserid());
+                                                        medicinepill.UpdateUser(oldID, user.getUserid());
+                                                        medicinepotion.UpdateUser(oldID, user.getUserid());
+                                                        patient.UpdateUser(oldID, user.getUserid());
+                                                        traditionalpill.UpdateUser(oldID, user.getUserid());
+                                                        traditionalpotion.UpdateUser(oldID, user.getUserid());
+                                                        user.UpdateUsername(oldID, user.getUserid());
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    JOptionPane.showMessageDialog(rootPane, "ID不能更改！");
+                                                    JOptionPane.showMessageDialog(rootPane, "系统 ID 在 database不能更改！");
                                                     disease.UpdateUser(oldID, user.getUserid());
                                                     medicinepill.UpdateUser(oldID, user.getUserid());
                                                     medicinepotion.UpdateUser(oldID, user.getUserid());
                                                     patient.UpdateUser(oldID, user.getUserid());
                                                     traditionalpill.UpdateUser(oldID, user.getUserid());
                                                     traditionalpotion.UpdateUser(oldID, user.getUserid());
-                                                    user.UpdateUsername(oldID, user.getUserid());
                                                 }
                                             }
                                             else
                                             {
-                                                JOptionPane.showMessageDialog(rootPane, "系统 ID 在 database不能更改！");
+                                                JOptionPane.showMessageDialog(rootPane, "复方药粉 ID 在 database不能更改！");
                                                 disease.UpdateUser(oldID, user.getUserid());
                                                 medicinepill.UpdateUser(oldID, user.getUserid());
                                                 medicinepotion.UpdateUser(oldID, user.getUserid());
                                                 patient.UpdateUser(oldID, user.getUserid());
                                                 traditionalpill.UpdateUser(oldID, user.getUserid());
-                                                traditionalpotion.UpdateUser(oldID, user.getUserid());
                                             }
                                         }
                                         else
                                         {
-                                            JOptionPane.showMessageDialog(rootPane, "复方药粉 ID 在 database不能更改！");
+                                            JOptionPane.showMessageDialog(rootPane, "单味药粉 ID 在 database不能更改！");
                                             disease.UpdateUser(oldID, user.getUserid());
                                             medicinepill.UpdateUser(oldID, user.getUserid());
                                             medicinepotion.UpdateUser(oldID, user.getUserid());
                                             patient.UpdateUser(oldID, user.getUserid());
-                                            traditionalpill.UpdateUser(oldID, user.getUserid());
                                         }
                                     }
                                     else
                                     {
-                                        JOptionPane.showMessageDialog(rootPane, "单味药粉 ID 在 database不能更改！");
+                                        JOptionPane.showMessageDialog(rootPane, "病人database不能更改！");
                                         disease.UpdateUser(oldID, user.getUserid());
                                         medicinepill.UpdateUser(oldID, user.getUserid());
                                         medicinepotion.UpdateUser(oldID, user.getUserid());
-                                        patient.UpdateUser(oldID, user.getUserid());
                                     }
                                 }
                                 else
                                 {
-                                    JOptionPane.showMessageDialog(rootPane, "病人database不能更改！");
+                                    JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
                                     disease.UpdateUser(oldID, user.getUserid());
                                     medicinepill.UpdateUser(oldID, user.getUserid());
-                                    medicinepotion.UpdateUser(oldID, user.getUserid());
                                 }
                             }
                             else
                             {
                                 JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
                                 disease.UpdateUser(oldID, user.getUserid());
-                                medicinepill.UpdateUser(oldID, user.getUserid());
                             }
                         }
                         else
                         {
-                            JOptionPane.showMessageDialog(rootPane, "药丸 ID 在 database不能更改！");
-                            disease.UpdateUser(oldID, user.getUserid());
+                            JOptionPane.showMessageDialog(rootPane, "病症 ID 在 database不能更改！");
                         }
+                    }
+                    else if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase(""))
+                    {
+                        UpdatePassword(newPassword, confirmPassword, oldPassword,user.getUserid());
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(rootPane, "病症 ID 在 database不能更改！");
+                        JOptionPane.showMessageDialog(rootPane, "ID 资料没填");
                     }
-                }
-                else if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase(""))
-                {
-                    UpdatePassword(newPassword, confirmPassword, oldPassword,user.getUserid());
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(rootPane, "ID 资料没填");
+                    JOptionPane.showMessageDialog(rootPane, "ID 已用过！");
                 }
             }
             else
@@ -411,6 +439,21 @@ public class ChangePassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "密码不一致！");
         }
     }
+    
+    public void image()
+    {
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        btnUpdate.setIcon(iconModify);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/accountmedium.png"));
+        findHeader.setIcon(iconHeader);
+        this.lblName.setText(userid);
+        setResizable(false);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -448,7 +491,7 @@ public class ChangePassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

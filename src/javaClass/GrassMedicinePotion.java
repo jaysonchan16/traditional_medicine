@@ -234,4 +234,10 @@ public class GrassMedicinePotion extends Medicine {// 药水
         SQLQuery sql = new SQLQuery();
         return sql.UpdateUser("GrassMedicinePotion", oldUser, newUser);
     }
+    
+    public String DeleteUser(String user) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("GrassMedicinePotion", user);
+    }
 }

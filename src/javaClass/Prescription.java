@@ -568,6 +568,10 @@ public class Prescription extends Disease{
         return sql.UpdateUser("Prescription", oldUser, newUser);
     }
 
-
+    public String DeleteUser(String User) throws SQLException
+    {
+        SQLQuery sql = new SQLQuery();
+        return sql.DeleteUser("Prescription", user);
+    }
     
 }
