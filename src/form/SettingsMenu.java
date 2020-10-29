@@ -184,11 +184,11 @@ public class SettingsMenu extends javax.swing.JFrame {
             .addGroup(btnDeleteAccountLayout.createSequentialGroup()
                 .addGap(179, 179, 179)
                 .addComponent(ImgDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDeleteAccountLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(166, Short.MAX_VALUE)
                 .addComponent(lblDeleteAccount)
-                .addGap(152, 152, 152))
+                .addGap(150, 150, 150))
         );
         btnDeleteAccountLayout.setVerticalGroup(
             btnDeleteAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
