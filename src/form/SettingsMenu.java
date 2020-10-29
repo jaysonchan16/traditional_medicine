@@ -188,7 +188,7 @@ public class SettingsMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDeleteAccountLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDeleteAccount)
-                .addGap(127, 127, 127))
+                .addGap(152, 152, 152))
         );
         btnDeleteAccountLayout.setVerticalGroup(
             btnDeleteAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +276,13 @@ public class SettingsMenu extends javax.swing.JFrame {
         btnAddAccountLayout.setHorizontalGroup(
             btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnAddAccountLayout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(ImgAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137)
+                .addGroup(btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAddAccount)
+                    .addGroup(btnAddAccountLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(ImgAddAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(179, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAddAccountLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblAddAccount)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnAddAccountLayout.setVerticalGroup(
             btnAddAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

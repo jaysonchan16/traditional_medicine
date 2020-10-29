@@ -257,6 +257,7 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
             }
             else
             {
+                comboUser.removeAllItems();
                 for(int i = 0; i < usert.comboName().size(); i++)
                 {
                     comboUser.addItem(usert.comboName().get(i).getUserid());
