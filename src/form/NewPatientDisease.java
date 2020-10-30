@@ -50,8 +50,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
     private String userid = "";
-    HashMap<String,String> weight;
-    
+    HashMap<String,String> weightTraditionalMedicinePill;
+    HashMap<String,String> weightTraditionalMedicinePotion;
+    HashMap<String,String> weightGrassMedicinePill;
+    HashMap<String,String> weightGrassMedicinePotion;
+
     public NewPatientDisease(User user) throws SQLException {
         initComponents();
         this.user = user;
@@ -1118,8 +1121,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 TraditionalMedicinePill pill = new TraditionalMedicinePill();
                 medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                
-                txtRemaining.setText(String.valueOf(medicList.get(0).getGram()));
+                weightTraditionalMedicinePill.put(medicList.get(0).getName(), String.valueOf(medicList.get(0).getGram()));
+                txtRemaining.setText(weightTraditionalMedicinePill.get(medicList.get(0).getName()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
@@ -1127,7 +1130,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 GrassMedicinePotion potion = new GrassMedicinePotion();
                 medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                
+                weightGrassMedicinePotion.put(medicList.get(0).getName(), String.valueOf(medicList.get(0).getGram()));
                 txtRemaining.setText(String.valueOf(medicList.get(0).getGram()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
@@ -1136,6 +1139,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 GrassMedicinePill pill = new GrassMedicinePill();
                 medicList = pill.findGrassMedicinePillDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                weightGrassMedicinePill.put(medicList.get(0).getName(), String.valueOf(medicList.get(0).getGram()));
                 txtRemaining.setText(String.valueOf(medicList.get(0).getGram()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
@@ -1144,6 +1148,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
                 medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+                weightTraditionalMedicinePotion.put(medicList.get(0).getName(), String.valueOf(medicList.get(0).getGram()));
                 txtRemaining.setText(String.valueOf(medicList.get(0).getGram()));
             }
         }
