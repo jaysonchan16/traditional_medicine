@@ -1215,6 +1215,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String medicine = (String)comboBoxMedicine.getSelectedItem();
         System.out.println("name:"+name);
         System.out.println("medicine:"+medicine);
+        
         try
         {
             if(medicine.equalsIgnoreCase("单味药粉"))
@@ -1222,28 +1223,48 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 TraditionalMedicinePill pill = new TraditionalMedicinePill();
                 txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
                 txtMedicineID.setText(pill.findTraditionalMedicinePillName(name,userid).get(0).getCode());
-                txtRemaining.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getGram()));
+                txtWeight.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getGram()));
+                String jiliang = spinnerJiLiang.getValue().toString();
+                float weight = Float.valueOf(txtWeight.getText());
+                float jiliang1 = Float.valueOf(jiliang);
+                float remaining = weight - jiliang1;
+                txtRemaining.setText(String.valueOf(remaining));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
                 GrassMedicinePotion pill = new GrassMedicinePotion();
                 txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
                 txtMedicineID.setText(pill.findGrassMedicinePotionName(name,userid).get(0).getCode());
-                txtRemaining.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getGram()));
+                txtWeight.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getGram()));
+                String jiliang = spinnerJiLiang.getValue().toString();
+                float weight = Float.valueOf(txtWeight.getText());
+                float jiliang1 = Float.valueOf(jiliang);
+                float remaining = weight - jiliang1;
+                txtRemaining.setText(String.valueOf(remaining));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
                 GrassMedicinePill pill =new GrassMedicinePill();
                 txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
                 txtMedicineID.setText(pill.findGrassMedicinePillName(name,userid).get(0).getCode());
-                txtRemaining.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getGram()));
+                txtWeight.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getGram()));
+                String jiliang = spinnerJiLiang.getValue().toString();
+                float weight = Float.valueOf(txtWeight.getText());
+                float jiliang1 = Float.valueOf(jiliang);
+                float remaining = weight - jiliang1;
+                txtRemaining.setText(String.valueOf(remaining));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
                 txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
                 txtMedicineID.setText(potion.findTraditionalMedicinePotionName(name,userid).get(0).getCode());
-                txtRemaining.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getGram()));
+                txtWeight.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getGram()));
+                String jiliang = spinnerJiLiang.getValue().toString();
+                float weight = Float.valueOf(txtWeight.getText());
+                float jiliang1 = Float.valueOf(jiliang);
+                float remaining = weight - jiliang1;
+                txtRemaining.setText(String.valueOf(remaining));
             }
         }
         catch(SQLException ex)
