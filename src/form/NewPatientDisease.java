@@ -766,7 +766,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private void btnAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRowActionPerformed
         // TODO add your handling code here:
         float remaining = Float.valueOf(txtRemaining.getText());
-        if(remaining > 0.0)
+        if(remaining >= 0.0)
         {
             if(save.isEmpty())
             {
@@ -898,7 +898,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         // TODO add your handling code here:
         float remaining = Float.valueOf(txtRemaining.getText());
         
-        if(remaining > 0.0)
+        if(remaining >= 0.0)
         {
             if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
             {
