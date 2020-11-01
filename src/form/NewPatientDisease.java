@@ -56,6 +56,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     HashMap<String,String> weightGrassMedicinePill = new HashMap<String,String>();
     HashMap<String,String> weightGrassMedicinePotion = new HashMap<String,String>();
     
+
     public NewPatientDisease(User user) throws SQLException {
         initComponents();
         this.user = user;
@@ -1170,6 +1171,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
                 weightTraditionalMedicinePill.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
@@ -1190,6 +1192,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
                 weightGrassMedicinePill.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
                 txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
+
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
