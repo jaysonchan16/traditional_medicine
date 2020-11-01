@@ -294,11 +294,12 @@ public class Prescription extends Disease{
         this.createDateTime = createDateTime;
     }
     
-    public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode, String user)
+    public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode, String user, String remaining, String medicineID)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code = new Code();
+            String result;
             HashMap<String, String> map = new HashMap<String,String>();
             map = code.validateID(maintcode,user);
             if(map.get("messages").equalsIgnoreCase(""))
@@ -307,9 +308,47 @@ public class Prescription extends Disease{
                         + "Select '"+map.get("data")+"', trim('"+chufang+"'), trim('"+categorytable+"'), trim('"+nametable+"'), trim('"+jiliang+"'),"
                         + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"')";
                 SQLQuery sql = new SQLQuery();
-                returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
-                returnMessage.put("ID", map.get("data"));
-                return returnMessage;
+                //returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+                
+                if(sql.AddEditDeleteQuery(query).equalsIgnoreCase("1"))
+                {
+                    returnMessage.put("ID", map.get("data"));
+                    if(categorytable.equalsIgnoreCase("复方药粉"))
+                    {
+                        String query1 = "Update TraditionalMedicinePotion Set gram = trim('"+remaining+"') "
+                                    + " where ID = '"+medicineID+"' and User = '"+user+"'";
+                        System.out.println(query1);
+                        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query1));
+                    }
+                    else if(categorytable.equalsIgnoreCase("药丸"))
+                    {
+                        String query1 = "Update GrassMedicinePill Set gram = trim('"+remaining+"') "
+                                    + " where ID = '"+medicineID+"' and User = '"+user+"'";
+                        System.out.println(query1);
+                        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query1));
+                    }
+                    else if(categorytable.equalsIgnoreCase("药水"))
+                    {
+                        String query1 = "Update GrassMedicinePotion Set gram = trim('"+remaining+"') "
+                                    + " where ID = '"+medicineID+"' and User = '"+user+"'";
+                        System.out.println(query1);
+                        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query1));
+                    }
+                    else if(categorytable.equalsIgnoreCase("单味药粉"))
+                    {
+                        String query1 = "Update TraditionalMedicinePill Set gram = trim('"+remaining+"') "
+                                    + " where ID = '"+medicineID+"' and User = '"+user+"'";
+                        System.out.println(query1);
+                        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query1));
+                    }
+                    return returnMessage;
+                }
+                else
+                {
+                    returnMessage.put("returnMessage","Insert database Prescription error, "+map.get("messages"));
+                    returnMessage.put("ID", "");
+                    return returnMessage;
+                }
             }
             else
             {

@@ -296,8 +296,7 @@ public class Patient {
         } 
         catch (NullPointerException e)
         {
-            //throw(new NoSuchElementException(e.getMessage()));
-            return new Patient("1");
+            throw(new NoSuchElementException(e.getMessage()));
         }
         finally{
             rs.close();

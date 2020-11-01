@@ -45,6 +45,16 @@ public class Medicine {
         this.user = user;
     }
     
+    public Medicine(String name, float sellprice, float gram, String code, String medicine, String user)
+    {
+        this.name = name;
+        this.sellprice = sellprice;
+        this.gram = gram;
+        this.code = code;
+        this.medicine = medicine;
+        this.user = user;
+    }
+    
     public Medicine(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
         this.name = name;
         this.effect = effect;

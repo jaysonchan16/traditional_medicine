@@ -302,11 +302,12 @@ public class NewPatient extends javax.swing.JFrame {
                 if (map.get("returnMessage").equalsIgnoreCase("1")) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功,你的ID是：" +map.get("ID"));
                     try {
-                        if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,"0",userid).getIC().equalsIgnoreCase(IC)) {
-                            diseasepage = new NewPatientDisease(user, patient.getPatient(DiseaseIC,"0",userid).getID(),
+                        System.out.println("DiseaseIC:"+DiseaseIC);
+                        if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,map.get("ID"),userid).getIC().equalsIgnoreCase(IC)) {
+                            diseasepage = new NewPatientDisease(user, map.get("ID"),
                                     DiseaseIC,
-                                    patient.getPatient(DiseaseIC,"0",userid).getName(),
-                                    patient.getPatient(DiseaseIC,"0",userid).getPhone());
+                                    patient.getPatient(DiseaseIC,map.get("ID"),userid).getName(),
+                                    patient.getPatient(DiseaseIC,map.get("ID"),userid).getPhone());
                             diseasepage.setVisible(true);
                             this.dispose();
                         }

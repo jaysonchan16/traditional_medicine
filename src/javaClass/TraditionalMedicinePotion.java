@@ -37,6 +37,10 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         super(name,user);
     }
     
+    public TraditionalMedicinePotion(String name, float sellprice, float gram, String code, String medicine, String user){
+        super(name,sellprice,gram,code,medicine,user);
+    }
+    
     public TraditionalMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime,String code,String medicine,String user){
         super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine, user);
     }
@@ -203,22 +207,29 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         return name;
     }
     
-    public String findTraditionalMedicinePotionName(String name, String User) throws SQLException{
-        
-        String query = "Select sellprice from TraditionalMedicinePotion where name='"+name+"' and User='"+User+"' order by 1 desc";
+    public List<TraditionalMedicinePotion> findTraditionalMedicinePotionName(String name, String User) throws SQLException{
+        List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
+        String query = "Select ID,name,sellprice,gram,medicine,User from TraditionalMedicinePotion where name='"+name+"' and User='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
-            return rs.getString("sellprice");
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),
+                        rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
+                        rs.getString("User")));
+            } 
         } 
         catch (Exception e)
         {
-            return "TraditionalMedicinePotion.findTraditionalMedicinePotionName get error on line 208"+e.getMessage();
+            throw(new NoSuchElementException(e.getMessage()));
         }
-        finally
-        {
+        finally{
             rs.close();
             st.close();
         }
+        rs.close();
+        st.close();  
+        return traditionalMedicinePotionList;
     }
     
     public String countTraditionalMedicinePotion(String User) throws SQLException

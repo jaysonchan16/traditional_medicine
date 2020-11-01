@@ -35,6 +35,10 @@ public class GrassMedicinePotion extends Medicine {// 药水
         super(name,user);
     }
     
+    public GrassMedicinePotion(String name, float sellprice, float gram, String code, String medicine, String user){
+        super(name,sellprice,gram,code,medicine,user);
+    }
+    
     public GrassMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
         super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine,user);
     }
@@ -194,21 +198,29 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return name;
     }
     
-    public String findGrassMedicinePotionName(String name, String User) throws SQLException{
-        
-        String query = "Select sellprice from GrassMedicinePotion where name='"+name+"' and User = '"+User+"' order by 1 desc";
+    public List<GrassMedicinePotion> findGrassMedicinePotionName(String name, String User) throws SQLException{
+        List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
+        String query = "Select ID,name,sellprice,gram,medicine,User from GrassMedicinePotion where name='"+name+"' and User = '"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
-            return rs.getString("sellprice");
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),
+                        rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
+                        rs.getString("User")));
+            } 
         } 
         catch (Exception e)
         {
-            return e.getMessage();
+            throw(new NoSuchElementException(e.getMessage()));
         }
         finally{
             rs.close();
             st.close();
         }
+        rs.close();
+        st.close();  
+        return grassMedicinePotionList;
     }
     
     public String countGrassMedicinePotionName(String User) throws SQLException

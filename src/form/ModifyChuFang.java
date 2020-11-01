@@ -850,26 +850,22 @@ public class ModifyChuFang extends javax.swing.JFrame {
             if(medicine.equalsIgnoreCase("单味药粉"))
             {
                 TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                price = pill.findTraditionalMedicinePillName(name,userid);
-                txtPrice.setText(price);
+                txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
                 GrassMedicinePotion pill = new GrassMedicinePotion();
-                price = pill.findGrassMedicinePotionName(name,userid);
-                txtPrice.setText(price);
+                txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
                 GrassMedicinePill pill =new GrassMedicinePill();
-                price = pill.findGrassMedicinePillName(name,userid);
-                txtPrice.setText(price);
+                txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                price = potion.findTraditionalMedicinePotionName(name,userid);
-                txtPrice.setText(price);
+                txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
             }
         }
         catch(SQLException ex)

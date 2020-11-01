@@ -37,6 +37,10 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         super(name,user);
     }
     
+    public TraditionalMedicinePill(String name, float sellprice,float gram, String code, String medicine, String user){
+        super(name,sellprice,gram,code,medicine,user);
+    }
+    
     public TraditionalMedicinePill(String name, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String property, String appliance, String code,String medicine, String user){
         super(name,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine, user);
         this.appliance = appliance;
@@ -221,22 +225,29 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         return name;
     }
     
-    public String findTraditionalMedicinePillName(String name, String User) throws SQLException{
-        
-        String query = "Select sellprice from TraditionalMedicinePill where name='"+name+"' and User = '"+User+"' order by 1 desc";
+    public List<TraditionalMedicinePill> findTraditionalMedicinePillName(String name, String User) throws SQLException{
+        List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
+        String query = "Select ID,name,sellprice,gram,medicine,User from TraditionalMedicinePill where name='"+name+"' and User = '"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
-            return rs.getString("sellprice");
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name"),
+                        rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
+                        rs.getString("User")));
+            } 
         } 
         catch (Exception e)
         {
-            return e.getMessage();
+            throw(new NoSuchElementException(e.getMessage()));
         }
-        finally
-        {
+        finally{
             rs.close();
             st.close();
         }
+        rs.close();
+        st.close();  
+        return traditionalMedicinePillList;
     }
     
     public String countTraditionalMedicinePillName(String User) throws SQLException

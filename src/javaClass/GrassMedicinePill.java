@@ -34,6 +34,11 @@ public class GrassMedicinePill extends Medicine{//药丸
     public GrassMedicinePill(String name, String user){
         super(name,user);
     }
+    
+    public GrassMedicinePill(String name, float sellprice, float gram, String code, String medicine, String user){
+        super(name,sellprice,gram,code,medicine,user);
+    }
+    
     public GrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
         super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code,medicine,user);
     }
@@ -196,21 +201,29 @@ public class GrassMedicinePill extends Medicine{//药丸
         return name;
     }
     
-    public String findGrassMedicinePillName(String name, String User) throws SQLException{
-        
-        String query = "Select sellprice from GrassMedicinePill where name='"+name+"' and User ='"+User+"' order by 1 desc";
+    public List<GrassMedicinePill> findGrassMedicinePillName(String name, String User) throws SQLException{
+        List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
+        String query = "Select ID,name,sellprice,gram,medicine,User from GrassMedicinePill where name='"+name+"' and User ='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
-            return rs.getString("sellprice");
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),
+                        rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
+                        rs.getString("User")));
+            } 
         } 
         catch (Exception e)
         {
-            return e.getMessage();
+            throw(new NoSuchElementException(e.getMessage()));
         }
         finally{
             rs.close();
             st.close();
         }
+        rs.close();
+        st.close();  
+        return grassMedicinePillList;
     }
     
     public String countGrassMedicinePillName(String User) throws SQLException
