@@ -168,10 +168,7 @@ public class StorageForm extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "药", "病症分类", "本钱", "ID", "重量", "价格"
@@ -204,12 +201,10 @@ public class StorageForm extends javax.swing.JFrame {
         btnBack.setBounds(180, 780, 130, 50);
 
         jComboBox1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelBody.add(jComboBox1);
         jComboBox1.setBounds(170, 180, 170, 40);
 
         jComboBox2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panelBody.add(jComboBox2);
         jComboBox2.setBounds(170, 70, 170, 40);
 

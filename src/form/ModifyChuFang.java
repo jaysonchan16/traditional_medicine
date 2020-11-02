@@ -70,8 +70,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         userid = user.getUserid();
         textboxShow();
         createColumns();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         medicineCategory();
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         show_table();
         widthTable();
         image();
@@ -105,8 +105,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         userid = user.getUserid();
         createColumns();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         medicineCategory();
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         txtPrice.setText("");
         show_table();
         widthTable();
