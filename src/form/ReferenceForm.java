@@ -5,6 +5,8 @@
  */
 package form;
 
+import javaClass.User;
+
 /**
  *
  * @author Sheng
@@ -14,10 +16,15 @@ public class ReferenceForm extends javax.swing.JFrame {
     /**
      * Creates new form ReferenceForm
      */
+    private User user;
+    
     public ReferenceForm() {
         initComponents();
     }
 
+    public ReferenceForm(User user) {
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

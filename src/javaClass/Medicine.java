@@ -29,6 +29,8 @@ public class Medicine {
     private String code;
     private String medicine;
     private String user;
+    private String appliance;
+    private String property;
     protected Statement st = connect.connection();
     ResultSet rs;
     
@@ -83,6 +85,24 @@ public class Medicine {
         this.code = code;
         this.medicine = medicine;
         this.user = user;
+    }
+
+    public Medicine(String name,String component, String indications, String property, String appliance,String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
+        this.name = name;
+        this.component = component;
+        this.indications = indications;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.sellprice = sellprice;
+        this.gram = gram;
+        this.cost = cost;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.createDateTime = createDateTime;
+        this.code = code;
+        this.medicine = medicine;
+        this.user = user;
+        this.property = property;
+        this.appliance = appliance;
     }
     
     /**
@@ -261,6 +281,33 @@ public class Medicine {
     }
 
     /**
+     * @return the appliance
+     */
+    public String getAppliance() {
+        return appliance;
+    }
+
+    /**
+     * @param appliance the appliance to set
+     */
+    public void setAppliance(String appliance) {
+        this.appliance = appliance;
+    }
+
+    /**
+     * @return the property
+     */
+    public String getProperty() {
+        return property;
+    }
+
+    /**
+     * @param property the property to set
+     */
+    public void setProperty(String property) {
+        this.property = property;
+    }
+    /**
      * @param user the user to set
      */
     public void setUser(String user) {
@@ -272,17 +319,17 @@ public class Medicine {
      String query = "";
      if(contribute1.equalsIgnoreCase(""))
      {
-        query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"'";
+        query = "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
+                + "Select ID, name, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"'";
      }
      else
      {
-         query = "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, component, effect, indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, property as component, effect, appliance as indications, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"'";
+         query = "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
+                + "Select ID, name, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"'";
 
      }
         System.out.println(query);
@@ -290,8 +337,8 @@ public class Medicine {
         try {
             while (rs.next()) {
                  medicineList.add(new Medicine(rs.getString("name"),
-                         rs.getString("component"),rs.getString("effect"),
-                         rs.getString("indications"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
+                         rs.getString("component"),rs.getString("indications"), rs.getString("property"),rs.getString("appliance"),
+                         rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
                          rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"), rs.getString("User")));
             } 
         } 
@@ -305,19 +352,19 @@ public class Medicine {
     public List<Medicine> getAllDetail(String User) throws SQLException{
         List<Medicine> medicineList = new ArrayList<>();
          
-         String query = "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where User ='"+User+"' UNION ALL "
-                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where User ='"+User+"' UNION ALL "
-                + "Select ID, name, component, indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where User ='"+User+"' UNION ALL "
-                + "Select ID, name, property as component, appliance as indications, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where User ='"+User+"'";
+         String query = "Select ID, name, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where User ='"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where User ='"+User+"' UNION ALL "
+                + "Select ID, name, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where User ='"+User+"' UNION ALL "
+                + "Select ID, name, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where User ='"+User+"'";
 
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                  medicineList.add(new Medicine(rs.getString("name"),
-                         rs.getString("component"),rs.getString("indications"),
+                         rs.getString("component"),rs.getString("indications"), rs.getString("property"),rs.getString("appliance"),
                          rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
-                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"),rs.getString("User")));
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"), rs.getString("User")));
             } 
         } 
         catch (Exception e)
@@ -326,6 +373,8 @@ public class Medicine {
         }
         return medicineList;
     }
+
+    
 
     
 

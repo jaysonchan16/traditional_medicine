@@ -515,17 +515,30 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imgStorageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgStorageMouseClicked
-        // TODO add your handling code here:
-
+        try {
+            // TODO add your handling code here:
+            storage();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_imgStorageMouseClicked
 
     private void lblStorageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblStorageMouseClicked
-        // TODO add your handling code here:
-
+        try {
+            // TODO add your handling code here:
+            storage();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_lblStorageMouseClicked
 
     private void btnStorageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStorageMouseClicked
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            storage();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 
     }//GEN-LAST:event_btnStorageMouseClicked
 
@@ -561,32 +574,32 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void imgProfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgProfitMouseClicked
         // TODO add your handling code here:
-
+        profit();
     }//GEN-LAST:event_imgProfitMouseClicked
 
     private void lblProfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProfitMouseClicked
         // TODO add your handling code here:
-
+        profit();
     }//GEN-LAST:event_lblProfitMouseClicked
 
     private void btnProfitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfitMouseClicked
         // TODO add your handling code here:
-
+        profit();
     }//GEN-LAST:event_btnProfitMouseClicked
 
     private void imgReferenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgReferenceMouseClicked
         // TODO add your handling code here:
-
+        reference();
     }//GEN-LAST:event_imgReferenceMouseClicked
 
     private void lblReferenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReferenceMouseClicked
         // TODO add your handling code here:
- 
+        reference();   
     }//GEN-LAST:event_lblReferenceMouseClicked
 
     private void btnReferenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReferenceMouseClicked
         // TODO add your handling code here:
-
+        reference();
     }//GEN-LAST:event_btnReferenceMouseClicked
 
     private void imgMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgMedicineMouseClicked
@@ -689,6 +702,27 @@ public class MainMenu extends javax.swing.JFrame {
     {
         LoginUI2 login = new LoginUI2();
         login.setVisible(true);
+        this.dispose();
+    }
+    
+    public void storage() throws SQLException
+    {
+        StorageForm storage = new StorageForm(user);
+        storage.setVisible(true);
+        this.dispose();
+    }
+    
+    public void reference()
+    {
+        ReferenceForm form = new ReferenceForm(user);
+        form.setVisible(true);
+        this.dispose();
+    }
+    
+    public void profit()
+    {
+        ProfitForm profit = new ProfitForm();
+        profit.setVisible(true);
         this.dispose();
     }
     

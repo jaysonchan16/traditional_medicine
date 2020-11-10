@@ -5,6 +5,26 @@
  */
 package form;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javaClass.Code;
+import javaClass.GrassMedicinePill;
+import javaClass.GrassMedicinePotion;
+import javaClass.Medicine;
+import javaClass.TraditionalMedicinePill;
+import javaClass.TraditionalMedicinePotion;
+import javaClass.User;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Sheng
@@ -14,10 +34,26 @@ public class StorageForm extends javax.swing.JFrame {
     /**
      * Creates new form StorageForm
      */
+    private User user;
+    private String userid = "";
+    DefaultTableModel model ;
+    JTable table;
+    
     public StorageForm() {
         initComponents();
     }
 
+    public StorageForm(User user) throws SQLException {
+        initComponents();
+        this.user = user;
+        userid = user.getUserid();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        medicineCategory();
+        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        show_table();
+        color_table();
+        //getNewRenderedTable(table);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,14 +80,15 @@ public class StorageForm extends javax.swing.JFrame {
         txtCost = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboBoxName = new javax.swing.JComboBox<>();
+        comboBoxMedicine = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnBack1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStorage = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -166,12 +203,44 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(jLabel10);
         jLabel10.setBounds(110, 400, 60, 40);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("打印");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnBack);
+        btnBack.setBounds(180, 780, 130, 50);
+
+        comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(comboBoxName);
+        comboBoxName.setBounds(170, 180, 170, 40);
+
+        comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
+        panelBody.add(comboBoxMedicine);
+        comboBoxMedicine.setBounds(170, 70, 170, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("病症分类:");
+        panelBody.add(jLabel1);
+        jLabel1.setBounds(70, 180, 90, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("药:");
+        panelBody.add(jLabel2);
+        jLabel2.setBounds(120, 70, 40, 40);
+
+        btnBack1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack1.setText("退出");
+        btnBack1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnBack1);
+        btnBack1.setBounds(30, 780, 130, 50);
+
+        tblStorage.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        tblStorage.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "药", "病症分类", "本钱", "ID", "重量", "价格"
+                "药", "病症分类", "ID", "本钱", "重量", "价格"
             }
         ) {
             Class[] types = new Class [] {
@@ -189,40 +258,12 @@ public class StorageForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblStorage);
 
-        panelBody.add(jScrollPane1);
-        jScrollPane1.setBounds(490, 50, 1200, 780);
+        jScrollPane2.setViewportView(jScrollPane1);
 
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnBack.setText("打印");
-        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(btnBack);
-        btnBack.setBounds(180, 780, 130, 50);
-
-        jComboBox1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(jComboBox1);
-        jComboBox1.setBounds(170, 180, 170, 40);
-
-        jComboBox2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(jComboBox2);
-        jComboBox2.setBounds(170, 70, 170, 40);
-
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("病症分类:");
-        panelBody.add(jLabel1);
-        jLabel1.setBounds(70, 180, 90, 40);
-
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel2.setText("药:");
-        panelBody.add(jLabel2);
-        jLabel2.setBounds(120, 70, 40, 40);
-
-        btnBack1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnBack1.setText("退出");
-        btnBack1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(btnBack1);
-        btnBack1.setBounds(30, 780, 130, 50);
+        panelBody.add(jScrollPane2);
+        jScrollPane2.setBounds(510, 50, 1190, 780);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(114, 120, 1752, 862);
@@ -282,6 +323,303 @@ public class StorageForm extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_txtIDKeyPressed
 
+    private void createColumns()
+    {
+        model = (DefaultTableModel) tblStorage.getModel();
+    }
+    
+    public void medicineCategory() throws SQLException
+    {
+        try {
+            Code code = new Code();
+            
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
+            {
+                if(i != 0)
+                {
+                    comboBoxMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
+                }
+            }
+            medicineName(code.getComboMedicine(userid).get(0).getCode());
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "StorageForm.medicineCategory() get error on line 737,"+ex.getMessage());
+        }
+        
+    }
+    
+    public void medicineName(String name) throws SQLException
+    {
+        comboBoxName.removeAllItems();
+        if(name.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill pill = new TraditionalMedicinePill();
+            if(pill.comboName(userid).size() <= 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(pill.comboName(userid).get(0).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion potion = new GrassMedicinePotion();
+            if(potion.comboName(userid).size() <= 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                for(int i = 0; i < potion.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(potion.comboName(userid).get(0).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill = new GrassMedicinePill();
+            if(pill.comboName(userid).size() <= 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(pill.comboName(userid).get(0).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+            if(potion.comboName(userid).size() <= 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "请添加药");
+                DiseaseMenu detail = new DiseaseMenu(user);
+                detail.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                for(int i = 0; i < potion.comboName(userid).size(); i++)
+                {
+                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
+                }
+                FindByMedicineName(potion.comboName(userid).get(0).getName());
+            }
+        }
+        
+    }
+    
+    public void FindByMedicineName(String name)
+    {
+        String medicine = (String)comboBoxMedicine.getSelectedItem();
+        System.out.println("name:"+name);
+        System.out.println("medicine:"+medicine);
+        try
+        {
+            if(medicine.equalsIgnoreCase("单味药粉"))
+            {
+                List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("药水"))
+            {
+                List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
+                GrassMedicinePotion potion = new GrassMedicinePotion();
+                medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("药丸"))
+            {
+                List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+                GrassMedicinePill pill = new GrassMedicinePill();
+                medicList = pill.findGrassMedicinePillDetails("name", name,userid);
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("复方药粉"))
+            {
+                List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
+                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
+                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
+            }
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(rootPane, "StorageForm.FindByMedicineName() get error on line 371,"+ex.getMessage());
+        }
+    }
+    
+    public void FindByMedicineName2(String name)
+    {
+        String medicine = (String)comboBoxMedicine.getSelectedItem();
+        System.out.println("name:"+name);
+        System.out.println("medicine:"+medicine);
+        try
+        {
+            if(medicine.equalsIgnoreCase("单味药粉"))
+            {
+                TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("药水"))
+            {
+                GrassMedicinePotion pill = new GrassMedicinePotion();
+                txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("药丸"))
+            {
+                GrassMedicinePill pill =new GrassMedicinePill();
+                txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
+            }
+            else if(medicine.equalsIgnoreCase("复方药粉"))
+            {
+                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
+            }
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(rootPane, "StorageForm.FindByMedicineName2() get error on line 406,"+ex.getMessage());
+        }
+    }
+    
+    public void show_table() throws SQLException
+    {
+        Medicine medicine = new Medicine();
+        List<Medicine> medicineList = new ArrayList<Medicine>();
+        try {
+            
+                medicineList = medicine.getAllDetail(userid);
+                model = (DefaultTableModel)tblStorage.getModel();
+                //table.setModel(model);
+                Object row[] = new Object[6];
+                for(int i =0; i<medicineList.size(); i++)
+                {
+                    row[0] = medicineList.get(i).getMedicine();
+                    row[1] = medicineList.get(i).getName();
+                    row[2] = medicineList.get(i).getCode();
+                    row[3] = medicineList.get(i).getCost();
+                    row[4] = medicineList.get(i).getGram();
+                    row[5] = medicineList.get(i).getSellprice();
+                    model.addRow(row);
+                }
+                table = new JTable(model);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.show_table get error on line 328,"+ex.getMessage());
+        }
+    }
+    
+    public void color_table()
+    {
+        JTable table = new JTable(model) {
+            public Component prepareRenderer(TableCellRenderer renderer, int index_row, int index_col) {
+                System.out.println("QWQWYYYYY");
+                Component comp = super.prepareRenderer(renderer, index_row, index_col);
+                //odd col index, selected or not selected
+                if (isCellSelected(index_row, index_col)){
+                    comp.setBackground(Color.GRAY);  
+                } else {
+                    if (index_col == 34) {
+                        comp.setBackground(Color.GRAY);                   
+                    } else {
+                        comp.setBackground(Color.WHITE);
+                    }
+                }
+                return comp;
+            }
+        };
+    }
+    
+    private static JTable getNewRenderedTable(final JTable table) {
+        System.out.println("QWQW");
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                System.out.println("QWQWE");
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                String status = (String)table.getModel().getValueAt(row, 4);
+                if ("active".equals(status)) {
+                    setBackground(Color.BLACK);
+                    setForeground(Color.WHITE);
+                } else {
+                    setBackground(table.getBackground());
+                    setForeground(table.getForeground());
+                }       
+                return this;
+            }   
+        });
+        return table;
+    }
+        //JScrollPane jScrollPane = new JScrollPane(getNewRenderedTable(table));
+        /*System.out.println("TableCellRendererComponent");
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+                                          int row, int column) {
+                System.out.println("TableCellRendererComponent1");
+                Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if(!isSelected) { //Important check, see comment below!
+                 String weight = (String)table.getModel().getValueAt(row, 4);
+                 float compareWeight = Float.parseFloat(weight);
+
+                    if (compareWeight < 11) {
+                        comp.setBackground(Color.RED);
+                        //comp.setForeground(Color.WHITE);
+                    } else {
+                        setBackground(table.getBackground());
+                        setForeground(table.getForeground());
+                    }    
+                }
+                return comp;
+            }
+        });*/
+        
+        //JOptionPane.showMessageDialog(null, new JScrollPane(getNewRenderedTable(getTable())));
+   
+    
+    /*private static JTable getNewRenderedTable(final JTable table) {
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                String status = (String)table.getModel().getValueAt(row, 4);
+                if ("active".equals(status)) {
+                    setBackground(Color.BLACK);
+                    setForeground(Color.WHITE);
+                } else {
+                    setBackground(table.getBackground());
+                    setForeground(table.getForeground());
+                }       
+                return this;
+            }   
+        });
+        return table;
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -321,9 +659,9 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnFind;
+    private javax.swing.JComboBox<String> comboBoxMedicine;
+    private javax.swing.JComboBox<String> comboBoxName;
     private javax.swing.JLabel findHeader;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -334,11 +672,12 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JTable tblStorage;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPrice;
