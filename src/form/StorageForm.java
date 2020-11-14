@@ -17,7 +17,9 @@ import javaClass.Medicine;
 import javaClass.TraditionalMedicinePill;
 import javaClass.TraditionalMedicinePotion;
 import javaClass.User;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -37,6 +39,7 @@ public class StorageForm extends javax.swing.JFrame {
     private User user;
     private String userid = "";
     DefaultTableModel model ;
+    TableModel tablemodel;
     JTable table;
     
     public StorageForm() {
@@ -511,10 +514,8 @@ public class StorageForm extends javax.swing.JFrame {
         Medicine medicine = new Medicine();
         List<Medicine> medicineList = new ArrayList<Medicine>();
         try {
-            
                 medicineList = medicine.getAllDetail(userid);
-                model = (DefaultTableModel)tblStorage.getModel();
-                //table.setModel(model);
+                model = (DefaultTableModel) tblStorage.getModel();
                 Object row[] = new Object[6];
                 for(int i =0; i<medicineList.size(); i++)
                 {
@@ -526,7 +527,7 @@ public class StorageForm extends javax.swing.JFrame {
                     row[5] = medicineList.get(i).getSellprice();
                     model.addRow(row);
                 }
-                table = new JTable(model);
+                
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.show_table get error on line 328,"+ex.getMessage());
         }
@@ -534,92 +535,32 @@ public class StorageForm extends javax.swing.JFrame {
     
     public void color_table()
     {
-        JTable table = new JTable(model) {
-            public Component prepareRenderer(TableCellRenderer renderer, int index_row, int index_col) {
-                System.out.println("QWQWYYYYY");
-                Component comp = super.prepareRenderer(renderer, index_row, index_col);
-                //odd col index, selected or not selected
-                if (isCellSelected(index_row, index_col)){
-                    comp.setBackground(Color.GRAY);  
-                } else {
-                    if (index_col == 34) {
-                        comp.setBackground(Color.GRAY);                   
-                    } else {
-                        comp.setBackground(Color.WHITE);
-                    }
-                }
-                return comp;
-            }
-        };
+        tblStorage.setDefaultRenderer(Object.class, new PriorityCellRenderer());
     }
     
-    private static JTable getNewRenderedTable(final JTable table) {
-        System.out.println("QWQW");
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                System.out.println("QWQWE");
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                String status = (String)table.getModel().getValueAt(row, 4);
-                if ("active".equals(status)) {
-                    setBackground(Color.BLACK);
-                    setForeground(Color.WHITE);
-                } else {
-                    setBackground(table.getBackground());
-                    setForeground(table.getForeground());
-                }       
-                return this;
-            }   
-        });
-        return table;
-    }
-        //JScrollPane jScrollPane = new JScrollPane(getNewRenderedTable(table));
-        /*System.out.println("TableCellRendererComponent");
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-                                          int row, int column) {
-                System.out.println("TableCellRendererComponent1");
-                Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if(!isSelected) { //Important check, see comment below!
-                 String weight = (String)table.getModel().getValueAt(row, 4);
-                 float compareWeight = Float.parseFloat(weight);
-
-                    if (compareWeight < 11) {
-                        comp.setBackground(Color.RED);
-                        //comp.setForeground(Color.WHITE);
-                    } else {
-                        setBackground(table.getBackground());
-                        setForeground(table.getForeground());
-                    }    
-                }
-                return comp;
+    //change the colour
+    public class PriorityCellRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            float weight = Float.parseFloat(table.getValueAt(row, 4).toString());
+            
+            if (weight <= 10) {
+                setBackground(new Color(254, 115, 63));  // or background
             }
-        });*/
+            else if(weight >=10 && weight <=40)
+            {
+                setBackground(new Color(254, 254, 63));  // or background
+            }
+            else
+            {
+                setBackground(new Color(151, 254, 63));  // or background
+            }
+            return this;
+        }
+    }
         
-        //JOptionPane.showMessageDialog(null, new JScrollPane(getNewRenderedTable(getTable())));
-   
-    
-    /*private static JTable getNewRenderedTable(final JTable table) {
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                String status = (String)table.getModel().getValueAt(row, 4);
-                if ("active".equals(status)) {
-                    setBackground(Color.BLACK);
-                    setForeground(Color.WHITE);
-                } else {
-                    setBackground(table.getBackground());
-                    setForeground(table.getForeground());
-                }       
-                return this;
-            }   
-        });
-        return table;
-    }*/
     /**
      * @param args the command line arguments
      */
