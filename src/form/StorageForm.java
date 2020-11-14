@@ -96,6 +96,12 @@ public class StorageForm extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStorage = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
 
@@ -268,7 +274,37 @@ public class StorageForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(510, 50, 1190, 740);
+        jScrollPane2.setBounds(510, 50, 1190, 680);
+
+        jPanel2.setBackground(new java.awt.Color(151, 254, 63));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jPanel2);
+        jPanel2.setBounds(1610, 750, 30, 30);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("足够");
+        panelBody.add(jLabel3);
+        jLabel3.setBounds(1650, 750, 90, 30);
+
+        jPanel3.setBackground(new java.awt.Color(254, 115, 63));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jPanel3);
+        jPanel3.setBounds(1310, 750, 30, 30);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("即将完");
+        panelBody.add(jLabel4);
+        jLabel4.setBounds(1350, 750, 90, 30);
+
+        jPanel4.setBackground(new java.awt.Color(254, 254, 63));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jPanel4);
+        jPanel4.setBounds(1460, 750, 30, 30);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("不足够");
+        panelBody.add(jLabel5);
+        jLabel5.setBounds(1500, 750, 90, 30);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1752, 820);
@@ -649,10 +685,16 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;
