@@ -261,6 +261,7 @@ public class StorageForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblStorage.setRowHeight(25);
         jScrollPane1.setViewportView(tblStorage);
 
         jScrollPane2.setViewportView(jScrollPane1);
