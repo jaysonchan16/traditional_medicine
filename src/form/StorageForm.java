@@ -7,6 +7,7 @@ package form;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javaClass.Medicine;
 import javaClass.TraditionalMedicinePill;
 import javaClass.TraditionalMedicinePotion;
 import javaClass.User;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +26,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -55,6 +59,8 @@ public class StorageForm extends javax.swing.JFrame {
         FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         show_table();
         color_table();
+        widthTable();
+        image();
         //getNewRenderedTable(table);
     }
     /**
@@ -71,8 +77,6 @@ public class StorageForm extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         btnFind = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -83,15 +87,17 @@ public class StorageForm extends javax.swing.JFrame {
         txtCost = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         comboBoxName = new javax.swing.JComboBox<>();
         comboBoxMedicine = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnBack1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStorage = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -120,16 +126,6 @@ public class StorageForm extends javax.swing.JFrame {
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 1029, 1940, 50);
-
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.setLayout(null);
@@ -143,7 +139,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(330, 780, 130, 50);
+        btnFind.setBounds(330, 740, 130, 50);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量:");
@@ -206,11 +202,11 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(jLabel10);
         jLabel10.setBounds(110, 400, 60, 40);
 
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnBack.setText("打印");
-        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(btnBack);
-        btnBack.setBounds(180, 780, 130, 50);
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(180, 740, 130, 50);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(comboBoxName);
@@ -231,11 +227,16 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(jLabel2);
         jLabel2.setBounds(120, 70, 40, 40);
 
-        btnBack1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnBack1.setText("退出");
-        btnBack1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(btnBack1);
-        btnBack1.setBounds(30, 780, 130, 50);
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnBack);
+        btnBack.setBounds(30, 740, 130, 50);
 
         tblStorage.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblStorage.setModel(new javax.swing.table.DefaultTableModel(
@@ -267,12 +268,22 @@ public class StorageForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(510, 50, 1190, 780);
+        jScrollPane2.setBounds(510, 50, 1190, 740);
 
         getContentPane().add(panelBody);
-        panelBody.setBounds(114, 120, 1752, 862);
+        panelBody.setBounds(100, 90, 1752, 820);
 
-        setBounds(0, 0, 1958, 1126);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel18);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        setBounds(0, 0, 1958, 1036);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -326,6 +337,13 @@ public class StorageForm extends javax.swing.JFrame {
 //            ex.printStackTrace();
 //        }
     }//GEN-LAST:event_txtIDKeyPressed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        MainMenu menu = new MainMenu(user);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void createColumns()
     {
@@ -550,7 +568,7 @@ public class StorageForm extends javax.swing.JFrame {
             if (weight <= 10) {
                 setBackground(new Color(254, 115, 63));  // or background
             }
-            else if(weight >=10 && weight <=40)
+            else if(weight >10 && weight <=40)
             {
                 setBackground(new Color(254, 254, 63));  // or background
             }
@@ -561,7 +579,29 @@ public class StorageForm extends javax.swing.JFrame {
             return this;
         }
     }
+    
+    public void widthTable()
+    {
+        this.lblName.setText(user.getUserid());
+        JTableHeader tableHeader = tblStorage.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+    }
         
+    public void image()
+    {
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFind.setIcon(iconFind);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/stockmedium.png"));
+        findHeader.setIcon(iconHeader);
+        this.lblName.setText(userid);
+        setResizable(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -599,16 +639,16 @@ public class StorageForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
