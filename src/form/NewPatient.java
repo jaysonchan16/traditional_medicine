@@ -32,7 +32,7 @@ public class NewPatient extends javax.swing.JFrame {
     private User user;
     private String DiseaseIC = "";
     private String userid = "";
-    NewPatientDisease diseasepage;
+    NewPatientDisease1 diseasepage;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
     
@@ -304,7 +304,7 @@ public class NewPatient extends javax.swing.JFrame {
                     try {
                         System.out.println("DiseaseIC:"+DiseaseIC);
                         if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,map.get("ID"),userid).getIC().equalsIgnoreCase(IC)) {
-                            diseasepage = new NewPatientDisease(user, map.get("ID"),
+                            diseasepage = new NewPatientDisease1(user, map.get("ID"),
                                     DiseaseIC,
                                     patient.getPatient(DiseaseIC,map.get("ID"),userid).getName(),
                                     patient.getPatient(DiseaseIC,map.get("ID"),userid).getPhone());
@@ -372,7 +372,7 @@ public class NewPatient extends javax.swing.JFrame {
             this.dispose();
         } else {
             try {
-                diseasepage = new NewPatientDisease(user);
+                diseasepage = new NewPatientDisease1(user);
                 diseasepage.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
@@ -392,7 +392,7 @@ public class NewPatient extends javax.swing.JFrame {
         String Date = lblCreateDateTime.getText();
         
         String bodyContent = printPreview("",IC, Name, Gender, Age, Phone, Address, Date);
-        PrintForm main = new PrintForm(user,3,bodyContent);
+        PrintForm main = new PrintForm(user,3,bodyContent,DiseaseIC);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed

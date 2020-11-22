@@ -26,8 +26,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
-import javaClass.Java2sAutoComboBox;
-import javaClass.Java2sAutoTextField;
 import javaClass.PrintTemplate;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -57,8 +55,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
     HashMap<String,String> weightTraditionalMedicinePotion = new HashMap<String,String>();
     HashMap<String,String> weightGrassMedicinePill = new HashMap<String,String>();
     HashMap<String,String> weightGrassMedicinePotion = new HashMap<String,String>();
-    private ArrayList<String> listSomeAnotherString = new ArrayList<String>();
-    private Java2sAutoComboBox someComboBox = new Java2sAutoComboBox(listSomeAnotherString);
     private Boolean doubleCombo = false;
     Set<String> s;
     

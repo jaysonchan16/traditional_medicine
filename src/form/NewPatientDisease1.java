@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import javaClass.Code;
+import javaClass.Disease;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
 import javaClass.Patient;
+import javaClass.Prescription;
 import javaClass.PrintTemplate;
 import javaClass.TraditionalMedicinePill;
 import javaClass.TraditionalMedicinePotion;
@@ -27,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -77,6 +80,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         lblCreateDateTime.setText(dtf.format(localDate));
         btnReset.setVisible(false);
         btnModify.setVisible(false);
+        btnDelete.setEnabled(false);
+        btnAddRow.setEnabled(false);
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
         spinnerJiLiang.setValue(1);
@@ -121,6 +126,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         lblCreateDateTime.setText(dtf.format(localDate));
         btnReset.setVisible(false);
         btnModify.setVisible(false);
+        btnDelete.setEnabled(false);
+        btnAddRow.setEnabled(false);
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
         spinnerJiLiang.setValue(1);
@@ -598,7 +605,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtWeight);
-        txtWeight.setBounds(500, 540, 70, 40);
+        txtWeight.setBounds(500, 590, 70, 40);
 
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel15.setText("剩下剂量:");
@@ -614,6 +621,11 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         btnFindMedic.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindMedic.setText("寻找");
         btnFindMedic.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFindMedic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindMedicActionPerformed(evt);
+            }
+        });
         panelBody.add(btnFindMedic);
         btnFindMedic.setBounds(460, 490, 110, 40);
 
@@ -664,9 +676,16 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
         try {
             // TODO add your handling code here:
-            /*doubleCombo = true;
-            comboBoxName.removeAllItems();*/
             txtMedicineName.setText("");
+            txtMedicineID.setText("");
+            spinnerJiLiang.setEnabled(false);
+            spinnerJiLiang.setValue(1);
+            txtRemaining.setText("");
+            txtWeight.setText("");
+            txtPrice.setText("");
+            txtTotalPrice.setText("");
+            txtMedicineName.setEnabled(true);
+            btnFindMedic.setEnabled(true);
             String name = comboBoxMedicine.getSelectedItem().toString();
             
             medicineName(name);
@@ -678,19 +697,22 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
 
     private void spinnerJiLiangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerJiLiangStateChanged
         // TODO add your handling code here:
-        /*String jiliang = spinnerJiLiang.getValue().toString();
-        float weight = Float.valueOf(txtWeight.getText());
-        float jiliang1 = Float.valueOf(jiliang);
-        float totalprice = Float.valueOf(txtPrice.getText());
-        float total = jiliang1 * totalprice;
-        float remaining = weight - jiliang1;
-        txtTotalPrice.setText(String.valueOf(total));
-        txtRemaining.setText(String.valueOf(remaining));*/
+        String jiliang = spinnerJiLiang.getValue().toString();
+        if(!txtWeight.getText().isEmpty())
+        {
+            float weight = Float.valueOf(txtWeight.getText());
+            float jiliang1 = Float.valueOf(jiliang);
+            float totalprice = Float.valueOf(txtPrice.getText());
+            float total = jiliang1 * totalprice;
+            float remaining = weight - jiliang1;
+            txtTotalPrice.setText(String.valueOf(total));
+            txtRemaining.setText(String.valueOf(remaining));
+        }
     }//GEN-LAST:event_spinnerJiLiangStateChanged
 
     private void btnAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRowActionPerformed
         // TODO add your handling code here:
-        /*float remaining = Float.valueOf(txtRemaining.getText());
+        float remaining = Float.valueOf(txtRemaining.getText());
         if(remaining >= 0.0)
         {
             if(save.isEmpty())
@@ -701,7 +723,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             {
                 if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
                 {
-                    if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+                    if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(txtMedicineName.getText().toString()))
                     {
                         JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
                     }
@@ -720,7 +742,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(rootPane, "剂量已经不够了！");
-        }*/
+        }
     }//GEN-LAST:event_btnAddRowActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -732,7 +754,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
 
     private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
         // TODO add your handling code here:
-        /*try {
+        try {
             String patientID = txtID.getText();
             String symptom = txtSymptom.getText();
             int temperature = Integer.parseInt(txtTemperature.getText());
@@ -805,12 +827,12 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "体温后面不可以有空格/体温不可以放字母！");
-        }*/
+        }
     }//GEN-LAST:event_btnAddDataActionPerformed
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
         // TODO add your handling code here:
-        /*btnAddRow.setVisible(false);
+        btnAddRow.setVisible(false);
         btnReset.setVisible(true);
         btnDelete.setVisible(false);
         btnModify.setVisible(true);
@@ -822,12 +844,12 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
 
         txtchufang.setText(chufang);
         txtPrice.setText(price);
-        txtTotalPrice.setText(totalprice);*/
+        txtTotalPrice.setText(totalprice);
     }//GEN-LAST:event_tblDiseaseMouseClicked
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        /*String IC = txtIC.getText();
+        String IC = txtIC.getText();
         String ID = txtID.getText();
         String Name = txtName.getText();
         String Phone = txtPhone.getText();
@@ -861,12 +883,12 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
         PrintForm main = new PrintForm(user,4,bodyContent);
         main.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        /*int index = model.getRowCount()-1;
+        int index = model.getRowCount()-1;
         TableModel tableModel = tblDisease.getModel();
         String medicine = tableModel.getValueAt(index,1).toString();
         String name = tableModel.getValueAt(index,2).toString();
@@ -879,19 +901,19 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(rootPane, "删除失败！");
-        }*/
+        }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         // TODO add your handling code here:
-        /*float remaining = Float.valueOf(txtRemaining.getText());
+        float remaining = Float.valueOf(txtRemaining.getText());
 
         if(remaining >= 0.0)
         {
             if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
             {
-                if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+                if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(txtMedicineName.getText().toString().toString()))
                 {
                     JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
                 }
@@ -908,19 +930,18 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(rootPane, "剂量已经不够了！");
-        }*/
+        }
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        /*comboBoxMedicine.setVisible(true);
-        comboBoxName.setVisible(true);
+        comboBoxMedicine.setVisible(true);
         spinnerJiLiang.setVisible(true);
         btnReset.setVisible(false);
         btnModify.setVisible(false);
         btnAddRow.setVisible(true);
         btnDelete.setVisible(true);
-        txtchufang.setText(String.valueOf(tblDisease.getRowCount()+1));*/
+        txtchufang.setText(String.valueOf(tblDisease.getRowCount()+1));
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtMedicineNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedicineNameActionPerformed
@@ -958,6 +979,16 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtMedicineNameKeyReleased
+
+    private void btnFindMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMedicActionPerformed
+        // TODO add your handling code here:
+        btnDelete.setEnabled(true);
+        btnAddRow.setEnabled(true);
+        spinnerJiLiang.setEnabled(true);
+        txtMedicineName.setEnabled(false);
+        btnFindMedic.setEnabled(false);
+        MedicineContent();
+    }//GEN-LAST:event_btnFindMedicActionPerformed
 
     private void createColumns()
     {
@@ -1047,51 +1078,195 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     
     public void medicineName(String name) throws SQLException
     {
-        /*if(doubleCombo == true)
-        {*/
-            s.removeAll(s);
-            if(name.equalsIgnoreCase("单味药粉"))
-            {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                
-                for(int i = 0; i < pill.comboName(userid).size(); i++)
-                {
-                    s.add(pill.comboName(userid).get(i).getName());
-                }
-            }
-            else if(name.equalsIgnoreCase("药水"))
-            {
-                GrassMedicinePotion potion = new GrassMedicinePotion();
-                
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
-                {
-                    System.out.println("s.add");
-                    s.add(potion.comboName(userid).get(i).getName());
-                }
-            }
-            else if(name.equalsIgnoreCase("药丸"))
-            {
-                GrassMedicinePill pill = new GrassMedicinePill();
-                
-                for(int i = 0; i < pill.comboName(userid).size(); i++)
-                {
-                    System.out.println("s.add");
-                    s.add(pill.comboName(userid).get(i).getName());
-                }
+        s.removeAll(s);
+        if(name.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill pill = new TraditionalMedicinePill();
 
-            }
-            else if(name.equalsIgnoreCase("复方药粉"))
+            for(int i = 0; i < pill.comboName(userid).size(); i++)
             {
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
+                s.add(pill.comboName(userid).get(i).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion potion = new GrassMedicinePotion();
+
+            for(int i = 0; i < potion.comboName(userid).size(); i++)
+            {
+                s.add(potion.comboName(userid).get(i).getName());
+            }
+        }
+        else if(name.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill = new GrassMedicinePill();
+
+            for(int i = 0; i < pill.comboName(userid).size(); i++)
+            {
+                s.add(pill.comboName(userid).get(i).getName());
+            }
+
+        }
+        else if(name.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+
+            for(int i = 0; i < potion.comboName(userid).size(); i++)
+            {
+                s.add(potion.comboName(userid).get(i).getName());
+            }
+        }
+    }
+    
+    public void MedicineContent()
+    {
+        String medicine = (String)comboBoxMedicine.getSelectedItem();
+        String name = txtMedicineName.getText();
+        String sellprice="";
+        String medicineid="";
+        String weightText ="";
+        try
+            {
+                if(medicine.equalsIgnoreCase("单味药粉"))
                 {
-                    System.out.println("s.add");
-                    s.add(potion.comboName(userid).get(i).getName());
+                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                    if(pill.findTraditionalMedicinePillName(name,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice());
+                        medicineid = pill.findTraditionalMedicinePillName(name,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        txtRemaining.setText(String.valueOf(remaining));
+                    }
+                    else
+                    {
+                        txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                }
+                else if(medicine.equalsIgnoreCase("药水"))
+                {
+                    GrassMedicinePotion pill = new GrassMedicinePotion();
+                    if(pill.findGrassMedicinePotionName(name,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice());
+                        medicineid = pill.findGrassMedicinePotionName(name,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        txtRemaining.setText(String.valueOf(remaining));
+                    }
+                    else
+                    {
+                        txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                }
+                else if(medicine.equalsIgnoreCase("药丸"))
+                {
+                    GrassMedicinePill pill =new GrassMedicinePill();
+                    if(pill.findGrassMedicinePillName(name,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice());
+                        medicineid = pill.findGrassMedicinePillName(name,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        txtRemaining.setText(String.valueOf(remaining));
+                    }
+                    else
+                    {
+                        txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                    
+                }
+                else if(medicine.equalsIgnoreCase("复方药粉"))
+                {
+                    TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                    if(potion.findTraditionalMedicinePotionName(name,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice());
+                        medicineid = potion.findTraditionalMedicinePotionName(name,userid).get(0).getCode();
+                        weightText = String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        txtRemaining.setText(String.valueOf(remaining));
+                    }
+                    else
+                    {
+                        txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
                 }
             }
-        //}
-        
+            catch(SQLException ex)
+            {
+                JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName2() get error on line 863,"+ex.getMessage());
+            }
+    }
+    
+    private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice, String remaining, String prescriptionID)
+    {
+        model = (DefaultTableModel)tblDisease.getModel();
+        String []rowData ={chufang,medicine,name,jiliang,price,totalPrice,remaining,prescriptionID};
+        model.addRow(rowData);
+    }
+    
+    public void modify()
+    {
+        int i = tblDisease.getSelectedRow();
+        int index = tblDisease.getSelectedRow();
+        TableModel model = tblDisease.getModel();
+        String medicine = model.getValueAt(index, 1).toString();
+        String name = model.getValueAt(index,2).toString();
+        if(save.get(medicine).equalsIgnoreCase(name))
+        {
+            save.remove(medicine);
+            if(i >= 0) 
+            {
+                model.setValueAt(comboBoxMedicine.getSelectedItem().toString(), i, 1);
+                model.setValueAt(txtMedicineName.getText().toString(), i, 2);
+                model.setValueAt(spinnerJiLiang.getValue().toString(), i, 3);
+                model.setValueAt(txtPrice.getText(), i, 4);
+                model.setValueAt(txtTotalPrice.getText(), i, 5);
+                model.setValueAt(txtRemaining.getText(), i, 6);
+                model.setValueAt(txtMedicineID.getText(), i, 7);
+                save.put(comboBoxMedicine.getSelectedItem().toString(), txtMedicineName.getText().toString().toString());
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "更新失败！");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "更新失败！");
+        }
     }
     
     public void image()
@@ -1130,6 +1305,50 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     {
         PrintTemplate print = new PrintTemplate();
         return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice,totalweight, mainprice);
+    }
+    
+    public HashMap<String,String> saveDataTable()
+    {
+        populate(String.valueOf(model.getRowCount()+1),comboBoxMedicine.getSelectedItem().toString(),txtMedicineName.getText().toString(),
+                     spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText(),txtRemaining.getText(),txtMedicineID.getText());
+        save.put(comboBoxMedicine.getSelectedItem().toString(), txtMedicineName.getText().toString());
+        chufang();
+        return save;
+    }
+    
+    public void chufang()
+    {
+        float totalprice = 0;
+        float totalweight = 0;
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
+            totalprice = AmountPrice+totalprice;
+        }
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
+            totalweight = AmountWeight+totalweight;
+        }
+        txtchufang.setText(String.valueOf(model.getRowCount()+1));
+        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
+    }
+    
+    public void minuschufang()
+    {
+        int chufang = Integer.valueOf(txtchufang.getText()) + 1;
+        float totalprice = 0;
+        float totalweight = 0;
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
+            totalprice = AmountPrice+totalprice;
+        }
+        for(int i = 0; i < tblDisease.getRowCount(); i++){
+            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
+            totalweight = AmountWeight+totalweight;
+        }
+        txtchufang.setText(String.valueOf(chufang));
+        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
     }
     
     /**

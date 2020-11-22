@@ -8,6 +8,7 @@ package form;
 import java.awt.BorderLayout;
 import java.awt.print.PrinterException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javaClass.User;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -24,6 +25,7 @@ public class PrintForm extends javax.swing.JFrame {
     private User user;
     private int option;
     private String bodyContent;
+    private String diseaseIC = "";
     public PrintForm() {
         initComponents();
     }
@@ -44,7 +46,42 @@ public class PrintForm extends javax.swing.JFrame {
         //6 option for modify medicine
     }
     
+    public PrintForm(User user, int option, String bodyContent,String diseaseIC)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.diseaseIC = diseaseIC;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+    }
     
+    public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
+            String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
+            ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
+            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.diseaseIC = diseaseIC;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,14 +210,23 @@ public class PrintForm extends javax.swing.JFrame {
         }
         else if(option == 3)
         {
-            NewPatient modify = new NewPatient(user);
-            modify.setVisible(true);
-            this.dispose();
+            if(diseaseIC.equalsIgnoreCase(""))
+            {
+                NewPatient modify = new NewPatient(user);
+                modify.setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                NewPatient modify = new NewPatient(user,diseaseIC);
+                modify.setVisible(true);
+                this.dispose();
+            }
         }  
         else if(option == 4)
         {
             try {
-                NewPatientDisease modify = new NewPatientDisease(user);
+                NewPatientDisease1 modify = new NewPatientDisease1(user);
                 modify.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
