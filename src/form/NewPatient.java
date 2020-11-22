@@ -32,7 +32,15 @@ public class NewPatient extends javax.swing.JFrame {
     private User user;
     private String DiseaseIC = "";
     private String userid = "";
+    private String IC = "";
+    private String Name ="";
+    private String Gender = "";
+    private String Age ="";
+    private String Phone="";
+    private String Address="";
+    private String Date = "";
     NewPatientDisease1 diseasepage;
+    int backoption = 0;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
     
@@ -60,9 +68,37 @@ public class NewPatient extends javax.swing.JFrame {
         txtAddress.setEnabled(true);
         lblCreateDateTime.setText(dtf.format(localDate));
         image();
-        
+        backoption = 1;
+        System.out.print(backoption);
     }
 
+    public NewPatient(User user, String DiseaseIC, String Name, String Gender, 
+            String Age, String Phone, String Address, String Date) {
+        initComponents();
+        this.user = user;
+        this.DiseaseIC = DiseaseIC;
+        this.Name = Name;
+        this.Gender = Gender;
+        this.Age= Age;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.Date = Date;
+        userid = user.getUserid();
+        txtIC.setText(DiseaseIC);
+        txtIC.setEnabled(false);
+        txtName.setText(Name);
+        txtGender.setText(Gender);
+        txtAge.setText(Age);
+        txtPhone.setText(Phone);
+        txtAddress.setText(Address);
+        lblCreateDateTime.setText(Date);
+        btnFind.setEnabled(false);
+        txtAddress.setEnabled(true);
+        lblCreateDateTime.setText(dtf.format(localDate));
+        image();
+        
+    }
+    
     public NewPatient() {
         initComponents();
         //st = connect.connection();
@@ -366,7 +402,7 @@ public class NewPatient extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        if (DiseaseIC.equalsIgnoreCase("")) {
+        if (backoption == 0) {
             PatientDetailMenu main = new PatientDetailMenu(user);
             main.setVisible(true);
             this.dispose();
@@ -392,7 +428,7 @@ public class NewPatient extends javax.swing.JFrame {
         String Date = lblCreateDateTime.getText();
         
         String bodyContent = printPreview("",IC, Name, Gender, Age, Phone, Address, Date);
-        PrintForm main = new PrintForm(user,3,bodyContent,DiseaseIC);
+        PrintForm main = new PrintForm(user,3,bodyContent,IC,Name, Gender, Age, Phone, Address, Date);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed

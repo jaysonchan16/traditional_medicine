@@ -40,6 +40,9 @@ public class PrintForm extends javax.swing.JFrame {
     private String history="";
     private String temperature="";
     private String blood="";
+    private String Address = "";
+    private String Age = "";
+    private String Gender = "";
     private ArrayList<String> chufang;
     private ArrayList<String> medicine;
     private ArrayList<String> medicinecategory;
@@ -77,6 +80,30 @@ public class PrintForm extends javax.swing.JFrame {
         this.option = option;
         this.bodyContent = bodyContent;
         this.diseaseIC = diseaseIC;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+    }
+    
+    public PrintForm(User user, int option, String bodyContent,String diseaseIC,  String Name, String Gender, 
+            String Age, String Phone, String Address, String Date)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.diseaseIC = diseaseIC;
+        this.Name = Name;
+        this.Gender = Gender;
+        this.Address = Address;
+        this.Age = Age;
+        this.Phone = Phone;
+        this.Date = Date;
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
@@ -266,7 +293,8 @@ public class PrintForm extends javax.swing.JFrame {
             }
             else
             {
-                NewPatient modify = new NewPatient(user,diseaseIC);
+                NewPatient modify = new NewPatient(user,diseaseIC, Name, Gender, 
+                                                    Age, Phone, Address, Date);
                 modify.setVisible(true);
                 this.dispose();
             }
