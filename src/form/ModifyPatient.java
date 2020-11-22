@@ -61,7 +61,37 @@ public class ModifyPatient extends javax.swing.JFrame {
         image();
     }
     
-    public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option){
+    public ModifyPatient(User user, int option, String ID, String IC, String Name, String Gender, 
+            String Age, String Phone, String Address, String createDateTime, String lastUpdateDateTime){
+        initComponents();
+        this.user = user;
+        this.IC = IC;
+        this.Name = Name;
+        this.Gender = Gender;
+        this.Age= Age;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.createDateTime = createDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.option = option;
+        userid = user.getUserid();
+        txtID.setText(ID);
+        txtIC.setText(IC);
+        txtName.setText(Name);
+        txtGender.setText(Gender);
+        txtAge.setText(Age);
+        txtPhone.setText(Phone);
+        txtAddress.setText(Address);
+        lblCreateDateTime.setText(createDateTime);
+        lblLastUpdateDateTime.setText(lastUpdateDateTime);
+        btnFind.setEnabled(false);
+        txtID.setEnabled(false);
+        setResizable(false);
+        image();
+    }        
+            
+    public ModifyPatient(User user,String ID,String IC,String Name,String Gender,String Age,
+            String Phone,String Address,String createDateTime,String lastUpdateDateTime,int option){
         initComponents();
         this.user = user;
         this.ID = ID;
@@ -593,9 +623,9 @@ public class ModifyPatient extends javax.swing.JFrame {
         String Phone = txtPhone.getText();
         String Address = txtAddress.getText();
         String Date = lblCreateDateTime.getText();
-        
+        String updateDate = lblLastUpdateDateTime.getText();
         String bodyContent = printPreview(ID,IC, Name, Gender, Age, Phone, Address, Date);
-        PrintForm main = new PrintForm(user,1,bodyContent);
+        PrintForm main = new PrintForm(user,1,bodyContent,IC, Name, Gender, Age, Phone, Address, Date, ID, updateDate);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed

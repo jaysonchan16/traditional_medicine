@@ -28,6 +28,15 @@ public class NewMedicine extends javax.swing.JFrame {
      */
     private User user;
     private String userid = "";
+    private String medic = "";
+    private String medicName = "";
+    private String component ="";
+    private String indication = "";
+    private String effect = "";
+    private String scoop = "";
+    private String weight = "";
+    private String cost = "";
+    private String medicPrice = "";
     
     public NewMedicine() {
         initComponents();
@@ -37,6 +46,8 @@ public class NewMedicine extends javax.swing.JFrame {
         this.user = user;
         initComponents();
         userid = user.getUserid();
+        txtMedicine.setVisible(false);
+        btnModify.setVisible(false);
         image();
         setResizable(false);
         comboMedicine();
@@ -51,6 +62,51 @@ public class NewMedicine extends javax.swing.JFrame {
             lblzhuzi.setText("主治:"); 
         }
          changeLabel();
+         
+    }
+    
+    public NewMedicine(User user,String medic,String medicName,String component,
+            String indication, String effect, String scoop, String weight, String cost, String medicPrice) {  
+        initComponents();
+        this.user = user;
+        this.medic = medic;
+        this.medicName = medicName;
+        this.component = component;
+        this.indication = indication;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.weight = weight;
+        this.cost =cost;
+        this.medicPrice = medicPrice;
+        userid = user.getUserid();
+        image();
+        setResizable(false);
+        comboMedicine.setVisible(false);
+        if(medic.equals("单味药粉"))
+        {
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
+        }
+        else
+        {
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
+        }
+         changeLabelText();
+        txtMedicine.setEnabled(false);
+        btnModify.setVisible(true);
+        txtMedicine.setText(medic);
+        txtMedicine.setVisible(true);
+        txtName.setText(medicName);
+        txtComponent.setText(component);
+        txtIndication.setText(indication);
+        txtEffect.setText(effect);
+        txtScoop.setText(scoop);
+        txtWeight.setText(weight);
+        txtCost.setText(cost);
+        txtPrice.setText(medicPrice);
+        userid = user.getUserid();
+        
          
     }
     /**
@@ -93,7 +149,9 @@ public class NewMedicine extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         lblWeight = new javax.swing.JLabel();
+        btnModify = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        txtMedicine = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -243,7 +301,7 @@ public class NewMedicine extends javax.swing.JFrame {
         panelBody.add(txtPrice);
         txtPrice.setBounds(270, 640, 840, 40);
 
-        btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -252,9 +310,9 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(140, 700, 130, 60);
+        btnBack.setBounds(160, 700, 110, 50);
 
-        btnAdd.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnAdd.setText("新增");
         btnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -263,14 +321,25 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnAdd);
-        btnAdd.setBounds(980, 700, 130, 60);
+        btnAdd.setBounds(1000, 700, 110, 50);
 
         lblWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblWeight.setText("GM");
         panelBody.add(lblWeight);
         lblWeight.setBounds(1060, 520, 50, 40);
 
-        btnPrint.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnModify.setText("更改");
+        btnModify.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnModify);
+        btnModify.setBounds(730, 700, 110, 50);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
         btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +348,12 @@ public class NewMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnPrint);
-        btnPrint.setBounds(840, 700, 130, 60);
+        btnPrint.setBounds(870, 700, 110, 50);
+
+        txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtMedicine.setText("jTextField1");
+        panelBody.add(txtMedicine);
+        txtMedicine.setBounds(270, 40, 840, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(390, 100, 1200, 820);
@@ -299,6 +373,18 @@ public class NewMedicine extends javax.swing.JFrame {
             String weight = txtWeight.getText();
             String cost = txtCost.getText();
             String price = txtPrice.getText();
+            String medicine = "";
+            
+            if(comboMedicine.isVisible() == true)
+            {
+                System.out.println("comboMedicine visible true");
+                medicine = comboMedicine.getSelectedItem().toString();
+            }
+            else 
+            {
+                System.out.println("comboMedicine visible false");
+                medicine = medic;
+            }
             
             if(name.equalsIgnoreCase(""))
             {
@@ -306,7 +392,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(component.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem().equals("单味药粉"))
+                if(medicine.equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写药性！");
                 }
@@ -317,7 +403,7 @@ public class NewMedicine extends javax.swing.JFrame {
             }
             else if(indication.equalsIgnoreCase(""))
             {
-                if(comboMedicine.getSelectedItem().equals("单味药粉"))
+                if(medicine.equals("单味药粉"))
                 {
                     JOptionPane.showMessageDialog(rootPane, "请填写应用！");
                 }
@@ -355,9 +441,9 @@ public class NewMedicine extends javax.swing.JFrame {
                 float cost1 = Float.valueOf(txtCost.getText());
                 float price1 = Float.valueOf(txtPrice.getText());
 
-                optionMessage(component,indication,effect,scoop,weight,cost,price);
+                optionMessage(component,indication,effect,scoop,weight,cost,price,medicine);
                 
-                if(comboMedicine.getSelectedItem().equals("复方药粉")) // traitional medicine potion
+                if(medicine.equals("复方药粉")) // traitional medicine potion
                 {
                     TraditionalMedicinePotion pill = new TraditionalMedicinePotion();
                     map = pill.AddTraditionalMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","TradMedPo",userid);
@@ -371,7 +457,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem().equals("药丸")) //grass medicine pill
+                else if(medicine.equals("药丸")) //grass medicine pill
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
                     map = pill.AddGrassMedicinePill(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPi",userid);
@@ -385,7 +471,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem().equals("药水"))// grass medicine potion
+                else if(medicine.equals("药水"))// grass medicine potion
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
                     map = pill.AddGrassMedicinePotion(name, component, effect, indication, scoop1, price1, weight1, cost1, "", "","GrasMedPo",userid);
@@ -399,7 +485,7 @@ public class NewMedicine extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
                 }
-                else if(comboMedicine.getSelectedItem().equals("单味药粉"))// traitional medicine pill
+                else if(medicine.equals("单味药粉"))// traitional medicine pill
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
                     map = pill.AddTraditionalMedicinePill(name, effect, scoop1, price1, weight1, cost1,"","", component, indication,"TradMedPi",userid);
@@ -412,6 +498,13 @@ public class NewMedicine extends javax.swing.JFrame {
                     {
                         JOptionPane.showMessageDialog(rootPane, map.get("returnMessage"));
                     }
+                }
+                if(comboMedicine.isVisible() == false)
+                {
+                    btnModify.setVisible(false);
+                    txtMedicine.setVisible(false);
+                    comboMedicine.setVisible(true);
+                    visibleCombobox();
                 }
             }
         } catch (NumberFormatException number){
@@ -456,10 +549,29 @@ public class NewMedicine extends javax.swing.JFrame {
         clearTextBox();
     }//GEN-LAST:event_comboMedicineActionPerformed
 
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+        btnModify.setVisible(false);
+        txtMedicine.setVisible(false);
+        comboMedicine.setVisible(true);
+        visibleCombobox();
+    }//GEN-LAST:event_btnModifyActionPerformed
+
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        String medicine = comboMedicine.getSelectedItem().toString();
-        String Name = txtName.getText();
+        String medicine = "";
+        if(comboMedicine.isVisible() == true)
+        {
+            System.out.println("comboMedicine visible true");
+            medicine = comboMedicine.getSelectedItem().toString();
+        }
+        else 
+        {
+            System.out.println("comboMedicine visible false");
+            medicine = medic;
+        }
+        
+        String name = txtName.getText();
         String component = txtComponent.getText();
         String indication = txtIndication.getText();
         String effect = txtEffect.getText();
@@ -468,14 +580,15 @@ public class NewMedicine extends javax.swing.JFrame {
         String cost = txtCost.getText();
         String price = txtPrice.getText();
         
-        String bodyContent = printPreview(medicine,Name,component,indication,effect,scoop,weight,cost,price);
-        PrintForm main = new PrintForm(user,5,bodyContent);
+        String bodyContent = printPreview(medicine,name,component,indication,effect,scoop,weight,cost,price);
+        PrintForm main = new PrintForm(user,5,bodyContent, medicine, name ,component,
+             indication, effect, scoop, weight, cost, price,"medic");
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
     
-    public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price){
-        if(!comboMedicine.getSelectedItem().equals("单味药粉"))
+    public void optionMessage(String component,String indication, String effect, String scoop, String weight, String cost, String price, String medicine){
+        if(medicine.equals("单味药粉"))
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -490,7 +603,7 @@ public class NewMedicine extends javax.swing.JFrame {
                 validateMessage(effect, scoop, weight, cost, price);
             }
         } 
-        else if(comboMedicine.getSelectedItem().equals("单味药粉"))
+        else if(medicine.equals("单味药粉"))
         {
             if(component.equalsIgnoreCase(""))
             {
@@ -568,6 +681,28 @@ public class NewMedicine extends javax.swing.JFrame {
         }
     }
     
+    public void changeLabelText()
+    {
+        if(txtMedicine.getText().equals("药丸"))
+        {
+            lblWeight.setText("'S");
+            lblCost.setText("本钱 RM/'S: RM");
+            lblPrice.setText("价格 RM/'S: RM");
+        }
+        else if(txtMedicine.getText().equals("药水"))
+        {
+            lblWeight.setText("ML");
+            lblCost.setText("本钱 RM/10 ML: RM");
+            lblPrice.setText("价格 RM/10 ML: RM");
+        }
+        else
+        {
+            lblWeight.setText("GM");
+            lblCost.setText("本钱 RM/GM: RM");
+            lblPrice.setText("价格 RM/GM: RM");
+        }
+    }
+    
     public void clearTextBox()
     {
         txtName.setText("");
@@ -592,8 +727,29 @@ public class NewMedicine extends javax.swing.JFrame {
         headerMedic.setIcon(iconHeader);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
+        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
+        btnModify.setIcon(iconModify);
         this.lblName.setText(user.getUserid());
         setResizable(false);
+    }
+    
+    public void visibleCombobox()
+    {
+        if(comboMedicine.isVisible() == true)
+        {
+            comboMedicine();
+            if(comboMedicine.getSelectedItem().equals("单味药粉"))
+            {
+                lblzhucheng.setText("药性:"); 
+                lblzhuzi.setText("应用:"); 
+            }
+            else
+            {
+                lblzhucheng.setText("组成:"); 
+                lblzhuzi.setText("主治:"); 
+            }
+             changeLabel();
+        }
     }
     
     public String printPreview(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
@@ -639,6 +795,7 @@ public class NewMedicine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboMedicine;
     private javax.swing.JLabel headerMedic;
@@ -665,6 +822,7 @@ public class NewMedicine extends javax.swing.JFrame {
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextField txtEffect;
     private javax.swing.JTextArea txtIndication;
+    private javax.swing.JTextField txtMedicine;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtScoop;

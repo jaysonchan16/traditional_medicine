@@ -43,6 +43,7 @@ public class PrintForm extends javax.swing.JFrame {
     private String Address = "";
     private String Age = "";
     private String Gender = "";
+    private String lastUpdateDateTime = "";
     private ArrayList<String> chufang;
     private ArrayList<String> medicine;
     private ArrayList<String> medicinecategory;
@@ -53,6 +54,15 @@ public class PrintForm extends javax.swing.JFrame {
     private ArrayList<String> prescriptionID;
     private String totalweight="";
     private String mainprice="";
+    private String medic="";
+    private String medicName="";
+    private String component="";
+    private String indication="";
+    private String effect="";
+    private String scoop="";
+    private String weight="";
+    private String cost="";
+    private String medicPrice="";
     
     public PrintForm() {
         initComponents();
@@ -66,6 +76,7 @@ public class PrintForm extends javax.swing.JFrame {
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
+        lblName.setText(user.getUserid());
         //1 option from modifypatient
         //2 option from modifypatient
         //3 option from newPatient
@@ -83,6 +94,7 @@ public class PrintForm extends javax.swing.JFrame {
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
+        lblName.setText(user.getUserid());
         //1 option from modifypatient
         //2 option from modifypatient
         //3 option from newPatient
@@ -107,6 +119,61 @@ public class PrintForm extends javax.swing.JFrame {
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
+        lblName.setText(user.getUserid());
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+    }
+    
+    public PrintForm(User user, int option, String bodyContent, String medic,String medicName,String component,
+            String indication, String effect, String scoop, String weight, String cost, String medicPrice, String page)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.medic = medic;
+        this.medicName = medicName;
+        this.component = component;
+        this.indication = indication;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.weight = weight;
+        this.cost =cost;
+        this.medicPrice = medicPrice;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        lblName.setText(user.getUserid());
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+    }
+    
+    public PrintForm(User user, int option, String bodyContent,String diseaseIC,  String Name, String Gender, 
+            String Age, String Phone, String Address, String Date ,String ID, String updateDate)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.diseaseIC = diseaseIC;
+        this.Name = Name;
+        this.Gender = Gender;
+        this.Address = Address;
+        this.Age = Age;
+        this.Phone = Phone;
+        this.Date = Date;
+        this.ID =ID;
+        this.lastUpdateDateTime = updateDate;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        lblName.setText(user.getUserid());
         //1 option from modifypatient
         //2 option from modifypatient
         //3 option from newPatient
@@ -150,6 +217,7 @@ public class PrintForm extends javax.swing.JFrame {
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
+        lblName.setText(user.getUserid());
         //1 option from modifypatient
         //2 option from modifypatient
         //3 option from newPatient
@@ -269,7 +337,8 @@ public class PrintForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(option == 1)
         {
-            ModifyPatient modify = new ModifyPatient(user,option);
+            ModifyPatient modify = new ModifyPatient(user, option, diseaseIC, Name, Gender, 
+            Age, Phone, Address, Date,ID,lastUpdateDateTime);
             modify.setVisible(true);
             this.dispose();
         }
@@ -314,7 +383,9 @@ public class PrintForm extends javax.swing.JFrame {
         }
         else if(option == 5)
         {
-            NewMedicine modify = new NewMedicine(user);
+            System.out.println(medicPrice);
+            NewMedicine modify = new NewMedicine(user, medic, medicName, component,
+            indication, effect, scoop, weight, cost, medicPrice);
             modify.setVisible(true);
             this.dispose();
         }  
