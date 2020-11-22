@@ -45,19 +45,32 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private String ic;
     private String name;
     private String phone;
+    private String Date="";
+    private String symptom="";
+    private String category="";
+    private String pulse ="";
+    private String tongueQuality ="";
+    private String tongueCoating ="";
+    private String shit="";
+    private String history="";
+    private String temperature="";
+    private String blood="";
+    private ArrayList<String> chufang;
+    private ArrayList<String> medicine;
+    private ArrayList<String> medicinecategory;
+    private ArrayList<String> jiliang;
+    private ArrayList<String> price;
+    private ArrayList<String> totalprice;
+    private ArrayList<String> remaining;
+    private ArrayList<String> prescriptionID;
+    private String totalweight="";
+    private String mainprice="";
     DefaultTableModel model;
     private String comboBox = "";
     HashMap<String,String> save = new HashMap<String,String>();
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
     private String userid = "";
-    HashMap<String,String> weight = new HashMap<String,String>();
-    HashMap<String,String> weightTraditionalMedicinePill = new HashMap<String,String>();
-    HashMap<String,String> weightTraditionalMedicinePotion = new HashMap<String,String>();
-    HashMap<String,String> weightGrassMedicinePill = new HashMap<String,String>();
-    HashMap<String,String> weightGrassMedicinePotion = new HashMap<String,String>();
-    private Boolean doubleCombo = false;
-    //Set<String> s;
     private ArrayList<String> s = new ArrayList<String>();
     
     public NewPatientDisease1(User user) throws SQLException {
@@ -137,6 +150,93 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         columnModel.getColumn(7).setMinWidth(0);
         columnModel.getColumn(7).setMaxWidth(0);
     }
+    
+    public NewPatientDisease1(User user,String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
+            String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
+            ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
+            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> prescriptionID) throws SQLException {
+        initComponents();
+        userid = user.getUserid();
+        medicineCategory();
+        //FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        createColumns();
+        this.user = user;
+        this.id = ID;
+        this.ic = IC;
+        this.name = Name;
+        this.phone = Phone;
+        this.Date = Date;
+        this.symptom = symptom;
+        this.category = category; 
+        this.pulse = pulse;
+        this.tongueQuality =tongueQuality;
+        this.tongueCoating =  tongueCoating;
+        this.shit = shit;
+        this.history= history;
+        this.temperature = temperature;
+        this.blood = blood;
+        this.chufang = chufang;
+        this.medicine = medicine;
+        this.medicinecategory = medicinecategory;
+        this.jiliang = jiliang;
+        this.price = price;
+        this.totalprice = totalprice;
+        this.totalweight = totalweight;
+        this.mainprice = mainprice;
+        this.remaining = remaining;
+        this.prescriptionID = prescriptionID;
+        lblCreateDateTime.setText(Date);
+        txtSymptom.setText(symptom);
+        txtCategory.setText(category);
+        txtPulse.setText(pulse);
+        txtTongueQuality.setText(tongueQuality);
+        txtTongueCoating.setText(tongueCoating);
+        txtShit.setText(shit);
+        txtHistory.setText(history);
+        txtTemperature.setText(temperature);
+        txtBlood.setText(blood);
+        lblTotalJiliang.setText(totalweight);
+        lblTotalPrice.setText(mainprice);
+        for (int i = 0; i < chufang.size(); i++){
+            populate(chufang.get(i),medicine.get(i),medicinecategory.get(i),
+                    jiliang.get(i),price.get(i),totalprice.get(i),remaining.get(i),prescriptionID.get(i));
+        }
+        
+        btnFindIC.setEnabled(false);
+        txtName.setEnabled(false);
+        txtPhone.setEnabled(false);
+        txtIC.setEnabled(false);
+        txtIC.setText(IC);
+        txtID.setEnabled(false);
+        txtID.setText(ID);
+        btnFindID.setEnabled(false);
+        txtName.setText(Name);
+        txtPhone.setText(Phone);
+        txtRemaining.setEnabled(false);
+        spinnerJiLiang.setEnabled(false);
+        //lblID.setText(String.valueOf(id));
+        setResizable(false);
+        model = (DefaultTableModel)tblDisease.getModel();
+        txtchufang.setEnabled(false);
+        txtPrice.setEnabled(false);
+        txtchufang.setText("1");
+        txtTotalPrice.setEnabled(false);
+        image();
+        lblCreateDateTime.setText(dtf.format(localDate));
+        btnReset.setVisible(false);
+        btnModify.setVisible(false);
+        btnDelete.setEnabled(false);
+        btnAddRow.setEnabled(false);
+        txtWeight.setVisible(false);
+        txtMedicineID.setVisible(false);
+        spinnerJiLiang.setValue(1);
+        TableColumnModel columnModel = tblDisease.getColumnModel();
+        columnModel.getColumn(6).setMinWidth(0);
+        columnModel.getColumn(6).setMaxWidth(0);
+        columnModel.getColumn(7).setMinWidth(0);
+        columnModel.getColumn(7).setMaxWidth(0);
+    }
+    
     public NewPatientDisease1() {
         initComponents();
     }
@@ -871,6 +971,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         ArrayList<String> jiliang = new ArrayList<String>();
         ArrayList<String> price = new ArrayList<String>();
         ArrayList<String> totalprice = new ArrayList<String>();
+        ArrayList<String> remaining = new ArrayList<String>();
+        ArrayList<String> prescriptionID = new ArrayList<String>();
         for (int count = 0; count < model.getRowCount(); count++){
             chufang.add(model.getValueAt(count, 0).toString());
             medicine.add(model.getValueAt(count, 1).toString());
@@ -878,10 +980,13 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             jiliang.add(model.getValueAt(count, 3).toString()+"GM");
             price.add("RM"+model.getValueAt(count, 4).toString());
             totalprice.add("RM"+model.getValueAt(count, 5).toString());
+            remaining.add(model.getValueAt(count, 6).toString());
+            prescriptionID.add(model.getValueAt(count, 7).toString());
         }
         String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
             chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
-        PrintForm main = new PrintForm(user,4,bodyContent);
+        PrintForm main = new PrintForm(user,4,bodyContent,IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
+            chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice, remaining, prescriptionID);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed

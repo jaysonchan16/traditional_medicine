@@ -26,6 +26,31 @@ public class PrintForm extends javax.swing.JFrame {
     private int option;
     private String bodyContent;
     private String diseaseIC = "";
+    private String IC = "";
+    private String ID = "";
+    private String Name ="";
+    private String Phone="";
+    private String Date="";
+    private String symptom="";
+    private String category="";
+    private String pulse ="";
+    private String tongueQuality ="";
+    private String tongueCoating ="";
+    private String shit="";
+    private String history="";
+    private String temperature="";
+    private String blood="";
+    private ArrayList<String> chufang;
+    private ArrayList<String> medicine;
+    private ArrayList<String> medicinecategory;
+    private ArrayList<String> jiliang;
+    private ArrayList<String> price;
+    private ArrayList<String> totalprice;
+    private ArrayList<String> remaining;
+    private ArrayList<String> prescriptionID;
+    private String totalweight="";
+    private String mainprice="";
+    
     public PrintForm() {
         initComponents();
     }
@@ -66,12 +91,35 @@ public class PrintForm extends javax.swing.JFrame {
     public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
             String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
             ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
-            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice)
+            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> diseaseID)
     {
         this.user = user;
         this.option = option;
         this.bodyContent = bodyContent;
-        this.diseaseIC = diseaseIC;
+        this.IC = IC; 
+        this.ID = ID;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Date = Date;
+        this.symptom = symptom;
+        this.category = category; 
+        this.pulse = pulse;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.shit = shit; 
+        this.history = history;
+        this.temperature = temperature;
+        this.blood = blood;
+        this.chufang = chufang;
+        this.medicine = medicine;
+        this.medicinecategory = medicinecategory;
+        this.jiliang = jiliang;
+        this.price = price;
+        this.totalprice = totalprice;
+        this.totalweight = totalweight;
+        this.mainprice = mainprice;
+        this.remaining = remaining;
+        this.prescriptionID = prescriptionID;
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
@@ -226,7 +274,10 @@ public class PrintForm extends javax.swing.JFrame {
         else if(option == 4)
         {
             try {
-                NewPatientDisease1 modify = new NewPatientDisease1(user);
+                NewPatientDisease1 modify = new NewPatientDisease1(user, IC, ID, Name, Phone, Date, symptom, category, 
+                pulse,tongueQuality,tongueCoating, shit, history, temperature, blood,
+                chufang, medicine, medicinecategory,
+                jiliang, price, totalprice, totalweight, mainprice,remaining,prescriptionID);
                 modify.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
