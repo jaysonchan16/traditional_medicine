@@ -91,7 +91,7 @@ public class PrintForm extends javax.swing.JFrame {
     public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
             String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
             ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
-            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> diseaseID)
+            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> prescriptionID)
     {
         this.user = user;
         this.option = option;

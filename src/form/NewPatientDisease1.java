@@ -201,7 +201,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             populate(chufang.get(i),medicine.get(i),medicinecategory.get(i),
                     jiliang.get(i),price.get(i),totalprice.get(i),remaining.get(i),prescriptionID.get(i));
         }
-        
+        int pluschufang = chufang.size()+1;
+        txtchufang.setText(String.valueOf(pluschufang));
         btnFindIC.setEnabled(false);
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
@@ -219,7 +220,6 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         model = (DefaultTableModel)tblDisease.getModel();
         txtchufang.setEnabled(false);
         txtPrice.setEnabled(false);
-        txtchufang.setText("1");
         txtTotalPrice.setEnabled(false);
         image();
         lblCreateDateTime.setText(dtf.format(localDate));
