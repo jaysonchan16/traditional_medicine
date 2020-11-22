@@ -518,7 +518,7 @@ public class DiseaseMenu extends javax.swing.JFrame {
     {
         try {
             // TODO add your handling code here:
-            NewPatientDisease patient = new NewPatientDisease(user);
+            NewPatientDisease1 patient = new NewPatientDisease1(user);
             patient.setVisible(true);
             this.dispose();
             } catch (SQLException ex) {

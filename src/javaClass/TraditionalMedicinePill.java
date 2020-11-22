@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -279,4 +280,6 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("TraditionalMedicinePill", user);
     }
+    
+    
 }

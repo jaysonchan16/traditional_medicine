@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -209,7 +210,10 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     
     public List<TraditionalMedicinePotion> findTraditionalMedicinePotionName(String name, String User) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
+        System.out.println(name);
+        System.out.println(User);
         String query = "Select ID,name,sellprice,gram,medicine,User from TraditionalMedicinePotion where name='"+name+"' and User='"+User+"' order by 1 desc";
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
@@ -261,4 +265,6 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("TraditionalMedicinePotion", user);
     }
+    
+    
 }

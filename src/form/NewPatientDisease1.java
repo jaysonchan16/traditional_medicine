@@ -5,41 +5,37 @@
  */
 package form;
 
-import javaClass.Prescription;
-import javaClass.Patient;
-import javaClass.GrassMedicinePotion;
-import javaClass.GrassMedicinePill;
-import javaClass.TraditionalMedicinePotion;
-import javaClass.TraditionalMedicinePill;
-import javaClass.User;
-import javaClass.Disease;
-import javaClass.Code;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
-import java.awt.*;
-import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.List;
-import javaClass.Java2sAutoComboBox;
-import javaClass.Java2sAutoTextField;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+import javaClass.Code;
+import javaClass.GrassMedicinePill;
+import javaClass.GrassMedicinePotion;
+import javaClass.Patient;
 import javaClass.PrintTemplate;
-import javax.swing.*;
-import javax.swing.table.*;
+import javaClass.TraditionalMedicinePill;
+import javaClass.TraditionalMedicinePotion;
+import javaClass.User;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Sheng
  */
-public class NewPatientDisease extends javax.swing.JFrame {
+public class NewPatientDisease1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewPatientDisease
+     * Creates new form NewPatientDisease1
      */
     private User user;
     private String id;
@@ -57,20 +53,21 @@ public class NewPatientDisease extends javax.swing.JFrame {
     HashMap<String,String> weightTraditionalMedicinePotion = new HashMap<String,String>();
     HashMap<String,String> weightGrassMedicinePill = new HashMap<String,String>();
     HashMap<String,String> weightGrassMedicinePotion = new HashMap<String,String>();
-    private ArrayList<String> listSomeAnotherString = new ArrayList<String>();
-    private Java2sAutoComboBox someComboBox = new Java2sAutoComboBox(listSomeAnotherString);
     private Boolean doubleCombo = false;
-    Set<String> s;
+    //Set<String> s;
+    private ArrayList<String> s = new ArrayList<String>();
     
-    public NewPatientDisease(User user) throws SQLException {
+    public NewPatientDisease1(User user) throws SQLException {
         initComponents();
         this.user = user;
         userid = user.getUserid();
         createColumns();
         txtName.setEnabled(false);
         txtPhone.setEnabled(false);
+        txtRemaining.setEnabled(false);
+        spinnerJiLiang.setEnabled(false);
         medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        //FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         setResizable(false);
         txtchufang.setEnabled(false);
         txtPrice.setEnabled(false);
@@ -90,11 +87,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
         columnModel.getColumn(7).setMaxWidth(0);
     }
     
-    public NewPatientDisease(User user,String id, String ic, String name, String phone) throws SQLException {
+    public NewPatientDisease1(User user,String id, String ic, String name, String phone) throws SQLException {
         initComponents();
         userid = user.getUserid();
         medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        //FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         createColumns();
         this.user = user;
         this.id = id;
@@ -111,7 +108,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         btnFindID.setEnabled(false);
         txtName.setText(name);
         txtPhone.setText(phone);
-        lblID.setText(String.valueOf(id));
+        txtRemaining.setEnabled(false);
+        spinnerJiLiang.setEnabled(false);
+        //lblID.setText(String.valueOf(id));
         setResizable(false);
         model = (DefaultTableModel)tblDisease.getModel();
         txtchufang.setEnabled(false);
@@ -131,7 +130,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         columnModel.getColumn(7).setMinWidth(0);
         columnModel.getColumn(7).setMaxWidth(0);
     }
-    public NewPatientDisease() {
+    public NewPatientDisease1() {
         initComponents();
     }
 
@@ -144,15 +143,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonAdd = new javax.swing.JButton();
-        lblID = new javax.swing.JLabel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         headerAdd = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtIC = new javax.swing.JTextField();
@@ -217,14 +212,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
         txtMedicineID = new javax.swing.JTextField();
         btnFindMedic = new javax.swing.JButton();
         txtMedicineName = new javax.swing.JTextField();
-        comboBoxName = new javax.swing.JComboBox<>();
-
-        buttonAdd.setText("jButton1");
+        jPanel1 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(lblID);
-        lblID.setBounds(40, 50, 0, 0);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -249,16 +241,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel24.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel24);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -652,32 +634,94 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(panelBody);
         panelBody.setBounds(270, 80, 1450, 850);
 
-        comboBoxName.setEditable(true);
-        comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboBoxNameMouseClicked(evt);
-            }
-        });
-        comboBoxName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxNameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(comboBoxName);
-        comboBoxName.setBounds(30, 470, 290, 40);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
-        setBounds(0, 0, 1955, 1038);
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel24.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel24);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        setBounds(0, 0, 1956, 1035);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPulseActionPerformed
 
     private void btnFindICActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindICActionPerformed
         // TODO add your handling code here:
         Find();
     }//GEN-LAST:event_btnFindICActionPerformed
+
+    private void btnFindIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindIDActionPerformed
+        // TODO add your handling code here:
+        Find();
+    }//GEN-LAST:event_btnFindIDActionPerformed
+
+    private void txtPulseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPulseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPulseActionPerformed
+
+    private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
+        try {
+            // TODO add your handling code here:
+            /*doubleCombo = true;
+            comboBoxName.removeAllItems();*/
+            txtMedicineName.setText("");
+            String name = comboBoxMedicine.getSelectedItem().toString();
+            
+            medicineName(name);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.comboBoxMedicineActionPerformed get error on line 609,"+ex.getMessage());
+        }
+
+    }//GEN-LAST:event_comboBoxMedicineActionPerformed
+
+    private void spinnerJiLiangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerJiLiangStateChanged
+        // TODO add your handling code here:
+        /*String jiliang = spinnerJiLiang.getValue().toString();
+        float weight = Float.valueOf(txtWeight.getText());
+        float jiliang1 = Float.valueOf(jiliang);
+        float totalprice = Float.valueOf(txtPrice.getText());
+        float total = jiliang1 * totalprice;
+        float remaining = weight - jiliang1;
+        txtTotalPrice.setText(String.valueOf(total));
+        txtRemaining.setText(String.valueOf(remaining));*/
+    }//GEN-LAST:event_spinnerJiLiangStateChanged
+
+    private void btnAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRowActionPerformed
+        // TODO add your handling code here:
+        /*float remaining = Float.valueOf(txtRemaining.getText());
+        if(remaining >= 0.0)
+        {
+            if(save.isEmpty())
+            {
+                saveDataTable();
+            }
+            else
+            {
+                if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
+                {
+                    if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
+                    }
+                    else
+                    {
+                        System.out.println("c");
+                        saveDataTable();
+                    }
+                }
+                else
+                {
+                    saveDataTable();
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "剂量已经不够了！");
+        }*/
+    }//GEN-LAST:event_btnAddRowActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -688,7 +732,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
 
     private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
         // TODO add your handling code here:
-        try {
+        /*try {
             String patientID = txtID.getText();
             String symptom = txtSymptom.getText();
             int temperature = Integer.parseInt(txtTemperature.getText());
@@ -699,10 +743,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
             String shit = txtShit.getText();
             String category = txtCategory.getText();
             String history = txtHistory.getText();
-            
+
             HashMap<String,String> map = new HashMap<String,String>();
             int rows=tblDisease.getRowCount();
-            
+
             if (symptom.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "主症没填！");
             } else if (temperature <= 0 && temperature >= 100) {
@@ -722,11 +766,11 @@ public class NewPatientDisease extends javax.swing.JFrame {
             } else if (history.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(rootPane, "病史没填！");
             } else if (rows == 0) {
-               JOptionPane.showMessageDialog(null,"一定要添加至少一个资料");
-            } 
+                JOptionPane.showMessageDialog(null,"一定要添加至少一个资料");
+            }
             else {
-                Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality, 
-                                                tonguecoating, shit, category, history, patientID,"",userid);
+                Disease disease = new Disease(symptom, temperature, blood, pulse, tonguequality,
+                    tonguecoating, shit, category, history, patientID,"",userid);
                 try {
                     map = disease.AddDisease();
                     if (map.get("returnMessage").equalsIgnoreCase("1")) {
@@ -761,97 +805,12 @@ public class NewPatientDisease extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "体温后面不可以有空格/体温不可以放字母！");
-        }
+        }*/
     }//GEN-LAST:event_btnAddDataActionPerformed
-
-    private void comboBoxMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMedicineActionPerformed
-        try {
-            // TODO add your handling code here:
-            /*doubleCombo = true;
-            comboBoxName.removeAllItems();*/
-            String name = comboBoxMedicine.getSelectedItem().toString();
-            
-            medicineName(name);
-        } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.comboBoxMedicineActionPerformed get error on line 609,"+ex.getMessage());
-        }
-        
-    }//GEN-LAST:event_comboBoxMedicineActionPerformed
-
-    private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
-        try {
-            // TODO add your handling code here:
-            FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
-    }//GEN-LAST:event_comboBoxNameActionPerformed
-
-    private void btnFindIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindIDActionPerformed
-        // TODO add your handling code here:
-        Find();
-    }//GEN-LAST:event_btnFindIDActionPerformed
-
-    private void btnAddRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRowActionPerformed
-        // TODO add your handling code here:
-        float remaining = Float.valueOf(txtRemaining.getText());
-        if(remaining >= 0.0)
-        {
-            if(save.isEmpty())
-            {
-                saveDataTable();
-            }
-            else
-            {
-                if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
-                {
-                    if(save.get(comboBoxMedicine.getSelectedItem().toString()).equalsIgnoreCase(comboBoxName.getSelectedItem().toString()))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "资料已经存在了");
-                    }
-                    else
-                    {
-                        System.out.println("c");
-                        saveDataTable();
-                    }
-                }
-                else
-                {
-                    saveDataTable();
-                }
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(rootPane, "剂量已经不够了！");
-        }
-    }//GEN-LAST:event_btnAddRowActionPerformed
-    
-    public HashMap<String,String> saveDataTable()
-    {
-        populate(String.valueOf(model.getRowCount()+1),comboBoxMedicine.getSelectedItem().toString(),comboBoxName.getSelectedItem().toString(),
-                     spinnerJiLiang.getValue().toString(),txtPrice.getText(),txtTotalPrice.getText(),txtRemaining.getText(),txtMedicineID.getText());
-        save.put(comboBoxMedicine.getSelectedItem().toString(), comboBoxName.getSelectedItem().toString());
-        chufang();
-        return save;
-    }
-    
-    private void spinnerJiLiangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerJiLiangStateChanged
-        // TODO add your handling code here:
-        String jiliang = spinnerJiLiang.getValue().toString();
-        float weight = Float.valueOf(txtWeight.getText());
-        float jiliang1 = Float.valueOf(jiliang);
-        float totalprice = Float.valueOf(txtPrice.getText());
-        float total = jiliang1 * totalprice;
-        float remaining = weight - jiliang1;
-        txtTotalPrice.setText(String.valueOf(total));
-        txtRemaining.setText(String.valueOf(remaining));
-    }//GEN-LAST:event_spinnerJiLiangStateChanged
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
         // TODO add your handling code here:
-        btnAddRow.setVisible(false);
+        /*btnAddRow.setVisible(false);
         btnReset.setVisible(true);
         btnDelete.setVisible(false);
         btnModify.setVisible(true);
@@ -860,15 +819,15 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String chufang = tblmodel.getValueAt(index, 0).toString();
         String price = tblmodel.getValueAt(index,4).toString();
         String totalprice = tblmodel.getValueAt(index,5).toString();
-        
+
         txtchufang.setText(chufang);
         txtPrice.setText(price);
-        txtTotalPrice.setText(totalprice);
+        txtTotalPrice.setText(totalprice);*/
     }//GEN-LAST:event_tblDiseaseMouseClicked
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-        String IC = txtIC.getText();
+        /*String IC = txtIC.getText();
         String ID = txtID.getText();
         String Name = txtName.getText();
         String Phone = txtPhone.getText();
@@ -880,7 +839,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         String tongueCoating = txtTongueCoating.getText();
         String shit = txtShit.getText();
         String history = txtHistory.getText();
-        String temperature = txtTemperature.getText();  
+        String temperature = txtTemperature.getText();
         String blood = txtBlood.getText();
         String totalweight = lblTotalJiliang.getText();
         String mainPrice = lblTotalPrice.getText();
@@ -897,17 +856,17 @@ public class NewPatientDisease extends javax.swing.JFrame {
             jiliang.add(model.getValueAt(count, 3).toString()+"GM");
             price.add("RM"+model.getValueAt(count, 4).toString());
             totalprice.add("RM"+model.getValueAt(count, 5).toString());
-          }
+        }
         String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood,
-                chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
+            chufang,medicine,medicinecategory,jiliang,price, totalprice, totalweight, mainPrice);
         PrintForm main = new PrintForm(user,4,bodyContent);
         main.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int index = model.getRowCount()-1;
+        /*int index = model.getRowCount()-1;
         TableModel tableModel = tblDisease.getModel();
         String medicine = tableModel.getValueAt(index,1).toString();
         String name = tableModel.getValueAt(index,2).toString();
@@ -920,14 +879,14 @@ public class NewPatientDisease extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(rootPane, "删除失败！");
-        }
-        
+        }*/
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         // TODO add your handling code here:
-        float remaining = Float.valueOf(txtRemaining.getText());
-        
+        /*float remaining = Float.valueOf(txtRemaining.getText());
+
         if(remaining >= 0.0)
         {
             if(save.containsKey(comboBoxMedicine.getSelectedItem().toString()))
@@ -949,35 +908,31 @@ public class NewPatientDisease extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(rootPane, "剂量已经不够了！");
-        }
+        }*/
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        comboBoxMedicine.setVisible(true);
+        /*comboBoxMedicine.setVisible(true);
         comboBoxName.setVisible(true);
         spinnerJiLiang.setVisible(true);
         btnReset.setVisible(false);
         btnModify.setVisible(false);
         btnAddRow.setVisible(true);
         btnDelete.setVisible(true);
-        txtchufang.setText(String.valueOf(tblDisease.getRowCount()+1));
+        txtchufang.setText(String.valueOf(tblDisease.getRowCount()+1));*/
     }//GEN-LAST:event_btnResetActionPerformed
-
-    private void comboBoxNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxNameMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxNameMouseClicked
 
     private void txtMedicineNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedicineNameActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtMedicineNameActionPerformed
 
     private void txtMedicineNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMedicineNameKeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE)
         {
-        
+
         }
         else
         {
@@ -1004,88 +959,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtMedicineNameKeyReleased
 
-    private void populate(String chufang, String medicine, String name, String jiliang, String price, String totalPrice, String remaining, String prescriptionID)
-    {
-        model = (DefaultTableModel)tblDisease.getModel();
-        String []rowData ={chufang,medicine,name,jiliang,price,totalPrice,remaining,prescriptionID};
-        model.addRow(rowData);
-    }
-    
-    public void modify()
-    {
-        int i = tblDisease.getSelectedRow();
-        int index = tblDisease.getSelectedRow();
-        TableModel model = tblDisease.getModel();
-        String medicine = model.getValueAt(index, 1).toString();
-        String name = model.getValueAt(index,2).toString();
-        if(save.get(medicine).equalsIgnoreCase(name))
-        {
-            save.remove(medicine);
-            if(i >= 0) 
-            {
-                model.setValueAt(comboBoxMedicine.getSelectedItem().toString(), i, 1);
-                model.setValueAt(comboBoxName.getSelectedItem().toString(), i, 2);
-                model.setValueAt(spinnerJiLiang.getValue().toString(), i, 3);
-                model.setValueAt(txtPrice.getText(), i, 4);
-                model.setValueAt(txtTotalPrice.getText(), i, 5);
-                model.setValueAt(txtRemaining.getText(), i, 6);
-                model.setValueAt(txtMedicineID.getText(), i, 7);
-                save.put(comboBoxMedicine.getSelectedItem().toString(), comboBoxName.getSelectedItem().toString());
-            }
-            else{
-                JOptionPane.showMessageDialog(rootPane, "更新失败！");
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(rootPane, "更新失败！");
-        }
-    }
-    
     private void createColumns()
     {
         model = (DefaultTableModel) tblDisease.getModel();
-        /*model.addColumn("处方");
-        model.addColumn("药物种类");
-        model.addColumn("药物名称");
-        model.addColumn("剂量");
-        model.addColumn("价格/G");
-        model.addColumn("总价值");*/
-    }
-    
-    public void chufang()
-    {
-        float totalprice = 0;
-        float totalweight = 0;
-        for(int i = 0; i < tblDisease.getRowCount(); i++){
-            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
-            totalprice = AmountPrice+totalprice;
-        }
-        for(int i = 0; i < tblDisease.getRowCount(); i++){
-            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
-            totalweight = AmountWeight+totalweight;
-        }
-        txtchufang.setText(String.valueOf(model.getRowCount()+1));
-        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
-        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
-    }
-    
-    public void minuschufang()
-    {
-        int chufang = Integer.valueOf(txtchufang.getText()) + 1;
-        float totalprice = 0;
-        float totalweight = 0;
-        for(int i = 0; i < tblDisease.getRowCount(); i++){
-            float AmountPrice = Float.parseFloat(tblDisease.getValueAt(i, 5)+"");
-            totalprice = AmountPrice+totalprice;
-        }
-        for(int i = 0; i < tblDisease.getRowCount(); i++){
-            float AmountWeight = Float.parseFloat(tblDisease.getValueAt(i, 3)+"");
-            totalweight = AmountWeight+totalweight;
-        }
-        txtchufang.setText(String.valueOf(chufang));
-        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
-        lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
     }
     
     public void Find()
@@ -1135,9 +1011,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 else 
                 {
                     JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                    /*NewPatient detail = new NewPatient(user,IC);
-                    detail.setVisible(true);
-                    this.dispose();*/
                 }
             }
             else
@@ -1174,219 +1047,53 @@ public class NewPatientDisease extends javax.swing.JFrame {
     
     public void medicineName(String name) throws SQLException
     {
-        //System.out.println("Medicinename");
-        //name
-        //comboBoxName.removeAllItems();
-        if(doubleCombo == true)
-        {
+        /*if(doubleCombo == true)
+        {*/
+            s.removeAll(s);
             if(name.equalsIgnoreCase("单味药粉"))
             {
                 TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                //pill.fill("SELECT * FROM TraditionalMedicinePill WHERE medicine = '单味药粉'", comboBoxName, name);
-                /*for(int i = 0; i < pill.comboName(userid).size(); i++)
-                {
-                    //comboBoxName.addItem(pill.comboName(userid).get(i).getName());
-                    
-                }
-                doubleCombo = false;
-                FindByMedicineName2(pill.comboName(userid).get(0).getName());*/
+                
                 for(int i = 0; i < pill.comboName(userid).size(); i++)
                 {
                     s.add(pill.comboName(userid).get(i).getName());
                 }
-                doubleCombo = false;
             }
             else if(name.equalsIgnoreCase("药水"))
             {
                 GrassMedicinePotion potion = new GrassMedicinePotion();
-                //potion.fill("SELECT * FROM GrassMedicinePotion WHERE medicine = '药水'", comboBoxName, name);
-                /*System.out.println(potion.comboName(userid).size());
+                
                 for(int i = 0; i < potion.comboName(userid).size(); i++)
                 {
-                    //comboBoxName.addItem(potion.comboName(userid).get(i).getName());
-                }
-                doubleCombo = false;
-                FindByMedicineName2(potion.comboName(userid).get(0).getName());*/
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
-                {
+                    System.out.println("s.add");
                     s.add(potion.comboName(userid).get(i).getName());
                 }
-                doubleCombo = false;
             }
             else if(name.equalsIgnoreCase("药丸"))
             {
                 GrassMedicinePill pill = new GrassMedicinePill();
-                //pill.fill("SELECT * FROM GrassMedicinePill WHERE medicine = '药丸'", comboBoxName, name);
-                /*System.out.println(pill.comboName(userid).size());
-                    for(int i = 0; i < pill.comboName(userid).size(); i++)
-                    {
-                        //comboBoxName.addItem(pill.comboName(userid).get(i).getName());
-                    }
-                    doubleCombo = false;
-                    FindByMedicineName(pill.comboName(userid).get(0).getName());*/
+                
                 for(int i = 0; i < pill.comboName(userid).size(); i++)
                 {
+                    System.out.println("s.add");
                     s.add(pill.comboName(userid).get(i).getName());
                 }
-                doubleCombo = false;
 
             }
             else if(name.equalsIgnoreCase("复方药粉"))
             {
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                //potion.fill("SELECT * FROM TraditionalMedicinePotion WHERE medicine = '复方药粉'", comboBoxName, name);
-                /*System.out.println(potion.comboName(userid).size());
+                
                 for(int i = 0; i < potion.comboName(userid).size(); i++)
                 {
-                    //comboBoxName.addItem(potion.comboName(userid).get(i).getName());
-                }
-                doubleCombo = false;
-                FindByMedicineName(potion.comboName(userid).get(0).getName());*/
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
-                {
+                    System.out.println("s.add");
                     s.add(potion.comboName(userid).get(i).getName());
                 }
-                doubleCombo = false;
             }
-        }
+        //}
         
     }
     
-    public void FindByMedicineName(String name)
-    {
-        //String name = (String)comboBoxName.getSelectedItem();
-        String medicine = (String)comboBoxMedicine.getSelectedItem();
-        int rows=tblDisease.getRowCount();
-        
-        System.out.println("name:"+name);
-        System.out.println("medicine:"+medicine);
-        try
-        {
-            if(medicine.equalsIgnoreCase("单味药粉"))
-            {
-                List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
-                txtMedicineID.setText(medicList.get(0).getCode());
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                weightTraditionalMedicinePill.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
-                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
-
-            }
-            else if(medicine.equalsIgnoreCase("药水"))
-            {
-                List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
-                GrassMedicinePotion potion = new GrassMedicinePotion();
-                medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
-                txtMedicineID.setText(medicList.get(0).getCode());
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                weightGrassMedicinePotion.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
-                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
-            }
-            else if(medicine.equalsIgnoreCase("药丸"))
-            {
-                List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
-                GrassMedicinePill pill = new GrassMedicinePill();
-                medicList = pill.findGrassMedicinePillDetails("name", name,userid);
-                txtMedicineID.setText(medicList.get(0).getCode());
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                weightGrassMedicinePill.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
-                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
-
-            }
-            else if(medicine.equalsIgnoreCase("复方药粉"))
-            {
-                List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
-                txtMedicineID.setText(medicList.get(0).getCode());
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
-                weightTraditionalMedicinePotion.put(medicList.get(0).getName(),String.valueOf(medicList.get(0).getGram()));
-                txtWeight.setText(String.valueOf(medicList.get(0).getGram()));
-            }
-        }
-        catch(SQLException ex)
-        {
-            JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName() get error on line 828,"+ex.getMessage());
-        }
-        
-    }
-    
-    public void FindByMedicineName2(String name) throws SQLException
-    {
-        doubleCombo = false;
-        //String name = (String)comboBoxName.getSelectedItem();
-        String medicine = (String)comboBoxMedicine.getSelectedItem();
-        System.out.println("FindMedicineName2 name:"+name);
-        if(name == null || name.isEmpty() || name.equalsIgnoreCase("null") || name.equalsIgnoreCase(null))
-        {
-            doubleCombo = true;
-            System.out.println("FindMedicineName2 name null:"+name);
-            medicineName(medicine);
-        }
-        else
-        {
-            System.out.println("name:"+name);
-            System.out.println("medicine:"+medicine);
-
-            try
-            {
-                if(medicine.equalsIgnoreCase("单味药粉"))
-                {
-                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findTraditionalMedicinePillName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getGram()));
-                    String jiliang = spinnerJiLiang.getValue().toString();
-                    float weight = Float.valueOf(txtWeight.getText());
-                    float jiliang1 = Float.valueOf(jiliang);
-                    float remaining = weight - jiliang1;
-                    txtRemaining.setText(String.valueOf(remaining));
-                }
-                else if(medicine.equalsIgnoreCase("药水"))
-                {
-                    GrassMedicinePotion pill = new GrassMedicinePotion();
-                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findGrassMedicinePotionName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getGram()));
-                    String jiliang = spinnerJiLiang.getValue().toString();
-                    float weight = Float.valueOf(txtWeight.getText());
-                    float jiliang1 = Float.valueOf(jiliang);
-                    float remaining = weight - jiliang1;
-                    txtRemaining.setText(String.valueOf(remaining));
-                }
-                else if(medicine.equalsIgnoreCase("药丸"))
-                {
-                    GrassMedicinePill pill =new GrassMedicinePill();
-                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findGrassMedicinePillName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getGram()));
-                    String jiliang = spinnerJiLiang.getValue().toString();
-                    float weight = Float.valueOf(txtWeight.getText());
-                    float jiliang1 = Float.valueOf(jiliang);
-                    float remaining = weight - jiliang1;
-                    txtRemaining.setText(String.valueOf(remaining));
-                }
-                else if(medicine.equalsIgnoreCase("复方药粉"))
-                {
-                    TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-//                    txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(potion.findTraditionalMedicinePotionName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getGram()));
-                    String jiliang = spinnerJiLiang.getValue().toString();
-                    float weight = Float.valueOf(txtWeight.getText());
-                    float jiliang1 = Float.valueOf(jiliang);
-                    float remaining = weight - jiliang1;
-                    txtRemaining.setText(String.valueOf(remaining));
-                }
-            }
-            catch(SQLException ex)
-            {
-                JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName2() get error on line 863,"+ex.getMessage());
-            }
-        }
-    }
-   
     public void image()
     {
         jScrollPane1.getViewport().setBackground(Color.WHITE);
@@ -1425,7 +1132,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
         return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice,totalweight, mainprice);
     }
     
-    
     /**
      * @param args the command line arguments
      */
@@ -1443,20 +1149,20 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewPatientDisease.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPatientDisease1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewPatientDisease.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPatientDisease1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewPatientDisease.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPatientDisease1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewPatientDisease.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPatientDisease1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewPatientDisease().setVisible(true);
+                new NewPatientDisease1().setVisible(true);
             }
         });
     }
@@ -1472,9 +1178,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton buttonAdd;
     private javax.swing.JComboBox<String> comboBoxMedicine;
-    private javax.swing.JComboBox<String> comboBoxName;
     private javax.swing.JLabel headerAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1507,7 +1211,6 @@ public class NewPatientDisease extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCreateDateTime;
-    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTotalJiliang;
     private javax.swing.JLabel lblTotalPrice;

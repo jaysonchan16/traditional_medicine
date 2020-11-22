@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -252,4 +253,6 @@ public class GrassMedicinePotion extends Medicine {// 药水
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("GrassMedicinePotion", user);
     }
+    
+    
 }

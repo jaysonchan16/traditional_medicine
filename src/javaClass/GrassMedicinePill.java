@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -178,7 +179,7 @@ public class GrassMedicinePill extends Medicine{//药丸
         return sql.AddEditDeleteQuery(query);
     }
     
-    public List<GrassMedicinePill> comboName(String User) throws SQLException{
+     public List<GrassMedicinePill> comboName(String User) throws SQLException{
         List<GrassMedicinePill> name = new ArrayList<>();
         String query = "Select name from GrassMedicinePill where User='"+User+"'";
         rs = st.executeQuery(query);
@@ -255,4 +256,6 @@ public class GrassMedicinePill extends Medicine{//药丸
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("GrassMedicinePill", user);
     }
+    
+    
 }

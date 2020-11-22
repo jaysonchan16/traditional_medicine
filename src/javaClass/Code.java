@@ -232,7 +232,7 @@ public class Code {
         String query;
 
         query = "Select Code from Maintcode where Remark = 'ComboMedicine' and User='"+User+"'";
-
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
