@@ -79,15 +79,6 @@ public class StorageForm extends javax.swing.JFrame {
         findHeader = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         btnFind = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
-        txtWeight = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtCost = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
         comboBoxName = new javax.swing.JComboBox<>();
         comboBoxMedicine = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -147,73 +138,6 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(btnFind);
         btnFind.setBounds(330, 740, 130, 50);
 
-        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel7.setText("重量:");
-        panelBody.add(jLabel7);
-        jLabel7.setBounds(100, 520, 60, 40);
-
-        jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel9.setText("价格:");
-        panelBody.add(jLabel9);
-        jLabel9.setBounds(100, 640, 60, 40);
-
-        txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
-            }
-        });
-        txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPriceKeyPressed(evt);
-            }
-        });
-        panelBody.add(txtPrice);
-        txtPrice.setBounds(170, 640, 250, 40);
-
-        txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtWeight.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtWeightKeyPressed(evt);
-            }
-        });
-        panelBody.add(txtWeight);
-        txtWeight.setBounds(170, 520, 250, 40);
-
-        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel8.setText("本钱:");
-        panelBody.add(jLabel8);
-        jLabel8.setBounds(100, 290, 50, 40);
-
-        txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtCost.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCostKeyPressed(evt);
-            }
-        });
-        panelBody.add(txtCost);
-        txtCost.setBounds(170, 290, 250, 40);
-
-        txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtIDKeyPressed(evt);
-            }
-        });
-        panelBody.add(txtID);
-        txtID.setBounds(170, 400, 250, 40);
-
-        jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel10.setText("ID:");
-        panelBody.add(jLabel10);
-        jLabel10.setBounds(110, 400, 60, 40);
-
-        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        btnPrint.setText("打印");
-        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelBody.add(btnPrint);
-        btnPrint.setBounds(180, 740, 130, 50);
-
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(comboBoxName);
         comboBoxName.setBounds(170, 180, 170, 40);
@@ -250,7 +174,7 @@ public class StorageForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "药", "病症分类", "ID", "本钱", "重量", "价格"
+                "药", "病症分类", "ID", "重量", "本钱", "价格"
             }
         ) {
             Class[] types = new Class [] {
@@ -325,54 +249,6 @@ public class StorageForm extends javax.swing.JFrame {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFindActionPerformed
-
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
-    private void txtPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyPressed
-        // TODO add your handling code here:
-//        try {
-//            // TODO add your handling code here:
-//            /*String sellprice = txtPrice.getText();
-//            show_selected_medical("sellprice",sellprice,"");*/
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-    }//GEN-LAST:event_txtPriceKeyPressed
-
-    private void txtWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWeightKeyPressed
-        // TODO add your handling code here:
-//        try {
-//            // TODO add your handling code here:
-//           /* String weight = txtWeight.getText();
-//            show_selected_medical("gram",weight,"");*/
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-    }//GEN-LAST:event_txtWeightKeyPressed
-
-    private void txtCostKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostKeyPressed
-        // TODO add your handling code here:
-//        try {
-//            // TODO add your handling code here:
-//            String cost = txtCost.getText();
-//            show_selected_medical("cost",cost,"");
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-    }//GEN-LAST:event_txtCostKeyPressed
-
-    private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
-        // TODO add your handling code here:
-//        try {
-//            // TODO add your handling code here:
-//            String ID = txtID.getText();
-//            show_selected_medical("ID",ID,"");
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-    }//GEN-LAST:event_txtIDKeyPressed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -500,28 +376,24 @@ public class StorageForm extends javax.swing.JFrame {
                 List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
                 TraditionalMedicinePill pill = new TraditionalMedicinePill();
                 medicList = pill.findTraditionalMedicinePillDetails("name", name,userid);
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药水"))
             {
                 List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
                 GrassMedicinePotion potion = new GrassMedicinePotion();
                 medicList = potion.findGrassMedicinePotionDetails("name", name,userid);
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("药丸"))
             {
                 List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
                 GrassMedicinePill pill = new GrassMedicinePill();
                 medicList = pill.findGrassMedicinePillDetails("name", name,userid);
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
             else if(medicine.equalsIgnoreCase("复方药粉"))
             {
                 List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
                 TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
                 medicList = potion.findTraditionalMedicinePotionDetails("name", name,userid);
-                txtPrice.setText(String.valueOf(medicList.get(0).getSellprice()));
             }
         }
         catch(SQLException ex)
@@ -535,32 +407,25 @@ public class StorageForm extends javax.swing.JFrame {
         String medicine = (String)comboBoxMedicine.getSelectedItem();
         System.out.println("name:"+name);
         System.out.println("medicine:"+medicine);
-        try
+        if(medicine.equalsIgnoreCase("单味药粉"))
         {
-            if(medicine.equalsIgnoreCase("单味药粉"))
-            {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("药水"))
-            {
-                GrassMedicinePotion pill = new GrassMedicinePotion();
-                txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("药丸"))
-            {
-                GrassMedicinePill pill =new GrassMedicinePill();
-                txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("复方药粉"))
-            {
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
-            }
+            TraditionalMedicinePill pill = new TraditionalMedicinePill();
+            
         }
-        catch(SQLException ex)
+        else if(medicine.equalsIgnoreCase("药水"))
         {
-            JOptionPane.showMessageDialog(rootPane, "StorageForm.FindByMedicineName2() get error on line 406,"+ex.getMessage());
+            GrassMedicinePotion pill = new GrassMedicinePotion();
+            
+        }
+        else if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill =new GrassMedicinePill();
+            
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+            
         }
     }
     
@@ -577,8 +442,8 @@ public class StorageForm extends javax.swing.JFrame {
                     row[0] = medicineList.get(i).getMedicine();
                     row[1] = medicineList.get(i).getName();
                     row[2] = medicineList.get(i).getCode();
-                    row[3] = medicineList.get(i).getCost();
-                    row[4] = medicineList.get(i).getGram();
+                    row[3] = medicineList.get(i).getGram();
+                    row[4] = medicineList.get(i).getCost();
                     row[5] = medicineList.get(i).getSellprice();
                     model.addRow(row);
                 }
@@ -591,6 +456,7 @@ public class StorageForm extends javax.swing.JFrame {
     public void color_table()
     {
         tblStorage.setDefaultRenderer(Object.class, new PriorityCellRenderer());
+        tblStorage.getTableHeader().setReorderingAllowed(false);
     }
     
     //change the colour
@@ -599,12 +465,12 @@ public class StorageForm extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            float weight = Float.parseFloat(table.getValueAt(row, 4).toString());
+            float weight = Float.parseFloat(table.getValueAt(row, 3).toString());
             
-            if (weight <= 10) {
+            if (weight >= 0 && weight <= 50) {
                 setBackground(new Color(254, 115, 63));  // or background
             }
-            else if(weight >10 && weight <=40)
+            else if(weight >= 50 && weight <= 120)
             {
                 setBackground(new Color(254, 254, 63));  // or background
             }
@@ -631,8 +497,6 @@ public class StorageForm extends javax.swing.JFrame {
         btnBack.setIcon(iconBack);
         ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
         btnFind.setIcon(iconFind);
-        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
-        btnPrint.setIcon(iconPrint);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/stockmedium.png"));
         findHeader.setIcon(iconHeader);
         this.lblName.setText(userid);
@@ -676,21 +540,16 @@ public class StorageForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFind;
-    private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -702,9 +561,5 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tblStorage;
-    private javax.swing.JTextField txtCost;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 }

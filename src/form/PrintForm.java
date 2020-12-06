@@ -383,7 +383,6 @@ public class PrintForm extends javax.swing.JFrame {
         }
         else if(option == 5)
         {
-            System.out.println(medicPrice);
             NewMedicine modify = new NewMedicine(user, medic, medicName, component,
             indication, effect, scoop, weight, cost, medicPrice);
             modify.setVisible(true);

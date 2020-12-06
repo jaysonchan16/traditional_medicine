@@ -297,7 +297,7 @@ public class SearchPatient extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 90, 1840, 780);
 
-        setBounds(0, 0, 1959, 933);
+        setBounds(0, 0, 1959, 1034);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed

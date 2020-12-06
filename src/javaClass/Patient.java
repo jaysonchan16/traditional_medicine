@@ -307,7 +307,7 @@ public class Patient {
     
     public List<Patient> getPatients() throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime from Patient";
+        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient";
         
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -315,7 +315,7 @@ public class Patient {
             while (rs.next()) {
                  patientList.add(new Patient(rs.getString("IC"), rs.getString("name"),rs.getString("gender"),
                  rs.getInt("age"),rs.getString("phone"),rs.getString("address"),rs.getString("lastUpdateDateTime"),
-                 rs.getString("createDateTime"),rs.getString("ID")));
+                 rs.getString("createDateTime"),rs.getString("ID"),rs.getString("User")));
             } 
         } 
         catch (Exception e)
