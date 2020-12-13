@@ -32,19 +32,23 @@ public class GrassMedicinePotion extends Medicine {// 药水
         super(name);
     }
     
+    public GrassMedicinePotion(String reference, int referenceForNotDuplicateMedicineName){
+        super(reference,referenceForNotDuplicateMedicineName);
+    }
+    
     public GrassMedicinePotion(String name, String user){
         super(name,user);
     }
     
-    public GrassMedicinePotion(String name, float sellprice, float gram, String code, String medicine, String user){
-        super(name,sellprice,gram,code,medicine,user);
+    public GrassMedicinePotion(String name, String reference, float sellprice, float gram, String code, String medicine, String user){
+        super(name,reference,sellprice,gram,code,medicine,user);
     }
     
-    public GrassMedicinePotion(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
-        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine,user);
+    public GrassMedicinePotion(String name, String reference, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
+        super(name,reference,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code, medicine,user);
     }
     
-    public HashMap<String,String> AddGrassMedicinePotion(String name, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String User)
+    public HashMap<String,String> AddGrassMedicinePotion(String name, String reference, String component, String effect, String indications, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String User)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
@@ -57,8 +61,8 @@ public class GrassMedicinePotion extends Medicine {// 药水
             double cost1 = cost;
             if(map.get("messages").equalsIgnoreCase("") && validateAddGrassMedicinePotion("name",name,User) == 0)
             {
-                String query = "insert into GrassMedicinePotion(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine,User)"
-                        + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
+                String query = "insert into GrassMedicinePotion(ID, name, reference, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine,User)"
+                        + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+reference+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
                         + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'),'药水', trim('"+User+"')";
                 
                 SQLQuery sql = new SQLQuery();
@@ -105,11 +109,11 @@ public class GrassMedicinePotion extends Medicine {// 药水
     
     public List<GrassMedicinePotion> getGrassMedicinePotion(String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine,User from GrassMedicinePotion where User = '"+User+"'";
+            String query = "Select ID,name,reference,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime,medicine,User from GrassMedicinePotion where User = '"+User+"'";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
+                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("reference"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
@@ -128,12 +132,12 @@ public class GrassMedicinePotion extends Medicine {// 药水
     
     public List<GrassMedicinePotion> findGrassMedicinePotionDetails(String attribute, String data, String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePotion where "+attribute+" = '"+data+"' and User = '"+User+"' order by 1 desc";
+            String query = "Select ID,name,reference,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePotion where "+attribute+" = '"+data+"' and User = '"+User+"' order by 1 desc";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("component"),
+                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("reference"),rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
@@ -151,10 +155,10 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return grassMedicinePotionList;
     }
     
-    public String EditGrassMedicinePotion(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
+    public String EditGrassMedicinePotion(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
         if(validateAddGrassMedicinePotion("name",name,User) == 0)
         {
-            String query = "Update GrassMedicinePotion Set name = trim('"+name+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
+            String query = "Update GrassMedicinePotion Set name = trim('"+name+"'), reference = trim('"+reference+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
                     + " scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'), gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
 
@@ -206,7 +210,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
         try {
             while (rs.next()) {
                 System.out.println(rs.getString("name"));
-                grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),
+                grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("reference"),
                         rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
                         rs.getString("User")));
             } 
@@ -254,5 +258,25 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return sql.DeleteUser("GrassMedicinePotion", user);
     }
     
-    
+    public List<GrassMedicinePotion> findReference(String name, String User) throws SQLException{
+        List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
+        String query = "Select DISTINCT reference, '1' as referenceForNotDuplicateMedicineName from GrassMedicinePotion where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return grassMedicinePotionList;
+    }
 }

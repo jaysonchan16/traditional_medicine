@@ -36,15 +36,19 @@ public class GrassMedicinePill extends Medicine{//药丸
         super(name,user);
     }
     
-    public GrassMedicinePill(String name, float sellprice, float gram, String code, String medicine, String user){
-        super(name,sellprice,gram,code,medicine,user);
+    public GrassMedicinePill(String reference, int referenceForNotDuplicateMedicineName){
+        super(reference,referenceForNotDuplicateMedicineName);
     }
     
-    public GrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
-        super(name,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code,medicine,user);
+    public GrassMedicinePill(String name, String reference, float sellprice, float gram, String code, String medicine, String user){
+        super(name, reference, sellprice,gram,code,medicine,user);
     }
     
-    public HashMap<String,String> AddGrassMedicinePill(String name, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String User)
+    public GrassMedicinePill(String name, String reference, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String medicine, String user){
+        super(name,reference,component,indications,effect,scoop,sellprice,gram,cost,createDateTime,lastUpdateDateTime,code,medicine,user);
+    }
+    
+    public HashMap<String,String> AddGrassMedicinePill(String name, String reference, String component, String indications, String effect, float scoop, float sellprice, float gram, float cost, String createDateTime, String lastUpdateDateTime, String code, String User)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
@@ -58,8 +62,8 @@ public class GrassMedicinePill extends Medicine{//药丸
             
             if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePill("name", name,User) == 0)
             {
-                String query = "insert into GrassMedicinePill(ID, name, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime, medicine, User)"
-                        + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
+                String query = "insert into GrassMedicinePill(ID, name, reference, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime, medicine, User)"
+                        + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+reference+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
                         + "trim('"+gram1+"'), trim('"+cost1+"'), datetime('now','localtime'),datetime('now','localtime'), '药丸', trim('"+User+"')";
                 
                 SQLQuery sql = new SQLQuery();
@@ -105,11 +109,11 @@ public class GrassMedicinePill extends Medicine{//药丸
     
     public List<GrassMedicinePill> getGrassMedicinePill(String User) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-            String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePill where User = '"+User+"'";
+            String query = "Select ID,name,reference,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePill where User = '"+User+"'";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
+                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("reference"), rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
@@ -130,12 +134,12 @@ public class GrassMedicinePill extends Medicine{//药丸
     
     public List<GrassMedicinePill> findGrassMedicinePillDetails(String attribute, String data, String User) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-        String query = "Select ID,name,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine,User from GrassMedicinePill where "+attribute+" = '"+data+"' and User ='"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine,User from GrassMedicinePill where "+attribute+" = '"+data+"' and User ='"+User+"' order by 1 desc";
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("component"),
+                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("reference"), rs.getString("component"),
                          rs.getString("indications"),rs.getString("effect"),
                          rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getFloat("cost"),
                          rs.getString("createDateTime"), rs.getString("lastUpdateDateTime"), rs.getString("ID"),rs.getString("medicine"),rs.getString("User")));
@@ -154,10 +158,10 @@ public class GrassMedicinePill extends Medicine{//药丸
         return grassMedicinePillList;
     }
     
-    public String EditGrassMedicinePill(String ID, String name, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
+    public String EditGrassMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
         if(validateGrassMedicinePill("name", name, User) == 0)
         {
-            String query = "Update GrassMedicinePill Set name = trim('"+name+"'), component = trim('"+component+"'), indications = trim('"+indication+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
+            String query = "Update GrassMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), component = trim('"+component+"'), indications = trim('"+indication+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
                     + " cost = trim('"+cost+"'), sellprice = trim('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
 
@@ -201,15 +205,15 @@ public class GrassMedicinePill extends Medicine{//药丸
         st.close();        
         return name;
     }
-    
+     
     public List<GrassMedicinePill> findGrassMedicinePillName(String name, String User) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-        String query = "Select ID,name,sellprice,gram,medicine,User from GrassMedicinePill where name='"+name+"' and User ='"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,sellprice,gram,medicine,User from GrassMedicinePill where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                 System.out.println(rs.getString("name"));
-                grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),
+                grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("reference"),
                         rs.getFloat("sellprice"),rs.getFloat("gram"),rs.getString("ID"),rs.getString("medicine"),
                         rs.getString("User")));
             } 
@@ -256,6 +260,26 @@ public class GrassMedicinePill extends Medicine{//药丸
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("GrassMedicinePill", user);
     }
-    
-    
+   
+    public List<GrassMedicinePill> findReference(String name, String User) throws SQLException{
+        List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
+        String query = "Select DISTINCT reference, '1' as referenceForNotDuplicateMedicineName from GrassMedicinePill where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                grassMedicinePillList.add(new GrassMedicinePill(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return grassMedicinePillList;
+    }
 }

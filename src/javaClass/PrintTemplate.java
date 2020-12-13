@@ -57,11 +57,12 @@ public class PrintTemplate {
         return content.toString();
     }
 
-    public String printMedicine(String medicine, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
+    public String printMedicine(String medicine, String refer, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
     {
         StringBuilder content = new StringBuilder(); 
-        content.append("药: "+medicine+"\n\n");
-        content.append("名字: "+Name+"\n\n");
+        content.append("药物分类: "+medicine+"\n\n");
+        content.append("参考病症: "+refer+"\n\n");
+        content.append("药物名称: "+Name+"\n\n");
         if(medicine.equalsIgnoreCase("单味药粉"))
         {
             content.append("药性: "+component+"\n\n");

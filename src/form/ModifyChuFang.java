@@ -183,6 +183,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         spinnerJiLiang = new javax.swing.JSpinner();
         txtDisease = new javax.swing.JTextField();
+        comboReference = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        txtReference = new javax.swing.JTextField();
         txtPrescriptionID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -241,7 +244,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblChufang);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(800, 30, 820, 720);
+        jScrollPane1.setBounds(800, 30, 820, 760);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("IC：");
@@ -340,7 +343,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnModify);
-        btnModify.setBounds(650, 710, 100, 40);
+        btnModify.setBounds(650, 750, 100, 40);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxName.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +352,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(comboBoxName);
-        comboBoxName.setBounds(160, 420, 260, 40);
+        comboBoxName.setBounds(160, 470, 260, 40);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText("重启");
@@ -360,11 +363,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnReset);
-        btnReset.setBounds(160, 710, 100, 40);
+        btnReset.setBounds(160, 750, 100, 40);
 
         txtTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtTotalPrice);
-        txtTotalPrice.setBounds(160, 650, 590, 40);
+        txtTotalPrice.setBounds(160, 670, 590, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -375,26 +378,26 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnDelete);
-        btnDelete.setBounds(520, 710, 100, 40);
+        btnDelete.setBounds(520, 750, 100, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("总价值:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(80, 650, 63, 40);
+        jLabel8.setBounds(80, 670, 63, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("价格/G:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(70, 570, 70, 40);
+        jLabel7.setBounds(70, 600, 70, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("剂量：");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(100, 490, 69, 40);
+        jLabel6.setBounds(100, 530, 69, 40);
 
         txtMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtMedicineName);
-        txtMedicineName.setBounds(160, 420, 590, 40);
+        txtMedicineName.setBounds(160, 470, 590, 40);
 
         btnModifyMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModifyMedicine.setText("更改");
@@ -405,11 +408,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnModifyMedicine);
-        btnModifyMedicine.setBounds(280, 710, 100, 40);
+        btnModifyMedicine.setBounds(280, 750, 100, 40);
 
         txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtJiliang);
-        txtJiliang.setBounds(160, 490, 590, 40);
+        txtJiliang.setBounds(160, 530, 590, 40);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -420,16 +423,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(400, 710, 100, 40);
+        btnPrint.setBounds(400, 750, 100, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("药物名称：");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(70, 420, 100, 40);
+        jLabel5.setBounds(70, 470, 100, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPrice);
-        txtPrice.setBounds(160, 570, 590, 40);
+        txtPrice.setBounds(160, 600, 590, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -440,7 +443,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(40, 710, 100, 40);
+        btnBack.setBounds(40, 750, 100, 40);
 
         spinnerJiLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         spinnerJiLiang.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -449,12 +452,23 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(spinnerJiLiang);
-        spinnerJiLiang.setBounds(160, 490, 80, 40);
+        spinnerJiLiang.setBounds(160, 530, 80, 40);
         jPanel2.add(txtDisease);
         txtDisease.setBounds(520, 10, 90, 22);
 
+        comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(comboReference);
+        comboReference.setBounds(160, 410, 260, 40);
+
+        jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel12.setText("参考病症：");
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(70, 410, 95, 40);
+        jPanel2.add(txtReference);
+        txtReference.setBounds(420, 410, 330, 40);
+
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(110, 100, 1720, 790);
+        jPanel2.setBounds(110, 100, 1720, 820);
 
         txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         getContentPane().add(txtPrescriptionID);
@@ -1193,9 +1207,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;
+    private javax.swing.JComboBox<String> comboReference;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -1226,6 +1242,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrescriptionID;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtReference;
     private javax.swing.JTextField txtTotalPrice;
     // End of variables declaration//GEN-END:variables
 }

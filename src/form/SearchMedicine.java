@@ -86,13 +86,16 @@ public class SearchMedicine extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtMedicine = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtEffect = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicine = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtEffect = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        txtReference = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -144,7 +147,7 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnFind);
-        btnFind.setBounds(880, 690, 130, 50);
+        btnFind.setBounds(890, 700, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -155,12 +158,12 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(40, 690, 130, 50);
+        btnBack.setBounds(90, 700, 130, 50);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("价格:");
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(40, 530, 60, 30);
+        jLabel9.setBounds(570, 520, 60, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtPrice.addActionListener(new java.awt.event.ActionListener() {
@@ -174,12 +177,12 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtPrice);
-        txtPrice.setBounds(150, 530, 330, 40);
+        txtPrice.setBounds(680, 520, 330, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(40, 440, 60, 40);
+        jLabel7.setBounds(570, 450, 60, 40);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtWeight.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -188,12 +191,12 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtWeight);
-        txtWeight.setBounds(150, 440, 330, 40);
+        txtWeight.setBounds(680, 450, 330, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("本钱:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(540, 440, 50, 40);
+        jLabel8.setBounds(110, 520, 50, 40);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtCost.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -202,7 +205,7 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtCost);
-        txtCost.setBounds(680, 440, 330, 40);
+        txtCost.setBounds(180, 520, 330, 40);
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtScoop.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -211,12 +214,12 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtScoop);
-        txtScoop.setBounds(680, 350, 330, 40);
+        txtScoop.setBounds(180, 450, 330, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("每次每日分量:");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(540, 350, 120, 40);
+        jLabel6.setBounds(40, 450, 120, 40);
 
         txtIndication.setColumns(20);
         txtIndication.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -229,7 +232,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         jScrollPane4.setViewportView(txtIndication);
 
         jPanel2.add(jScrollPane4);
-        jScrollPane4.setBounds(680, 160, 330, 136);
+        jScrollPane4.setBounds(180, 280, 330, 136);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -238,17 +241,17 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtName);
-        txtName.setBounds(680, 60, 330, 40);
+        txtName.setBounds(680, 30, 330, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel2.setText("名字:");
+        jLabel2.setText("药物名称:");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(540, 60, 80, 40);
+        jLabel2.setBounds(540, 30, 110, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("主治:");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(540, 160, 44, 40);
+        jLabel4.setBounds(100, 280, 44, 40);
 
         txtComponent.setColumns(20);
         txtComponent.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -261,17 +264,17 @@ public class SearchMedicine extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtComponent);
 
         jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(150, 160, 330, 136);
+        jScrollPane3.setBounds(680, 100, 330, 136);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("组成/药性:");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(40, 160, 100, 40);
+        jLabel3.setBounds(540, 100, 100, 40);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("药:");
+        jLabel1.setText("药物分类:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(40, 60, 120, 40);
+        jLabel1.setBounds(80, 30, 120, 40);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtMedicine.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -280,21 +283,12 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtMedicine);
-        txtMedicine.setBounds(150, 60, 330, 40);
+        txtMedicine.setBounds(180, 30, 330, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("功效:");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(40, 350, 50, 40);
-
-        txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        txtEffect.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtEffectKeyPressed(evt);
-            }
-        });
-        jPanel2.add(txtEffect);
-        txtEffect.setBounds(150, 350, 330, 40);
+        jLabel5.setBounds(570, 270, 50, 40);
 
         tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
@@ -302,14 +296,14 @@ public class SearchMedicine extends javax.swing.JFrame {
 
             },
             new String [] {
-                "药", "名字", "组成", "主治", "药性", "应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
+                "药物分类", "参考病症", "药物名称", "组成", "主治", "药性", "应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -338,7 +332,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("ID:");
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(540, 530, 110, 40);
+        jLabel10.setBounds(120, 590, 30, 40);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -347,7 +341,34 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtID);
-        txtID.setBounds(680, 530, 330, 40);
+        txtID.setBounds(180, 590, 330, 40);
+
+        txtEffect.setColumns(20);
+        txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtEffect.setRows(5);
+        txtEffect.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEffectKeyPressed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(txtEffect);
+
+        jPanel2.add(jScrollPane6);
+        jScrollPane6.setBounds(680, 280, 330, 140);
+
+        jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel11.setText("参考病症：");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(80, 100, 100, 40);
+
+        txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtReference.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtReferenceKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtReference);
+        txtReference.setBounds(180, 100, 330, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 90, 1860, 780);
@@ -410,17 +431,6 @@ public class SearchMedicine extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtIndicationKeyPressed
 
-    private void txtEffectKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEffectKeyPressed
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            String effect = txtEffect.getText();
-            show_selected_medical("effect",effect,"");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_txtEffectKeyPressed
-
     private void txtScoopKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtScoopKeyPressed
         // TODO add your handling code here:
         try {
@@ -470,21 +480,22 @@ public class SearchMedicine extends javax.swing.JFrame {
         int index = tblMedicine.getSelectedRow();
         TableModel model = tblMedicine.getModel();
         String medicine = model.getValueAt(index, 0).toString();
-        String medicinename = model.getValueAt(index,1).toString();
-        String component = model.getValueAt(index,2).toString();
-        String indications = model.getValueAt(index,3).toString();
-        String effect = model.getValueAt(index,4).toString();
-        String scoop = model.getValueAt(index,5).toString();
-        String weight = model.getValueAt(index,6).toString();
-        String cost = model.getValueAt(index,7).toString();
-        String totalprice = model.getValueAt(index,8).toString();
-        String ID = model.getValueAt(index,9).toString();
-        String createDateTime = model.getValueAt(index,10).toString();
-        String lastUpdateTime = model.getValueAt(index,11).toString();
+        String reference = model.getValueAt(index,1).toString();
+        String medicinename = model.getValueAt(index,2).toString();
+        String component = model.getValueAt(index,3).toString();
+        String indications = model.getValueAt(index,4).toString();
+        String effect = model.getValueAt(index,5).toString();
+        String scoop = model.getValueAt(index,6).toString();
+        String weight = model.getValueAt(index,7).toString();
+        String cost = model.getValueAt(index,8).toString();
+        String totalprice = model.getValueAt(index,9).toString();
+        String ID = model.getValueAt(index,10).toString();
+        String createDateTime = model.getValueAt(index,11).toString();
+        String lastUpdateTime = model.getValueAt(index,12).toString();
         //option = 2 
 //        SearchPatient go through to the modifypatient
         int option = 2;
-        ModifyMedicine patient = new ModifyMedicine(user,medicine,medicinename,component,indications,effect,scoop,weight,
+        ModifyMedicine patient = new ModifyMedicine(user,medicine,reference,medicinename,component,indications,effect,scoop,weight,
                                                     cost, totalprice,ID,createDateTime,lastUpdateTime);
         patient.setVisible(true);
         this.dispose();
@@ -504,6 +515,28 @@ public class SearchMedicine extends javax.swing.JFrame {
     private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtEffectKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEffectKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String effect = txtEffect.getText();
+            show_selected_medical("effect",effect,"");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtEffectKeyPressed
+
+    private void txtReferenceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenceKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String reference = txtReference.getText();
+            show_selected_medical("reference",reference,"");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtReferenceKeyPressed
 
     
     private void createColumns()
@@ -654,6 +687,7 @@ public class SearchMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -671,18 +705,20 @@ public class SearchMedicine extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tblMedicine;
     private javax.swing.JTextArea txtComponent;
     private javax.swing.JTextField txtCost;
-    private javax.swing.JTextField txtEffect;
+    private javax.swing.JTextArea txtEffect;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtIndication;
     private javax.swing.JTextField txtMedicine;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtReference;
     private javax.swing.JTextField txtScoop;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables

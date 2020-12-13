@@ -5,7 +5,23 @@
  */
 package form;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javaClass.Code;
+import javaClass.GrassMedicinePill;
+import javaClass.GrassMedicinePotion;
+import javaClass.Reference;
+import javaClass.TraditionalMedicinePill;
+import javaClass.TraditionalMedicinePotion;
 import javaClass.User;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -17,6 +33,9 @@ public class ReferenceForm extends javax.swing.JFrame {
      * Creates new form ReferenceForm
      */
     private User user;
+    DefaultTableModel model;
+    private String userid="";
+    String medicine;
     
     public ReferenceForm() {
         initComponents();
@@ -24,6 +43,18 @@ public class ReferenceForm extends javax.swing.JFrame {
 
     public ReferenceForm(User user) {
         initComponents();
+        this.user = user;
+        userid = user.getUserid();
+        this.lblName1.setText(userid);
+        model = (DefaultTableModel)tblMedicine.getModel();
+        JTableHeader tableHeader = tblMedicine.getTableHeader();
+        tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
+        comboMedicine();
+        txtChuCheng.setEditable(false);
+        txtZhuZhi.setEditable(false);
+        txtGongXiao.setEditable(false);
+        txtFenLiang.setEditable(false);
+        image();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,9 +70,30 @@ public class ReferenceForm extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
+        lblName1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comboReference = new javax.swing.JComboBox<>();
+        comboMedicine = new javax.swing.JComboBox<>();
+        lblzhucheng = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtChuCheng = new javax.swing.JTextArea();
+        lblzhuzi = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtZhuZhi = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtGongXiao = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        txtFenLiang = new javax.swing.JTextField();
+        btnFind = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMedicine = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -60,15 +112,162 @@ public class ReferenceForm extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
+        lblName.setBounds(1820, 40, 127, 60);
 
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        findHeader.setText("更改密码");
+        findHeader.setText("参考病症");
         panelHeader.add(findHeader);
         findHeader.setBounds(870, 0, 200, 70);
 
+        lblName1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName1);
+        lblName1.setBounds(1752, 5, 127, 60);
+
         getContentPane().add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("药物分类：");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(110, 50, 100, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("参考病症：");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(110, 110, 110, 40);
+
+        comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(comboReference);
+        comboReference.setBounds(260, 110, 240, 40);
+
+        comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
+        comboMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboMedicineMouseClicked(evt);
+            }
+        });
+        comboMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMedicineActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboMedicine);
+        comboMedicine.setBounds(260, 50, 240, 40);
+
+        lblzhucheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblzhucheng.setText("组成：");
+        jPanel2.add(lblzhucheng);
+        lblzhucheng.setBounds(140, 170, 60, 40);
+
+        txtChuCheng.setColumns(20);
+        txtChuCheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtChuCheng.setRows(5);
+        jScrollPane2.setViewportView(txtChuCheng);
+
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(260, 170, 370, 140);
+
+        lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblzhuzi.setText("主治：");
+        jPanel2.add(lblzhuzi);
+        lblzhuzi.setBounds(140, 330, 57, 40);
+
+        txtZhuZhi.setColumns(20);
+        txtZhuZhi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtZhuZhi.setRows(5);
+        jScrollPane3.setViewportView(txtZhuZhi);
+
+        jPanel2.add(jScrollPane3);
+        jScrollPane3.setBounds(260, 330, 370, 136);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("功效：");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(150, 490, 57, 40);
+
+        txtGongXiao.setColumns(20);
+        txtGongXiao.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtGongXiao.setRows(5);
+        jScrollPane4.setViewportView(txtGongXiao);
+
+        jPanel2.add(jScrollPane4);
+        jScrollPane4.setBounds(260, 490, 370, 136);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("每次每日分量：");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(80, 650, 140, 40);
+
+        txtFenLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtFenLiang);
+        txtFenLiang.setBounds(260, 650, 370, 40);
+
+        btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFind.setText("寻找");
+        btnFind.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnFind);
+        btnFind.setBounds(580, 110, 110, 40);
+
+        btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnBack.setText("退出");
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBack);
+        btnBack.setBounds(170, 740, 100, 50);
+
+        tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "药物名称"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMedicine.setRowHeight(25);
+        tblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedicineMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMedicine);
+
+        jScrollPane5.setViewportView(jScrollPane1);
+
+        jPanel2.add(jScrollPane5);
+        jScrollPane5.setBounds(730, 40, 720, 760);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(270, 90, 1510, 830);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -78,28 +277,263 @@ public class ReferenceForm extends javax.swing.JFrame {
         jPanel1.add(jLabel21);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 787, 1940, 50);
+        jPanel1.setBounds(0, 940, 1940, 50);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1741, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(106, 117, 1747, 631);
-
-        setBounds(0, 0, 1958, 884);
+        setBounds(0, 0, 1958, 1040);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        try {
+            // TODO add your handling code here:
+            find();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
+        // TODO add your handling code here:
+        int index = tblMedicine.getSelectedRow();
+        TableModel tableModel = tblMedicine.getModel();
+        String medicineName = tableModel.getValueAt(index, 0).toString();
+        
+        try {
+            findDetail(medicineName);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_tblMedicineMouseClicked
+
+    private void comboMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboMedicineMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboMedicineMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        MainMenu main = new MainMenu(user);
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
+        // TODO add your handling code here:
+        String medicineName = comboMedicine.getSelectedItem().toString();
+        
+        if(medicineName.equals("单味药粉"))
+        {
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
+        }
+        else
+        {
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
+        }
+        try {
+            
+            comboReference(medicineName);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_comboMedicineActionPerformed
+    
+    public void find() throws SQLException
+    {
+        model.setRowCount(0);
+        String reference = comboReference.getSelectedItem().toString();
+        medicine = comboMedicine.getSelectedItem().toString();
+    
+        Object row[] = new Object[1];
+        if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill grasspill = new GrassMedicinePill();
+            
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = grasspill.findGrassMedicinePillDetails("reference",reference,userid);
+            
+            for(int i =0; i<medicList.size(); i++)
+            {
+                row[0] = medicList.get(i).getName();
+                model.addRow(row);
+            }
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion grasspotion = new GrassMedicinePotion();
+            
+            List<GrassMedicinePotion> grassList = new ArrayList<GrassMedicinePotion>();
+            grassList = grasspotion.findGrassMedicinePotionDetails("reference",reference,userid);
+            
+            for(int i =0; i<grassList.size(); i++)
+            {
+                row[0] = grassList.get(i).getName();
+                model.addRow(row);
+            }
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+            
+            List<TraditionalMedicinePill> traditionPillList = new ArrayList<TraditionalMedicinePill>();
+            traditionPillList = traditionalpill.findTraditionalMedicinePillDetails("reference",reference,userid);
+            
+            for(int i =0; i<traditionPillList.size(); i++)
+            {
+                row[0] = traditionPillList.get(i).getName();
+                model.addRow(row);
+            }
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+            
+            List<TraditionalMedicinePotion> traditionMedicList = new ArrayList<TraditionalMedicinePotion>();
+            traditionMedicList = traditionalpotion.findTraditionalMedicinePotionDetails("reference",reference,userid);
+            
+            for(int i =0; i<traditionMedicList.size(); i++)
+            {
+                row[0] = traditionMedicList.get(i).getName();
+                model.addRow(row);
+            }
+        }
+        
+    }
+    
+    public void findDetail(String medicineName) throws SQLException
+    {
+        if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill grasspill = new GrassMedicinePill();
+            
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = grasspill.findGrassMedicinePillDetails("name",medicineName,userid);
+            txtChuCheng.setText(medicList.get(0).getComponent());
+            txtZhuZhi.setText(medicList.get(0).getIndications());
+            txtGongXiao.setText(medicList.get(0).getEffect());
+            txtFenLiang.setText(String.valueOf(medicList.get(0).getScoop()));
+                    //medicList.get(i).getName();
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion grasspotion = new GrassMedicinePotion();
+            
+            List<GrassMedicinePotion> grassList = new ArrayList<GrassMedicinePotion>();
+            grassList = grasspotion.findGrassMedicinePotionDetails("name",medicineName,userid);
+            txtChuCheng.setText(grassList.get(0).getComponent());
+            txtZhuZhi.setText(grassList.get(0).getIndications());
+            txtGongXiao.setText(grassList.get(0).getEffect());
+            txtFenLiang.setText(String.valueOf(grassList.get(0).getScoop()));
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+            
+            List<TraditionalMedicinePill> traditionPillList = new ArrayList<TraditionalMedicinePill>();
+            traditionPillList = traditionalpill.findTraditionalMedicinePillDetails("name",medicineName,userid);
+            txtChuCheng.setText(traditionPillList.get(0).getAppliance());
+            txtZhuZhi.setText(traditionPillList.get(0).getProperty());
+            txtGongXiao.setText(traditionPillList.get(0).getEffect());
+            txtFenLiang.setText(String.valueOf(traditionPillList.get(0).getScoop()));
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+            
+            List<TraditionalMedicinePotion> traditionMedicList = new ArrayList<TraditionalMedicinePotion>();
+            traditionMedicList = traditionalpotion.findTraditionalMedicinePotionDetails("name",medicineName,userid);
+            txtChuCheng.setText(traditionMedicList.get(0).getComponent());
+            txtZhuZhi.setText(traditionMedicList.get(0).getIndications());
+            txtGongXiao.setText(traditionMedicList.get(0).getEffect());
+            txtFenLiang.setText(String.valueOf(traditionMedicList.get(0).getScoop()));
+        }
+    }
+    
+    public void comboMedicine()
+    {
+        try {
+            Code code = new Code();
+            
+            for(int i = 0; i < code.getComboMedicine(userid).size(); i++)
+            {
+                if(i != 0)
+                {
+                    comboMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
+                }
+            }
+            comboReference(code.getComboMedicine(userid).get(0).getCode());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "ReferenceForm.combMedicine() get error on line 433,"+ex.getMessage());
+        }
+    }
+    
+    public void comboReference(String medicine) throws SQLException
+    {
+        comboReference.removeAllItems();
+        if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill grasspill = new GrassMedicinePill();
+            
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = grasspill.findReference(medicine, userid);
+            
+            for(int i =0; i<medicList.size(); i++)
+            {
+                comboReference.addItem(medicList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion grasspotion = new GrassMedicinePotion();
+            
+            List<GrassMedicinePotion> grassList = new ArrayList<GrassMedicinePotion>();
+            grassList = grasspotion.findReference(medicine,userid);
+            
+            for(int i =0; i<grassList.size(); i++)
+            {
+                comboReference.addItem(grassList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+            
+            List<TraditionalMedicinePill> traditionPillList = new ArrayList<TraditionalMedicinePill>();
+            traditionPillList = traditionalpill.findReference(medicine,userid);
+            
+            for(int i =0; i<traditionPillList.size(); i++)
+            {
+                comboReference.addItem(traditionPillList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+            
+            List<TraditionalMedicinePotion> traditionMedicList = new ArrayList<TraditionalMedicinePotion>();
+            traditionMedicList = traditionalpotion.findReference(medicine,userid);
+            
+            for(int i =0; i<traditionMedicList.size(); i++)
+            {
+                comboReference.addItem(traditionMedicList.get(i).getReference());
+            }
+        }
+    }
+    
+    public void image()
+    {
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/hengsengtong.png"));
+        lbllogo.setIcon(iconLogo);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnBack.setIcon(iconBack);
+        ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/refermedium.png"));
+        findHeader.setIcon(iconHeader);
+        ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
+        btnFind.setIcon(iconFind);
+        this.lblName.setText(userid);
+        setResizable(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -136,13 +570,34 @@ public class ReferenceForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JComboBox<String> comboMedicine;
+    private javax.swing.JComboBox<String> comboReference;
     private javax.swing.JLabel findHeader;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lbllogo;
+    private javax.swing.JLabel lblzhucheng;
+    private javax.swing.JLabel lblzhuzi;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JTable tblMedicine;
+    private javax.swing.JTextArea txtChuCheng;
+    private javax.swing.JTextField txtFenLiang;
+    private javax.swing.JTextArea txtGongXiao;
+    private javax.swing.JTextArea txtZhuZhi;
     // End of variables declaration//GEN-END:variables
 }

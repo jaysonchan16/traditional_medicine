@@ -194,7 +194,7 @@
                     <Column editable="false" title="&#x4f53;&#x6e29;" type="java.lang.String"/>
                     <Column editable="false" title="&#x8840;&#x538b;" type="java.lang.String"/>
                     <Column editable="false" title="&#x5904;&#x65b9;" type="java.lang.String"/>
-                    <Column editable="false" title="&#x836f;&#x7269;&#x79cd;&#x7c7b;" type="java.lang.String"/>
+                    <Column editable="false" title="&#x836f;&#x7269;&#x5206;&#x7c7b;" type="java.lang.String"/>
                     <Column editable="false" title="&#x836f;&#x7269;&#x540d;&#x79f0;" type="java.lang.String"/>
                     <Column editable="false" title="&#x5242;&#x91cf;" type="java.lang.String"/>
                     <Column editable="false" title="&#x4ef7;&#x683c;/G" type="java.lang.String"/>

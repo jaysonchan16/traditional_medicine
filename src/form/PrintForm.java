@@ -55,6 +55,7 @@ public class PrintForm extends javax.swing.JFrame {
     private String totalweight="";
     private String mainprice="";
     private String medic="";
+    private String refer="";
     private String medicName="";
     private String component="";
     private String indication="";
@@ -128,13 +129,14 @@ public class PrintForm extends javax.swing.JFrame {
         //6 option for modify medicine
     }
     
-    public PrintForm(User user, int option, String bodyContent, String medic,String medicName,String component,
+    public PrintForm(User user, int option, String bodyContent, String medic, String refer, String medicName,String component,
             String indication, String effect, String scoop, String weight, String cost, String medicPrice, String page)
     {
         this.user = user;
         this.option = option;
         this.bodyContent = bodyContent;
         this.medic = medic;
+        this.refer = refer;
         this.medicName = medicName;
         this.component = component;
         this.indication = indication;
@@ -383,7 +385,7 @@ public class PrintForm extends javax.swing.JFrame {
         }
         else if(option == 5)
         {
-            NewMedicine modify = new NewMedicine(user, medic, medicName, component,
+            NewMedicine modify = new NewMedicine(user, medic, refer, medicName, component,
             indication, effect, scoop, weight, cost, medicPrice);
             modify.setVisible(true);
             this.dispose();
