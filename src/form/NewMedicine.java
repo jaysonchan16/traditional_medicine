@@ -48,6 +48,7 @@ public class NewMedicine extends javax.swing.JFrame {
         initComponents();
         userid = user.getUserid();
         txtMedicine.setVisible(false);
+        txtReference.setVisible(false);
         btnModify.setVisible(false);
         image();
         setResizable(false);
@@ -101,6 +102,9 @@ public class NewMedicine extends javax.swing.JFrame {
         btnModify.setVisible(true);
         txtMedicine.setText(medic);
         txtMedicine.setVisible(true);
+        txtReference.setEnabled(false);
+        txtReference.setText(reference);
+        txtReference.setVisible(true);
         txtName.setText(medicName);
         txtComponent.setText(component);
         txtIndication.setText(indication);
@@ -356,7 +360,7 @@ public class NewMedicine extends javax.swing.JFrame {
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtMedicine);
-        txtMedicine.setBounds(480, 30, 630, 40);
+        txtMedicine.setBounds(270, 30, 840, 40);
 
         txtEffect.setColumns(20);
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -377,7 +381,7 @@ public class NewMedicine extends javax.swing.JFrame {
 
         txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtReference);
-        txtReference.setBounds(480, 90, 630, 40);
+        txtReference.setBounds(270, 90, 840, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(390, 80, 1200, 850);
@@ -578,6 +582,7 @@ public class NewMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnModify.setVisible(false);
         txtMedicine.setVisible(false);
+        txtReference.setVisible(false);
         comboMedicine.setVisible(true);
         comboReference.setVisible(true);
         visibleCombobox();
