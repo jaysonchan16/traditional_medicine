@@ -296,14 +296,14 @@ public class SearchMedicine extends javax.swing.JFrame {
 
             },
             new String [] {
-                "药物分类", "参考病症", "药物名称", "组成", "主治", "药性", "应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
+                "药物分类", "药物名称", "参考病症", "组成", "主治", "药性", "应用", "功效", "每次每日分量", "重量", "本钱", "价格", "药ID", "创建时间", "更新时间"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, true, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -559,21 +559,22 @@ public class SearchMedicine extends javax.swing.JFrame {
         List<Medicine> medicineList = new ArrayList<Medicine>();
         medicineList = medicine.getDetail(contribute,detail,contribute1,userid);
         model = (DefaultTableModel)tblMedicine.getModel();
-        Object row[] = new Object[12];
+        Object row[] = new Object[13];
         for(int i =0; i<medicineList.size(); i++)
         {
             row[0] = medicineList.get(i).getMedicine();
             row[1] = medicineList.get(i).getName();
-            row[2] = medicineList.get(i).getComponent();
-            row[3] = medicineList.get(i).getIndications();
-            row[4] = medicineList.get(i).getEffect();
-            row[5] = medicineList.get(i).getScoop();
-            row[6] = medicineList.get(i).getGram();
-            row[7] = medicineList.get(i).getCost();
-            row[8] = medicineList.get(i).getSellprice();
-            row[9] = medicineList.get(i).getCode();
-            row[10] = medicineList.get(i).getCreateDateTime();
-            row[11] = medicineList.get(i).getLastUpdateDateTime();
+            row[2] = medicineList.get(i).getReference();
+            row[3] = medicineList.get(i).getComponent();
+            row[4] = medicineList.get(i).getIndications();
+            row[5] = medicineList.get(i).getEffect();
+            row[6] = medicineList.get(i).getScoop();
+            row[7] = medicineList.get(i).getGram();
+            row[8] = medicineList.get(i).getCost();
+            row[9] = medicineList.get(i).getSellprice();
+            row[10] = medicineList.get(i).getCode();
+            row[11] = medicineList.get(i).getCreateDateTime();
+            row[12] = medicineList.get(i).getLastUpdateDateTime();
             model.addRow(row);
         }
     }
@@ -586,21 +587,22 @@ public class SearchMedicine extends javax.swing.JFrame {
             List<Medicine> medicineList = new ArrayList<Medicine>();
             medicineList = medicine.getAllDetail(userid);
             model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicineList.size(); i++)
             {
                 row[0] = medicineList.get(i).getMedicine();
                 row[1] = medicineList.get(i).getName();
-                row[2] = medicineList.get(i).getComponent();
-                row[3] = medicineList.get(i).getIndications();
-                row[4] = medicineList.get(i).getEffect();
-                row[5] = medicineList.get(i).getScoop();
-                row[6] = medicineList.get(i).getGram();
-                row[7] = medicineList.get(i).getCost();
-                row[8] = medicineList.get(i).getSellprice();
-                row[9] = medicineList.get(i).getCode();
-                row[10] = medicineList.get(i).getCreateDateTime();
-                row[11] = medicineList.get(i).getLastUpdateDateTime();
+                row[2] = medicineList.get(i).getReference();
+                row[3] = medicineList.get(i).getComponent();
+                row[4] = medicineList.get(i).getIndications();
+                row[5] = medicineList.get(i).getEffect();
+                row[6] = medicineList.get(i).getScoop();
+                row[7] = medicineList.get(i).getGram();
+                row[8] = medicineList.get(i).getCost();
+                row[9] = medicineList.get(i).getSellprice();
+                row[10] = medicineList.get(i).getCode();
+                row[11] = medicineList.get(i).getCreateDateTime();
+                row[12] = medicineList.get(i).getLastUpdateDateTime();
                 model.addRow(row);
             }
         } catch (SQLException ex) {
@@ -634,16 +636,17 @@ public class SearchMedicine extends javax.swing.JFrame {
         TableColumnModel columnModel = tblMedicine.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(1500);
+        columnModel.getColumn(2).setPreferredWidth(100);
         columnModel.getColumn(3).setPreferredWidth(1500);
-        columnModel.getColumn(4).setPreferredWidth(600);
-        columnModel.getColumn(5).setPreferredWidth(150);
-        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(1500);
+        columnModel.getColumn(5).setPreferredWidth(600);
+        columnModel.getColumn(6).setPreferredWidth(150);
         columnModel.getColumn(7).setPreferredWidth(100);
         columnModel.getColumn(8).setPreferredWidth(100);
-        columnModel.getColumn(9).setPreferredWidth(150);
-        columnModel.getColumn(10).setPreferredWidth(200);
+        columnModel.getColumn(9).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(150);
         columnModel.getColumn(11).setPreferredWidth(200);
+        columnModel.getColumn(12).setPreferredWidth(200);
     }
     /**
      * @param args the command line arguments

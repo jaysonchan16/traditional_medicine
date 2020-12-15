@@ -186,8 +186,8 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     
     
     public String EditTraditionalMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
-        if(validateAddTraditionalMedicinePill("name",name,User) == 0)
-        {
+        /*if(validateAddTraditionalMedicinePill("name",name,User) == 0)
+        {*/
             String query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
                     + "scoop = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), sellprice = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
@@ -195,11 +195,11 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             SQLQuery sql = new SQLQuery();
 
             return sql.AddEditDeleteQuery(query);   
-        }
+        /*}
         else
         {
             return "这名字已经存在";
-        }
+        }*/
         
     }
     

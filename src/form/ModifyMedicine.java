@@ -67,7 +67,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtScoop.setEnabled(false);
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
+        txtReference.setVisible(false);
         txtPrice.setEnabled(false);
+        comboReference.setEnabled(false);
         userid = user.getUserid();
         comboMedicine();
         changeLabel();
@@ -108,7 +110,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtScoop.setEnabled(false);
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
+        txtReference.setEnabled(false);
         txtPrice.setEnabled(false);
+        comboReference.setEnabled(false);
         comboMedicine();
         changeLabel();
         createColumns(1,"");
@@ -449,7 +453,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtReference);
-        txtReference.setBounds(450, 120, 380, 40);
+        txtReference.setBounds(230, 120, 600, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 840);
@@ -458,32 +462,37 @@ public class ModifyMedicine extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineActionPerformed
-        // TODO add your handling code here:
-        txtName.setText("");
-        txtComponent.setText("");
-        txtIndication.setText("");
-        txtEffect.setText("");
-        txtScoop.setText("");
-        txtWeight.setText("");
-        txtCost.setText("");
-        txtPrice.setText("");
-        txtID.setText("");
-        txtID.setEnabled(true);
-        txtName.setEnabled(false);
-        txtComponent.setEnabled(false);
-        txtIndication.setEnabled(false);
-        txtEffect.setEnabled(false);
-        txtScoop.setEnabled(false);
-        txtWeight.setEnabled(false);
-        txtCost.setEnabled(false);
-        txtPrice.setEnabled(false);
-        btnFind.setEnabled(true);
-        btnModify.setVisible(true);
-        btnUpdate.setVisible(false);
-        createColumns(1,"");
-        changeLabel();
-        widthTable();
-        
+        try {
+            // TODO add your handling code here:
+            String medicineName = comboMedicine.getSelectedItem().toString();
+            txtName.setText("");
+            txtComponent.setText("");
+            txtIndication.setText("");
+            txtEffect.setText("");
+            txtScoop.setText("");
+            txtWeight.setText("");
+            txtCost.setText("");
+            txtPrice.setText("");
+            txtID.setText("");
+            txtID.setEnabled(true);
+            txtName.setEnabled(false);
+            txtComponent.setEnabled(false);
+            txtIndication.setEnabled(false);
+            txtEffect.setEnabled(false);
+            txtScoop.setEnabled(false);
+            txtWeight.setEnabled(false);
+            txtCost.setEnabled(false);
+            txtPrice.setEnabled(false);
+            btnFind.setEnabled(true);
+            btnModify.setVisible(true);
+            btnUpdate.setVisible(false);
+            createColumns(1,"");
+            changeLabel();
+            widthTable();
+            comboReference(medicineName);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_comboMedicineActionPerformed
 
     private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
@@ -493,14 +502,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
         TableModel model = tblMedicine.getModel();
         String medicine = model.getValueAt(index, 0).toString();
         String ID = model.getValueAt(index, 1).toString();
-        String Name = model.getValueAt(index,2).toString();
-        String Component = model.getValueAt(index,3).toString(); //property
-        String Indications = model.getValueAt(index,4).toString();//appliance
-        String Effect = model.getValueAt(index,5).toString();//appliance
-        String Scoop = model.getValueAt(index,6).toString();
-        String Gram = model.getValueAt(index,7).toString();
-        String Cost = model.getValueAt(index,8).toString();
-        String Sellprice = model.getValueAt(index,9).toString();
+        String Reference = model.getValueAt(index,2).toString();
+        String Name = model.getValueAt(index,3).toString();
+        String Component = model.getValueAt(index,4).toString(); //property
+        String Indications = model.getValueAt(index,5).toString();//appliance
+        String Effect = model.getValueAt(index,6).toString();//appliance
+        String Scoop = model.getValueAt(index,7).toString();
+        String Gram = model.getValueAt(index,8).toString();
+        String Cost = model.getValueAt(index,9).toString();
+        String Sellprice = model.getValueAt(index,10).toString();
         
         txtMedicine.setText(medicine);
         txtID.setText(ID);
@@ -527,8 +537,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtID.setEnabled(false);
         txtPrice.setEnabled(false);
         btnModify.setVisible(true);
+        txtReference.setVisible(true);
+        txtReference.setText(Reference);
+        txtReference.setEnabled(false);
         btnReset.setVisible(true);
         btnUpdate.setVisible(false);
+        comboReference.setVisible(false);
         //disabledTextBox();
         
     }//GEN-LAST:event_tblMedicineMouseClicked
@@ -549,7 +563,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnModify.setVisible(true);
         btnUpdate.setVisible(false);
         comboMedicine.setVisible(false);
+        comboReference.setVisible(false);
         txtMedicine.setVisible(true);
+        txtReference.setVisible(true);
         btnReset.setVisible(true);
         if(ID.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "ID没填！");
@@ -810,8 +826,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnUpdate.setVisible(true);
         btnModify.setVisible(false);
-        //comboMedicine.setVisible(true);
-        //txtMedicine.setVisible(false);
+        comboReference.setVisible(true);
+        txtReference.setVisible(false);
         txtID.setEnabled(false);
         btnFind.setEnabled(false);
         txtName.setEnabled(true);
@@ -822,13 +838,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(true);
         txtCost.setEnabled(true);
         txtPrice.setEnabled(true);
-        
+        comboReference.setEnabled(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         comboMedicine.setVisible(true);
+        comboReference.setVisible(true);
         txtMedicine.setVisible(false);
+        txtReference.setVisible(false);
         txtID.setEnabled(true);
         btnFind.setEnabled(true);
         txtName.setEnabled(false);
@@ -876,6 +894,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 lblzhuzi.setText("应用:");
                 model.addColumn("药物分类");
                 model.addColumn("ID");
+                model.addColumn("参考病症");
                 model.addColumn("药物名称");
                 model.addColumn("药性");
                 model.addColumn("应用");
@@ -905,6 +924,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 lblzhuzi.setText("主治:");
                 model.addColumn("药物分类");
                 model.addColumn("ID");
+                model.addColumn("参考病症");
                 model.addColumn("药物名称");
                 model.addColumn("组成");
                 model.addColumn("主治");
@@ -937,7 +957,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<TraditionalMedicinePill> medicList = new ArrayList<TraditionalMedicinePill>();
             medicList = medic.getTraditionalMedicinePill(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -962,7 +982,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<TraditionalMedicinePotion> medicList = new ArrayList<TraditionalMedicinePotion>();
             medicList = medic.getTraditionalMedicinePotion(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -987,7 +1007,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
             medicList = medic.getGrassMedicinePill(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1012,7 +1032,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             List<GrassMedicinePotion> medicList = new ArrayList<GrassMedicinePotion>();
             medicList = medic.getGrassMedicinePotion(userid);
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1058,7 +1078,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1099,7 +1119,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1140,7 +1160,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1181,7 +1201,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 //disabledTextBox();
             }
             DefaultTableModel model = (DefaultTableModel)tblMedicine.getModel();
-            Object row[] = new Object[12];
+            Object row[] = new Object[13];
             for(int i =0; i<medicList.size(); i++)
             {
                 row[0] = medicList.get(i).getMedicine();
@@ -1227,6 +1247,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 System.out.println(code.getComboMedicine(userid).get(i).toString());
                 comboMedicine.addItem(code.getComboMedicine(userid).get(i).getCode());
             }
+            comboReference(code.getComboMedicine(userid).get(0).getCode());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "comboMedicine get error on line 886, "+ex.getMessage());
         }
@@ -1297,6 +1318,10 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setEnabled(false);
         txtCost.setEnabled(false);
         txtPrice.setEnabled(false);
+        comboMedicine.setVisible(true);
+        txtMedicine.setVisible(false);
+        btnFind.setEnabled(true);
+        comboReference.setEnabled(false);
     }
     
     public void image()
@@ -1323,6 +1348,58 @@ public class ModifyMedicine extends javax.swing.JFrame {
         setResizable(false);
     }
     
+    public void comboReference(String medicine) throws SQLException
+    {
+        comboReference.removeAllItems();
+        if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill grasspill = new GrassMedicinePill();
+            
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = grasspill.findReference(medicine, userid);
+            
+            for(int i =0; i<medicList.size(); i++)
+            {
+                comboReference.addItem(medicList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("药水"))
+        {
+            GrassMedicinePotion grasspotion = new GrassMedicinePotion();
+            
+            List<GrassMedicinePotion> grassList = new ArrayList<GrassMedicinePotion>();
+            grassList = grasspotion.findReference(medicine,userid);
+            
+            for(int i =0; i<grassList.size(); i++)
+            {
+                comboReference.addItem(grassList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉"))
+        {
+            TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+            
+            List<TraditionalMedicinePill> traditionPillList = new ArrayList<TraditionalMedicinePill>();
+            traditionPillList = traditionalpill.findReference(medicine,userid);
+            
+            for(int i =0; i<traditionPillList.size(); i++)
+            {
+                comboReference.addItem(traditionPillList.get(i).getReference());
+            }
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+            
+            List<TraditionalMedicinePotion> traditionMedicList = new ArrayList<TraditionalMedicinePotion>();
+            traditionMedicList = traditionalpotion.findReference(medicine,userid);
+            
+            for(int i =0; i<traditionMedicList.size(); i++)
+            {
+                comboReference.addItem(traditionMedicList.get(i).getReference());
+            }
+        }
+    }
     
     
     /**

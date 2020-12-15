@@ -159,8 +159,8 @@ public class GrassMedicinePill extends Medicine{//药丸
     }
     
     public String EditGrassMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
-        if(validateGrassMedicinePill("name", name, User) == 0)
-        {
+        /*if(validateGrassMedicinePill("name", name, User) == 0)
+        {*/
             String query = "Update GrassMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), component = trim('"+component+"'), indications = trim('"+indication+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
                     + " cost = trim('"+cost+"'), sellprice = trim('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
@@ -168,11 +168,11 @@ public class GrassMedicinePill extends Medicine{//药丸
             SQLQuery sql = new SQLQuery();
 
             return sql.AddEditDeleteQuery(query);
-        }
+        /*}
         else
         {
             return "这名字已经存在";
-        }
+        }*/
     }
     
     public String DeleteGrassMedicinePill(String ID, String User) throws SQLException{
