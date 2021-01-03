@@ -326,24 +326,15 @@ public class Medicine {
         this.user = user;
     }
     
-    public List<Medicine> getDetail(String contribute, String detail, String contribute1, String User) throws SQLException{
+    public List<Medicine> getDetail(String contribute, String detail, String User) throws SQLException{
      List<Medicine> medicineList = new ArrayList<>();
-     String query = "";
-     if(contribute1.equalsIgnoreCase(""))
-     {
+        String query = "";
+    
         query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
                 + "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
                 + "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where "+contribute+" like '%"+detail+"%' and User = '"+User+"' UNION ALL "
                 + "Select ID, name, reference, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where "+contribute+" like '%"+detail+"%' and User = '"+User+"'";
-     }
-     else
-     {
-         query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"' UNION ALL "
-                + "Select ID, name, reference, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where ("+contribute+" like '%"+detail+"%' or "+contribute1+" like '%"+detail+"%') and User = '"+User+"'";
-
-     }
+     
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -364,7 +355,7 @@ public class Medicine {
     public List<Medicine> getAllDetail(String User) throws SQLException{
         List<Medicine> medicineList = new ArrayList<>();
          
-         String query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where User ='"+User+"' UNION ALL "
+        String query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where User ='"+User+"' UNION ALL "
                 + "Select ID, name, reference, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where User ='"+User+"' UNION ALL "
                 + "Select ID, name, reference, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where User ='"+User+"' UNION ALL "
                 + "Select ID, name, reference, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where User ='"+User+"'";
@@ -386,6 +377,60 @@ public class Medicine {
         return medicineList;
     }
 
+    public List<Medicine> getMedicineDetail(String name, String reference, String component, String indications, 
+            String property, String appliance,String effect, float scoop, float sellprice, float gram, 
+            float cost, String code, String medicine, String user) throws SQLException{
+        List<Medicine> medicineList = new ArrayList<>();
+        
+        String query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, "
+                + "effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User "
+                + "From GrassMedicinePill "
+                + "where name like '%"+name+"%' and reference like '%"+reference+"%' and component like '%"+component+"%' "
+                + "and indications like '%"+indications+"%' and property like '%"+property+"%' and appliance like '%"+appliance+"%' and effect like '%"+effect+"%' and scoop like '%"+scoop+"%' and sellprice like '%"+sellprice+"%' and gram like '%"+gram+"%' and appliance like '%"+appliance+"%' and medicine like '%"+medicine+"%' "
+                + "and ID like '%"+code+"%' and User ='"+user+"' UNION ALL "
+                + "Select ID, name, reference, component, indications, '' as property, '' as appliance,"
+                + "effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User "
+                + "From GrassMedicinePotion where name like '%"+name+"%' and reference like '%"+reference+"%' "
+                + "and component like '%"+component+"%' and indications like '%"+indications+"%' "
+                + "and property like '%"+property+"%' and appliance like '%"+appliance+"%' "
+                + "and effect like '%"+effect+"%' and scoop like '%"+scoop+"%' and sellprice like '%"+sellprice+"%' "
+                + "and gram like '%"+gram+"%' and appliance like '%"+appliance+"%' and medicine like '%"+medicine+"%' "
+                + "and ID like '%"+code+"%' and User ='"+user+"' UNION ALL "
+                + "Select ID, name, reference, component, indications, '' as property, '' as appliance,effect, "
+                + "scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User "
+                + "From TraditionalMedicinePotion where name like '%"+name+"%' and reference like '%"+reference+"%' "
+                + "and component like '%"+component+"%' and indications like '%"+indications+"%' "
+                + "and property like '%"+property+"%' and appliance like '%"+appliance+"%' "
+                + "and effect like '%"+effect+"%' and scoop like '%"+scoop+"%' and sellprice like '%"+sellprice+"%' "
+                + "and gram like '%"+gram+"%' and appliance like '%"+appliance+"%' and medicine like '%"+medicine+"%' "
+                + "and ID like '%"+code+"%' and User ='"+user+"' UNION ALL "
+                + "Select ID, name, reference, '' as component, '' as indications, property, appliance, "
+                + "effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User "
+                + "From TraditionalMedicinePill where name like '%"+name+"%' and reference like '%"+reference+"%' "
+                + "and component like '%"+component+"%' and indications like '%"+indications+"%' "
+                + "and property like '%"+property+"%' and appliance like '%"+appliance+"%' "
+                + "and effect like '%"+effect+"%' and scoop like '%"+scoop+"%' and sellprice like '%"+sellprice+"%' "
+                + "and gram like '%"+gram+"%' and appliance like '%"+appliance+"%' and medicine like '%"+medicine+"%' "
+                + "and ID like '%"+code+"%' and User ='"+user+"'";
+          
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 medicineList.add(new Medicine(rs.getString("name"),rs.getString("reference"),
+                 rs.getString("component"),rs.getString("indications"),rs.getString("property"),rs.getString("appliance"),
+                 rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),rs.getFloat("gram"),
+                 rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),
+                 rs.getString("ID"), rs.getString("medicine"), rs.getString("User")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return medicineList;
+    }
+    
     /**
      * @return the reference
      */

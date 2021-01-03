@@ -127,6 +127,27 @@ public class User {
         return(password.equals(theUser.getPassword()));
     }
     
+    public int validateReference()
+    {
+        int count = 0;
+        try {
+            String countID = "Select count(*) as ID from Reference";
+            rs = st.executeQuery(countID);
+            count = rs.getInt("ID");
+            if(count == 0)
+            {
+                return registerReference();
+            }
+            else
+            {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+         return 0;
+    }
+    
     public int validateID(String User)
     {
         int count = 0;
@@ -215,6 +236,41 @@ public class User {
                     + "Select 'Disease', 0, 'DiseaseID','"+User+"' UNION ALL "
                     + "Select 'Prescription', 0, 'PrescriptionID','"+User+"' UNION ALL "
                     + "Select 'isUpgrade', 0, 'User','"+User+"'";
+            
+            st.executeUpdate(query);
+            st.close();
+            return 1;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int registerReference() throws SQLException
+    {
+        try {
+            String query = "insert into Reference(Reference)"
+                    + "Select '解表剂' UNION ALL "
+                    + "Select '泻下剂' UNION ALL "
+                    + "Select '和解剂' UNION ALL "
+                    + "Select '清热剂' UNION ALL "
+                    + "Select '祛暑剂' UNION ALL "
+                    + "Select '温里剂' UNION ALL "
+                    + "Select '表里双解剂' UNION ALL "
+                    + "Select '补益剂' UNION ALL "
+                    + "Select '固涩剂' UNION ALL "
+                    + "Select '安神剂' UNION ALL "
+                    + "Select '开窍剂' UNION ALL "
+                    + "Select '理气剂' UNION ALL "
+                    + "Select '理血剂' UNION ALL "
+                    + "Select '治凤剂' UNION ALL "
+                    + "Select '治燥剂' UNION ALL "
+                    + "Select '祛湿剂' UNION ALL "
+                    + "Select '祛痰剂' UNION ALL "
+                    + "Select '消食剂' UNION ALL "
+                    + "Select '驱虫剂' UNION ALL "
+                    + "Select '涌吐剂' UNION ALL "
+                    + "Select '治痛痒剂'";
             
             st.executeUpdate(query);
             st.close();

@@ -495,7 +495,7 @@ public class SearchPatient extends javax.swing.JFrame {
          
          Patient patient = new Patient();
          List<Patient> patientList = new ArrayList<Patient>();
-         patientList = patient.getPatients();
+         patientList = patient.getPatients(userid);
          model = (DefaultTableModel)tblPatient.getModel();
          Object row[] = new Object[9];
          for(int i =0; i<patientList.size(); i++)
@@ -519,7 +519,7 @@ public class SearchPatient extends javax.swing.JFrame {
         List<Patient> patientList = new ArrayList<Patient>();
         String arrangement;
         arrangement = comboArrange.getSelectedItem() == "顺序" ? "asc" : comboArrange.getSelectedItem() == "逆序" ? "desc" : "系统有问题！";
-        patientList = patient.getDetail(contribute,detail,arrangement);
+        patientList = patient.getDetail(contribute,detail,arrangement,userid);
         model = (DefaultTableModel)tblPatient.getModel();
         Object row[] = new Object[9];
         for(int i =0; i<patientList.size(); i++)

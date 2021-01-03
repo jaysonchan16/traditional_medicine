@@ -5,6 +5,7 @@
  */
 package form;
 
+import java.sql.SQLException;
 import javaClass.User;
 import javax.swing.ImageIcon;
 
@@ -323,21 +324,33 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void imgFindMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgFindMedicineMouseClicked
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        FindMedicine();
+        try {
+            // TODO add your handling code here:
+            // TODO add your handling code here:
+            FindMedicine();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_imgFindMedicineMouseClicked
 
     private void lblFindMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFindMedicineMouseClicked
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        FindMedicine();
+        try {
+            // TODO add your handling code here:
+            // TODO add your handling code here:
+            FindMedicine();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_lblFindMedicineMouseClicked
 
     private void btnFindMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFindMedicineMouseClicked
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        FindMedicine();
+        try {
+            // TODO add your handling code here:
+            // TODO add your handling code here:
+            FindMedicine();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnFindMedicineMouseClicked
 
     private void imgModifyMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgModifyMedicineMouseClicked
@@ -376,7 +389,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         this.dispose();
     }
     
-    public void FindMedicine()
+    public void FindMedicine() throws SQLException
     {
         SearchMedicine medical = new SearchMedicine(user);
         medical.setVisible(true);

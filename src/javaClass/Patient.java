@@ -305,9 +305,9 @@ public class Patient {
         return new Patient("1");
     }
     
-    public List<Patient> getPatients() throws SQLException{
+    public List<Patient> getPatients(String user) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
-        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient";
+        String query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where User = '"+user+"'";
         
         System.out.println(query);
         rs = st.executeQuery(query);
@@ -394,11 +394,11 @@ public class Patient {
         
     }
     
-    public List<Patient> getDetail(String contribute, String detail, String arrangement) throws SQLException{
+    public List<Patient> getDetail(String contribute, String detail, String arrangement, String user) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
         
-        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where "+contribute+" like '%"+detail+"%' order by "+contribute+" "+arrangement+"";
+        query = "Select ID,IC,name,gender,age,phone,address,lastUpdateDateTime,createDateTime,User from Patient where User = '"+user+"' and "+contribute+" like '%"+detail+"%' order by "+contribute+" "+arrangement+"";
           
         System.out.println(query);
         rs = st.executeQuery(query);

@@ -232,6 +232,10 @@ public class LoginUI2 extends javax.swing.JFrame {
             }
             else
             {
+                if(user.validateReference() == 1)
+                {
+                    System.out.println("reference added!");
+                }
                 user.validateID(txtUserID.getText());
                 if(user.validateBeginner(txtUserID.getText()))
                 {

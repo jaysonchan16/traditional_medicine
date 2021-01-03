@@ -300,7 +300,7 @@ public class ViewPatientDetail extends javax.swing.JFrame {
          List<Patient> patientList = new ArrayList<Patient>();
          if(option == 3)
          {
-             patientList = patient.getPatients();
+             patientList = patient.getPatients(userid);
          }
          else
          {
