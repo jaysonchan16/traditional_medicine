@@ -315,10 +315,14 @@ public class LoginUI2 extends javax.swing.JFrame {
     {
         ImageIcon iconLogo = new ImageIcon(getClass().getResource("/menu/smalluser.png"));
         lblUsername.setIcon(iconLogo);
-        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smalllock.png"));
-        lblPassword.setIcon(iconBack);
+        ImageIcon iconPassword = new ImageIcon(getClass().getResource("/menu/smalllock.png"));
+        lblPassword.setIcon(iconPassword);
         ImageIcon iconLogobig = new ImageIcon(getClass().getResource("/menu/hengsengtongBig.png"));
         lblLogo.setIcon(iconLogobig);
+        ImageIcon iconBack = new ImageIcon(getClass().getResource("/menu/smallBack.png"));
+        btnExit.setIcon(iconBack);
+        ImageIcon iconLogin = new ImageIcon(getClass().getResource("/menu/smalllogin.png"));
+        btnLogin.setIcon(iconLogin);
         setResizable(false);
     }
     
