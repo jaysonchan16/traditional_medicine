@@ -55,6 +55,13 @@ public class Medicine {
         this.user = user;
     }
     
+    public Medicine(String name, String reference, String user)
+    {
+        this.name = name;
+        this.reference = reference;
+        this.user = user;
+    }
+    
     public Medicine(String name, String reference, float sellprice, float gram, String code, String medicine, String user)
     {
         this.name = name;
@@ -443,6 +450,20 @@ public class Medicine {
      */
     public void setReference(String reference) {
         this.reference = reference;
+    }
+
+    /**
+     * @return the referenceForNotDuplicateMedicineName
+     */
+    public int getReferenceForNotDuplicateMedicineName() {
+        return referenceForNotDuplicateMedicineName;
+    }
+
+    /**
+     * @param referenceForNotDuplicateMedicineName the referenceForNotDuplicateMedicineName to set
+     */
+    public void setReferenceForNotDuplicateMedicineName(int referenceForNotDuplicateMedicineName) {
+        this.referenceForNotDuplicateMedicineName = referenceForNotDuplicateMedicineName;
     }
 
     

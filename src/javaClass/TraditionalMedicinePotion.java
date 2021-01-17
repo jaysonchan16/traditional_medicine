@@ -42,6 +42,10 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         super(reference,referenceForNotDuplicateMedicineName);
     }
     
+    public TraditionalMedicinePotion(String name,String reference,String user) {
+        super(name,reference,user);
+    }
+    
     public TraditionalMedicinePotion(String name, String reference, float sellprice, float gram, String code, String medicine, String user){
         super(name,reference, sellprice,gram,code,medicine,user);
     }
@@ -188,6 +192,30 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     }
     
     
+    public List<TraditionalMedicinePotion> comboNameReference(String medicine, String reference, String User) throws SQLException{
+        List<TraditionalMedicinePotion> name = new ArrayList<>();
+        String query = "Select name from TraditionalMedicinePotion where medicine='"+medicine+"' and User='"+User+"' and reference='"+reference+"'";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                name.add(new TraditionalMedicinePotion(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally
+        {
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
+        return name;
+    }
+    
     public List<TraditionalMedicinePotion> comboName(String User) throws SQLException{
         List<TraditionalMedicinePotion> name = new ArrayList<>();
         String query = "Select name from TraditionalMedicinePotion where User='"+User+"'";
@@ -271,13 +299,36 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     public List<TraditionalMedicinePotion> findReference(String name, String User) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
         System.out.println("findreference");
-        System.out.println(name);
-        System.out.println(User);
+        System.out.println("name"+name);
+        System.out.println("User:"+User);
         String query = "Select DISTINCT reference, '1' as referenceForNotDuplicateMedicineName from TraditionalMedicinePotion where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                 traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return traditionalMedicinePotionList;
+    }
+    
+    public List<TraditionalMedicinePotion> findReferenceName(String medicine, String User) throws SQLException{
+        System.out.println("TraditionalMedicinePotion:"+medicine);
+        List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
+        String query = "Select reference, name, user from TraditionalMedicinePotion where medicine='"+medicine+"' and User ='"+User+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                traditionalMedicinePotionList.add(new TraditionalMedicinePotion(rs.getString("name"),rs.getString("reference"), rs.getString("user")));
             } 
         } 
         catch (Exception e)

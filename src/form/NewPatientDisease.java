@@ -1186,10 +1186,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 }
                 doubleCombo = false;
                 FindByMedicineName2(pill.comboName(userid).get(0).getName());*/
-                for(int i = 0; i < pill.comboName(userid).size(); i++)
+                /*for(int i = 0; i < pill.comboName(userid,"").size(); i++)
                 {
-                    s.add(pill.comboName(userid).get(i).getName());
-                }
+                    s.add(pill.comboName(userid,"").get(i).getName());
+                }*/
                 doubleCombo = false;
             }
             else if(name.equalsIgnoreCase("药水"))
@@ -1203,10 +1203,10 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 }
                 doubleCombo = false;
                 FindByMedicineName2(potion.comboName(userid).get(0).getName());*/
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
+               /* for(int i = 0; i < potion.comboName(userid,"").size(); i++)
                 {
-                    s.add(potion.comboName(userid).get(i).getName());
-                }
+                    s.add(potion.comboName(userid,"").get(i).getName());
+                }*/
                 doubleCombo = false;
             }
             else if(name.equalsIgnoreCase("药丸"))

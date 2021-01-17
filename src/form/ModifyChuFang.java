@@ -332,7 +332,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtMedicine);
-        txtMedicine.setBounds(160, 350, 590, 40);
+        txtMedicine.setBounds(160, 350, 490, 40);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更新");
@@ -465,7 +465,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jPanel2.add(jLabel12);
         jLabel12.setBounds(70, 410, 95, 40);
         jPanel2.add(txtReference);
-        txtReference.setBounds(420, 410, 330, 40);
+        txtReference.setBounds(160, 410, 490, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(110, 100, 1720, 820);
@@ -928,6 +928,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     public void medicineName(String name) throws SQLException
     {
+        //g
         comboBoxName.removeAllItems();
         if(name.equalsIgnoreCase("单味药粉"))
         {

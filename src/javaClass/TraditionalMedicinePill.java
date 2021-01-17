@@ -42,6 +42,10 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         super(name,user);
     }
     
+    public TraditionalMedicinePill(String name,String reference, String user){
+        super(name,reference,user);
+    }
+    
     public TraditionalMedicinePill(String name, String reference, float sellprice,float gram, String code, String medicine, String user){
         super(name,reference,sellprice,gram,code,medicine,user);
     }
@@ -218,7 +222,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         try {
             while (rs.next()) {
                 System.out.println(rs.getString("name"));
-                 name.add(new TraditionalMedicinePill(rs.getString("name")));
+                name.add(new TraditionalMedicinePill(rs.getString("name")));
             } 
         } 
         catch (Exception e)
@@ -227,6 +231,29 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         }
         rs.close();
         st.close();
+        return name;
+    }
+    
+    public List<GrassMedicinePotion> comboNameReference(String medicine, String reference, String User) throws SQLException{
+        List<GrassMedicinePotion> name = new ArrayList<>();
+        String query = "Select name from TraditionalMedicinePill where medicine='"+medicine+"' and User ='"+User+"' and reference ='"+reference+"'";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new GrassMedicinePotion(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
         return name;
     }
     
@@ -286,12 +313,53 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     }
     
     public List<TraditionalMedicinePill> findReference(String name, String User) throws SQLException{
+        System.out.println(name);
+        System.out.println(User);
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
         String query = "Select DISTINCT reference, '1' as referenceForNotDuplicateMedicineName from TraditionalMedicinePill where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                 traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return traditionalMedicinePillList;
+    }
+    
+    public List<HashMap<String,String>> findReferenceName(String medicine, String User) throws SQLException{
+        System.out.println("TraditionalMedicinePill:"+medicine);
+        
+        List<HashMap<String,String>> traditionalMedicinePillList = new ArrayList<>();
+        HashMap<String,String> referenceName = new HashMap<String,String>();
+        //String repeatation = "";
+        
+        String query = "Select reference, name, user from TraditionalMedicinePill where medicine='"+medicine+"' and User ='"+User+"' order by reference";
+        
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                /*if(repeatation.equalsIgnoreCase(""))
+                {*/
+                    referenceName.put(rs.getString("name"), rs.getString("reference"));
+                    traditionalMedicinePillList.add(referenceName);
+                //    repeatation = rs.getString("reference");
+                /*}
+                else if(repeatation.equalsIgnoreCase(rs.getString("reference")))
+                {
+                    
+                }*/
+                //traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name"),rs.getString("reference"), rs.getString("user")));
+                
             } 
         } 
         catch (Exception e)

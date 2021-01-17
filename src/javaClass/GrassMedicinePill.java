@@ -40,6 +40,10 @@ public class GrassMedicinePill extends Medicine{//药丸
         super(reference,referenceForNotDuplicateMedicineName);
     }
     
+    public GrassMedicinePill(String name, String reference, String user){
+        super(name,reference,user);
+    }
+    
     public GrassMedicinePill(String name, String reference, float sellprice, float gram, String code, String medicine, String user){
         super(name, reference, sellprice,gram,code,medicine,user);
     }
@@ -183,6 +187,29 @@ public class GrassMedicinePill extends Medicine{//药丸
         return sql.AddEditDeleteQuery(query);
     }
     
+     public List<GrassMedicinePill> comboNameReference(String medicine, String reference, String User) throws SQLException{
+        List<GrassMedicinePill> name = new ArrayList<>();
+        String query = "Select name from GrassMedicinePill where medicine='"+medicine+"' and User='"+User+"' and reference='"+reference+"'";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new GrassMedicinePill(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
+        return name;
+    }
+    
      public List<GrassMedicinePill> comboName(String User) throws SQLException{
         List<GrassMedicinePill> name = new ArrayList<>();
         String query = "Select name from GrassMedicinePill where User='"+User+"'";
@@ -262,12 +289,36 @@ public class GrassMedicinePill extends Medicine{//药丸
     }
    
     public List<GrassMedicinePill> findReference(String name, String User) throws SQLException{
+        System.out.println("GrassMedicinePill:"+name);
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
         String query = "Select DISTINCT reference, '1' as referenceForNotDuplicateMedicineName from GrassMedicinePill where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
                 grassMedicinePillList.add(new GrassMedicinePill(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return grassMedicinePillList;
+    }
+    
+    public List<GrassMedicinePill> findReferenceName(String medicine, String User) throws SQLException{
+        System.out.println("GrassMedicinePill:"+medicine);
+        List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
+        String query = "Select reference, name, user from GrassMedicinePill where medicine='"+medicine+"' and User ='"+User+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                grassMedicinePillList.add(new GrassMedicinePill(rs.getString("name"),rs.getString("reference"), rs.getString("user")));
             } 
         } 
         catch (Exception e)

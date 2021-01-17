@@ -40,6 +40,10 @@ public class GrassMedicinePotion extends Medicine {// 药水
         super(name,user);
     }
     
+    public GrassMedicinePotion(String name, String reference, String user){
+        super(name,reference,user);
+    }
+    
     public GrassMedicinePotion(String name, String reference, float sellprice, float gram, String code, String medicine, String user){
         super(name,reference,sellprice,gram,code,medicine,user);
     }
@@ -203,6 +207,29 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return name;
     }
     
+    public List<GrassMedicinePotion> comboNameReference(String medicine, String reference, String User) throws SQLException{
+        List<GrassMedicinePotion> name = new ArrayList<>();
+        String query = "Select name from GrassMedicinePotion where medicine='"+medicine+"' and User ='"+User+"' and reference ='"+reference+"'";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+                 name.add(new GrassMedicinePotion(rs.getString("name")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
+        return name;
+    }
+    
     public List<GrassMedicinePotion> findGrassMedicinePotionName(String name, String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
         String query = "Select ID,name,sellprice,gram,medicine,User from GrassMedicinePotion where name='"+name+"' and User = '"+User+"' order by 1 desc";
@@ -265,6 +292,29 @@ public class GrassMedicinePotion extends Medicine {// 药水
         try {
             while (rs.next()) {
                 grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("reference"),rs.getInt("referenceForNotDuplicateMedicineName")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();  
+        return grassMedicinePotionList;
+    }
+    
+    public List<GrassMedicinePotion> findReferenceName(String medicine, String User) throws SQLException{
+        System.out.println("GrassMedicinePotion:"+medicine);
+        List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
+        String query = "Select reference, name, user from GrassMedicinePotion where medicine='"+medicine+"' and User ='"+User+"' order by 1 desc";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                grassMedicinePotionList.add(new GrassMedicinePotion(rs.getString("name"),rs.getString("reference"), rs.getString("user")));
             } 
         } 
         catch (Exception e)
