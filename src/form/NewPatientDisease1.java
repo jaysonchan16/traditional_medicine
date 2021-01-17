@@ -90,7 +90,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         txtPhone.setEnabled(false);
         txtRemaining.setEnabled(false);
         spinnerJiLiang.setEnabled(false);
-        medicineCategory();
+        comboReference(comboBoxMedicine.getSelectedItem().toString());
+        //medicineCategory();
         //FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         setResizable(false);
         txtchufang.setEnabled(false);
@@ -105,7 +106,6 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         btnAddRow.setEnabled(false);
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
-        comboMedicineName.setEnabled(false);
         spinnerJiLiang.setValue(1);
         TableColumnModel columnModel = tblDisease.getColumnModel();
         columnModel.getColumn(6).setMinWidth(0);
@@ -117,7 +117,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     public NewPatientDisease1(User user,String id, String ic, String name, String phone) throws SQLException {
         initComponents();
         userid = user.getUserid();
-        medicineCategory();
+        comboReference(comboBoxMedicine.getSelectedItem().toString());
+        //medicineCategory();
         txtMedicineName.setVisible(false);
         //FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
         createColumns();
@@ -153,7 +154,6 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         btnAddRow.setEnabled(false);
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
-        comboMedicineName.setEnabled(false);
         spinnerJiLiang.setValue(1);
         TableColumnModel columnModel = tblDisease.getColumnModel();
         columnModel.getColumn(6).setMinWidth(0);
@@ -539,7 +539,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         jLabel17.setBounds(360, 390, 100, 40);
 
         comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------" }));
+        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单味药粉" }));
         comboBoxMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxMedicineActionPerformed(evt);
@@ -741,7 +741,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFindMedic);
-        btnFindMedic.setBounds(630, 430, 110, 40);
+        btnFindMedic.setBounds(630, 490, 110, 40);
 
         jLabel25.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel25.setText("参考病症：");
@@ -749,7 +749,6 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         jLabel25.setBounds(50, 440, 100, 40);
 
         comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboReference.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------" }));
         comboReference.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboReferenceActionPerformed(evt);
@@ -759,10 +758,19 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         comboReference.setBounds(160, 440, 460, 40);
 
         comboMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboMedicineName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "----------" }));
+        comboMedicineName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboMedicineNameMouseClicked(evt);
+            }
+        });
         comboMedicineName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboMedicineNameActionPerformed(evt);
+            }
+        });
+        comboMedicineName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboMedicineNameKeyPressed(evt);
             }
         });
         panelBody.add(comboMedicineName);
@@ -826,6 +834,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             //txtMedicineName.setEnabled(true);
             btnFindMedic.setEnabled(true);
             String medicine = comboBoxMedicine.getSelectedItem().toString();
+            System.out.print("comboMedicine"+medicine);
             comboReference(medicine);
             //getReferenceName(medicine);
             //medicineName(name);
@@ -1126,35 +1135,37 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMedicineNameKeyReleased
 
     private void btnFindMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMedicActionPerformed
-        try {
-            // TODO add your handling code here:
-            btnDelete.setEnabled(true);
-            btnAddRow.setEnabled(true);
-            spinnerJiLiang.setEnabled(true);
-            //txtMedicineName.setEnabled(false);
-            btnFindMedic.setEnabled(false);
-            comboMedicineName.setEnabled(true);
-            medicineName(comboBoxMedicine.getSelectedItem().toString(),comboReference.getSelectedItem().toString());
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        btnDelete.setEnabled(true);
+        btnAddRow.setEnabled(true);
+        spinnerJiLiang.setEnabled(true);
+        btnFindMedic.setEnabled(false);
+        MedicineContent();
     }//GEN-LAST:event_btnFindMedicActionPerformed
 
     private void comboReferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceActionPerformed
-        /*try {
+        try {
             // TODO add your handling code here:
             medicineName(comboBoxMedicine.getSelectedItem().toString(), comboReference.getSelectedItem().toString());
             
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }*/
+        }
     }//GEN-LAST:event_comboReferenceActionPerformed
 
     private void comboMedicineNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineNameActionPerformed
         // TODO add your handling code here:
-        MedicineContent();
+        
     }//GEN-LAST:event_comboMedicineNameActionPerformed
+
+    private void comboMedicineNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboMedicineNameKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboMedicineNameKeyPressed
+
+    private void comboMedicineNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboMedicineNameMouseClicked
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_comboMedicineNameMouseClicked
 
     private void createColumns()
     {
@@ -1327,9 +1338,10 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 {
                     comboReference.addItem(medicList.get(i).getReference());
                     repeat = medicList.get(i).getReference();
-                    AutoCompleteDecorator.decorate(comboReference);
+                    //AutoCompleteDecorator.decorate(comboReference);
                 }
             }
+            medicineName(medicine,medicList.get(0).getReference());
         }
         else if(medicine.equalsIgnoreCase("药水"))
         {
@@ -1344,10 +1356,10 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 {
                     comboReference.addItem(grassList.get(i).getReference());
                     repeat = grassList.get(i).getReference();
-                    AutoCompleteDecorator.decorate(comboReference);
+                    //AutoCompleteDecorator.decorate(comboReference);
                 }
             }
-            //medicineName(medicine,grassList.get(0).getReference());
+            medicineName(medicine,grassList.get(0).getReference());
         }
         else if(medicine.equalsIgnoreCase("单味药粉"))
         {
@@ -1362,10 +1374,10 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 {
                     comboReference.addItem(traditionPillList.get(i).getReference());
                     repeat = traditionPillList.get(i).getReference();
-                    AutoCompleteDecorator.decorate(comboReference);
+                    //AutoCompleteDecorator.decorate(comboReference);
                 }
             }
-            //medicineName(medicine,traditionPillList.get(0).getReference());
+            medicineName(medicine,traditionPillList.get(0).getReference());
         }
         else if(medicine.equalsIgnoreCase("复方药粉"))
         { 
@@ -1380,10 +1392,10 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 {
                     comboReference.addItem(traditionMedicList.get(i).getReference());
                     repeat = traditionMedicList.get(i).getReference();
-                    AutoCompleteDecorator.decorate(comboReference);
+                    //AutoCompleteDecorator.decorate(comboReference);
                 }
             }
-            //medicineName(medicine,traditionMedicList.get(0).getReference());
+            medicineName(medicine,traditionMedicList.get(0).getReference());
         }
         
     }

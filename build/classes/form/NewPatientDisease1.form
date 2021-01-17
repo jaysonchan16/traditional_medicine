@@ -585,8 +585,11 @@
               <Font name="STXihei" size="18" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="----------"/>
+              <StringArray count="4">
+                <StringItem index="0" value="&#x590d;&#x65b9;&#x836f;&#x7c89;"/>
+                <StringItem index="1" value="&#x836f;&#x4e38;"/>
+                <StringItem index="2" value="&#x836f;&#x6c34;"/>
+                <StringItem index="3" value="&#x5355;&#x5473;&#x836f;&#x7c89;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1022,7 +1025,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="630" y="430" width="110" height="40"/>
+              <AbsoluteConstraints x="630" y="490" width="110" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -1045,9 +1048,7 @@
               <Font name="STXihei" size="18" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="----------"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
@@ -1068,13 +1069,13 @@
               <Font name="STXihei" size="18" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="----------"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comboMedicineNameMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboMedicineNameActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="comboMedicineNameKeyPressed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
