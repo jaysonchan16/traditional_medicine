@@ -598,7 +598,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="450" y="390" width="160" height="40"/>
+              <AbsoluteConstraints x="450" y="390" width="170" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -998,7 +998,7 @@
         <Component class="javax.swing.JTextField" name="txtMedicineID">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="450" y="440" width="160" height="40"/>
+              <AbsoluteConstraints x="630" y="390" width="110" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -1022,7 +1022,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="630" y="490" width="110" height="40"/>
+              <AbsoluteConstraints x="630" y="430" width="110" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -1058,7 +1058,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="440" width="270" height="40"/>
+              <AbsoluteConstraints x="160" y="440" width="460" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -1071,9 +1071,6 @@
               <StringArray count="1">
                 <StringItem index="0" value="----------"/>
               </StringArray>
-            </Property>
-            <Property name="editor" type="javax.swing.ComboBoxEditor" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
             </Property>
           </Properties>
           <Events>

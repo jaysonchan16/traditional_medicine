@@ -234,14 +234,14 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         return name;
     }
     
-    public List<GrassMedicinePotion> comboNameReference(String medicine, String reference, String User) throws SQLException{
-        List<GrassMedicinePotion> name = new ArrayList<>();
-        String query = "Select name from TraditionalMedicinePill where medicine='"+medicine+"' and User ='"+User+"' and reference ='"+reference+"'";
+    public List<TraditionalMedicinePill> comboNameReference(String medicine, String reference, String User) throws SQLException{
+
+        List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
+        String query = "Select name from TraditionalMedicinePill where medicine='"+medicine+"' and User='"+User+"' and reference='"+reference+"'";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {
-                System.out.println(rs.getString("name"));
-                 name.add(new GrassMedicinePotion(rs.getString("name")));
+                traditionalMedicinePillList.add(new TraditionalMedicinePill(rs.getString("name")));
             } 
         } 
         catch (Exception e)
@@ -253,8 +253,8 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             st.close();
         }
         rs.close();
-        st.close();        
-        return name;
+        st.close();  
+        return traditionalMedicinePillList;
     }
     
     public List<TraditionalMedicinePill> findTraditionalMedicinePillName(String name, String User) throws SQLException{
