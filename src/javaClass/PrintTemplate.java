@@ -33,10 +33,10 @@ public class PrintTemplate {
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
         for(int i = 0; i<chufang.size(); i++)
         {
-            content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineReference.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"\t"+price.get(i)+"\t"+totalprice.get(i)+"\n");
+            content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineReference.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"GM\tRM"+price.get(i)+"\tRM"+totalprice.get(i)+"\n");
         }
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
-        content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
+        content.append("\t\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
         return content.toString();
     }
     

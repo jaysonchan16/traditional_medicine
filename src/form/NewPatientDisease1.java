@@ -217,7 +217,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         lblTotalJiliang.setText(totalweight);
         lblTotalPrice.setText(mainprice);
         for (int i = 0; i < chufang.size(); i++){
-            populate(chufang.get(i),medicine.get(i),medicinecategory.get(i),medicineReference.get(i),
+            populate(chufang.get(i),medicine.get(i),medicineReference.get(i),medicinecategory.get(i),
                     jiliang.get(i),price.get(i),totalprice.get(i),remaining.get(i),prescriptionID.get(i),weightList.get(i));
         }
         int pluschufang = chufang.size()+1;
@@ -1078,9 +1078,9 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             medicine.add(model.getValueAt(count, 1).toString());
             medicineReference.add(model.getValueAt(count, 2).toString());
             medicinecategory.add(model.getValueAt(count, 3).toString());
-            jiliang.add(model.getValueAt(count, 4).toString()+"GM");
-            price.add("RM"+model.getValueAt(count, 5).toString());
-            totalprice.add("RM"+model.getValueAt(count, 6).toString());
+            jiliang.add(model.getValueAt(count, 4).toString());
+            price.add(model.getValueAt(count, 5).toString());
+            totalprice.add(model.getValueAt(count, 6).toString());
             remaining.add(model.getValueAt(count, 7).toString());
             prescriptionID.add(model.getValueAt(count, 8).toString());
             weight.add(model.getValueAt(count,9).toString());
