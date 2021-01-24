@@ -859,32 +859,25 @@ public class ModifyChuFang extends javax.swing.JFrame {
         String medicine = (String)comboBoxMedicine.getSelectedItem();
         System.out.println("name:"+name);
         System.out.println("medicine:"+medicine);
-        try
+        if(medicine.equalsIgnoreCase("单味药粉"))
         {
-            if(medicine.equalsIgnoreCase("单味药粉"))
-            {
-                TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("药水"))
-            {
-                GrassMedicinePotion pill = new GrassMedicinePotion();
-                txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("药丸"))
-            {
-                GrassMedicinePill pill =new GrassMedicinePill();
-                txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
-            }
-            else if(medicine.equalsIgnoreCase("复方药粉"))
-            {
-                TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
-            }
+            TraditionalMedicinePill pill = new TraditionalMedicinePill();
+            //txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
         }
-        catch(SQLException ex)
+        else if(medicine.equalsIgnoreCase("药水"))
         {
-            JOptionPane.showMessageDialog(rootPane, "ModifyChufang.FindByMedicineName2() get error on line 406,"+ex.getMessage());
+            GrassMedicinePotion pill = new GrassMedicinePotion();
+            //txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
+        }
+        else if(medicine.equalsIgnoreCase("药丸"))
+        {
+            GrassMedicinePill pill =new GrassMedicinePill();
+            //txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉"))
+        {
+            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+            //txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
         }
     }
     

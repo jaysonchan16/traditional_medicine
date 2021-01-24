@@ -240,9 +240,9 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         return name;
     }
     
-    public List<TraditionalMedicinePotion> findTraditionalMedicinePotionName(String name, String User) throws SQLException{
+    public List<TraditionalMedicinePotion> findTraditionalMedicinePotionName(String name, String reference, String User) throws SQLException{
         List<TraditionalMedicinePotion> traditionalMedicinePotionList = new ArrayList<>();
-        String query = "Select ID,name,reference,sellprice,gram,medicine,User from TraditionalMedicinePotion where name='"+name+"' and User='"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,sellprice,gram,medicine,User from TraditionalMedicinePotion where name='"+name+"' and reference='"+reference+"' and User='"+User+"' order by 1 desc";
         System.out.println(query);
         rs = st.executeQuery(query);
         try {

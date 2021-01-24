@@ -738,7 +738,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                             String totalprice = (String)tblDisease.getValueAt(row, 5);
                             String remaining = (String)tblDisease.getValueAt(row, 6);
                             String ID = (String)tblDisease.getValueAt(row, 7);
-                            prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription",userid, remaining, ID);
+                            //prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription",userid, remaining, ID,"","","");
                         }
                         if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
                         {
@@ -1330,9 +1330,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 if(medicine.equalsIgnoreCase("单味药粉"))
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findTraditionalMedicinePillName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,userid).get(0).getGram()));
+                    txtPrice.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,"",userid).get(0).getSellprice()));
+                    txtMedicineID.setText(pill.findTraditionalMedicinePillName(name,"",userid).get(0).getCode());
+                    txtWeight.setText(String.valueOf(pill.findTraditionalMedicinePillName(name,"",userid).get(0).getGram()));
                     String jiliang = spinnerJiLiang.getValue().toString();
                     float weight = Float.valueOf(txtWeight.getText());
                     float jiliang1 = Float.valueOf(jiliang);
@@ -1342,9 +1342,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 else if(medicine.equalsIgnoreCase("药水"))
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
-                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findGrassMedicinePotionName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePotionName(name,userid).get(0).getGram()));
+                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePotionName(name,"",userid).get(0).getSellprice()));
+                    txtMedicineID.setText(pill.findGrassMedicinePotionName(name,"",userid).get(0).getCode());
+                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePotionName(name,"",userid).get(0).getGram()));
                     String jiliang = spinnerJiLiang.getValue().toString();
                     float weight = Float.valueOf(txtWeight.getText());
                     float jiliang1 = Float.valueOf(jiliang);
@@ -1354,9 +1354,9 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 else if(medicine.equalsIgnoreCase("药丸"))
                 {
                     GrassMedicinePill pill =new GrassMedicinePill();
-                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(pill.findGrassMedicinePillName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePillName(name,userid).get(0).getGram()));
+                    txtPrice.setText(String.valueOf(pill.findGrassMedicinePillName(name,"",userid).get(0).getSellprice()));
+                    txtMedicineID.setText(pill.findGrassMedicinePillName(name,"",userid).get(0).getCode());
+                    txtWeight.setText(String.valueOf(pill.findGrassMedicinePillName(name,"",userid).get(0).getGram()));
                     String jiliang = spinnerJiLiang.getValue().toString();
                     float weight = Float.valueOf(txtWeight.getText());
                     float jiliang1 = Float.valueOf(jiliang);
@@ -1367,8 +1367,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 {
                     TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
 //                    txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
-                    txtMedicineID.setText(potion.findTraditionalMedicinePotionName(name,userid).get(0).getCode());
-                    txtWeight.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getGram()));
+                    txtMedicineID.setText(potion.findTraditionalMedicinePotionName(name,"",userid).get(0).getCode());
+                    txtWeight.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,"",userid).get(0).getGram()));
                     String jiliang = spinnerJiLiang.getValue().toString();
                     float weight = Float.valueOf(txtWeight.getText());
                     float jiliang1 = Float.valueOf(jiliang);
@@ -1418,7 +1418,8 @@ public class NewPatientDisease extends javax.swing.JFrame {
                              ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice)
     {
         PrintTemplate print = new PrintTemplate();
-        return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice,totalweight, mainprice);
+        //return print.printDiseasePatient(IC, ID, Name, Phone, Date, symptom, category, pulse, tongueQuality, tongueCoating, shit, history, temperature, blood, chufang, medicinecategory, medicine, jiliang, price, totalprice,"", mainprice,"");
+        return "";
     }
     
     

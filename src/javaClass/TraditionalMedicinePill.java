@@ -257,9 +257,9 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
         return traditionalMedicinePillList;
     }
     
-    public List<TraditionalMedicinePill> findTraditionalMedicinePillName(String name, String User) throws SQLException{
+    public List<TraditionalMedicinePill> findTraditionalMedicinePillName(String name, String reference, String User) throws SQLException{
         List<TraditionalMedicinePill> traditionalMedicinePillList = new ArrayList<>();
-        String query = "Select ID,name,reference,sellprice,gram,medicine,User from TraditionalMedicinePill where name='"+name+"' and User = '"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,sellprice,gram,medicine,User from TraditionalMedicinePill where name='"+name+"' and reference='"+reference+"' and User = '"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {

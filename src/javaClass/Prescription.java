@@ -294,22 +294,21 @@ public class Prescription extends Disease{
         this.createDateTime = createDateTime;
     }
     
-    public HashMap<String,String> addPrescription(int chufang, String categorytable, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode, String user, String remaining, String medicineID)
+    public HashMap<String,String> addPrescription(int chufang, String categorytable, String reference, String nametable, int jiliang, float price, float totalprice, String patientID, String diseaseID, String maintcode, String user, String remaining, String medicineID, float weight)
     {
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
             Code code = new Code();
-            String result;
             HashMap<String, String> map = new HashMap<String,String>();
             map = code.validateID(maintcode,user);
             if(map.get("messages").equalsIgnoreCase(""))
             {
-                String query = "Insert into Prescription(ID, Chufang, Category, Name, Jiliang, Price, TotalPrice, PatientID, DiseaseID, lastUpdateDateTime, createDateTime, User)"
+                String query = "Insert into Prescription(ID, Chufang, Category, Name, Jiliang, Price, TotalPrice, PatientID, DiseaseID, lastUpdateDateTime, createDateTime, User, weight, Reference)"
                         + "Select '"+map.get("data")+"', trim('"+chufang+"'), trim('"+categorytable+"'), trim('"+nametable+"'), trim('"+jiliang+"'),"
-                        + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"')";
+                        + " trim('"+price+"'), trim('"+totalprice+"'), trim('"+patientID+"'),trim('"+diseaseID+"'),datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), trim('"+weight+"'),trim('"+reference+"')";
                 SQLQuery sql = new SQLQuery();
                 //returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
-                
+
                 if(sql.AddEditDeleteQuery(query).equalsIgnoreCase("1"))
                 {
                     returnMessage.put("ID", map.get("data"));

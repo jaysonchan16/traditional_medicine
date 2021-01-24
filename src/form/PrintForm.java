@@ -47,11 +47,13 @@ public class PrintForm extends javax.swing.JFrame {
     private ArrayList<String> chufang;
     private ArrayList<String> medicine;
     private ArrayList<String> medicinecategory;
+    private ArrayList<String> medicinereference;
     private ArrayList<String> jiliang;
     private ArrayList<String> price;
     private ArrayList<String> totalprice;
     private ArrayList<String> remaining;
     private ArrayList<String> prescriptionID;
+    private ArrayList<String> weightlist;
     private String totalweight="";
     private String mainprice="";
     private String medic="";
@@ -186,8 +188,8 @@ public class PrintForm extends javax.swing.JFrame {
     
     public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
             String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
-            ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory,
-            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> prescriptionID)
+            ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory, ArrayList<String> medicineReference,
+            ArrayList<String> jiliang, ArrayList<String> price, ArrayList<String> totalprice, String totalweight, String mainprice, ArrayList<String> remaining, ArrayList<String> prescriptionID, ArrayList<String> weightList)
     {
         this.user = user;
         this.option = option;
@@ -199,6 +201,7 @@ public class PrintForm extends javax.swing.JFrame {
         this.Date = Date;
         this.symptom = symptom;
         this.category = category; 
+        this.medicinereference = medicineReference;
         this.pulse = pulse;
         this.tongueQuality = tongueQuality;
         this.tongueCoating = tongueCoating;
@@ -216,6 +219,7 @@ public class PrintForm extends javax.swing.JFrame {
         this.mainprice = mainprice;
         this.remaining = remaining;
         this.prescriptionID = prescriptionID;
+        this.weightlist = weightList;
         initComponents();
         //txtAreaPrint = new JTextArea(5, 10);
         printPreview(bodyContent);
@@ -375,8 +379,8 @@ public class PrintForm extends javax.swing.JFrame {
             try {
                 NewPatientDisease1 modify = new NewPatientDisease1(user, IC, ID, Name, Phone, Date, symptom, category, 
                 pulse,tongueQuality,tongueCoating, shit, history, temperature, blood,
-                chufang, medicine, medicinecategory,
-                jiliang, price, totalprice, totalweight, mainprice,remaining,prescriptionID);
+                chufang, medicine, medicinecategory,medicinereference,
+                jiliang, price, totalprice, totalweight, mainprice,remaining,prescriptionID,weightlist);
                 modify.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

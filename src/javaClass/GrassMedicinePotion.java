@@ -230,9 +230,9 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return name;
     }
     
-    public List<GrassMedicinePotion> findGrassMedicinePotionName(String name, String User) throws SQLException{
+    public List<GrassMedicinePotion> findGrassMedicinePotionName(String name, String reference, String User) throws SQLException{
         List<GrassMedicinePotion> grassMedicinePotionList = new ArrayList<>();
-        String query = "Select ID,name,sellprice,gram,medicine,User from GrassMedicinePotion where name='"+name+"' and User = '"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,sellprice,gram,medicine,User from GrassMedicinePotion where name='"+name+"' and reference ='"+reference+"' and User = '"+User+"' order by 1 desc";
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {

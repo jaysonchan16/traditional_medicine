@@ -16,7 +16,7 @@ public class PrintTemplate {
     
     public String printDiseasePatient(String IC, String ID, String name, String phone, String date, 
             String symptom, String category, String pulse, String tongueQuality, String tongueCoating, String shit, String history,
-            String temperature, String bloodPressure, ArrayList<String> chufang, ArrayList<String> medicineCategory,
+            String temperature, String bloodPressure, ArrayList<String> chufang, ArrayList<String> medicineCategory,ArrayList<String> medicineReference,
             ArrayList<String> medicineName, ArrayList<String> jiliang, ArrayList<String> price,ArrayList<String> totalprice, String totalweight, String mainprice)
     {
         StringBuilder content = new StringBuilder(); 
@@ -29,11 +29,11 @@ public class PrintTemplate {
         content.append("大小便: "+shit+"\t\t\t         病史: "+history+"\n");
         content.append("体温"+temperature+"\t\t\t          血压: "+bloodPressure+"\n");
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
-        content.append("处方\t药物种类\t药物名称\t剂量\t价格/G\t总价值\n");
+        content.append("处方\t药物分类\t参考病症\t药物名称\t剂量\t价格/G\t总价值\n");
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
         for(int i = 0; i<chufang.size(); i++)
         {
-            content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"\t"+price.get(i)+"\t"+totalprice.get(i)+"\n");
+            content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineReference.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"\t"+price.get(i)+"\t"+totalprice.get(i)+"\n");
         }
         content.append("------------------------------------------------------------------------------------------------------------------------------\n");
         content.append("\t\t\t"+totalweight+"\t\t"+mainprice+"\n");

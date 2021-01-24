@@ -233,9 +233,10 @@ public class GrassMedicinePill extends Medicine{//药丸
         return name;
     }
      
-    public List<GrassMedicinePill> findGrassMedicinePillName(String name, String User) throws SQLException{
+    public List<GrassMedicinePill> findGrassMedicinePillName(String name, String reference, String User) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
-        String query = "Select ID,name,reference,sellprice,gram,medicine,User from GrassMedicinePill where medicine='"+name+"' and User ='"+User+"' order by 1 desc";
+        String query = "Select ID,name,reference,sellprice,gram,medicine,User from GrassMedicinePill where name='"+name+"' and reference ='"+reference+"' and User ='"+User+"' order by 1 desc";
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
             while (rs.next()) {

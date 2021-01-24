@@ -196,7 +196,14 @@ public class Code {
                     st.close();
                     rs.close();
                     System.out.println("Here" + name + "-" + Number);
-                    data.put("data", name + "-" + Number);
+                    if(name.equalsIgnoreCase("Bill"))
+                    {
+                        data.put("data", ""+Number);
+                    }
+                    else
+                    {
+                        data.put("data", name + "-" + Number);
+                    }
                     data.put("messages", "");
                     return data;
                 } 
@@ -225,6 +232,7 @@ public class Code {
             return data;
         }
     }
+    
     
     public List<Code> getComboMedicine(String User) throws SQLException
     {

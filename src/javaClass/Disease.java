@@ -341,17 +341,28 @@ public class Disease extends Patient{
         try {
             Code code = new Code();
             HashMap<String, String> map = new HashMap<String,String>();
+            HashMap<String, String> mapBill = new HashMap<String,String>();
             map = code.validateID("Disease",user);
+            mapBill = code.validateID("Bill",user);
             if(map.get("messages").equalsIgnoreCase(""))
             {
-                String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User)"
-                        + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                        + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"')";
-                System.out.println(query);
-                SQLQuery sql = new SQLQuery();
-                returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
-                returnMessage.put("ID", map.get("data"));
-                return returnMessage;
+                if(mapBill.get("messages").equalsIgnoreCase(""))
+                {
+                    String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User, billNo)"
+                            + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
+                            + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), '"+mapBill.get("data")+"'";
+                    System.out.println(query);
+                    SQLQuery sql = new SQLQuery();
+                    returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+                    returnMessage.put("ID", map.get("data"));
+                    return returnMessage;
+                }
+                else
+                {
+                    returnMessage.put("returnMessage","Disease.AddDisease class line 281 get error, "+map.get("messages"));
+                    returnMessage.put("BillID", "");
+                    return returnMessage;
+                }
             }
             else
             {
