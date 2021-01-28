@@ -219,4 +219,100 @@ public class Excel {
         }
     }
     
+    
+    public HashMap<String, String> checkMonthYear(String frommonth, String tomonth, String fromyear, String toyear){
+        String to = "";
+        String from = "";
+        HashMap<String,String> data = new HashMap<String,String>();
+        if (frommonth.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && toyear.equalsIgnoreCase("") ) {
+            data.put("From",from);
+            data.put("To", to);
+            //data.put("Messages", "请填月份");
+            data.put("Messages", "");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "请填月份或者IC！");
+        } else if (tomonth.length() > 2 || frommonth.length() > 2) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("Messages", "月份错误！");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "月份错误！");
+        } else if (toyear.length() > 4 || (toyear.length() > 0 && toyear.length() < 4) || fromyear.length() > 4 || (fromyear.length() > 0 && fromyear.length() < 4)) {
+            data.put("From",from);
+            data.put("To", to);
+            data.put("Messages", "年份错误！");
+            return data;
+            //JOptionPane.showMessageDialog(rootPane, "年份错误！");
+        } else if((!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (!frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                (!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase("")) ||
+                 (!frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && !toyear.equalsIgnoreCase("")) ||
+                (frommonth.equalsIgnoreCase("") && !fromyear.equalsIgnoreCase("") && !tomonth.equalsIgnoreCase("") && toyear.equalsIgnoreCase(""))){
+            data.put("From",from);
+            data.put("To", to);
+            data.put("Messages", "请填写完整月份和年份");
+            return data;
+        } else if(Integer.parseInt(frommonth) > 12){
+            data.put("From",from);
+            data.put("To", to);
+            data.put("Messages", "月份错误");
+            return data;
+        } else {
+            if (tomonth.length() == 1) {
+                tomonth = "0" + tomonth;
+            }
+            if (frommonth.length() == 1) {
+                frommonth = "0" + frommonth;
+            }
+            
+            from = fromyear + "-" + frommonth + "-01";
+            
+            switch (Integer.parseInt(tomonth)) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    to = toyear + "-" + tomonth + "-31";
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("Messages", "");
+                    break;
+                case 2:
+                    if (Integer.parseInt(toyear) % 4 == 0) {
+                        to = toyear + "-" + tomonth + "-29";
+                        data.put("From",from);
+                        data.put("To", to);
+                        data.put("Messages","");
+                    } else {
+                        to = toyear + "-" + tomonth + "-28";
+                        data.put("From",from);
+                        data.put("To", to);
+                        data.put("Messages","");
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    to = toyear + "-" + tomonth + "-30";
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("Messages","");
+                    break;
+                default:
+                    data.put("From",from);
+                    data.put("To", to);
+                    data.put("Messages","月份错误");
+                    break;
+            }
+            return data;
+        }
+    }
 }

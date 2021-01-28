@@ -721,7 +721,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public void profit()
     {
-        ProfitForm profit = new ProfitForm();
+        MonthYear profit = new MonthYear(user);
         profit.setVisible(true);
         this.dispose();
     }

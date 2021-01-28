@@ -6,6 +6,7 @@
 package form;
 
 import java.awt.Color;
+import java.awt.Component;
 import javaClass.Prescription;
 import javaClass.TablePrintable;
 import javaClass.User;
@@ -22,6 +23,7 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaPrintableArea;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -64,6 +66,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
         widthTable();
+        color_table();
         image();
     }
     /**
@@ -87,6 +90,10 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         tblDisease = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -135,14 +142,14 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "IC", "病人名字", "性别", "年龄", "电话号码", "地址", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "处方", "药物分类", "药物名称", "剂量", "价格/G", "总价值", "创建时间", "更新时间", "病症ID", "处方ID"
+                "ID", "IC", "病人名字", "性别", "年龄", "电话号码", "地址", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "处方", "药物分类", "参考病症", "药物名称", "剂量", "价格/G", "总价值", "创建时间", "更新时间", "病症ID", "处方ID", "Bill", "最新", "initialweight"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -187,6 +194,26 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel2.add(btnBack);
         btnBack.setBounds(1730, 720, 100, 40);
 
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("可以更改资料");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(400, 710, 130, 30);
+
+        jPanel3.setBackground(new java.awt.Color(151, 254, 63));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(360, 710, 30, 30);
+
+        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel4.setText("不能更改资料");
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(100, 710, 130, 30);
+
+        jPanel4.setBackground(new java.awt.Color(254, 115, 63));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(60, 710, 30, 30);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(30, 100, 1870, 800);
 
@@ -217,14 +244,18 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         String BloodPressure = model.getValueAt(index,15).toString();
         String Chufang = model.getValueAt(index,16).toString();
         String CategoryTable = model.getValueAt(index,17).toString();
-        String NameTable = model.getValueAt(index,18).toString();
-        String Jiliang = model.getValueAt(index,19).toString();
-        String Price = model.getValueAt(index,20).toString();
-        String TotalPrice = model.getValueAt(index,21).toString();
-        String CreateDateTime = model.getValueAt(index,22).toString();
-        String LastUpdateDateTime = model.getValueAt(index,23).toString();
-        String DiseaseID = model.getValueAt(index,24).toString();
-        String PrescriptionID = model.getValueAt(index,25).toString();
+        String Reference = model.getValueAt(index,18).toString();
+        String NameTable = model.getValueAt(index,19).toString();
+        String Jiliang = model.getValueAt(index,20).toString();
+        String Price = model.getValueAt(index,21).toString();
+        String TotalPrice = model.getValueAt(index,22).toString();
+        String CreateDateTime = model.getValueAt(index,23).toString();
+        String LastUpdateDateTime = model.getValueAt(index,24).toString();
+        String DiseaseID = model.getValueAt(index,25).toString();
+        String PrescriptionID = model.getValueAt(index,26).toString();
+        String Bill = model.getValueAt(index,27).toString();
+        String latest = model.getValueAt(index,28).toString();
+        String initialweight = model.getValueAt(index,29).toString();
         
         
         int option =5;
@@ -248,7 +279,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         else
         {
             try {
-                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,DiseaseID,from,to,initialIC,initialID,option);
+                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,Reference,NameTable,Jiliang,Price,TotalPrice,DiseaseID,initialweight,latest,Bill,from,to,initialIC,initialID,option);
                 chufang.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
@@ -394,7 +425,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
          //}
          
          model = (DefaultTableModel)tblDisease.getModel();
-         Object row[] = new Object[26];
+         Object row[] = new Object[30];
          for(int i =0; i<prescriptionList.size(); i++)
          {
              row[0] = prescriptionList.get(i).getPatientID();
@@ -415,14 +446,18 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
              row[15] = prescriptionList.get(i).getBloodPressure();
              row[16] = prescriptionList.get(i).getChufang();
              row[17] = prescriptionList.get(i).getCategorytable();
-             row[18] = prescriptionList.get(i).getNametable();
-             row[19] = prescriptionList.get(i).getJiliang();
-             row[20] = prescriptionList.get(i).getPrice();
-             row[21] = prescriptionList.get(i).getTotalprice();
-             row[22] = prescriptionList.get(i).getCreateDateTime();
-             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
-             row[24] = prescriptionList.get(i).getDiseaseID();
-             row[25] = prescriptionList.get(i).getPrescriptionID();
+             row[18] = prescriptionList.get(i).getReference();
+             row[19] = prescriptionList.get(i).getNametable();
+             row[20] = prescriptionList.get(i).getJiliang();
+             row[21] = prescriptionList.get(i).getPrice();
+             row[22] = prescriptionList.get(i).getTotalprice();
+             row[23] = prescriptionList.get(i).getCreateDateTime();
+             row[24] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[25] = prescriptionList.get(i).getDiseaseID();
+             row[26] = prescriptionList.get(i).getPrescriptionID();
+             row[27] = prescriptionList.get(i).getBillno();
+             row[28] = prescriptionList.get(i).getLatest();
+             row[29] = prescriptionList.get(i).getInitialWeight();
              model.addRow(row);
          }
     }
@@ -440,6 +475,31 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconLabel = new ImageIcon(getClass().getResource("/menu/report.png"));
         headerPatient.setIcon(iconLabel);
+    }
+    
+    public void color_table()
+    {
+        tblDisease.setDefaultRenderer(Object.class, new PriorityCellRenderer());
+        tblDisease.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    //change the colour
+    public class PriorityCellRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            int latest = Integer.parseInt(table.getValueAt(row, 28).toString());
+            
+            if (latest ==  0) {
+                setBackground(new Color(254, 115, 63));  // or background
+            }
+            else
+            {
+                setBackground(new Color(151, 254, 63));  // or background
+            }
+            return this;
+        }
     }
     
     public void widthTable()
@@ -468,14 +528,22 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         columnModel.getColumn(15).setPreferredWidth(100);
         columnModel.getColumn(16).setPreferredWidth(100);
         columnModel.getColumn(17).setPreferredWidth(200);
-        columnModel.getColumn(18).setPreferredWidth(200);
-        columnModel.getColumn(19).setPreferredWidth(100);
+        columnModel.getColumn(18).setPreferredWidth(100);
+        columnModel.getColumn(19).setPreferredWidth(200);
         columnModel.getColumn(20).setPreferredWidth(100);
-        columnModel.getColumn(21).setPreferredWidth(200);
+        columnModel.getColumn(21).setPreferredWidth(100);
         columnModel.getColumn(22).setPreferredWidth(200);
         columnModel.getColumn(23).setPreferredWidth(200);
         columnModel.getColumn(24).setPreferredWidth(200);
         columnModel.getColumn(25).setPreferredWidth(200);
+        columnModel.getColumn(26).setPreferredWidth(200);
+        columnModel.getColumn(27).setPreferredWidth(100);
+        columnModel.getColumn(28).setPreferredWidth(50);
+        columnModel.getColumn(29).setPreferredWidth(50);
+        columnModel.getColumn(28).setMinWidth(0);
+        columnModel.getColumn(28).setMaxWidth(0);
+        columnModel.getColumn(29).setMinWidth(0);
+        columnModel.getColumn(29).setMaxWidth(0);
     }
     /**
      * @param args the command line arguments
@@ -518,8 +586,12 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private javax.swing.JLabel headerPatient;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;

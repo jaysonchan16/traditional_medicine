@@ -6,6 +6,7 @@
 package form;
 
 import java.awt.Color;
+import java.awt.Component;
 import javaClass.Prescription;
 import javaClass.User;
 import java.awt.Font;
@@ -15,6 +16,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -48,6 +50,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         setResizable(false);
         image();
+        color_table();
         widthTable();
     }
 
@@ -109,6 +112,14 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
+        txtReference = new javax.swing.JTextField();
+        txtBill = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -331,7 +342,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         txtJiliang.setBounds(550, 600, 280, 40);
 
         jLabel14.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel14.setText("药物种类:");
+        jLabel14.setText("药物分类:");
         panelBody.add(jLabel14);
         jLabel14.setBounds(460, 530, 90, 40);
 
@@ -434,14 +445,14 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "IC", "病人名字", "性别", "年龄", "电话号码", "地址", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创建时间", "更新时间", "病症ID", "处方ID"
+                "ID", "IC", "病人名字", "性别", "年龄", "电话号码", "地址", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "处方", "药物分类", "参考病症", "药物名称", "剂量", "价格/G", "总价值", "创建时间", "更新时间", "病症ID", "处方ID", "Bill", "最新", "initialweight"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -464,7 +475,55 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(890, 30, 950, 760);
+        jScrollPane2.setBounds(890, 30, 950, 690);
+
+        txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtReference.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtReferenceKeyPressed(evt);
+            }
+        });
+        panelBody.add(txtReference);
+        txtReference.setBounds(130, 670, 280, 40);
+
+        txtBill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtBill.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBillKeyPressed(evt);
+            }
+        });
+        panelBody.add(txtBill);
+        txtBill.setBounds(550, 670, 280, 40);
+
+        jLabel17.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel17.setText("Bill:");
+        panelBody.add(jLabel17);
+        jLabel17.setBounds(490, 670, 60, 40);
+
+        jLabel22.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel22.setText("参考病症：");
+        panelBody.add(jLabel22);
+        jLabel22.setBounds(30, 670, 100, 40);
+
+        jPanel4.setBackground(new java.awt.Color(254, 115, 63));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jPanel4);
+        jPanel4.setBounds(1370, 760, 30, 30);
+
+        jLabel23.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel23.setText("不能更改资料");
+        panelBody.add(jLabel23);
+        jLabel23.setBounds(1410, 760, 130, 30);
+
+        jPanel3.setBackground(new java.awt.Color(151, 254, 63));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelBody.add(jPanel3);
+        jPanel3.setBounds(1670, 760, 30, 30);
+
+        jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel24.setText("可以更改资料");
+        panelBody.add(jLabel24);
+        jLabel24.setBounds(1710, 760, 130, 30);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(30, 90, 1870, 830);
@@ -736,14 +795,18 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         String BloodPressure = model.getValueAt(index,15).toString();
         String Chufang = model.getValueAt(index,16).toString();
         String CategoryTable = model.getValueAt(index,17).toString();
-        String NameTable = model.getValueAt(index,18).toString();
-        String Jiliang = model.getValueAt(index,19).toString();
-        String Price = model.getValueAt(index,20).toString();
-        String TotalPrice = model.getValueAt(index,21).toString();
-        String CreateDateTime = model.getValueAt(index,22).toString();
-        String LastUpdateDateTime = model.getValueAt(index,23).toString();
-        String DiseaseID = model.getValueAt(index,24).toString();
-        String PrescriptionID = model.getValueAt(index,25).toString();
+        String Reference = model.getValueAt(index,18).toString();
+        String NameTable = model.getValueAt(index,19).toString();
+        String Jiliang = model.getValueAt(index,20).toString();
+        String Price = model.getValueAt(index,21).toString();
+        String TotalPrice = model.getValueAt(index,22).toString();
+        String CreateDateTime = model.getValueAt(index,23).toString();
+        String LastUpdateDateTime = model.getValueAt(index,24).toString();
+        String DiseaseID = model.getValueAt(index,25).toString();
+        String PrescriptionID = model.getValueAt(index,26).toString();
+        String bill = model.getValueAt(index,27).toString();
+        String latest = model.getValueAt(index,28).toString();
+        String initialweight = model.getValueAt(index,29).toString();
         
         int option =8;
         
@@ -766,7 +829,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         else
         {
             try {
-                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,NameTable,Jiliang,Price,TotalPrice,DiseaseID,"","","","",option);
+                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable, Reference, NameTable,Jiliang,Price,TotalPrice,DiseaseID,initialweight,latest,bill,"","","","",option);
                 chufang.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
@@ -775,13 +838,35 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblDiseaseMouseClicked
 
+    private void txtReferenceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenceKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String Reference = txtReference.getText();
+            show_selected_patients("a.Reference",Reference);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtReferenceKeyPressed
+
+    private void txtBillKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String bill = txtBill.getText();
+            show_selected_patients("b.billNo",bill);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_txtBillKeyPressed
+
     public void show_selected_patients(String contribute,String detail) throws SQLException{
         model.setRowCount(0);
         Prescription prescription = new Prescription();
         List<Prescription> prescriptionList = new ArrayList<Prescription>();
         prescriptionList = prescription.getPrescriptionDetail(contribute,detail,userid);
         model = (DefaultTableModel)tblDisease.getModel();
-        Object row[] = new Object[26];
+        Object row[] = new Object[30];
          for(int i =0; i<prescriptionList.size(); i++)
          {
              row[0] = prescriptionList.get(i).getPatientID();
@@ -802,14 +887,18 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
              row[15] = prescriptionList.get(i).getBloodPressure();
              row[16] = prescriptionList.get(i).getChufang();
              row[17] = prescriptionList.get(i).getCategorytable();
-             row[18] = prescriptionList.get(i).getNametable();
-             row[19] = prescriptionList.get(i).getJiliang();
-             row[20] = prescriptionList.get(i).getPrice();
-             row[21] = prescriptionList.get(i).getTotalprice();
-             row[22] = prescriptionList.get(i).getCreateDateTime();
-             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
-             row[24] = prescriptionList.get(i).getDiseaseID();
-             row[25] = prescriptionList.get(i).getPrescriptionID();
+             row[18] = prescriptionList.get(i).getReference();
+             row[19] = prescriptionList.get(i).getNametable();
+             row[20] = prescriptionList.get(i).getJiliang();
+             row[21] = prescriptionList.get(i).getPrice();
+             row[22] = prescriptionList.get(i).getTotalprice();
+             row[23] = prescriptionList.get(i).getCreateDateTime();
+             row[24] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[25] = prescriptionList.get(i).getDiseaseID();
+             row[26] = prescriptionList.get(i).getPrescriptionID();
+             row[27] = prescriptionList.get(i).getBillno();
+             row[28] = prescriptionList.get(i).getLatest();
+             row[29] = prescriptionList.get(i).getInitialWeight();
              model.addRow(row);
          }
     }
@@ -858,7 +947,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
          //}
          
          model = (DefaultTableModel)tblDisease.getModel();
-         Object row[] = new Object[26];
+         Object row[] = new Object[30];
          for(int i =0; i<prescriptionList.size(); i++)
          {
              row[0] = prescriptionList.get(i).getPatientID();
@@ -879,14 +968,18 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
              row[15] = prescriptionList.get(i).getBloodPressure();
              row[16] = prescriptionList.get(i).getChufang();
              row[17] = prescriptionList.get(i).getCategorytable();
-             row[18] = prescriptionList.get(i).getNametable();
-             row[19] = prescriptionList.get(i).getJiliang();
-             row[20] = prescriptionList.get(i).getPrice();
-             row[21] = prescriptionList.get(i).getTotalprice();
-             row[22] = prescriptionList.get(i).getCreateDateTime();
-             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
-             row[24] = prescriptionList.get(i).getDiseaseID();
-             row[25] = prescriptionList.get(i).getPrescriptionID();
+             row[18] = prescriptionList.get(i).getReference();
+             row[19] = prescriptionList.get(i).getNametable();
+             row[20] = prescriptionList.get(i).getJiliang();
+             row[21] = prescriptionList.get(i).getPrice();
+             row[22] = prescriptionList.get(i).getTotalprice();
+             row[23] = prescriptionList.get(i).getCreateDateTime();
+             row[24] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[25] = prescriptionList.get(i).getDiseaseID();
+             row[26] = prescriptionList.get(i).getPrescriptionID();
+             row[27] = prescriptionList.get(i).getBillno();
+             row[28] = prescriptionList.get(i).getLatest();
+             row[29] = prescriptionList.get(i).getInitialWeight();
              model.addRow(row);
          }
     }
@@ -899,7 +992,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         List<Prescription> prescriptionList = new ArrayList<Prescription>();
         prescriptionList = prescription.getAllDetail(ID, IC, Name, Gender ,Age ,Phone,Symptom,Category,Pulse,Quality,Coating,Shit,History,Temperature,Blood,MedicCategory,MedicName,Jiliang,userid);
         model = (DefaultTableModel)tblDisease.getModel();
-        Object row[] = new Object[26];
+        Object row[] = new Object[30];
          for(int i =0; i<prescriptionList.size(); i++)
          {
              row[0] = prescriptionList.get(i).getPatientID();
@@ -920,14 +1013,18 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
              row[15] = prescriptionList.get(i).getBloodPressure();
              row[16] = prescriptionList.get(i).getChufang();
              row[17] = prescriptionList.get(i).getCategorytable();
-             row[18] = prescriptionList.get(i).getNametable();
-             row[19] = prescriptionList.get(i).getJiliang();
-             row[20] = prescriptionList.get(i).getPrice();
-             row[21] = prescriptionList.get(i).getTotalprice();
-             row[22] = prescriptionList.get(i).getCreateDateTime();
-             row[23] = prescriptionList.get(i).getLastUpdateDateTime();
-             row[24] = prescriptionList.get(i).getDiseaseID();
-             row[25] = prescriptionList.get(i).getPrescriptionID();
+             row[18] = prescriptionList.get(i).getReference();
+             row[19] = prescriptionList.get(i).getNametable();
+             row[20] = prescriptionList.get(i).getJiliang();
+             row[21] = prescriptionList.get(i).getPrice();
+             row[22] = prescriptionList.get(i).getTotalprice();
+             row[23] = prescriptionList.get(i).getCreateDateTime();
+             row[24] = prescriptionList.get(i).getLastUpdateDateTime();
+             row[25] = prescriptionList.get(i).getDiseaseID();
+             row[26] = prescriptionList.get(i).getPrescriptionID();
+             row[27] = prescriptionList.get(i).getBillno();
+             row[28] = prescriptionList.get(i).getLatest();
+             row[29] = prescriptionList.get(i).getInitialWeight();
              model.addRow(row);
          }
     }
@@ -947,6 +1044,31 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         findHeader.setIcon(iconHeader);
         this.lblName.setText(userid);
         setResizable(false);
+    }
+    
+    public void color_table()
+    {
+        tblDisease.setDefaultRenderer(Object.class, new PriorityCellRenderer());
+        tblDisease.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    //change the colour
+    public class PriorityCellRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            int latest = Integer.parseInt(table.getValueAt(row, 28).toString());
+            
+            if (latest ==  0) {
+                setBackground(new Color(254, 115, 63));  // or background
+            }
+            else
+            {
+                setBackground(new Color(151, 254, 63));  // or background
+            }
+            return this;
+        }
     }
     
     public void widthTable()
@@ -974,14 +1096,22 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         columnModel.getColumn(15).setPreferredWidth(100);
         columnModel.getColumn(16).setPreferredWidth(100);
         columnModel.getColumn(17).setPreferredWidth(200);
-        columnModel.getColumn(18).setPreferredWidth(200);
-        columnModel.getColumn(19).setPreferredWidth(100);
+        columnModel.getColumn(18).setPreferredWidth(100);
+        columnModel.getColumn(19).setPreferredWidth(200);
         columnModel.getColumn(20).setPreferredWidth(100);
-        columnModel.getColumn(21).setPreferredWidth(200);
+        columnModel.getColumn(21).setPreferredWidth(100);
         columnModel.getColumn(22).setPreferredWidth(200);
         columnModel.getColumn(23).setPreferredWidth(200);
         columnModel.getColumn(24).setPreferredWidth(200);
         columnModel.getColumn(25).setPreferredWidth(200);
+        columnModel.getColumn(26).setPreferredWidth(200);
+        columnModel.getColumn(27).setPreferredWidth(100);
+        columnModel.getColumn(28).setPreferredWidth(50);
+        columnModel.getColumn(29).setPreferredWidth(50);
+        columnModel.getColumn(28).setMinWidth(0);
+        columnModel.getColumn(28).setMaxWidth(0);
+        columnModel.getColumn(29).setMinWidth(0);
+        columnModel.getColumn(29).setMaxWidth(0);
     }
     /**
      * @param args the command line arguments
@@ -1031,11 +1161,15 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1044,6 +1178,8 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1055,6 +1191,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tblDisease;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBill;
     private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtGender;
@@ -1067,6 +1204,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPulse;
+    private javax.swing.JTextField txtReference;
     private javax.swing.JTextField txtShit;
     private javax.swing.JTextField txtSymptom;
     private javax.swing.JTextField txtTemperature;

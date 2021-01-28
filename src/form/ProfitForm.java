@@ -17,13 +17,18 @@ public class ProfitForm extends javax.swing.JFrame {
      * Creates new form ProfitForm
      */
     private User user;
+    private String from;
+    private String to;
     
     public ProfitForm() {
         initComponents();
     }
 
-    public ProfitForm(User user) {
+    public ProfitForm(User user,String from,String to) {
         initComponents();
+        this.user = user;
+        this.from = from;
+        this.to = to;
     }
     /**
      * This method is called from within the constructor to initialize the form.

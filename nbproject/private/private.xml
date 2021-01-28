@@ -11,11 +11,13 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/TraditionalMedicinePotion.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Medicine.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ProfitForm.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/SQLQuery.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Code.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SettingsMenuSupervisor.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Patient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthlyPatientDiseaseReport.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ViewDiseaseDetail.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/connect.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SearchMedicine.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/TraditionalMedicinePill.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/NewPatient.java</file>
@@ -26,12 +28,15 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/GrassMedicinePill.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/StorageForm.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/PrintTemplate.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthYear.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/PrintForm.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ViewPatientDetail.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ModifyMedicine.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ModifyDisease.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/NewMedicine.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SearchPatient.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthYearIC.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MainMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/RegisterSupervisor.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Prescription.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/TablePrintable.java</file>

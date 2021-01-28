@@ -829,10 +829,20 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         comboMedicineNameGrassPotion.setBounds(160, 490, 400, 40);
 
         comboBoxNameTraditionalPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboBoxNameTraditionalPill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxNameTraditionalPillActionPerformed(evt);
+            }
+        });
         panelBody.add(comboBoxNameTraditionalPill);
         comboBoxNameTraditionalPill.setBounds(160, 490, 430, 40);
 
         comboBoxNameTraditionalPotion.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboBoxNameTraditionalPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxNameTraditionalPotionActionPerformed(evt);
+            }
+        });
         panelBody.add(comboBoxNameTraditionalPotion);
         comboBoxNameTraditionalPotion.setBounds(160, 490, 460, 40);
 
@@ -1186,9 +1196,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private void comboReferenceGrassPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceGrassPotionActionPerformed
         // TODO add your handling code here:
         try {
-            
             medicineName(comboBoxMedicine.getSelectedItem().toString(), comboReferenceGrassPotion.getSelectedItem().toString());
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -1206,7 +1214,6 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private void comboBoxReferenceTraditionalPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxReferenceTraditionalPotionActionPerformed
         // TODO add your handling code here:
         try {
-            
             medicineName(comboBoxMedicine.getSelectedItem().toString(), comboBoxReferenceTraditionalPotion.getSelectedItem().toString());
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -1216,6 +1223,16 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private void comboMedicineNameGrassPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineNameGrassPotionActionPerformed
         btnFindMedic.setEnabled(true);
     }//GEN-LAST:event_comboMedicineNameGrassPotionActionPerformed
+
+    private void comboBoxNameTraditionalPillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameTraditionalPillActionPerformed
+        // TODO add your handling code here:
+        btnFindMedic.setEnabled(true);
+    }//GEN-LAST:event_comboBoxNameTraditionalPillActionPerformed
+
+    private void comboBoxNameTraditionalPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameTraditionalPotionActionPerformed
+        // TODO add your handling code here:
+        btnFindMedic.setEnabled(true);
+    }//GEN-LAST:event_comboBoxNameTraditionalPotionActionPerformed
 
     private void createColumns()
     {

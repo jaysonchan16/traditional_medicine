@@ -22,6 +22,7 @@ public class connect {
         try{
             Class.forName("org.sqlite.JDBC");
             String url = "jdbc:sqlite:medical.db";
+            //String url = "jdbc:sqlite:C:\\Users\\Sheng\\Documents\\NetBeansProjects\\medical\\medical.db";
             con=DriverManager.getConnection(url);
             st=con.createStatement(); 
             System.out.println("Connection Success");

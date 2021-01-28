@@ -55,8 +55,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private String to="";
     private String initialIC="";
     private String initialID="";
+    private String Reference;
+    private String initialweight;
+    private String latest;
+    private String bill;
     private int option = 0;
     private String userid = "";
+    private int firstReferenceGrassMedicinePill = 0;
+    private int firstReferenceGrassMedicinePotion = 0;
+    private int firstReferenceTraditionalMedicinePill = 0;
+    private int firstReferenceTraditionalMedicinePotion = 0;
     
     public ModifyChuFang() {
         initComponents();
@@ -70,17 +78,27 @@ public class ModifyChuFang extends javax.swing.JFrame {
         userid = user.getUserid();
         textboxShow();
         createColumns();
-        medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        //medicineCategory();
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
         show_table();
         widthTable();
         image();
         txtDisease.setVisible(false);
-
+        lblJiliang.setVisible(false);
+        txtRemaining.setVisible(false);
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(false);
     }
     
     public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
-            String CategoryTable, String NameTable, String Jiliang, String Price, String TotalPrice, String DiseaseID, String from, String to,
+            String CategoryTable, String Reference, String NameTable, String Jiliang, String Price, String TotalPrice, String initialweight, 
+            String latest, String bill, String DiseaseID, String from, String to,
             String initialIC, String initialID, int option) throws SQLException
     {
         initComponents();
@@ -97,6 +115,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         this.Price = Price;
         this.TotalPrice = TotalPrice;
         this.DiseaseID = DiseaseID;
+        this.latest = latest;
+        this.bill = bill;
+        this.Reference = Reference;
+        this.initialweight = initialweight;
         this.from = from;
         this.to = to;
         this.initialIC = initialIC;
@@ -105,8 +127,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         userid = user.getUserid();
         createColumns();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
-        medicineCategory();
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        //medicineCategory();
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
         txtPrice.setText("");
         show_table();
         widthTable();
@@ -127,13 +149,23 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnFindID.setEnabled(false);
         txtChufang.setText(Chufang);
         comboBoxMedicine.setVisible(false);
-        comboBoxName.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
         txtMedicine.setText(CategoryTable);
         txtMedicineName.setText(NameTable);
         txtJiliang.setText(Jiliang);
         txtPrice.setText(Price);
         txtTotalPrice.setText(TotalPrice);
         txtDisease.setText(DiseaseID);
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(false);
+        lblJiliang.setVisible(false);
+        txtRemaining.setVisible(false);
     }
 
     /**
@@ -167,7 +199,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         comboBoxMedicine = new javax.swing.JComboBox<>();
         txtMedicine = new javax.swing.JTextField();
         btnModify = new javax.swing.JButton();
-        comboBoxName = new javax.swing.JComboBox<>();
+        comboMedicineNameGrassPill = new javax.swing.JComboBox<>();
         btnReset = new javax.swing.JButton();
         txtTotalPrice = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
@@ -183,9 +215,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         spinnerJiLiang = new javax.swing.JSpinner();
         txtDisease = new javax.swing.JTextField();
-        comboReference = new javax.swing.JComboBox<>();
+        comboReferenceGrassPill = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         txtReference = new javax.swing.JTextField();
+        comboReferenceGrassPotion = new javax.swing.JComboBox<>();
+        comboBoxReferenceTraditionalPill = new javax.swing.JComboBox<>();
+        comboBoxReferenceTraditionalPotion = new javax.swing.JComboBox<>();
+        comboMedicineNameGrassPotion = new javax.swing.JComboBox<>();
+        comboBoxNameTraditionalPill = new javax.swing.JComboBox<>();
+        comboBoxNameTraditionalPotion = new javax.swing.JComboBox<>();
+        txtRemaining = new javax.swing.JTextField();
+        lblJiliang = new javax.swing.JLabel();
+        btnFindMedic = new javax.swing.JButton();
+        txtMedicineID = new javax.swing.JTextField();
+        txtWeight = new javax.swing.JTextField();
         txtPrescriptionID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -216,14 +259,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
             },
             new String [] {
-                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物种类", "药物名称", "剂量", "价格/G", "总价值", "创新时间 ", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID"
+                "病人ID", "病人IC", "名字", "电话号码", "处方", "药物分类", "参考病症", "药物名称", "剂量", "价格/G", "总价值", "创新时间 ", "更新时间", "主症", "病症分类", "脉象", "舌质", "舌苔", "大小便", "病史", "体温", "血压", "病症ID", "处方ID", "最新", "Bill", "initialweight"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -244,7 +287,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblChufang);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(800, 30, 820, 760);
+        jScrollPane1.setBounds(880, 30, 810, 760);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("IC：");
@@ -316,23 +359,23 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtChufang.setBounds(160, 280, 590, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel4.setText("药物种类：");
+        jLabel4.setText("药物分类：");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(70, 350, 110, 40);
+        jLabel4.setBounds(70, 340, 110, 40);
 
         comboBoxMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
+        comboBoxMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉", "药丸", "药水", "单味药粉" }));
         comboBoxMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxMedicineActionPerformed(evt);
             }
         });
         jPanel2.add(comboBoxMedicine);
-        comboBoxMedicine.setBounds(160, 350, 260, 40);
+        comboBoxMedicine.setBounds(160, 340, 260, 40);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtMedicine);
-        txtMedicine.setBounds(160, 350, 490, 40);
+        txtMedicine.setBounds(160, 340, 590, 40);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更新");
@@ -345,14 +388,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jPanel2.add(btnModify);
         btnModify.setBounds(650, 750, 100, 40);
 
-        comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        comboBoxName.addActionListener(new java.awt.event.ActionListener() {
+        comboMedicineNameGrassPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboMedicineNameGrassPill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxNameActionPerformed(evt);
+                comboMedicineNameGrassPillActionPerformed(evt);
             }
         });
-        jPanel2.add(comboBoxName);
-        comboBoxName.setBounds(160, 470, 260, 40);
+        jPanel2.add(comboMedicineNameGrassPill);
+        comboMedicineNameGrassPill.setBounds(160, 460, 260, 40);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText("重启");
@@ -367,7 +410,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
         txtTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtTotalPrice);
-        txtTotalPrice.setBounds(160, 670, 590, 40);
+        txtTotalPrice.setBounds(160, 640, 590, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -383,21 +426,21 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("总价值:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(80, 670, 63, 40);
+        jLabel8.setBounds(80, 640, 63, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("价格/G:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(70, 600, 70, 40);
+        jLabel7.setBounds(80, 580, 70, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("剂量：");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(100, 530, 69, 40);
+        jLabel6.setBounds(90, 520, 69, 40);
 
         txtMedicineName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtMedicineName);
-        txtMedicineName.setBounds(160, 470, 590, 40);
+        txtMedicineName.setBounds(520, 460, 230, 40);
 
         btnModifyMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModifyMedicine.setText("更改");
@@ -412,7 +455,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
         txtJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtJiliang);
-        txtJiliang.setBounds(160, 530, 590, 40);
+        txtJiliang.setBounds(240, 520, 510, 40);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -428,11 +471,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("药物名称：");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(70, 470, 100, 40);
+        jLabel5.setBounds(70, 460, 100, 40);
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPrice);
-        txtPrice.setBounds(160, 600, 590, 40);
+        txtPrice.setBounds(160, 580, 590, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -452,20 +495,97 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(spinnerJiLiang);
-        spinnerJiLiang.setBounds(160, 530, 80, 40);
+        spinnerJiLiang.setBounds(160, 520, 80, 40);
         jPanel2.add(txtDisease);
         txtDisease.setBounds(520, 10, 90, 22);
 
-        comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jPanel2.add(comboReference);
-        comboReference.setBounds(160, 410, 260, 40);
+        comboReferenceGrassPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboReferenceGrassPill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboReferenceGrassPillActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboReferenceGrassPill);
+        comboReferenceGrassPill.setBounds(160, 400, 260, 40);
 
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel12.setText("参考病症：");
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(70, 410, 95, 40);
+        jLabel12.setBounds(70, 400, 95, 40);
         jPanel2.add(txtReference);
-        txtReference.setBounds(160, 410, 490, 40);
+        txtReference.setBounds(520, 400, 230, 40);
+
+        comboReferenceGrassPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboReferenceGrassPotionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboReferenceGrassPotion);
+        comboReferenceGrassPotion.setBounds(160, 400, 300, 40);
+
+        comboBoxReferenceTraditionalPill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxReferenceTraditionalPillActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboBoxReferenceTraditionalPill);
+        comboBoxReferenceTraditionalPill.setBounds(160, 400, 330, 40);
+
+        comboBoxReferenceTraditionalPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxReferenceTraditionalPotionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboBoxReferenceTraditionalPotion);
+        comboBoxReferenceTraditionalPotion.setBounds(160, 400, 360, 40);
+
+        comboMedicineNameGrassPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMedicineNameGrassPotionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboMedicineNameGrassPotion);
+        comboMedicineNameGrassPotion.setBounds(160, 460, 300, 40);
+
+        comboBoxNameTraditionalPill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxNameTraditionalPillActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboBoxNameTraditionalPill);
+        comboBoxNameTraditionalPill.setBounds(160, 460, 330, 40);
+
+        comboBoxNameTraditionalPotion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxNameTraditionalPotionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboBoxNameTraditionalPotion);
+        comboBoxNameTraditionalPotion.setBounds(160, 460, 360, 40);
+        jPanel2.add(txtRemaining);
+        txtRemaining.setBounds(160, 700, 590, 40);
+
+        lblJiliang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblJiliang.setText("剩下剂量:");
+        jPanel2.add(lblJiliang);
+        lblJiliang.setBounds(60, 700, 90, 40);
+
+        btnFindMedic.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnFindMedic.setText("寻找");
+        btnFindMedic.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnFindMedic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindMedicActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnFindMedic);
+        btnFindMedic.setBounds(770, 460, 100, 40);
+        jPanel2.add(txtMedicineID);
+        txtMedicineID.setBounds(760, 280, 110, 40);
+
+        txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtWeight);
+        txtWeight.setBounds(790, 580, 70, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(110, 100, 1720, 820);
@@ -531,18 +651,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            String name = comboBoxMedicine.getSelectedItem().toString();
-
-            medicineName(name);
+//            String name = comboBoxMedicine.getSelectedItem().toString();
+//            medicineName(name);
+            String medicine = comboBoxMedicine.getSelectedItem().toString();
+            comboReference(medicine);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.comboBoxMedicineActionPerformed get error on line 609,"+ex.getMessage());
         }
     }//GEN-LAST:event_comboBoxMedicineActionPerformed
 
-    private void comboBoxNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameActionPerformed
+    private void comboMedicineNameGrassPillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineNameGrassPillActionPerformed
         // TODO add your handling code here:
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
-    }//GEN-LAST:event_comboBoxNameActionPerformed
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
+        
+    }//GEN-LAST:event_comboMedicineNameGrassPillActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -583,7 +705,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicineName.setVisible(true);
         txtJiliang.setVisible(true);
         comboBoxMedicine.setVisible(false);
-        comboBoxName.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
         spinnerJiLiang.setVisible(false);
         txtPrescriptionID.setText("");
         txtID.setText("");
@@ -595,7 +717,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicineName.setText("");
         txtJiliang.setText("");
         price = txtPrice.getText();
-
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(false);
         txtPrice.setText("");
         txtTotalPrice.setText("");
         updatedelete = 0;
@@ -606,12 +735,12 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicine.setVisible(false);
         comboBoxMedicine.setVisible(true);
         txtMedicineName.setVisible(false);
-        comboBoxName.setVisible(true);
+        comboMedicineNameGrassPill.setVisible(true);
         txtJiliang.setVisible(false);
         spinnerJiLiang.setVisible(true);
         txtTotalPrice.setText("0.00");
         spinnerJiLiang.setValue(0);
-        FindByMedicineName2(String.valueOf(comboBoxName.getSelectedItem()));
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
         updatedelete = 1;
     }//GEN-LAST:event_btnModifyMedicineActionPerformed
 
@@ -668,7 +797,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicineName.setVisible(true);
         txtJiliang.setVisible(true);
         comboBoxMedicine.setVisible(false);
-        comboBoxName.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
         spinnerJiLiang.setVisible(false);
         txtID.setEnabled(true);
         txtIC.setEnabled(true);
@@ -699,8 +828,67 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtTotalPrice.setText(totalprice);
         txtPrescriptionID.setText(prescriptionID);
         txtDisease.setText(diseaseID);
+        btnFindMedic.setVisible(true);
         updatedelete = 0;
     }//GEN-LAST:event_tblChufangMouseClicked
+
+    private void comboReferenceGrassPillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceGrassPillActionPerformed
+        // TODO add your handling code here:
+        try {
+            medicineName(comboBoxMedicine.getSelectedItem().toString(), comboReferenceGrassPill.getSelectedItem().toString());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_comboReferenceGrassPillActionPerformed
+
+    private void comboReferenceGrassPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceGrassPotionActionPerformed
+        // TODO add your handling code here:
+        try {
+            medicineName(comboBoxMedicine.getSelectedItem().toString(), comboReferenceGrassPotion.getSelectedItem().toString());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_comboReferenceGrassPotionActionPerformed
+
+    private void comboBoxReferenceTraditionalPillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxReferenceTraditionalPillActionPerformed
+        // TODO add your handling code here:
+        try {
+            medicineName(comboBoxMedicine.getSelectedItem().toString(), comboBoxReferenceTraditionalPill.getSelectedItem().toString());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_comboBoxReferenceTraditionalPillActionPerformed
+
+    private void comboBoxReferenceTraditionalPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxReferenceTraditionalPotionActionPerformed
+        // TODO add your handling code here:
+        try {
+            medicineName(comboBoxMedicine.getSelectedItem().toString(), comboBoxReferenceTraditionalPotion.getSelectedItem().toString());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_comboBoxReferenceTraditionalPotionActionPerformed
+
+    private void comboMedicineNameGrassPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMedicineNameGrassPotionActionPerformed
+        // TODO add your handling code here:
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
+    }//GEN-LAST:event_comboMedicineNameGrassPotionActionPerformed
+
+    private void comboBoxNameTraditionalPillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameTraditionalPillActionPerformed
+        // TODO add your handling code here:
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
+    }//GEN-LAST:event_comboBoxNameTraditionalPillActionPerformed
+
+    private void comboBoxNameTraditionalPotionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxNameTraditionalPotionActionPerformed
+        // TODO add your handling code here:
+        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
+    }//GEN-LAST:event_comboBoxNameTraditionalPotionActionPerformed
+
+    private void btnFindMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMedicActionPerformed
+        btnDelete.setEnabled(true);
+        spinnerJiLiang.setEnabled(true);
+        btnFindMedic.setEnabled(false);
+        MedicineContent();
+    }//GEN-LAST:event_btnFindMedicActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,7 +933,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             {
                 prescriptionList = prescription.getPrescriptionsID(PrescriptionID,userid);
                 model = (DefaultTableModel)tblChufang.getModel();
-                Object row[] = new Object[23];
+                Object row[] = new Object[27];
                 for(int i =0; i<prescriptionList.size(); i++)
                 {
                     row[0] = prescriptionList.get(i).getPatientID();
@@ -754,23 +942,27 @@ public class ModifyChuFang extends javax.swing.JFrame {
                     row[3] = prescriptionList.get(i).getPhone();
                     row[4] = prescriptionList.get(i).getChufang();
                     row[5] = prescriptionList.get(i).getCategorytable();
-                    row[6] = prescriptionList.get(i).getNametable();
-                    row[7] = prescriptionList.get(i).getJiliang();
-                    row[8] = prescriptionList.get(i).getPrice();
-                    row[9] = prescriptionList.get(i).getTotalprice();
-                    row[10] = prescriptionList.get(i).getCreateDateTime();
-                    row[11] = prescriptionList.get(i).getLastUpdateDateTime();
-                    row[12] = prescriptionList.get(i).getSymptom();
-                    row[13] = prescriptionList.get(i).getCategory();
-                    row[14] = prescriptionList.get(i).getPulseCondition();
-                    row[15] = prescriptionList.get(i).getTongueQuality();
-                    row[16] = prescriptionList.get(i).getTongueCoating();
-                    row[17] = prescriptionList.get(i).getPeeShit();
-                    row[18] = prescriptionList.get(i).getHistory();
-                    row[19] = prescriptionList.get(i).getTemperature();
-                    row[20] = prescriptionList.get(i).getBloodPressure();
-                    row[21] = prescriptionList.get(i).getDiseaseID();
-                    row[22] = prescriptionList.get(i).getPrescriptionID();
+                    row[6] = prescriptionList.get(i).getReference();
+                    row[7] = prescriptionList.get(i).getNametable();
+                    row[8] = prescriptionList.get(i).getJiliang();
+                    row[9] = prescriptionList.get(i).getPrice();
+                    row[10] = prescriptionList.get(i).getTotalprice();
+                    row[11] = prescriptionList.get(i).getCreateDateTime();
+                    row[12] = prescriptionList.get(i).getLastUpdateDateTime();
+                    row[13] = prescriptionList.get(i).getSymptom();
+                    row[14] = prescriptionList.get(i).getCategory();
+                    row[15] = prescriptionList.get(i).getPulseCondition();
+                    row[16] = prescriptionList.get(i).getTongueQuality();
+                    row[17] = prescriptionList.get(i).getTongueCoating();
+                    row[18] = prescriptionList.get(i).getPeeShit();
+                    row[19] = prescriptionList.get(i).getHistory();
+                    row[20] = prescriptionList.get(i).getTemperature();
+                    row[21] = prescriptionList.get(i).getBloodPressure();
+                    row[22] = prescriptionList.get(i).getDiseaseID();
+                    row[23] = prescriptionList.get(i).getPrescriptionID();
+                    row[24] = prescriptionList.get(i).getLatest();
+                    row[25] = prescriptionList.get(i).getBillno();
+                    row[26] = prescriptionList.get(i).getInitialWeight();
                     model.addRow(row);
                 }
             }
@@ -778,7 +970,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             {
                 prescriptionList = prescription.getPrescriptions(userid);
                 model = (DefaultTableModel)tblChufang.getModel();
-                Object row[] = new Object[23];
+                Object row[] = new Object[27];
                 for(int i =0; i<prescriptionList.size(); i++)
                 {
                     row[0] = prescriptionList.get(i).getPatientID();
@@ -787,29 +979,199 @@ public class ModifyChuFang extends javax.swing.JFrame {
                     row[3] = prescriptionList.get(i).getPhone();
                     row[4] = prescriptionList.get(i).getChufang();
                     row[5] = prescriptionList.get(i).getCategorytable();
-                    row[6] = prescriptionList.get(i).getNametable();
-                    row[7] = prescriptionList.get(i).getJiliang();
-                    row[8] = prescriptionList.get(i).getPrice();
-                    row[9] = prescriptionList.get(i).getTotalprice();
-                    row[10] = prescriptionList.get(i).getCreateDateTime();
-                    row[11] = prescriptionList.get(i).getLastUpdateDateTime();
-                    row[12] = prescriptionList.get(i).getSymptom();
-                    row[13] = prescriptionList.get(i).getCategory();
-                    row[14] = prescriptionList.get(i).getPulseCondition();
-                    row[15] = prescriptionList.get(i).getTongueQuality();
-                    row[16] = prescriptionList.get(i).getTongueCoating();
-                    row[17] = prescriptionList.get(i).getPeeShit();
-                    row[18] = prescriptionList.get(i).getHistory();
-                    row[19] = prescriptionList.get(i).getTemperature();
-                    row[20] = prescriptionList.get(i).getBloodPressure();
-                    row[21] = prescriptionList.get(i).getDiseaseID();
-                    row[22] = prescriptionList.get(i).getPrescriptionID();
+                    row[6] = prescriptionList.get(i).getReference();
+                    row[7] = prescriptionList.get(i).getNametable();
+                    row[8] = prescriptionList.get(i).getJiliang();
+                    row[9] = prescriptionList.get(i).getPrice();
+                    row[10] = prescriptionList.get(i).getTotalprice();
+                    row[11] = prescriptionList.get(i).getCreateDateTime();
+                    row[12] = prescriptionList.get(i).getLastUpdateDateTime();
+                    row[13] = prescriptionList.get(i).getSymptom();
+                    row[14] = prescriptionList.get(i).getCategory();
+                    row[15] = prescriptionList.get(i).getPulseCondition();
+                    row[16] = prescriptionList.get(i).getTongueQuality();
+                    row[17] = prescriptionList.get(i).getTongueCoating();
+                    row[18] = prescriptionList.get(i).getPeeShit();
+                    row[19] = prescriptionList.get(i).getHistory();
+                    row[20] = prescriptionList.get(i).getTemperature();
+                    row[21] = prescriptionList.get(i).getBloodPressure();
+                    row[22] = prescriptionList.get(i).getDiseaseID();
+                    row[23] = prescriptionList.get(i).getPrescriptionID();
+                    row[24] = prescriptionList.get(i).getLatest();
+                    row[25] = prescriptionList.get(i).getBillno();
+                    row[26] = prescriptionList.get(i).getInitialWeight();
                     model.addRow(row);
                 }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.show_table get error on line 328,"+ex.getMessage());
         }
+    }
+    
+    public void comboReference(String medicine) throws SQLException
+    {
+        //comboReferenceGrassPill.removeAllItems();
+        String repeat = "";
+        if(medicine.equalsIgnoreCase("药丸") && firstReferenceGrassMedicinePill == 0)
+        {
+            GrassMedicinePill grasspill = new GrassMedicinePill();
+
+            List<GrassMedicinePill> medicList = new ArrayList<GrassMedicinePill>();
+            medicList = grasspill.findReference(medicine, userid);
+
+            for(int i =0; i<medicList.size(); i++)
+            {
+                if(repeat.equalsIgnoreCase("") || !repeat.equalsIgnoreCase(medicList.get(i).getReference()))
+                {
+                    comboReferenceGrassPill.addItem(medicList.get(i).getReference());
+                    repeat = medicList.get(i).getReference();
+                    //AutoCompleteDecorator.decorate(comboReference);
+                }
+            }
+            firstReferenceGrassMedicinePill = 1;
+            GrassPillReference();
+            //medicineName(medicine,medicList.get(0).getReference());
+        }
+        else if(medicine.equalsIgnoreCase("药水") && firstReferenceGrassMedicinePotion == 0)
+        {
+            GrassMedicinePotion grasspotion = new GrassMedicinePotion();
+
+            List<GrassMedicinePotion> grassList = new ArrayList<GrassMedicinePotion>();
+            grassList = grasspotion.findReference(medicine,userid);
+
+            for(int i =0; i<grassList.size(); i++)
+            {
+                if(repeat.equalsIgnoreCase("") || !repeat.equalsIgnoreCase(grassList.get(i).getReference()))
+                {
+                    comboReferenceGrassPotion.addItem(grassList.get(i).getReference());
+                    repeat = grassList.get(i).getReference();
+                    //AutoCompleteDecorator.decorate(comboReference);
+                }
+            }
+            firstReferenceGrassMedicinePotion = 1;
+            GrassPotionReference();
+            //medicineName(medicine,grassList.get(0).getReference());
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉") && firstReferenceTraditionalMedicinePill == 0)
+        {
+            TraditionalMedicinePill traditionalpill = new TraditionalMedicinePill();
+
+            List<TraditionalMedicinePill> traditionPillList = new ArrayList<TraditionalMedicinePill>();
+            traditionPillList = traditionalpill.findReference(medicine,userid);
+
+            for(int i =0; i<traditionPillList.size(); i++)
+            {
+                if(repeat.equalsIgnoreCase("") || !repeat.equalsIgnoreCase(traditionPillList.get(i).getReference()))
+                {
+                    comboBoxReferenceTraditionalPill.addItem(traditionPillList.get(i).getReference());
+                    repeat = traditionPillList.get(i).getReference();
+                    //AutoCompleteDecorator.decorate(comboReference);
+                }
+            }
+            firstReferenceTraditionalMedicinePill = 1;
+            TraditionalPillReference();
+            //medicineName(medicine,traditionPillList.get(0).getReference());
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉") && firstReferenceTraditionalMedicinePotion == 0)
+        { 
+            TraditionalMedicinePotion traditionalpotion = new TraditionalMedicinePotion();
+
+            List<TraditionalMedicinePotion> traditionMedicList = new ArrayList<TraditionalMedicinePotion>();
+            traditionMedicList = traditionalpotion.findReference(medicine,userid);
+
+            for(int i =0; i<traditionMedicList.size(); i++)
+            {
+                if(repeat.equalsIgnoreCase("") || !repeat.equalsIgnoreCase(traditionMedicList.get(i).getReference()))
+                {
+                    comboBoxReferenceTraditionalPotion.addItem(traditionMedicList.get(i).getReference());
+                    repeat = traditionMedicList.get(i).getReference();
+                    //AutoCompleteDecorator.decorate(comboReference);
+                }
+            }
+            firstReferenceTraditionalMedicinePotion = 1;
+            TraditionalPotionReference();
+            //medicineName(medicine,traditionMedicList.get(0).getReference());
+        }
+        else if (medicine.equalsIgnoreCase("药丸") && firstReferenceGrassMedicinePill == 1 )
+        {
+            GrassPillReference();
+        }
+        else if(medicine.equalsIgnoreCase("药水") && firstReferenceGrassMedicinePotion == 1)
+        {
+            GrassPotionReference();
+        }
+        else if(medicine.equalsIgnoreCase("单味药粉") && firstReferenceTraditionalMedicinePill == 1)
+        {
+            TraditionalPillReference();
+        }
+        else if(medicine.equalsIgnoreCase("复方药粉") && firstReferenceTraditionalMedicinePotion == 1)
+        {
+            TraditionalPotionReference();
+        }
+    }
+    
+    public void TraditionalPillReference()
+    {
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(true);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+    }
+    
+    public void GrassPotionReference()
+    {
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(true);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+    }
+    
+    public void GrassPillReference()
+    {
+        comboReferenceGrassPill.setVisible(true);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(false);
+    }
+    
+    public void TraditionalPotionReference()
+    {
+        comboReferenceGrassPill.setVisible(false);
+        comboReferenceGrassPotion.setVisible(false);
+        comboBoxReferenceTraditionalPill.setVisible(false);
+        comboBoxReferenceTraditionalPotion.setVisible(true);
+    }
+    
+     public void TraditionalPillName()
+    {
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(true);
+        comboBoxNameTraditionalPotion.setVisible(false);
+    }
+    
+    public void GrassPotionName()
+    {
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(true);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(false);
+    }
+    
+    public void GrassPillName()
+    {
+        comboMedicineNameGrassPill.setVisible(true);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(false);
+    }
+    
+    public void TraditionalPotionName()
+    {
+        comboMedicineNameGrassPill.setVisible(false);
+        comboMedicineNameGrassPotion.setVisible(false);
+        comboBoxNameTraditionalPill.setVisible(false);
+        comboBoxNameTraditionalPotion.setVisible(true);
     }
     
     public void FindByMedicineName(String name)
@@ -854,7 +1216,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         }
     }
     
-    public void FindByMedicineName2(String name)
+    /*public void FindByMedicineName2(String name)
     {
         String medicine = (String)comboBoxMedicine.getSelectedItem();
         System.out.println("name:"+name);
@@ -879,7 +1241,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
             //txtPrice.setText(String.valueOf(potion.findTraditionalMedicinePotionName(name,userid).get(0).getSellprice()));
         }
-    }
+    }*/
     
     public void Find()
     {
@@ -919,90 +1281,55 @@ public class ModifyChuFang extends javax.swing.JFrame {
         }
     }
     
-    public void medicineName(String name) throws SQLException
+    public void medicineName(String name, String reference) throws SQLException
     {
-        //g
-        comboBoxName.removeAllItems();
+        comboMedicineNameGrassPill.removeAllItems();
+        comboBoxNameTraditionalPill.removeAllItems();
+        comboMedicineNameGrassPotion.removeAllItems();
+        comboBoxNameTraditionalPotion.removeAllItems();
         if(name.equalsIgnoreCase("单味药粉"))
         {
             TraditionalMedicinePill pill = new TraditionalMedicinePill();
-            if(pill.comboName(userid).size() <= 0)
+
+            for(int i = 0; i < pill.comboNameReference(name,reference,userid).size(); i++)
             {
-                JOptionPane.showMessageDialog(rootPane, "请添加药");
-                DiseaseMenu detail = new DiseaseMenu(user);
-                detail.setVisible(true);
-                this.dispose();
+               comboBoxNameTraditionalPill.addItem(pill.comboNameReference(name,reference,userid).get(i).getName());  
             }
-            else
-            {
-                for(int i = 0; i < pill.comboName(userid).size(); i++)
-                {
-                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
-                }
-                FindByMedicineName(pill.comboName(userid).get(0).getName());
-            }
+            TraditionalPillName();
         }
         else if(name.equalsIgnoreCase("药水"))
         {
             GrassMedicinePotion potion = new GrassMedicinePotion();
-            if(potion.comboName(userid).size() <= 0)
+
+            for(int i = 0; i < potion.comboNameReference(name,reference,userid).size(); i++)
             {
-                JOptionPane.showMessageDialog(rootPane, "请添加药");
-                DiseaseMenu detail = new DiseaseMenu(user);
-                detail.setVisible(true);
-                this.dispose();
+                comboMedicineNameGrassPotion.addItem(potion.comboNameReference(name,reference,userid).get(i).getName());
             }
-            else
-            {
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
-                {
-                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
-                }
-                FindByMedicineName(potion.comboName(userid).get(0).getName());
-            }
+            GrassPotionName();
         }
         else if(name.equalsIgnoreCase("药丸"))
         {
             GrassMedicinePill pill = new GrassMedicinePill();
-            if(pill.comboName(userid).size() <= 0)
+
+            for(int i = 0; i < pill.comboNameReference(name,reference,userid).size(); i++)
             {
-                JOptionPane.showMessageDialog(rootPane, "请添加药");
-                DiseaseMenu detail = new DiseaseMenu(user);
-                detail.setVisible(true);
-                this.dispose();
+                comboMedicineNameGrassPill.addItem(pill.comboNameReference(name,reference,userid).get(i).getName());
             }
-            else
-            {
-                for(int i = 0; i < pill.comboName(userid).size(); i++)
-                {
-                    comboBoxName.addItem(pill.comboName(userid).get(i).getName());
-                }
-                FindByMedicineName(pill.comboName(userid).get(0).getName());
-            }
+            GrassPillName();
         }
         else if(name.equalsIgnoreCase("复方药粉"))
         {
             TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-            if(potion.comboName(userid).size() <= 0)
+
+            for(int i = 0; i < potion.comboNameReference(name,reference,userid).size(); i++)
             {
-                JOptionPane.showMessageDialog(rootPane, "请添加药");
-                DiseaseMenu detail = new DiseaseMenu(user);
-                detail.setVisible(true);
-                this.dispose();
+                comboBoxNameTraditionalPotion.addItem(potion.comboNameReference(name,reference,userid).get(i).getName());
             }
-            else
-            {
-                for(int i = 0; i < potion.comboName(userid).size(); i++)
-                {
-                    comboBoxName.addItem(potion.comboName(userid).get(i).getName());
-                }
-                FindByMedicineName(potion.comboName(userid).get(0).getName());
-            }
+            TraditionalPotionName();
         }
-        
     }
     
-    public void medicineCategory() throws SQLException
+    /*public void medicineCategory() throws SQLException
     {
         try {
             Code code = new Code();
@@ -1020,14 +1347,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.medicineCategory() get error on line 737,"+ex.getMessage());
         }
         
-    }
+    }*/
     
     public void update()
     {
         try {
             String prescriptionID = txtPrescriptionID.getText();
             String medicine = comboBoxMedicine.getSelectedItem().toString();
-            String name = comboBoxName.getSelectedItem().toString();
+            String name = comboMedicineNameGrassPill.getSelectedItem().toString();
             int jiliang = Integer.parseInt(spinnerJiLiang.getValue().toString());
             float price = Float.parseFloat(txtPrice.getText());
             float totalPrice = Float.parseFloat(txtTotalPrice.getText());
@@ -1112,7 +1439,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     public void textboxShow()
     {
         comboBoxMedicine.setVisible(false);
-        comboBoxName.setVisible(false);
+        comboMedicineNameGrassPill.setVisible(false);
         spinnerJiLiang.setVisible(false);
         txtMedicine.setEnabled(false);
         txtMedicineName.setEnabled(false);
@@ -1157,6 +1484,176 @@ public class ModifyChuFang extends javax.swing.JFrame {
         return print.printAllDisease(IC, ID, name, phone, diseaseID);
     }
     
+    public String MedicineReference()
+    {
+        String reference="";
+        if(comboReferenceGrassPill.isVisible() == true)
+        {
+            reference = comboReferenceGrassPill.getSelectedItem().toString();
+        }
+        else if(comboReferenceGrassPotion.isVisible() == true)
+        {
+            reference = comboReferenceGrassPotion.getSelectedItem().toString();
+        }
+        else if(comboBoxReferenceTraditionalPill.isVisible() == true)
+        {
+            reference = comboBoxReferenceTraditionalPill.getSelectedItem().toString();
+        }
+        else if(comboBoxReferenceTraditionalPotion.isVisible() == true)
+        {
+            reference = comboBoxReferenceTraditionalPotion.getSelectedItem().toString();
+        }
+        return reference;
+    }
+    
+    public String MedicineName()
+    {
+        String medicName = "";
+        
+        if(comboMedicineNameGrassPill.isVisible() == true)
+        {
+            medicName = comboMedicineNameGrassPill.getSelectedItem().toString();
+        }
+        else if(comboMedicineNameGrassPotion.isVisible() == true)
+        {
+            medicName = comboMedicineNameGrassPotion.getSelectedItem().toString();
+        }
+        else if(comboBoxNameTraditionalPill.isVisible() == true)
+        {
+            medicName = comboBoxNameTraditionalPill.getSelectedItem().toString();
+        }
+        else if(comboBoxNameTraditionalPotion.isVisible() == true)
+        {
+            medicName = comboBoxNameTraditionalPotion.getSelectedItem().toString();
+        }
+        return medicName;
+    }
+    
+    public void MedicineContent()
+    {
+        String medicine = comboBoxMedicine.getSelectedItem().toString();
+        String name = MedicineName();
+        String reference = MedicineReference();
+        String sellprice="";
+        String medicineid="";
+        String weightText ="";
+        try
+            {
+                if(medicine.equalsIgnoreCase("单味药粉"))
+                {
+                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                    if(pill.findTraditionalMedicinePillName(name,reference,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findTraditionalMedicinePillName(name,reference,userid).get(0).getSellprice());
+                        medicineid = pill.findTraditionalMedicinePillName(name,reference,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findTraditionalMedicinePillName(name,reference,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float price = Float.valueOf(txtPrice.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        txtRemaining.setText(String.valueOf(remaining));
+                        float totalprice = price * jiliang1;
+                        txtTotalPrice.setText(String.valueOf(totalprice));
+                    }
+                    else
+                    {
+                        //txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        //JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                }
+                else if(medicine.equalsIgnoreCase("药水"))
+                {
+                    GrassMedicinePotion pill = new GrassMedicinePotion();
+                    if(pill.findGrassMedicinePotionName(name,reference,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findGrassMedicinePotionName(name,reference,userid).get(0).getSellprice());
+                        medicineid = pill.findGrassMedicinePotionName(name,reference,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findGrassMedicinePotionName(name,reference,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        float price = Float.valueOf(txtPrice.getText());
+                        txtRemaining.setText(String.valueOf(remaining));
+                        float totalprice = price * jiliang1;
+                        txtTotalPrice.setText(String.valueOf(totalprice));
+                    }
+                    else
+                    {
+                        //txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        //JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                }
+                else if(medicine.equalsIgnoreCase("药丸"))
+                {
+                    GrassMedicinePill pill =new GrassMedicinePill();
+                    if(pill.findGrassMedicinePillName(name,reference,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(pill.findGrassMedicinePillName(name,reference,userid).get(0).getSellprice());
+                        medicineid = pill.findGrassMedicinePillName(name,reference,userid).get(0).getCode();
+                        weightText = String.valueOf(pill.findGrassMedicinePillName(name,reference,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        float price = Float.valueOf(txtPrice.getText());
+                        txtRemaining.setText(String.valueOf(remaining));
+                        float totalprice = price * jiliang1;
+                        txtTotalPrice.setText(String.valueOf(totalprice));
+                    }
+                    else
+                    {
+                        //txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        //JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                    
+                }
+                else if(medicine.equalsIgnoreCase("复方药粉"))
+                {
+                    TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                    if(potion.findTraditionalMedicinePotionName(name,reference,userid).size() != 0)
+                    {
+                        sellprice = String.valueOf(potion.findTraditionalMedicinePotionName(name,reference,userid).get(0).getSellprice());
+                        medicineid = potion.findTraditionalMedicinePotionName(name,reference,userid).get(0).getCode();
+                        weightText = String.valueOf(potion.findTraditionalMedicinePotionName(name,reference,userid).get(0).getGram());
+                        txtPrice.setText(sellprice);
+                        txtMedicineID.setText(medicineid);
+                        txtWeight.setText(weightText);
+                        String jiliang = spinnerJiLiang.getValue().toString();
+                        float weight = Float.valueOf(txtWeight.getText());
+                        float jiliang1 = Float.valueOf(jiliang);
+                        float remaining = weight - jiliang1;
+                        float price = Float.valueOf(txtPrice.getText());
+                        txtRemaining.setText(String.valueOf(remaining));
+                        float totalprice = price * jiliang1;
+                        txtTotalPrice.setText(String.valueOf(totalprice));
+                    }
+                    else
+                    {
+                        //txtMedicineName.setEnabled(true);
+                        btnFindMedic.setEnabled(true);
+                        //JOptionPane.showMessageDialog(rootPane, "系统没这资料!");
+                    }
+                }
+            }
+            catch(SQLException ex)
+            {
+                JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName2() get error on line 863,"+ex.getMessage());
+            }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1195,13 +1692,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFindIC;
     private javax.swing.JButton btnFindID;
+    private javax.swing.JButton btnFindMedic;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnModifyMedicine;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox<String> comboBoxMedicine;
-    private javax.swing.JComboBox<String> comboBoxName;
-    private javax.swing.JComboBox<String> comboReference;
+    private javax.swing.JComboBox<String> comboBoxNameTraditionalPill;
+    private javax.swing.JComboBox<String> comboBoxNameTraditionalPotion;
+    private javax.swing.JComboBox<String> comboBoxReferenceTraditionalPill;
+    private javax.swing.JComboBox<String> comboBoxReferenceTraditionalPotion;
+    private javax.swing.JComboBox<String> comboMedicineNameGrassPill;
+    private javax.swing.JComboBox<String> comboMedicineNameGrassPotion;
+    private javax.swing.JComboBox<String> comboReferenceGrassPill;
+    private javax.swing.JComboBox<String> comboReferenceGrassPotion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1220,6 +1724,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblJiliang;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
@@ -1231,12 +1736,15 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJiliang;
     private javax.swing.JTextField txtMedicine;
+    private javax.swing.JTextField txtMedicineID;
     private javax.swing.JTextField txtMedicineName;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPrescriptionID;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtReference;
+    private javax.swing.JTextField txtRemaining;
     private javax.swing.JTextField txtTotalPrice;
+    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,6 +36,8 @@ public class Disease extends Patient{
     private String history;
     private String category;
     private String user;
+    private int latest;
+    private int billno;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -106,22 +108,6 @@ public class Disease extends Patient{
     }
     
     public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
-            String tongueCoating, String peeshit, String category, String history,
-            String IC, String name, String phoneNo, String gender, String address, int age, String User){
-        super(IC,name,gender,age,phoneNo,address,User);
-        this.symptom = symptom;
-        this.temperature = temperature;
-        this.bloodPressure = bloodPressure;
-        this.pulseCondition = pulseCondition;
-        this.tongueQuality = tongueQuality;
-        this.tongueCoating = tongueCoating;
-        this.peeshit = peeshit;
-        this.category = category;
-        this.history = history;
-        
-    }
-    
-    public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
             String tongueCoating, String peeshit, String category, String history, String patientID, String DiseaseID, String lastUpdateDateTime, String createDateTime,
             String IC, String name, String phoneNo, String User){
         super(IC,name,phoneNo,User);
@@ -138,8 +124,25 @@ public class Disease extends Patient{
         this.patientID =patientID;
         this.lastUpdateDateTime = lastUpdateDateTime;
         this.createDateTime = createDateTime;
+    }
     
-}
+    //prescription
+    public Disease(String symptom, int temperature, String bloodPressure, String pulseCondition, String tongueQuality, 
+            String tongueCoating, String peeshit, String category, String history,
+            String IC, String name, String phoneNo, String gender, String address, int age, int latest, int billno, String User){
+        super(IC,name,gender,age,phoneNo,address,User);
+        this.symptom = symptom;
+        this.temperature = temperature;
+        this.bloodPressure = bloodPressure;
+        this.pulseCondition = pulseCondition;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.peeshit = peeshit;
+        this.category = category;
+        this.history = history;
+        this.latest = latest;
+        this.billno = billno;
+    }
     /**
      * @return the symptom
      */
@@ -336,6 +339,34 @@ public class Disease extends Patient{
         this.user = user;
     }
     
+    /**
+     * @return the latest
+     */
+    public int getLatest() {
+        return latest;
+    }
+
+    /**
+     * @param latest the latest to set
+     */
+    public void setLatest(int latest) {
+        this.latest = latest;
+    }
+
+    /**
+     * @return the billno
+     */
+    public int getBillno() {
+        return billno;
+    }
+
+    /**
+     * @param billno the billno to set
+     */
+    public void setBillno(int billno) {
+        this.billno = billno;
+    }
+    
     public HashMap<String,String> AddDisease() throws SQLException{
         HashMap<String,String> returnMessage = new HashMap<String,String>();
         try {
@@ -348,9 +379,9 @@ public class Disease extends Patient{
             {
                 if(mapBill.get("messages").equalsIgnoreCase(""))
                 {
-                    String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User, billNo)"
+                    String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User, billNo,latest)"
                             + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                            + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), '"+mapBill.get("data")+"'";
+                            + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), '"+mapBill.get("data")+"',1";
                     System.out.println(query);
                     SQLQuery sql = new SQLQuery();
                     returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
@@ -508,4 +539,6 @@ public class Disease extends Patient{
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("Disease", user);
     }
+
+    
 }
