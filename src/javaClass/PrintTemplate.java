@@ -20,22 +20,22 @@ public class PrintTemplate {
             ArrayList<String> medicineName, ArrayList<String> jiliang, ArrayList<String> price,ArrayList<String> totalprice, String totalweight, String mainprice)
     {
         StringBuilder content = new StringBuilder(); 
-        content.append("IC: "+IC+"\t\t\t               ID: "+ID+"\n");
+        content.append("IC: "+IC+"\t\t\t\t\t\tID: "+ID+"\n");
         content.append("姓名: "+name+"\n");
-        content.append("电话号码: "+phone+"\t\t\t               日期: "+date+"\n");
-        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
-        content.append("主症: "+symptom+"\t\t\t                    病症分类: "+category+"\n");
-        content.append("脉象: "+pulse+"\t\t     舌质: "+tongueQuality+"\t\t     舌苔: "+tongueCoating+"\n");
-        content.append("大小便: "+shit+"\t\t\t         病史: "+history+"\n");
-        content.append("体温"+temperature+"\t\t\t          血压: "+bloodPressure+"\n");
-        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("电话号码: "+phone+"\t\t\t\t\t\t日期: "+date+"\n");
+        content.append("--------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("主症: "+symptom+"\t\t\t\t\t\t病症分类: "+category+"\n");
+        content.append("脉象: "+pulse+"\t\t\t舌质: "+tongueQuality+"\t\t\t舌苔: "+tongueCoating+"\n");
+        content.append("大小便: "+shit+"\t\t\t\t\t\t病史: "+history+"\n");
+        content.append("体温"+temperature+"\t\t\t\t\t\t血压: "+bloodPressure+"\n");
+        content.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         content.append("处方\t药物分类\t参考病症\t药物名称\t剂量\t价格/G\t总价值\n");
-        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         for(int i = 0; i<chufang.size(); i++)
         {
             content.append(chufang.get(i)+"\t"+medicineCategory.get(i)+"\t"+medicineReference.get(i)+"\t"+medicineName.get(i)+"\t"+jiliang.get(i)+"GM\tRM"+price.get(i)+"\tRM"+totalprice.get(i)+"\n");
         }
-        content.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        content.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         content.append("\t\t\t\t"+totalweight+"\t\t"+mainprice+"\n");
         return content.toString();
     }

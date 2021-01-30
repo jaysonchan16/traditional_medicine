@@ -379,14 +379,24 @@ public class Disease extends Patient{
             {
                 if(mapBill.get("messages").equalsIgnoreCase(""))
                 {
-                    String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User, billNo,latest)"
-                            + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
-                            + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), '"+mapBill.get("data")+"',1";
-                    System.out.println(query);
-                    SQLQuery sql = new SQLQuery();
-                    returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
-                    returnMessage.put("ID", map.get("data"));
-                    return returnMessage;
+                    String result = EditLatest(user);
+                    if(result.equalsIgnoreCase("1"))
+                    {
+                        String query = "Insert into Disease(ID, Symptom, Temperature, BloodPressure, PulseCondition, TongueQuality, TongueCoating, PeeShit, Category, History, PatientID, lastUpdateDateTime, createDateTime, User, billNo,latest)"
+                                + "Select '"+map.get("data")+"', trim('"+symptom+"'), trim('"+temperature+"'), trim('"+bloodPressure+"'), trim('"+pulseCondition+"'),"
+                                + "trim('"+tongueQuality+"'), trim('"+tongueCoating+"'), trim('"+peeshit+"'), trim('"+category+"'),trim('"+history+"'),trim('"+patientID+"'), datetime('now','localtime'), datetime('now','localtime'), trim('"+user+"'), '"+mapBill.get("data")+"',1";
+                        System.out.println(query);
+                        SQLQuery sql = new SQLQuery();
+                        returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+                        returnMessage.put("ID", map.get("data"));
+                        return returnMessage;
+                    }
+                    else
+                    {
+                        returnMessage.put("returnMessage","Disease.AddDisease class line 281 get error, "+result);
+                        returnMessage.put("BillID", "");
+                        return returnMessage;
+                    }
                 }
                 else
                 {
@@ -409,12 +419,12 @@ public class Disease extends Patient{
     }
     
     public String EditDisease() throws SQLException{
-         String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
+        String query = "Update Disease Set Symptom = trim('"+symptom+"'), Temperature = "+temperature+","
                  + " BloodPressure = trim('"+bloodPressure+"'), PulseCondition = trim('"+pulseCondition+"'), TongueQuality = trim('"+tongueQuality+"'),"
                  + " TongueCoating = trim('"+tongueCoating+"'), PeeShit = trim('"+peeshit+"'), Category = trim('"+category+"'), History = trim('"+history+"'), lastUpdateDateTime = datetime('now','localtime')"
                  + " where ID = '"+diseaseID+"' and User = '"+user+"'";
         System.out.println(query);
-         SQLQuery sql = new SQLQuery();
+        SQLQuery sql = new SQLQuery();
 
         return sql.AddEditDeleteQuery(query);
     }
@@ -540,5 +550,12 @@ public class Disease extends Patient{
         return sql.DeleteUser("Disease", user);
     }
 
-    
+    public String EditLatest(String user) throws SQLException{
+        String query = "Update Disease Set latest = 0 "
+                 + "where User = '"+user+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
+    }
 }

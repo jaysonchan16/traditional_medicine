@@ -425,10 +425,10 @@ public class PrintForm extends javax.swing.JFrame {
     public void printPreview(String bodyContent)
     {
         StringBuilder str = new StringBuilder();
-        str.append("\t\t\t杏生堂药行\n");
-        str.append("\t\t107, Jalan PKS2, Pekan Simpang Kuala, \n");
-        str.append("\t\t      05400 Alor Setar, Kedah\n");
-        str.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        str.append("\t\t\t\t杏生堂药行\n");
+        str.append("\t\t\t107, Jalan PKS2, Pekan Simpang Kuala, \n");
+        str.append("\t\t\t            05400 Alor Setar, Kedah\n");
+        str.append("--------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         str.append(bodyContent);
         
         txtAreaPrint.setText(str.toString());

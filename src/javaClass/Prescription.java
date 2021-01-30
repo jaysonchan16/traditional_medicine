@@ -645,7 +645,33 @@ public class Prescription extends Disease{
         return sql.DeleteUser("Prescription", user);
     }
 
-    
+    public List<Prescription> getPrescriptionsModify(String User) throws SQLException{
+        List<Prescription> prescriptionList = new ArrayList<>();
+                
+            String query = "Select a.ID as PrescriptionID, a.Chufang, a.Category as categorytable, a.Reference, a.Name as nametable, a.Jiliang, a.Price, a.weight, a.TotalPrice, a.PatientID, a.DiseaseID, a.lastUpdateDateTime, a.createDateTime, "
+                + "b.Symptom, b.Temperature, b.BloodPressure, b.PulseCondition, b.TongueQuality, b.TongueCoating, b.PeeShit, b.Category, b.History, b.latest, b.billNo, c.IC, c.name, c.phone,c.age, c.gender, c.address,c.User as User  "
+                + "from Prescription a "
+                + "Inner Join Disease b ON a.DiseaseID = b.ID "
+                + "Inner Join Patient c ON a.PatientID = c.ID "
+                + "where b.latest=1 and c.User = '"+User+"' order by a.createDateTime desc";
+            System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 prescriptionList.add(new Prescription(rs.getInt("Chufang"),
+                         rs.getString("categorytable"),rs.getString("Reference"),rs.getString("nametable"),rs.getInt("Jiliang"),rs.getFloat("Price"),rs.getFloat("TotalPrice"),rs.getFloat("weight"),
+                         rs.getString("PrescriptionID"),rs.getString("PatientID"),rs.getString("DiseaseID"),rs.getString("lastUpdateDateTime"),rs.getString("createDateTime"), 
+                         rs.getString("Symptom"),rs.getInt("Temperature"),rs.getString("BloodPressure"),rs.getString("PulseCondition"),
+                         rs.getString("TongueQuality"),rs.getString("TongueCoating"),rs.getString("PeeShit"), rs.getString("Category"),
+                         rs.getString("History"), rs.getInt("latest"), rs.getInt("billNo"), rs.getString("IC"), rs.getString("name"), rs.getString("phone"), rs.getInt("age"), rs.getString("gender"), rs.getString("address"),rs.getString("User")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return prescriptionList;
+    }
 
     
     

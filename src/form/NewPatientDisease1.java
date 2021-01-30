@@ -771,7 +771,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboReferenceGrassPill);
-        comboReferenceGrassPill.setBounds(160, 440, 340, 40);
+        comboReferenceGrassPill.setBounds(160, 440, 460, 40);
 
         comboMedicineNameGrassPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboMedicineNameGrassPill.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -790,7 +790,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboMedicineNameGrassPill);
-        comboMedicineNameGrassPill.setBounds(160, 490, 350, 40);
+        comboMedicineNameGrassPill.setBounds(160, 490, 460, 40);
 
         comboReferenceGrassPotion.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboReferenceGrassPotion.addActionListener(new java.awt.event.ActionListener() {
@@ -799,7 +799,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboReferenceGrassPotion);
-        comboReferenceGrassPotion.setBounds(160, 440, 390, 40);
+        comboReferenceGrassPotion.setBounds(160, 440, 460, 40);
 
         comboBoxReferenceTraditionalPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxReferenceTraditionalPill.addActionListener(new java.awt.event.ActionListener() {
@@ -808,7 +808,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboBoxReferenceTraditionalPill);
-        comboBoxReferenceTraditionalPill.setBounds(160, 440, 430, 40);
+        comboBoxReferenceTraditionalPill.setBounds(160, 440, 460, 40);
 
         comboBoxReferenceTraditionalPotion.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxReferenceTraditionalPotion.addActionListener(new java.awt.event.ActionListener() {
@@ -826,7 +826,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboMedicineNameGrassPotion);
-        comboMedicineNameGrassPotion.setBounds(160, 490, 400, 40);
+        comboMedicineNameGrassPotion.setBounds(160, 490, 460, 40);
 
         comboBoxNameTraditionalPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxNameTraditionalPill.addActionListener(new java.awt.event.ActionListener() {
@@ -835,7 +835,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             }
         });
         panelBody.add(comboBoxNameTraditionalPill);
-        comboBoxNameTraditionalPill.setBounds(160, 490, 430, 40);
+        comboBoxNameTraditionalPill.setBounds(160, 490, 460, 40);
 
         comboBoxNameTraditionalPotion.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboBoxNameTraditionalPotion.addActionListener(new java.awt.event.ActionListener() {
