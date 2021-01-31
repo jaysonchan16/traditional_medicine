@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javaClass.Bill;
 import javaClass.Code;
 import javaClass.Disease;
 import javaClass.GrassMedicinePill;
@@ -109,6 +110,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         btnAddRow.setEnabled(false);
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
+        lblTotalPrice.setVisible(false);
         spinnerJiLiang.setValue(1);
         TableColumnModel columnModel = tblDisease.getColumnModel();
         columnModel.getColumn(7).setMinWidth(0);
@@ -159,6 +161,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
         spinnerJiLiang.setValue(1);
+        lblTotalPrice.setVisible(false);
         TableColumnModel columnModel = tblDisease.getColumnModel();
         columnModel.getColumn(7).setMinWidth(0);
         columnModel.getColumn(7).setMaxWidth(0);
@@ -215,7 +218,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         txtTemperature.setText(temperature);
         txtBlood.setText(blood);
         lblTotalJiliang.setText(totalweight);
-        lblTotalPrice.setText(mainprice);
+        lblTotalPriceRM.setText(mainprice);
         for (int i = 0; i < chufang.size(); i++){
             populate(chufang.get(i),medicine.get(i),medicineReference.get(i),medicinecategory.get(i),
                     jiliang.get(i),price.get(i),totalprice.get(i),remaining.get(i),prescriptionID.get(i),weightList.get(i));
@@ -242,6 +245,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         txtPrice.setEnabled(false);
         txtTotalPrice.setEnabled(false);
         image();
+        lblItems.setText(String.valueOf(model.getRowCount()));
         lblCreateDateTime.setText(dtf.format(localDate));
         btnReset.setVisible(false);
         btnModify.setVisible(false);
@@ -250,6 +254,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         txtWeight.setVisible(false);
         txtMedicineID.setVisible(false);
         spinnerJiLiang.setValue(1);
+        lblTotalPrice.setVisible(false);
         TableColumnModel columnModel = tblDisease.getColumnModel();
         columnModel.getColumn(7).setMinWidth(0);
         columnModel.getColumn(7).setMaxWidth(0);
@@ -332,7 +337,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         lblTotalJiliang = new javax.swing.JLabel();
-        lblTotalPrice = new javax.swing.JLabel();
+        lblTotalPriceRM = new javax.swing.JLabel();
         btnModify = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         txtWeight = new javax.swing.JTextField();
@@ -349,6 +354,8 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         comboMedicineNameGrassPotion = new javax.swing.JComboBox<>();
         comboBoxNameTraditionalPill = new javax.swing.JComboBox<>();
         comboBoxNameTraditionalPotion = new javax.swing.JComboBox<>();
+        lblItems = new javax.swing.JLabel();
+        lblTotalPrice = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
 
@@ -541,6 +548,11 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         jSeparator2.setBounds(60, 380, 1540, 20);
 
         txtchufang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtchufang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtchufangActionPerformed(evt);
+            }
+        });
         panelBody.add(txtchufang);
         txtchufang.setBounds(160, 390, 180, 40);
 
@@ -707,9 +719,9 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         panelBody.add(lblTotalJiliang);
         lblTotalJiliang.setBounds(1160, 740, 140, 40);
 
-        lblTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        panelBody.add(lblTotalPrice);
-        lblTotalPrice.setBounds(1440, 740, 110, 40);
+        lblTotalPriceRM.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblTotalPriceRM);
+        lblTotalPriceRM.setBounds(1440, 740, 110, 40);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
@@ -846,6 +858,12 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         panelBody.add(comboBoxNameTraditionalPotion);
         comboBoxNameTraditionalPotion.setBounds(160, 490, 460, 40);
 
+        lblItems.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(lblItems);
+        lblItems.setBounds(820, 740, 90, 40);
+        panelBody.add(lblTotalPrice);
+        lblTotalPrice.setBounds(990, 820, 0, 0);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(110, 80, 1610, 850);
 
@@ -971,8 +989,12 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             String shit = txtShit.getText();
             String category = txtCategory.getText();
             String history = txtHistory.getText();
+            String billDate = lblCreateDateTime.getText();
+            int items = Integer.parseInt(lblItems.getText());
+            double subtotal = Double.parseDouble(lblTotalPrice.getText());
             
             HashMap<String,String> map = new HashMap<String,String>();
+            HashMap<String,String> mapBill = new HashMap<String,String>();
             int rows=tblDisease.getRowCount();
 
             if (symptom.equalsIgnoreCase("")) {
@@ -1002,28 +1024,36 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 try {
                     map = disease.AddDisease();
                     if (map.get("returnMessage").equalsIgnoreCase("1")) {
-                        Prescription prescription = new Prescription();
-                        HashMap<String,String> prescriptionMap = new HashMap<String,String>();
-                        for(int row = 0; row<rows; row++)
+                        Bill bill = new Bill(billDate, Integer.parseInt(map.get("Bill")), userid, items, subtotal);
+                        mapBill = bill.AddBill();
+                        if(mapBill.get("returnMessage").equalsIgnoreCase("1"))
                         {
-                            String chufang = (String)tblDisease.getValueAt(row, 0);
-                            String categorytable = (String)tblDisease.getValueAt(row, 1);
-                            String reference = (String)tblDisease.getValueAt(row, 2);
-                            String nametable = (String)tblDisease.getValueAt(row, 3);
-                            String jiliang = (String)tblDisease.getValueAt(row, 4);
-                            String price = (String)tblDisease.getValueAt(row, 5);
-                            String totalprice = (String)tblDisease.getValueAt(row, 6);
-                            String remaining = (String)tblDisease.getValueAt(row, 7);
-                            String ID = (String)tblDisease.getValueAt(row, 8);
-                            String weight = (String)tblDisease.getValueAt(row, 9);
-                            prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, reference, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription",userid, remaining, ID, Float.valueOf(weight));
+                            Prescription prescription = new Prescription();
+                            HashMap<String,String> prescriptionMap = new HashMap<String,String>();
+                            for(int row = 0; row<rows; row++)
+                            {
+                                String chufang = (String)tblDisease.getValueAt(row, 0);
+                                String categorytable = (String)tblDisease.getValueAt(row, 1);
+                                String reference = (String)tblDisease.getValueAt(row, 2);
+                                String nametable = (String)tblDisease.getValueAt(row, 3);
+                                String jiliang = (String)tblDisease.getValueAt(row, 4);
+                                String price = (String)tblDisease.getValueAt(row, 5);
+                                String totalprice = (String)tblDisease.getValueAt(row, 6);
+                                String remaining = (String)tblDisease.getValueAt(row, 7);
+                                String ID = (String)tblDisease.getValueAt(row, 8);
+                                String weight = (String)tblDisease.getValueAt(row, 9);
+                                prescriptionMap = prescription.addPrescription(Integer.valueOf(chufang), categorytable, reference, nametable, Integer.valueOf(jiliang), Float.valueOf(price), Float.valueOf(totalprice), patientID, map.get("ID"),"Prescription",userid, remaining, ID, Float.valueOf(weight));
+                            }
+                            if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "病症已新增！ID 是 "+map.get("ID"));
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "新增失败");
+                            }
                         }
-                        if(prescriptionMap.get("returnMessage").equalsIgnoreCase("1"))
-                        {
-                            JOptionPane.showMessageDialog(rootPane, "病症已新增！ID 是 "+map.get("ID"));
-                        }
-                        else
-                        {
+                        else {
                             JOptionPane.showMessageDialog(rootPane, "新增失败");
                         }
                     } else {
@@ -1072,7 +1102,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         String temperature = txtTemperature.getText();
         String blood = txtBlood.getText();
         String totalweight = lblTotalJiliang.getText();
-        String mainPrice = lblTotalPrice.getText();
+        String mainPrice = lblTotalPriceRM.getText();
         ArrayList<String> chufang = new ArrayList<String>();
         ArrayList<String> medicine = new ArrayList<String>();
          ArrayList<String> medicineReference = new ArrayList<String>();
@@ -1233,6 +1263,10 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnFindMedic.setEnabled(true);
     }//GEN-LAST:event_comboBoxNameTraditionalPotionActionPerformed
+
+    private void txtchufangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtchufangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtchufangActionPerformed
 
     private void createColumns()
     {
@@ -1874,7 +1908,9 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             totalweight = AmountWeight+totalweight;
         }
         txtchufang.setText(String.valueOf(model.getRowCount()+1));
-        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblItems.setText(String.valueOf(model.getRowCount()));
+        lblTotalPriceRM.setText("RM"+String.valueOf(totalprice));
+        lblTotalPrice.setText(String.valueOf(totalprice));
         lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
     }
     
@@ -1892,7 +1928,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             totalweight = AmountWeight+totalweight;
         }
         txtchufang.setText(String.valueOf(chufang));
-        lblTotalPrice.setText("RM"+String.valueOf(totalprice));
+        lblTotalPriceRM.setText("RM"+String.valueOf(totalprice));
         lblTotalJiliang.setText(String.valueOf(totalweight)+"GM");
     }
     
@@ -1984,9 +2020,11 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCreateDateTime;
+    private javax.swing.JLabel lblItems;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTotalJiliang;
     private javax.swing.JLabel lblTotalPrice;
+    private javax.swing.JLabel lblTotalPriceRM;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;

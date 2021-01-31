@@ -37,7 +37,7 @@ public class Disease extends Patient{
     private String category;
     private String user;
     private int latest;
-    private int billno;
+    protected int billno;
     public Statement st = connect.connection();
     ResultSet rs;
     
@@ -46,6 +46,11 @@ public class Disease extends Patient{
     public Disease(String diseaseID)
     {
         this.diseaseID = diseaseID;
+    }
+    
+    public Disease(int billno)
+    {
+        this.billno = billno;
     }
     
     public Disease(String diseaseID, String user)
@@ -389,6 +394,7 @@ public class Disease extends Patient{
                         SQLQuery sql = new SQLQuery();
                         returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
                         returnMessage.put("ID", map.get("data"));
+                        returnMessage.put("Bill", mapBill.get("data"));
                         return returnMessage;
                     }
                     else

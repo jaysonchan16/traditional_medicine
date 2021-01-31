@@ -34,7 +34,7 @@ public class Prescription extends Disease{
     private String lastUpdateDateTime;
     private String createDateTime;
     private String userid;
-    private String user;
+    protected String user;
     private float initialWeight;
     private String reference;
     public Statement st = connect.connection();
@@ -257,6 +257,10 @@ public class Prescription extends Disease{
         this.prescriptionID = prescriptionID;
     }*/
     
+    public Prescription(int billno){
+        super(billno);
+    }
+        
     public Prescription(String prescriptionID, String user){
         this.prescriptionID = prescriptionID;
         this.user = user;

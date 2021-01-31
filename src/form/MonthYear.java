@@ -32,8 +32,8 @@ public class MonthYear extends javax.swing.JFrame {
     
     public MonthYear(User user) {
         initComponents();
-         this.user = user;
-         image();
+        this.user = user;
+        image();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,7 +199,9 @@ public class MonthYear extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        
+        MainMenu menu = new MainMenu(user);
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
