@@ -88,7 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
         btnLogout = new javax.swing.JPanel();
         imgLogout = new javax.swing.JLabel();
         lblLogout = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -512,14 +512,14 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().add(btnLogout);
         btnLogout.setBounds(1460, 490, 390, 290);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcel.setText("jButton1");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(580, 840, 79, 25);
+        getContentPane().add(btnExcel);
+        btnExcel.setBounds(580, 840, 79, 25);
 
         setBounds(0, 0, 1955, 1035);
     }// </editor-fold>//GEN-END:initComponents
@@ -669,12 +669,12 @@ public class MainMenu extends javax.swing.JFrame {
         logout();
     }//GEN-LAST:event_btnLogoutMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         MonthYearIC main = new MonthYearIC(user,2);
         main.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     public void patient()
     {
@@ -803,6 +803,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnDisease;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JPanel btnLogout;
     private javax.swing.JPanel btnMedicine;
     private javax.swing.JPanel btnPatient;
@@ -818,7 +819,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel imgReference;
     private javax.swing.JLabel imgSetting;
     private javax.swing.JLabel imgStorage;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;

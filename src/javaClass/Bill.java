@@ -135,10 +135,10 @@ public class Bill extends Prescription{
         }
     }
     
-    public String EditBill() throws SQLException{
-         String query = "Update Bill Set Items = trim('"+items+"'), BillDate = 'datetime('now','localtime')',"
-                 + " SubTotal = trim('"+subtotal+"'), lastUpdateDateTime = datetime('now','localtime') "
-                 + " where Bill = '"+billno+"' and User = '"+getUser()+"'";
+    public String EditBill(double subtotal, String billno, int items, String user) throws SQLException{
+         String query = "Update Bill Set Items = "+items+" and BillDate = datetime('now','localtime'),"
+                 + " SubTotal = "+subtotal+", lastUpdateDateTime = datetime('now','localtime') "
+                 + " where BillNo = '"+billno+"' and User = '"+user+"'";
         System.out.println(query);
         SQLQuery sql = new SQLQuery();
 
@@ -156,7 +156,7 @@ public class Bill extends Prescription{
     public List<Bill> getBills(String User) throws SQLException{
         List<Bill> billList = new ArrayList<>();
                 
-            String query = "Select Items,BillNo,BillDate,User,SubTotal from Bill";
+            String query = "Select Items,BillNo,BillDate,User,SubTotal from Bill where User ='"+User+"'";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -191,7 +191,24 @@ public class Bill extends Prescription{
         return billList;
     }
 
-    
+    public List<Bill> getBillsDetail(String User, String contribute, String detail) throws SQLException{
+        List<Bill> billList = new ArrayList<>();
+                
+            String query = "Select Items,BillNo,BillDate,User,SubTotal from Bill where "+contribute+" = '"+detail+"' and User='"+User+"'";
+            System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 billList.add(new Bill(rs.getString("BillDate"),rs.getInt("BillNo"),
+                         rs.getString("User"),rs.getInt("Items"),rs.getDouble("SubTotal")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return billList;
+    }
 
 
 }

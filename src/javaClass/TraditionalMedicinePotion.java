@@ -65,6 +65,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
+            
             if(map.get("messages").equalsIgnoreCase("") && validateTraditionalMedicinePotion("name",name,User) == 0)
             {
                 String query = "insert into TraditionalMedicinePotion(ID, name, reference, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine,User)"
@@ -111,6 +112,27 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         }
     }
     
+    public int validateMedicine(String reference, String name, String User) throws SQLException
+    {
+        try {
+            String query = "Select count(1) as count from TraditionalMedicinePotion where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";
+            System.out.println(query);
+            int count = 0;
+            rs = st.executeQuery(query);
+            count = rs.getInt("count");
+            rs.close();
+            st.close();
+            return count;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+    }
+    
     public String EditTraditionalMedicinePotion(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
         /*if(validateTraditionalMedicinePotion("name",name,User) == 0)
         {*/
@@ -127,6 +149,16 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         {
             return "这名字已经存在";
         }*/
+    }
+    
+    public String EditSubTotalTraditionalMedicinePotion(String name, String reference, String gram, String User) throws SQLException{
+
+            String query = "Update TraditionalMedicinePotion Set gram = ('"+gram+"'), lastUpdateDateTime = datetime('now','localtime')"
+                     + "where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query); 
     }
     
     

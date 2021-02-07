@@ -111,6 +111,27 @@ public class GrassMedicinePill extends Medicine{//药丸
         
     }
     
+    public int validateMedicine(String reference, String name, String User) throws SQLException
+    {
+        try {
+            String query = "Select count(1) as count from GrassMedicinePill where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";
+            System.out.println(query);
+            int count = 0;
+            rs = st.executeQuery(query);
+            count = rs.getInt("count");
+            rs.close();
+            st.close();
+            return count;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+    }
+    
     public List<GrassMedicinePill> getGrassMedicinePill(String User) throws SQLException{
         List<GrassMedicinePill> grassMedicinePillList = new ArrayList<>();
             String query = "Select ID,name,reference,component,effect,indications,scoop,gram,sellprice,cost,createDateTime,lastUpdateDateTime, medicine, User from GrassMedicinePill where User = '"+User+"'";
@@ -177,6 +198,16 @@ public class GrassMedicinePill extends Medicine{//药丸
         {
             return "这名字已经存在";
         }*/
+    }
+    
+    public String EditSubTotalGrassMedicinePill(String name, String reference, String gram, String User) throws SQLException{
+
+            String query = "Update GrassMedicinePill Set gram = ('"+gram+"'), lastUpdateDateTime = datetime('now','localtime')"
+                     + "where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query); 
     }
     
     public String DeleteGrassMedicinePill(String ID, String User) throws SQLException{
