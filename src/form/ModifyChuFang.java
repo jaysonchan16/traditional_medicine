@@ -1216,6 +1216,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             Prescription pre = new Prescription();
             String resultSub;
             int maxChufang = pre.maxChufang(bill, userid);
+            int items = maxChufang - 1;
             int deleteChufang = pre.deleteChufang(prescriptionID, userid);
             String result = pre.DeletePrescription(maxChufang, deleteChufang, bill, prescriptionID, userid);
             String medicine = txtMedicineCategory.getText();
@@ -1231,7 +1232,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
                 //billList = billno.getBillsDetail("BillNo",bill,userid);
                 newSubtotal = Double.valueOf(txtSubTotal.getText()) - Double.valueOf(txtTotalPrice.getText());
                 System.out.println(newSubtotal);
-                resultSub = billno.EditBill(newSubtotal,bill,userid);
+                resultSub = billno.EditBill(newSubtotal,bill,items,userid);
                 if(medicine.equalsIgnoreCase("单味药粉"))
                 {
                     //String name, String reference, String gram, String User

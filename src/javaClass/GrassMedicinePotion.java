@@ -63,7 +63,7 @@ public class GrassMedicinePotion extends Medicine {// 药水
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
-            if(map.get("messages").equalsIgnoreCase("") && validateMedicine(reference,name,User) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePotionReferenceName(reference,name,User) == 0)
             {
                 String query = "insert into GrassMedicinePotion(ID, name, reference, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine,User)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+reference+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -111,10 +111,11 @@ public class GrassMedicinePotion extends Medicine {// 药水
         
     }
     
-    public int validateMedicine(String reference, String name, String User) throws SQLException
+    public int validateGrassMedicinePotionReferenceName(String reference, String name, String User) throws SQLException
     {
         try {
-            String query = "Select count(1) as count from GrassMedicinePotion where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";
+            String query = "Select count(1) as count from GrassMedicinePotion where reference = '"+reference+"' and name ='"+name+"' "
+                    + "and User = '"+User+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -180,21 +181,33 @@ public class GrassMedicinePotion extends Medicine {// 药水
         return grassMedicinePotionList;
     }
     
-    public String EditGrassMedicinePotion(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
-        /*if(validateMedicine(reference,name,User) == 0)
-        {*/
-            String query = "Update GrassMedicinePotion Set name = trim('"+name+"'), reference = trim('"+reference+"'), component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
+    public String EditGrassMedicinePotion(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, int referenceName, int details, String User) throws SQLException{
+        String query="";
+        SQLQuery sql = new SQLQuery();
+        String message = "";
+        if(referenceName == 1)
+        {
+            if(validateGrassMedicinePotionReferenceName(reference, name, User) == 0)
+            {
+                query = "Update GrassMedicinePotion Set name = trim('"+name+"'), reference = trim('"+reference+"'),lastUpdateDateTime = datetime('now','localtime') "
+                     + "where ID = '"+ID+"' and User ='"+User+"'";
+
+                message =  sql.AddEditDeleteQuery(query);
+            }
+            else
+            {
+                message = "这名字已经存在";
+            }
+        }
+        else if(details == 1)
+        {
+            query = "Update GrassMedicinePotion Set component = trim('"+component+"'), effect = trim('"+effect+"'), indications = trim('"+indication+"'),"
                     + " scoop = trim('"+scoop+"'), sellprice = trim('"+price+"'), gram = trim('"+gram+"'), cost = trim('"+cost+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
 
-            SQLQuery sql = new SQLQuery();
-
-            return sql.AddEditDeleteQuery(query);
-       /* }
-        else
-        {
-            return "这名字已经存在";
-        }*/
+            message = sql.AddEditDeleteQuery(query);
+        }
+        return message;
     }
     
     public String EditSubTotalGrassMedicinePotion(String name, String reference, String gram, String User) throws SQLException{

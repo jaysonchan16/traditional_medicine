@@ -86,6 +86,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnUpdate.setVisible(false);
         txtMedicine.setVisible(false);
         btnReset.setVisible(false);
+        radioReferenceName.setVisible(false);
+        radioDetails.setVisible(false);
     }
     
     public ModifyMedicine(User user,String medicine, String reference, String medicinename, String component, String indications,
@@ -155,7 +157,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setText(modifyWeight);
         txtCost.setText(modifyCost);
         txtPrice.setText(modifyTotalprice);
-
+        radioReferenceName.setVisible(false);
+        radioDetails.setVisible(false);
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
         btnModify.setVisible(true);
@@ -218,6 +221,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         comboReference = new javax.swing.JComboBox<>();
         txtReference = new javax.swing.JTextField();
+        radioReferenceName = new javax.swing.JRadioButton();
+        radioDetails = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -389,7 +394,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnDelete);
-        btnDelete.setBounds(710, 750, 130, 50);
+        btnDelete.setBounds(720, 780, 130, 50);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更新");
@@ -400,7 +405,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnUpdate);
-        btnUpdate.setBounds(570, 750, 130, 50);
+        btnUpdate.setBounds(580, 780, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -411,7 +416,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(10, 750, 130, 50);
+        btnBack.setBounds(20, 780, 130, 50);
 
         tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
@@ -446,7 +451,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnPrint);
-        btnPrint.setBounds(430, 750, 130, 50);
+        btnPrint.setBounds(440, 780, 130, 50);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
@@ -457,7 +462,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnModify);
-        btnModify.setBounds(150, 750, 130, 50);
+        btnModify.setBounds(160, 780, 130, 50);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtMedicine);
@@ -472,7 +477,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnReset);
-        btnReset.setBounds(290, 750, 130, 50);
+        btnReset.setBounds(300, 780, 130, 50);
 
         txtEffect.setColumns(20);
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -488,12 +493,37 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jLabel8.setBounds(90, 120, 100, 40);
 
         comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboReference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboReferenceActionPerformed(evt);
+            }
+        });
         panelBody.add(comboReference);
         comboReference.setBounds(230, 120, 220, 40);
 
         txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtReference);
         txtReference.setBounds(230, 120, 600, 40);
+
+        radioReferenceName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        radioReferenceName.setText("更新参考病症和药物名称");
+        radioReferenceName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioReferenceNameActionPerformed(evt);
+            }
+        });
+        panelBody.add(radioReferenceName);
+        radioReferenceName.setBounds(30, 730, 250, 40);
+
+        radioDetails.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        radioDetails.setText("更新组成，主治，功效，每次每日分量，重要，本钱，价格");
+        radioDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioDetailsActionPerformed(evt);
+            }
+        });
+        panelBody.add(radioDetails);
+        radioDetails.setBounds(300, 730, 540, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 840);
@@ -583,6 +613,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnReset.setVisible(true);
         btnUpdate.setVisible(false);
         comboReference.setVisible(false);
+        radioReferenceName.setVisible(false);
+        radioDetails.setVisible(false);
         //disabledTextBox();
         
     }//GEN-LAST:event_tblMedicineMouseClicked
@@ -652,12 +684,26 @@ public class ModifyMedicine extends javax.swing.JFrame {
         String code = ID.substring(0,9);
         String result;
         String reference = comboReference.getSelectedItem().toString();
+        int referenceName = 0;
+        int details = 0;
+        if(radioReferenceName.isSelected())
+        {
+            referenceName = 1;
+        }
+        else if(radioDetails.isSelected())
+        {
+            details = 1;
+        }
         
         try
         {
             if(name.equalsIgnoreCase(""))
             {
                 JOptionPane.showMessageDialog(rootPane, "请填写名字！");
+            }
+            else if(referenceName == 0 && details == 0)
+            {
+                JOptionPane.showMessageDialog(rootPane, "请选着更新参考病症和药物名称或者更新组成，主治，功效，每次每日分量，重要，本钱，价格！");
             }
             else if(component.equalsIgnoreCase(""))
             {
@@ -706,10 +752,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 if(code.equalsIgnoreCase("GrasMedPi"))
                 {
                     GrassMedicinePill pill = new GrassMedicinePill();
-                    result = pill.EditGrassMedicinePill(ID, name, reference, component, indication, effect, scoop, gram, cost, price,userid);
+                    result = pill.EditGrassMedicinePill(ID, name, reference, component, indication, effect, scoop, gram, cost, price, referenceName, details, userid);
                     if(result.equalsIgnoreCase("1"))
                     {
-                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        //JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            System.out.println("yes");
+                        } else {
+                            System.out.println("no");
+                        }
                         model.setRowCount(0);
                         show_medical();
                         resetTextBox();
@@ -722,10 +774,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("GrasMedPo"))
                 {
                     GrassMedicinePotion pill = new GrassMedicinePotion();
-                    result = pill.EditGrassMedicinePotion(ID, name, reference, component, indication, effect, scoop, gram, cost, price, userid);
+                    result = pill.EditGrassMedicinePotion(ID, name, reference, component, indication, effect, scoop, gram, cost, price, referenceName, details, userid);
                     if(result.equalsIgnoreCase("1"))
                     {
-                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            System.out.println("yes");
+                        } else {
+                            System.out.println("no");
+                        }
                         model.setRowCount(0);
                         show_medical();
                         resetTextBox();
@@ -738,10 +795,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("TradMedPi"))
                 {
                     TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    result = pill.EditTraditionalMedicinePill(ID, name, reference, component, indication, effect, scoop, gram, cost, price,userid);
+                    result = pill.EditTraditionalMedicinePill(ID, name, reference, component, indication, effect, scoop, gram, cost, price, referenceName, details, userid);
                     if(result.equalsIgnoreCase("1"))
                     {
-                        JOptionPane.showMessageDialog(rootPane, "更改成功");
+                        if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            System.out.println("yes");
+                        } else {
+                            System.out.println("no");
+                        }
                         model.setRowCount(0);
                         show_medical();
                         resetTextBox();
@@ -754,10 +816,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
                 else if(code.equalsIgnoreCase("TradMedPo"))
                 {
                     TraditionalMedicinePotion pill = new TraditionalMedicinePotion();    
-                    result = pill.EditTraditionalMedicinePotion(ID, name, reference, component, indication, effect, scoop, gram, cost, price,userid);
+                    result = pill.EditTraditionalMedicinePotion(ID, name, reference, component, indication, effect, scoop, gram, cost, price, referenceName, details, userid);
                     if(result.equalsIgnoreCase("1"))
                     {
-                       JOptionPane.showMessageDialog(rootPane, "更改成功"); 
+                       if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            System.out.println("yes");
+                        } else {
+                            System.out.println("no");
+                        }
                        model.setRowCount(0);
                        show_medical();
                        resetTextBox();
@@ -893,6 +960,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtCost.setEnabled(true);
         txtPrice.setEnabled(true);
         comboReference.setEnabled(true);
+        radioReferenceName.setVisible(true);
+        radioDetails.setVisible(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -921,7 +990,29 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtWeight.setText("");
         txtCost.setText("");
         txtPrice.setText("");
+        radioReferenceName.setVisible(false);
+        radioDetails.setVisible(false);
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void radioReferenceNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioReferenceNameActionPerformed
+        // TODO add your handling code here:
+        if(radioReferenceName.isSelected())
+        {
+            radioDetails.setSelected(false);
+        }
+    }//GEN-LAST:event_radioReferenceNameActionPerformed
+
+    private void comboReferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboReferenceActionPerformed
+
+    private void radioDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDetailsActionPerformed
+        // TODO add your handling code here:
+        if(radioDetails.isSelected())
+        {
+            radioReferenceName.setSelected(false);
+        }
+    }//GEN-LAST:event_radioDetailsActionPerformed
 
     public String printPreview(String medicine, String reference, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
     {
@@ -1741,6 +1832,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel lblzhuzi;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JRadioButton radioDetails;
+    private javax.swing.JRadioButton radioReferenceName;
     private javax.swing.JTable tblMedicine;
     private javax.swing.JTextArea txtComponent;
     private javax.swing.JTextField txtCost;

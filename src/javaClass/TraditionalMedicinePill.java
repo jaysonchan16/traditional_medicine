@@ -95,7 +95,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             double sellprice1 = sellprice;
             double gram1 = gram;
             double cost1 = cost;
-            if(map.get("messages").equalsIgnoreCase("") && validateAddTraditionalMedicinePill("name",name,User) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateTraditionalMedicinePillReferenceName(reference,name,User) == 0)
             {
                 String query = "insert into TraditionalMedicinePill(ID, name, reference, property, appliance, effect, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime,medicine, User)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+reference+"'), trim('"+property+"'), trim('"+appliance+"'), trim('"+effect+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -189,22 +189,33 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     }
     
     
-    public String EditTraditionalMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
-        /*if(validateAddTraditionalMedicinePill("name",name,User) == 0)
-        {*/
-            String query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
-                    + "scoop = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), sellprice = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
-                     + "where ID = '"+ID+"' and User ='"+User+"'";
-
-            SQLQuery sql = new SQLQuery();
-
-            return sql.AddEditDeleteQuery(query);   
-        /*}
-        else
+    public String EditTraditionalMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, int referenceName, int details, String User) throws SQLException{
+        String query="";
+        SQLQuery sql = new SQLQuery();
+        String message = "";
+        if(referenceName == 1)
         {
-            return "这名字已经存在";
-        }*/
-        
+            if(validateTraditionalMedicinePillReferenceName(reference,name,User) == 0)
+            {
+                query = "Update TraditionalMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), lastUpdateDateTime = datetime('now','localtime')"
+                         + "where ID = '"+ID+"' and User ='"+User+"'";
+
+                message = sql.AddEditDeleteQuery(query);   
+            }
+            else
+            {
+                message =  "这名字已经存在";
+            }
+        }
+        else if(details == 1)
+        {
+            query = "Update TraditionalMedicinePill Set property = trim('"+component+"'), appliance = trim('"+indication+"'), effect = trim('"+effect+"'), "
+                        + "scoop = trim('"+scoop+"'), gram = ('"+gram+"'), cost = ('"+cost+"'), sellprice = ('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
+                         + "where ID = '"+ID+"' and User ='"+User+"'";
+
+            message = sql.AddEditDeleteQuery(query);
+        }
+        return message;
     }
     
     public String EditSubTotalTraditionalMedicinePill(String name, String reference, String gram, String User) throws SQLException{
@@ -217,7 +228,7 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
             return sql.AddEditDeleteQuery(query); 
     }
     
-    public int validateMedicine(String reference, String name, String User) throws SQLException
+    public int validateTraditionalMedicinePillReferenceName(String reference, String name, String User) throws SQLException
     {
         try {
             String query = "Select count(1) as count from TraditionalMedicinePill where name = '"+name+"' and reference = '"+reference+"' and User ='"+User+"'";

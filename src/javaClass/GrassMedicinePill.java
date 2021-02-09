@@ -64,7 +64,7 @@ public class GrassMedicinePill extends Medicine{//药丸
             double gram1 = gram;
             double cost1 = cost;
             
-            if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePill("name", name,User) == 0)
+            if(map.get("messages").equalsIgnoreCase("") && validateGrassMedicinePillReferenceName(reference, name,User) == 0)
             {
                 String query = "insert into GrassMedicinePill(ID, name, reference, component, effect, indications, scoop, cost, gram, sellprice, createDateTime, lastUpdateDateTime, medicine, User)"
                         + "Select '"+map.get("data")+"',trim('"+name+"'), trim('"+reference+"'), trim('"+component+"'), trim('"+effect+"'), trim('"+indications+"'), trim('"+scoop1+"'), trim('"+sellprice1+"'), "
@@ -93,6 +93,28 @@ public class GrassMedicinePill extends Medicine{//药丸
     {
         try {
             String query = "Select count(1) as count from GrassMedicinePill where "+attribute+" = '"+data+"' and User = '"+User+"'";
+            System.out.println(query);
+            int count = 0;
+            rs = st.executeQuery(query);
+            count = rs.getInt("count");
+            rs.close();
+            st.close();
+            return count;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+    }
+    
+    public int validateGrassMedicinePillReferenceName(String reference, String name, String User) throws SQLException
+    {
+        try {
+            String query = "Select count(1) as count from GrassMedicinePill where reference = '"+reference+"' and name ='"+name+"' "
+                    + "and User = '"+User+"'";
             System.out.println(query);
             int count = 0;
             rs = st.executeQuery(query);
@@ -183,21 +205,33 @@ public class GrassMedicinePill extends Medicine{//药丸
         return grassMedicinePillList;
     }
     
-    public String EditGrassMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, String User) throws SQLException{
-        /*if(validateGrassMedicinePill("name", name, User) == 0)
-        {*/
-            String query = "Update GrassMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'), component = trim('"+component+"'), indications = trim('"+indication+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
+    public String EditGrassMedicinePill(String ID, String name, String reference, String component, String indication, String effect, String scoop, String gram, String cost, String price, int referenceName, int details, String User) throws SQLException{
+        String query="";
+        SQLQuery sql = new SQLQuery();
+        String message = "";
+        if(referenceName == 1)
+        {
+            if(validateGrassMedicinePillReferenceName(reference, name, User) == 0)
+            {
+                query = "Update GrassMedicinePill Set name = trim('"+name+"'), reference = trim('"+reference+"'),lastUpdateDateTime = datetime('now','localtime') "
+                     + "where ID = '"+ID+"' and User ='"+User+"'";
+
+                message = sql.AddEditDeleteQuery(query);
+            }
+            else
+            {
+                message =  "这名字已经存在";
+            }
+        }
+        else if(details == 1)
+        {
+            query = "Update GrassMedicinePill Set component = trim('"+component+"'), indications = trim('"+indication+"'), effect = trim('"+effect+"'), scoop = trim('"+scoop+"'), gram = trim('"+gram+"'),"
                     + " cost = trim('"+cost+"'), sellprice = trim('"+price+"'), lastUpdateDateTime = datetime('now','localtime')"
                      + "where ID = '"+ID+"' and User ='"+User+"'";
 
-            SQLQuery sql = new SQLQuery();
-
-            return sql.AddEditDeleteQuery(query);
-        /*}
-        else
-        {
-            return "这名字已经存在";
-        }*/
+            message = sql.AddEditDeleteQuery(query);
+        }
+        return message;
     }
     
     public String EditSubTotalGrassMedicinePill(String name, String reference, String gram, String User) throws SQLException{
