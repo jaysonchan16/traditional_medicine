@@ -384,7 +384,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     
     public void EditMedicine()
     {
-        ModifyMedicine med = new ModifyMedicine(user);
+        ModifyMedicine med = new ModifyMedicine(user,2);
         med.setVisible(true);
         this.dispose();
     }

@@ -396,7 +396,7 @@ public class PrintForm extends javax.swing.JFrame {
         }  
         else if(option == 6)
         {
-            ModifyMedicine modify = new ModifyMedicine(user);
+            ModifyMedicine modify = new ModifyMedicine(user,2);
             modify.setVisible(true);
             this.dispose();
         }

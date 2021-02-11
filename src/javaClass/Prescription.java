@@ -401,7 +401,7 @@ public class Prescription extends Disease{
         }
     }
     
-    public String EditPrescription() throws SQLException{
+    /*public String EditPrescription() throws SQLException{
          String query = "Update Prescription Set Category = trim('"+categorytable+"'), Name = '"+nametable+"',"
                  + " Jiliang = trim('"+jiliang+"'), Price = trim('"+price+"'), TotalPrice = trim('"+totalprice+"'),"
                  + " lastUpdateDateTime = datetime('now','localtime')"
@@ -410,7 +410,28 @@ public class Prescription extends Disease{
          SQLQuery sql = new SQLQuery();
 
         return sql.AddEditDeleteQuery(query);
+    }*/
+    
+    public String EditPrescriptionNewDetails(String category, String user, String updateAttribute, String updateData, String oldReference, String oldName) throws SQLException
+    {
+        String query = "Update Prescription Set "+updateAttribute+" = '"+updateData+"' "
+                 //+ "and lastUpdateDateTime = datetime('now','localtime')"
+                 + " where Category ='"+category+"' and  Reference = '"+oldReference+"' and Name ='"+oldName+"' and User = '"+user+"'";
+        System.out.println(query);
+         SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
     }
+    
+    /*public String EditPrescriptionReferenceName(String category, String oldReference, String oldName, String newReference, String newName, String user) throws SQLException{
+         String query = "Update Prescription Set Reference = '"+newReference+"' and Name ='"+newName+"' and "
+                 + " lastUpdateDateTime = datetime('now','localtime')"
+                 + " where Category ='"+category+"' and Reference = '"+oldReference+"' and Name ='"+oldName+"' and User = '"+user+"'";
+        System.out.println(query);
+         SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
+    }*/
     
     public int maxChufang(String bill,String userid) throws SQLException{
         String query = "Select max(a.Chufang)as Chufang from Prescription a "

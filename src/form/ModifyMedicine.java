@@ -17,6 +17,7 @@ import java.awt.ScrollPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Prescription;
 import javaClass.PrintTemplate;
 import javaClass.Reference;
 import javax.swing.ImageIcon;
@@ -61,10 +62,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
         initComponents();
     }
 
-    public ModifyMedicine(User user) {
+    public ModifyMedicine(User user,int option) {
         this.user = user;
         initComponents();
+        this.option = option;
         txtName.setEnabled(false);
+        //txtFixedName.setVisible(false);
         txtComponent.setEnabled(false);
         txtIndication.setEnabled(false);
         txtEffect.setEnabled(false);
@@ -112,6 +115,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         this.modifyCreateDateTime =createDateTime;
         this.modifyLastUpdateTime = lastUpdateTime;
         userid = user.getUserid();
+        txtFixedName.setVisible(false);
         txtMedicine.setEnabled(false);
         txtName.setEnabled(false);
         txtComponent.setEnabled(false);
@@ -136,6 +140,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtID.setText(modifyID);
         txtReference.setText(modifyReference);
         txtName.setText(medicinename);
+        txtFixedName.setText(medicinename);
         if(modifyComponent.equalsIgnoreCase(""))
         {
             txtComponent.setText(modifyProperty);
@@ -223,6 +228,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtReference = new javax.swing.JTextField();
         radioReferenceName = new javax.swing.JRadioButton();
         radioDetails = new javax.swing.JRadioButton();
+        txtFixedName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -524,6 +530,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         });
         panelBody.add(radioDetails);
         radioDetails.setBounds(300, 730, 540, 40);
+        panelBody.add(txtFixedName);
+        txtFixedName.setBounds(10, 180, 90, 30);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1770, 840);
@@ -536,6 +544,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             // TODO add your handling code here:
             String medicineName = comboMedicine.getSelectedItem().toString();
             txtName.setText("");
+            txtFixedName.setText("");
             txtComponent.setText("");
             txtIndication.setText("");
             txtEffect.setText("");
@@ -585,6 +594,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtMedicine.setText(medicine);
         txtID.setText(ID);
         txtName.setText(Name);
+        txtFixedName.setText(Name);
         txtComponent.setText(Component);
         txtIndication.setText(Indications);
         txtEffect.setText(Effect);
@@ -673,6 +683,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText();
+        String oldName = txtFixedName.getText();
+        String oldReference = txtReference.getText();
         String component = txtComponent.getText();
         String indication = txtIndication.getText();
         String effect = txtEffect.getText();
@@ -686,6 +698,11 @@ public class ModifyMedicine extends javax.swing.JFrame {
         String reference = comboReference.getSelectedItem().toString();
         int referenceName = 0;
         int details = 0;
+        Prescription pre = new Prescription();
+        System.out.println(name);
+        System.out.println(oldName);
+        System.out.println(reference);
+        System.out.println(oldReference);
         if(radioReferenceName.isSelected())
         {
             referenceName = 1;
@@ -758,7 +775,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
                         //JOptionPane.showMessageDialog(rootPane, "更改成功");
                         if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                            System.out.println("yes");
+                            String updateReference = pre.EditPrescriptionNewDetails("药丸", userid, "Reference", reference, oldReference, oldName);
+                            if(updateReference.equalsIgnoreCase("1"))
+                            {
+                                String updateName = pre.EditPrescriptionNewDetails("药丸", userid, "Name", name, reference, oldName);
+                                if(updateName.equalsIgnoreCase("1"))
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新药名失败！");
+                                }
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "更新失败！");
+                            }
                         } else {
                             System.out.println("no");
                         }
@@ -779,7 +812,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     {
                         if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                            System.out.println("yes");
+                            String updateReference = pre.EditPrescriptionNewDetails("药水", userid, "Reference", reference, oldReference, oldName);
+                            if(updateReference.equalsIgnoreCase("1"))
+                            {
+                                String updateName = pre.EditPrescriptionNewDetails("药水", userid, "Name", name, reference, oldName);
+                                if(updateName.equalsIgnoreCase("1"))
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新药名失败！");
+                                }
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "更新失败！");
+                            }
                         } else {
                             System.out.println("no");
                         }
@@ -800,7 +849,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     {
                         if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                            System.out.println("yes");
+                            String updateReference = pre.EditPrescriptionNewDetails("单味药粉", userid, "Reference", reference, oldReference, oldName);
+                            if(updateReference.equalsIgnoreCase("1"))
+                            {
+                                String updateName = pre.EditPrescriptionNewDetails("单味药粉", userid, "Name", name, reference, oldName);
+                                if(updateName.equalsIgnoreCase("1"))
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新药名失败！");
+                                }
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "更新失败！");
+                            }
                         } else {
                             System.out.println("no");
                         }
@@ -821,7 +886,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
                     {
                        if (JOptionPane.showConfirmDialog(null, "你要更改所有资料?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                            System.out.println("yes");
+                           String updateReference = pre.EditPrescriptionNewDetails("复方药粉", userid, "Reference", reference, oldReference, oldName);
+                            if(updateReference.equalsIgnoreCase("1"))
+                            {
+                                String updateName = pre.EditPrescriptionNewDetails("复方药粉", userid, "Name", name, reference, oldName);
+                                if(updateName.equalsIgnoreCase("1"))
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(rootPane, "更新药名失败！");
+                                }
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "更新失败！");
+                            }
                         } else {
                             System.out.println("no");
                         }
@@ -1838,6 +1919,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private javax.swing.JTextArea txtComponent;
     private javax.swing.JTextField txtCost;
     private javax.swing.JTextArea txtEffect;
+    private javax.swing.JTextField txtFixedName;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextArea txtIndication;
     private javax.swing.JTextField txtMedicine;
