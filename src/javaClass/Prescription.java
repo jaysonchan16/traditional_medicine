@@ -423,6 +423,16 @@ public class Prescription extends Disease{
         return sql.AddEditDeleteQuery(query);
     }
     
+    public String UpdateLastUpdateDateTime(String category, String user, String Reference, String Name) throws SQLException
+    {
+        String query = "Update Prescription Set lastUpdateDateTime = datetime('now','localtime')"
+                 + " where Category ='"+category+"' and  Reference = '"+Reference+"' and Name ='"+Name+"' and User = '"+user+"'";
+        System.out.println(query);
+         SQLQuery sql = new SQLQuery();
+
+        return sql.AddEditDeleteQuery(query);
+    }
+    
     /*public String EditPrescriptionReferenceName(String category, String oldReference, String oldName, String newReference, String newName, String user) throws SQLException{
          String query = "Update Prescription Set Reference = '"+newReference+"' and Name ='"+newName+"' and "
                  + " lastUpdateDateTime = datetime('now','localtime')"

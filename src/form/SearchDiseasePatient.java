@@ -10,9 +10,11 @@ import java.awt.Component;
 import javaClass.Prescription;
 import javaClass.User;
 import java.awt.Font;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -120,6 +122,8 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
+        btnExcel = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -325,7 +329,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(700, 730, 120, 50);
+        btnFind.setBounds(710, 730, 120, 50);
 
         jLabel16.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel16.setText("剂量:");
@@ -511,7 +515,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jPanel4.setBounds(1370, 760, 30, 30);
 
         jLabel23.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel23.setText("不能更改资料");
+        jLabel23.setText("旧资料");
         panelBody.add(jLabel23);
         jLabel23.setBounds(1410, 760, 130, 30);
 
@@ -521,9 +525,31 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jPanel3.setBounds(1670, 760, 30, 30);
 
         jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel24.setText("可以更改资料");
+        jLabel24.setText("最新资料");
         panelBody.add(jLabel24);
         jLabel24.setBounds(1710, 760, 130, 30);
+
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnExcel);
+        btnExcel.setBounds(430, 730, 120, 50);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnPrint);
+        btnPrint.setBounds(570, 730, 120, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(30, 90, 1870, 830);
@@ -860,6 +886,49 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBillKeyPressed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        int result = 0;
+        result = exc.countModel(model, "DiseasePatientsDetails");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫DiseasePatientsDetails.xlsx");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的DiseasePatientsDetails.xlsx才来转换");
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        try {
+            tblDisease.print();
+            // TODO add your handling code here:
+            /*model = (DefaultTableModel) tblPatient.getModel();
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("\t 杏生堂药行 \n");
+            builder.append("\t Heng Seng Tong Medicall Hall \n");
+            builder.append("\t 107, Jalan PKS2, Pekan Simpang Kuala \n");
+            builder.append("\t 05400 Alor Setar, Kedah \n");
+            MessageFormat header = new MessageFormat(builder.toString());
+            
+            JTable table = new JTable(model) {
+                @Override
+                public Printable getPrintable(JTable.PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat) {
+                    return new TablePrintable(tblPatient, JTable.PrintMode.FIT_WIDTH, header, footerFormat);
+                }
+            };
+            
+            
+            table.print();*/
+            } catch (PrinterException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     public void show_selected_patients(String contribute,String detail) throws SQLException{
         model.setRowCount(0);
         Prescription prescription = new Prescription();
@@ -1042,6 +1111,10 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         btnFind.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         findHeader.setIcon(iconHeader);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(userid);
         setResizable(false);
     }
@@ -1151,7 +1224,9 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

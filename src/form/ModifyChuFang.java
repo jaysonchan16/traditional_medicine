@@ -6,6 +6,7 @@
 package form;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import javaClass.User;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -83,6 +85,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         this.user = user;
         userid = user.getUserid();
+        color_table();
         //comboReference(comboBoxMedicine.getSelectedItem().toString());
         textboxShow();
         createColumns();
@@ -96,6 +99,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtLatest.setVisible(false);
         txtSubTotal.setVisible(false);
         txtWeight.setVisible(false);
+        
         /*comboReferenceGrassPill.setVisible(false);
         comboReferenceGrassPotion.setVisible(false);
         comboBoxReferenceTraditionalPill.setVisible(false);
@@ -137,6 +141,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         this.option = option;
         userid = user.getUserid();
         createColumns();
+        color_table();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         //comboReference(comboBoxMedicine.getSelectedItem().toString());
         //medicineCategory();
@@ -237,6 +242,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtSubTotal = new javax.swing.JTextField();
         txtMedicineCategory = new javax.swing.JTextField();
         btnExcel = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
         txtPrescriptionID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -271,7 +280,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
@@ -295,7 +304,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblChufang);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(880, 30, 810, 760);
+        jScrollPane1.setBounds(890, 20, 810, 720);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("IC：");
@@ -493,6 +502,26 @@ public class ModifyChuFang extends javax.swing.JFrame {
         });
         jPanel2.add(btnExcel);
         btnExcel.setBounds(180, 750, 140, 50);
+
+        jLabel23.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel23.setText("旧资料");
+        jPanel2.add(jLabel23);
+        jLabel23.setBounds(1270, 760, 130, 30);
+
+        jPanel4.setBackground(new java.awt.Color(254, 115, 63));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(1230, 760, 30, 30);
+
+        jPanel3.setBackground(new java.awt.Color(151, 254, 63));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(1530, 760, 30, 30);
+
+        jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel24.setText("最新资料");
+        jPanel2.add(jLabel24);
+        jLabel24.setBounds(1570, 760, 130, 30);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(100, 100, 1720, 820);
@@ -716,7 +745,16 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         Excel exc = new Excel();
-        exc.countModel(model, "ModifyChuFang");
+        int result = 0;
+        result = exc.countModel(model, "ModifyChuFang");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫ModifyChufang.xlsx");
+        }
+         else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的ModifyChufang.xlsx才来转换");
+        }
     }//GEN-LAST:event_btnExcelActionPerformed
 
     
@@ -1254,66 +1292,74 @@ public class ModifyChuFang extends javax.swing.JFrame {
             
             if(result.equalsIgnoreCase("1"))
             {
-                Bill billno = new Bill();
-                
-                //billList = billno.getBillsDetail("BillNo",bill,userid);
-                newSubtotal = Double.valueOf(txtSubTotal.getText()) - Double.valueOf(txtTotalPrice.getText());
-                System.out.println(newSubtotal);
-                resultSub = billno.EditBill(newSubtotal,bill,items,userid);
-                if(medicine.equalsIgnoreCase("单味药粉"))
-                {
-                    //String name, String reference, String gram, String User
-                    TraditionalMedicinePill pill = new TraditionalMedicinePill();
-                    resultSub = pill.EditSubTotalTraditionalMedicinePill(medicName, reference, weight, userid);
-                    if(resultSub.equalsIgnoreCase("1"))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "删除成功！");
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "delete() line 1534");
-                    }
-                }
-                else if(medicine.equalsIgnoreCase("药水"))
-                {
-                    GrassMedicinePotion potion = new GrassMedicinePotion();
-                    resultSub = potion.EditSubTotalGrassMedicinePotion(medicName, reference, weight, userid);
-                    if(resultSub.equalsIgnoreCase("1"))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "删除成功！");
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "delete() line 1547");
-                    }
-                }
-                else if(medicine.equalsIgnoreCase("药丸"))
-                {
-                    GrassMedicinePill pill = new GrassMedicinePill();
-                    resultSub = pill.EditSubTotalGrassMedicinePill(medicName, reference, weight, userid);
-                    if(resultSub.equalsIgnoreCase("1"))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "删除成功！");
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "delete() line 1560");
-                    }
-                }
-                else if(medicine.equalsIgnoreCase("复方药粉"))
-                {
-                    TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
-                    resultSub = potion.EditSubTotalTraditionalMedicinePotion(medicName, reference, weight, userid);
-                    if(resultSub.equalsIgnoreCase("1"))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "删除成功！");
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "delete() line 1573");
+                if (JOptionPane.showConfirmDialog(null, "你要更改利润价钱和数量资料吗?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    Bill billno = new Bill();
+
+                    //billList = billno.getBillsDetail("BillNo",bill,userid);
+                    newSubtotal = Double.valueOf(txtSubTotal.getText()) - Double.valueOf(txtTotalPrice.getText());
+                    System.out.println(newSubtotal);
+                    resultSub = billno.EditBill(newSubtotal,bill,items,userid);
+                    if (JOptionPane.showConfirmDialog(null, "你要更改回原本的重量吗?", "WARNING",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        if(medicine.equalsIgnoreCase("单味药粉"))
+                        {
+                            //String name, String reference, String gram, String User
+                            TraditionalMedicinePill pill = new TraditionalMedicinePill();
+                            resultSub = pill.EditSubTotalTraditionalMedicinePill(medicName, reference, weight, userid);
+                            if(resultSub.equalsIgnoreCase("1"))
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "delete() line 1534");
+                            }
+                        }
+                        else if(medicine.equalsIgnoreCase("药水"))
+                        {
+                            GrassMedicinePotion potion = new GrassMedicinePotion();
+                            resultSub = potion.EditSubTotalGrassMedicinePotion(medicName, reference, weight, userid);
+                            if(resultSub.equalsIgnoreCase("1"))
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "delete() line 1547");
+                            }
+                        }
+                        else if(medicine.equalsIgnoreCase("药丸"))
+                        {
+                            GrassMedicinePill pill = new GrassMedicinePill();
+                            resultSub = pill.EditSubTotalGrassMedicinePill(medicName, reference, weight, userid);
+                            if(resultSub.equalsIgnoreCase("1"))
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "delete() line 1560");
+                            }
+                        }
+                        else if(medicine.equalsIgnoreCase("复方药粉"))
+                        {
+                            TraditionalMedicinePotion potion = new TraditionalMedicinePotion();
+                            resultSub = potion.EditSubTotalTraditionalMedicinePotion(medicName, reference, weight, userid);
+                            if(resultSub.equalsIgnoreCase("1"))
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "删除成功！");
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(rootPane, "delete() line 1573");
+                            }
+                        }
                     }
                 }
             }
+            model.setRowCount(0);
+            show_table();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.delete() on line 769 get error, "+ex.getMessage());
         }
@@ -1372,6 +1418,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         columnModel.getColumn(21).setMaxWidth(0);
         columnModel.getColumn(22).setMinWidth(0);
         columnModel.getColumn(22).setMaxWidth(0);
+        columnModel.getColumn(24).setMinWidth(0);
+        columnModel.getColumn(24).setMaxWidth(0);
+        columnModel.getColumn(26).setMinWidth(0);
+        columnModel.getColumn(26).setMaxWidth(0);
     }
     
     public void textboxShow()
@@ -1596,7 +1646,30 @@ public class ModifyChuFang extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "NewPatientDisease.FindByMedicineName2() get error on line 863,"+ex.getMessage());
             }
     }*/
+    public void color_table()
+    {
+        tblChufang.setDefaultRenderer(Object.class, new PriorityCellRenderer());
+        tblChufang.getTableHeader().setReorderingAllowed(false);
+    }
     
+    //change the colour
+    public class PriorityCellRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            int latest = Integer.parseInt(table.getValueAt(row, 24).toString());
+            
+             if (latest ==  0) {
+                setBackground(new Color(254, 115, 63));  // or background
+            }
+            else
+            {
+                setBackground(new Color(151, 254, 63));  // or background
+            }
+            return this;
+        }
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1646,6 +1719,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1655,6 +1730,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblJiliang;

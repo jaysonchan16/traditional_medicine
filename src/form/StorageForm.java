@@ -273,7 +273,16 @@ public class StorageForm extends javax.swing.JFrame {
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         Excel exc = new Excel();
-        exc.countModel(model, "Storage");
+        int result = 0;
+        result = exc.countModel(model, "Storage");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫Storage.xlsx");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的Storage.xlsx才来转换");
+        }
     }//GEN-LAST:event_btnExcelActionPerformed
 
     private void createColumns()

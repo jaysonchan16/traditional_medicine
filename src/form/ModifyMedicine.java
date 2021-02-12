@@ -796,7 +796,15 @@ public class ModifyMedicine extends javax.swing.JFrame {
                                 String updateName = pre.EditPrescriptionNewDetails("药丸", userid, "Name", name, reference, oldName);
                                 if(updateName.equalsIgnoreCase("1"))
                                 {
-                                    JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                    String updateDateTime = pre.UpdateLastUpdateDateTime("药丸", userid, reference, name);
+                                    if(updateDateTime.equalsIgnoreCase("1"))
+                                    {
+                                        JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                    }
+                                    else
+                                    {
+                                        JOptionPane.showMessageDialog(rootPane, "更新失败！");
+                                    }
                                 }
                                 else
                                 {
@@ -1113,7 +1121,16 @@ public class ModifyMedicine extends javax.swing.JFrame {
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         Excel exc = new Excel();
-        exc.countModel(model, "ModifyMedicine");
+        int result = 0;
+        result = exc.countModel(model, "ModifyMedicine");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫ModifyMedicine.xlsx");
+        }
+         else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的ModifyMedicine.xlsx才来转换");
+        }
     }//GEN-LAST:event_btnExcelActionPerformed
 
     public String printPreview(String medicine, String reference, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)

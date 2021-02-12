@@ -9,9 +9,11 @@ import java.awt.Color;
 import javaClass.User;
 import javaClass.Medicine;
 import java.awt.Font;
+import java.awt.print.PrinterException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -103,6 +105,8 @@ public class SearchMedicine extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         txtAppliance = new javax.swing.JTextArea();
+        btnExcel = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -154,7 +158,7 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnFind);
-        btnFind.setBounds(890, 780, 130, 50);
+        btnFind.setBounds(880, 780, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -165,7 +169,7 @@ public class SearchMedicine extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(90, 780, 130, 50);
+        btnBack.setBounds(40, 780, 130, 50);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("价格:");
@@ -413,6 +417,28 @@ public class SearchMedicine extends javax.swing.JFrame {
         jPanel2.add(jScrollPane8);
         jScrollPane8.setBounds(180, 430, 330, 136);
 
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExcel);
+        btnExcel.setBounds(740, 780, 130, 50);
+
+        btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnPrint.setText("打印");
+        btnPrint.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnPrint);
+        btnPrint.setBounds(590, 780, 130, 50);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 90, 1860, 840);
 
@@ -620,6 +646,50 @@ public class SearchMedicine extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtApplianceKeyPressed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        int result = 0;
+        result = exc.countModel(model, "MedicineDetails");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫MedicineDetails.xlsx");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的MedicineDetails.xlsx才来转换");
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        try {
+            tblMedicine.print();
+            // TODO add your handling code here:
+            /*model = (DefaultTableModel) tblPatient.getModel();
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("\t 杏生堂药行 \n");
+            builder.append("\t Heng Seng Tong Medicall Hall \n");
+            builder.append("\t 107, Jalan PKS2, Pekan Simpang Kuala \n");
+            builder.append("\t 05400 Alor Setar, Kedah \n");
+            MessageFormat header = new MessageFormat(builder.toString());
+            
+            JTable table = new JTable(model) {
+                @Override
+                public Printable getPrintable(JTable.PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat) {
+                    return new TablePrintable(tblPatient, JTable.PrintMode.FIT_WIDTH, header, footerFormat);
+                }
+            };
+            
+            
+            table.print();*/
+            } catch (PrinterException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
     
     private void createColumns()
     {
@@ -739,6 +809,10 @@ public class SearchMedicine extends javax.swing.JFrame {
         btnFind.setIcon(iconFind);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         findHeader.setIcon(iconHeader);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
+        ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
+        btnPrint.setIcon(iconPrint);
         this.lblName.setText(userid);
         setResizable(false);
     }
@@ -803,7 +877,9 @@ public class SearchMedicine extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

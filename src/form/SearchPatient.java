@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javaClass.TablePrintable;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -90,6 +91,7 @@ public class SearchPatient extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -292,7 +294,18 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(370, 640, 130, 50);
+        btnPrint.setBounds(380, 640, 130, 50);
+
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExcel);
+        btnExcel.setBounds(230, 640, 130, 50);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 90, 1840, 780);
@@ -456,6 +469,22 @@ public class SearchPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        int result = 0;
+        result = exc.countModel(model, "PatientDetails");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫PatientDetails.xlsx");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的PatientDetails.xlsx才来转换");
+        }
+        
+    }//GEN-LAST:event_btnExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -576,6 +605,8 @@ public class SearchPatient extends javax.swing.JFrame {
         jLabel9.setIcon(iconHeader);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
         this.lblName.setText(userid);
         setResizable(false);
     }
@@ -600,6 +631,7 @@ public class SearchPatient extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboArrange;

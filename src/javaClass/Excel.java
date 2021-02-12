@@ -42,7 +42,7 @@ public class Excel {
 
     public Statement st = connect.connection();
      
-    public void exportToExcel(JTable table, String filePath) throws Exception {
+    public int exportToExcel(JTable table, String filePath) throws Exception {
         TableModel model = table.getModel();
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet();
@@ -79,6 +79,7 @@ public class Excel {
         workbook.write(out);
         out.close();
         workbook.close();
+        return 1;
     }
     
     
@@ -223,8 +224,9 @@ public class Excel {
         }
     }
     
-       public void countModel(DefaultTableModel model,String ExcelName)
+       public int countModel(DefaultTableModel model,String ExcelName)
         {
+            int result = 0;
             int nRow = model.getRowCount(), nCol = model.getColumnCount();
             Object columnsName[] = new Object[nCol];
             Object[][] tableData = new Object[nRow][nCol];
@@ -243,10 +245,11 @@ public class Excel {
             JTable table = new JTable(tableData,columnsName);
             
             try {
-                exportToExcel(table, ExcelName+".xlsx");
+                result = exportToExcel(table, ExcelName+".xlsx");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            return result;
         }
     
     public HashMap<String, String> checkMonthYear(String frommonth, String tomonth, String fromyear, String toyear){

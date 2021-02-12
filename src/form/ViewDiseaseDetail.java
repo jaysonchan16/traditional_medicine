@@ -23,6 +23,7 @@ import javaClass.WordWrapCellRenderer;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaPrintableArea;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -396,7 +397,16 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         // TODO add your handling code here:
         Excel exc = new Excel();
-        exc.countModel(model, "DiseaseDetail");
+        int result = 0;
+        result = exc.countModel(model, "DiseaseDetail");
+        if(result == 1)
+        {
+            JOptionPane.showMessageDialog(rootPane, "转换成功Excel名字叫Storage.xlsx");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "确保你删掉旧的Storage.xlsx才来转换");
+        }
     }//GEN-LAST:event_btnExcelActionPerformed
 
     
