@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javaClass.Bill;
 import javaClass.Code;
+import javaClass.Excel;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
 import javaClass.Prescription;
@@ -91,6 +92,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtDisease.setVisible(false);
         lblJiliang.setVisible(false);
         txtRemaining.setVisible(false);
+        txtBill.setVisible(false);
+        txtLatest.setVisible(false);
+        txtSubTotal.setVisible(false);
+        txtWeight.setVisible(false);
         /*comboReferenceGrassPill.setVisible(false);
         comboReferenceGrassPotion.setVisible(false);
         comboBoxReferenceTraditionalPill.setVisible(false);
@@ -143,6 +148,10 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnReset.setVisible(false);
         image();
         txtDisease.setVisible(false);
+        txtBill.setVisible(false);
+        txtLatest.setVisible(false);
+        txtSubTotal.setVisible(false);
+        txtWeight.setVisible(false);
         txtPrescriptionID.setText(PrescriptionID);
         txtIC.setText(IC);
         txtIC.setEnabled(false);
@@ -227,6 +236,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtLatest = new javax.swing.JTextField();
         txtSubTotal = new javax.swing.JTextField();
         txtMedicineCategory = new javax.swing.JTextField();
+        btnExcel = new javax.swing.JButton();
         txtPrescriptionID = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -370,7 +380,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnReset);
-        btnReset.setBounds(160, 750, 100, 40);
+        btnReset.setBounds(400, 750, 100, 40);
 
         txtTotalPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtTotalPrice);
@@ -385,7 +395,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnDelete);
-        btnDelete.setBounds(520, 750, 100, 40);
+        btnDelete.setBounds(650, 750, 100, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("总价值:");
@@ -419,7 +429,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(400, 750, 100, 40);
+        btnPrint.setBounds(520, 750, 100, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("药物名称：");
@@ -439,7 +449,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(40, 750, 100, 40);
+        btnBack.setBounds(160, 750, 100, 40);
         jPanel2.add(txtDisease);
         txtDisease.setBounds(520, 10, 90, 22);
 
@@ -472,6 +482,17 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtMedicineCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtMedicineCategory);
         txtMedicineCategory.setBounds(160, 340, 590, 40);
+
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExcel);
+        btnExcel.setBounds(280, 750, 100, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(100, 100, 1720, 820);
@@ -691,6 +712,12 @@ public class ModifyChuFang extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_tblChufangMouseClicked
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        exc.countModel(model, "ModifyChuFang");
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     
     /**
@@ -1379,6 +1406,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnReset.setIcon(iconReset);
         ImageIcon iconDelete = new ImageIcon(getClass().getResource("/menu/smallDelete.png"));
         btnDelete.setIcon(iconDelete);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
 //        ImageIcon iconUpdate = new ImageIcon(getClass().getResource("/menu/smallUpdate.png"));
 //        btnModify.setIcon(iconUpdate);
 //        ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/smallEdit.png"));
@@ -1568,6 +1597,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
     }*/
     
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1604,6 +1634,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFindIC;
     private javax.swing.JButton btnFindID;
     private javax.swing.JButton btnPrint;

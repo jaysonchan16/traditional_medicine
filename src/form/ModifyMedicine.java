@@ -91,6 +91,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnReset.setVisible(false);
         radioReferenceName.setVisible(false);
         radioDetails.setVisible(false);
+        txtFixedName.setVisible(false);
     }
     
     public ModifyMedicine(User user,String medicine, String reference, String medicinename, String component, String indications,
@@ -130,6 +131,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         comboMedicine.setVisible(false);
         comboReference.setVisible(false);
         btnFind.setEnabled(false);
+        txtFixedName.setVisible(false);
         comboReference();
         comboMedicine();
         changeLabelSearch(medicine);

@@ -64,11 +64,14 @@ public class Excel {
                 Object value = model.getValueAt(r, c);
                 if (value instanceof String) {
                     cell.setCellValue((String) value);
+                } else if (value instanceof Float) {
+                    cell.setCellValue((Float) value);
                 } else if (value instanceof Double) {
                     cell.setCellValue((Double) value);
                 } else if (value instanceof Integer) {
                     cell.setCellValue((Integer) value);
-                }
+                } 
+                
             }
         }
 
@@ -77,6 +80,7 @@ public class Excel {
         out.close();
         workbook.close();
     }
+    
     
     public void Print(javax.swing.JTable table){
         MessageFormat header = new MessageFormat("Report Print");
@@ -219,6 +223,31 @@ public class Excel {
         }
     }
     
+       public void countModel(DefaultTableModel model,String ExcelName)
+        {
+            int nRow = model.getRowCount(), nCol = model.getColumnCount();
+            Object columnsName[] = new Object[nCol];
+            Object[][] tableData = new Object[nRow][nCol];
+            for(int z=0; z< nCol;z++)
+            {
+                columnsName[z] = model.getColumnName(z);
+                System.out.print(model.getColumnName(z));
+            }
+
+            for (int i = 0 ; i < nRow ; i++){
+                for (int j = 0 ; j < nCol ; j++){
+                    tableData[i][j] = model.getValueAt(i,j);
+                    System.out.print(tableData[i][j]);
+                }
+            }
+            JTable table = new JTable(tableData,columnsName);
+            
+            try {
+                exportToExcel(table, ExcelName+".xlsx");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     
     public HashMap<String, String> checkMonthYear(String frommonth, String tomonth, String fromyear, String toyear){
         String to = "";
