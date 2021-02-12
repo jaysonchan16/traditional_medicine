@@ -17,6 +17,7 @@ import java.awt.ScrollPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javaClass.Prescription;
 import javaClass.PrintTemplate;
 import javaClass.Reference;
@@ -231,6 +232,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         radioReferenceName = new javax.swing.JRadioButton();
         radioDetails = new javax.swing.JRadioButton();
         txtFixedName = new javax.swing.JTextField();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -294,7 +296,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(230, 70, 500, 40);
+        txtID.setBounds(230, 70, 650, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -305,7 +307,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(740, 70, 90, 40);
+        btnFind.setBounds(890, 70, 90, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +316,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtName);
-        txtName.setBounds(230, 170, 600, 40);
+        txtName.setBounds(230, 170, 750, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("药物名称：");
@@ -332,7 +334,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtComponent);
 
         panelBody.add(jScrollPane3);
-        jScrollPane3.setBounds(230, 220, 600, 100);
+        jScrollPane3.setBounds(230, 220, 750, 100);
 
         lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhuzi.setText("主治：");
@@ -345,7 +347,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtIndication);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(230, 330, 600, 90);
+        jScrollPane2.setBounds(230, 330, 750, 90);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("功效：");
@@ -359,7 +361,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtScoop.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtScoop);
-        txtScoop.setBounds(230, 530, 600, 40);
+        txtScoop.setBounds(230, 530, 750, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("重量：");
@@ -378,20 +380,20 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtPrice);
-        txtPrice.setBounds(230, 680, 610, 40);
+        txtPrice.setBounds(230, 680, 750, 40);
 
         txtCost.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtCost);
-        txtCost.setBounds(230, 630, 610, 40);
+        txtCost.setBounds(230, 630, 750, 40);
 
         txtWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtWeight);
-        txtWeight.setBounds(230, 580, 540, 40);
+        txtWeight.setBounds(230, 580, 690, 40);
 
         lblWeight.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblWeight.setText("GM");
         panelBody.add(lblWeight);
-        lblWeight.setBounds(780, 580, 60, 40);
+        lblWeight.setBounds(930, 580, 60, 40);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -448,7 +450,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane4);
-        jScrollPane4.setBounds(870, 20, 860, 780);
+        jScrollPane4.setBounds(1000, 20, 830, 780);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -474,7 +476,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtMedicine);
-        txtMedicine.setBounds(230, 20, 600, 40);
+        txtMedicine.setBounds(230, 20, 750, 40);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText("重启");
@@ -493,7 +495,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         jScrollPane5.setViewportView(txtEffect);
 
         panelBody.add(jScrollPane5);
-        jScrollPane5.setBounds(230, 430, 600, 90);
+        jScrollPane5.setBounds(230, 430, 750, 90);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("参考病症：");
@@ -511,7 +513,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
 
         txtReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtReference);
-        txtReference.setBounds(230, 120, 600, 40);
+        txtReference.setBounds(230, 120, 750, 40);
 
         radioReferenceName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         radioReferenceName.setText("更新参考病症和药物名称");
@@ -521,7 +523,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(radioReferenceName);
-        radioReferenceName.setBounds(30, 730, 250, 40);
+        radioReferenceName.setBounds(30, 730, 400, 40);
 
         radioDetails.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         radioDetails.setText("更新组成，主治，功效，每次每日分量，重要，本钱，价格");
@@ -531,12 +533,23 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(radioDetails);
-        radioDetails.setBounds(300, 730, 540, 40);
+        radioDetails.setBounds(450, 730, 530, 40);
         panelBody.add(txtFixedName);
         txtFixedName.setBounds(10, 180, 90, 30);
 
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnExcel);
+        btnExcel.setBounds(860, 780, 130, 50);
+
         getContentPane().add(panelBody);
-        panelBody.setBounds(100, 90, 1770, 840);
+        panelBody.setBounds(40, 90, 1870, 840);
 
         setBounds(0, 0, 1956, 1030);
     }// </editor-fold>//GEN-END:initComponents
@@ -1096,6 +1109,12 @@ public class ModifyMedicine extends javax.swing.JFrame {
             radioReferenceName.setSelected(false);
         }
     }//GEN-LAST:event_radioDetailsActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        exc.countModel(model, "ModifyMedicine");
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     public String printPreview(String medicine, String reference, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
     {
@@ -1773,6 +1792,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnModify.setIcon(iconModify);
         ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
         btnReset.setIcon(iconReset);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
         setResizable(false);
     }
     
@@ -1883,6 +1904,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnPrint;

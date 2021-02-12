@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javaClass.Code;
+import javaClass.Excel;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
 import javaClass.Medicine;
@@ -93,6 +94,7 @@ public class StorageForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        btnExcel = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
 
@@ -136,7 +138,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(330, 740, 130, 50);
+        btnFind.setBounds(350, 740, 130, 50);
 
         comboBoxName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(comboBoxName);
@@ -230,6 +232,17 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(jLabel5);
         jLabel5.setBounds(1500, 750, 90, 30);
 
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnExcel);
+        btnExcel.setBounds(190, 740, 130, 50);
+
         getContentPane().add(panelBody);
         panelBody.setBounds(100, 90, 1752, 820);
 
@@ -256,6 +269,12 @@ public class StorageForm extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        exc.countModel(model, "Storage");
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     private void createColumns()
     {
@@ -497,6 +516,8 @@ public class StorageForm extends javax.swing.JFrame {
         btnBack.setIcon(iconBack);
         ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
         btnFind.setIcon(iconFind);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/stockmedium.png"));
         findHeader.setIcon(iconHeader);
         this.lblName.setText(userid);
@@ -539,6 +560,7 @@ public class StorageForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFind;
     private javax.swing.JComboBox<String> comboBoxMedicine;
     private javax.swing.JComboBox<String> comboBoxName;

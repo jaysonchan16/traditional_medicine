@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javaClass.WordWrapCellRenderer;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaPrintableArea;
@@ -94,6 +95,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -181,7 +183,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(1610, 720, 100, 40);
+        btnPrint.setBounds(1490, 720, 100, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -213,6 +215,17 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         jPanel2.add(jPanel4);
         jPanel4.setBounds(60, 710, 30, 30);
+
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnExcel);
+        btnExcel.setBounds(1610, 720, 100, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(30, 100, 1870, 800);
@@ -380,6 +393,12 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        exc.countModel(model, "DiseaseDetail");
+    }//GEN-LAST:event_btnExcelActionPerformed
+
     
     private void createColumns()
     {
@@ -475,6 +494,8 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconLabel = new ImageIcon(getClass().getResource("/menu/report.png"));
         headerPatient.setIcon(iconLabel);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
     }
     
     public void color_table()
@@ -582,6 +603,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnPrint;
     private javax.swing.JLabel headerPatient;
     private javax.swing.JLabel jLabel12;

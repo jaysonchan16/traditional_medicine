@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Excel;
 import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -187,6 +188,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -248,7 +250,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnModify);
-        btnModify.setBounds(610, 740, 140, 50);
+        btnModify.setBounds(600, 740, 140, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -259,7 +261,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnDelete);
-        btnDelete.setBounds(460, 740, 140, 50);
+        btnDelete.setBounds(450, 740, 140, 50);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText(" 重启");
@@ -270,7 +272,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnReset);
-        btnReset.setBounds(160, 740, 140, 50);
+        btnReset.setBounds(150, 740, 140, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -281,7 +283,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(20, 740, 130, 50);
+        btnBack.setBounds(10, 740, 130, 50);
 
         jLabel12.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel12.setText("体温：");
@@ -290,16 +292,16 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtTemperature.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtTemperature);
-        txtTemperature.setBounds(140, 620, 200, 40);
+        txtTemperature.setBounds(140, 620, 340, 40);
 
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel13.setText("血压：");
         panelBody.add(jLabel13);
-        jLabel13.setBounds(360, 620, 60, 40);
+        jLabel13.setBounds(510, 620, 60, 40);
 
         txtBlood.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtBlood);
-        txtBlood.setBounds(420, 620, 220, 40);
+        txtBlood.setBounds(560, 620, 310, 40);
 
         jLabel11.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel11.setText("病史：");
@@ -308,7 +310,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtHistory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtHistory);
-        txtHistory.setBounds(140, 560, 500, 40);
+        txtHistory.setBounds(140, 560, 730, 40);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("舌苔：");
@@ -317,29 +319,29 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtTongueCoating.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtTongueCoating);
-        txtTongueCoating.setBounds(140, 500, 200, 40);
+        txtTongueCoating.setBounds(140, 500, 340, 40);
 
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("大小便：");
         panelBody.add(jLabel10);
-        jLabel10.setBounds(350, 500, 76, 40);
+        jLabel10.setBounds(490, 500, 76, 40);
 
         txtShit.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtShit);
-        txtShit.setBounds(420, 500, 220, 40);
+        txtShit.setBounds(560, 500, 310, 40);
 
         txtTongueQuality.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtTongueQuality);
-        txtTongueQuality.setBounds(420, 440, 220, 40);
+        txtTongueQuality.setBounds(560, 440, 310, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("舌质：");
         panelBody.add(jLabel8);
-        jLabel8.setBounds(370, 440, 60, 40);
+        jLabel8.setBounds(510, 440, 60, 40);
 
         txtPulse.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtPulse);
-        txtPulse.setBounds(140, 440, 200, 40);
+        txtPulse.setBounds(140, 440, 340, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("脉象：");
@@ -353,18 +355,18 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtCategory.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtCategory);
-        txtCategory.setBounds(140, 380, 500, 40);
+        txtCategory.setBounds(140, 380, 730, 40);
 
         txtSymptom.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtSymptom);
-        txtSymptom.setBounds(140, 320, 500, 40);
+        txtSymptom.setBounds(140, 320, 730, 40);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("主症：");
         panelBody.add(jLabel1);
         jLabel1.setBounds(80, 320, 60, 40);
         panelBody.add(jSeparator3);
-        jSeparator3.setBounds(50, 290, 650, 10);
+        jSeparator3.setBounds(50, 290, 830, 10);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("电话号码：");
@@ -373,7 +375,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtPhone);
-        txtPhone.setBounds(140, 230, 500, 40);
+        txtPhone.setBounds(140, 230, 730, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("名字：");
@@ -382,7 +384,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtName);
-        txtName.setBounds(140, 170, 500, 40);
+        txtName.setBounds(140, 170, 730, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("IC:");
@@ -391,7 +393,7 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtIC);
-        txtIC.setBounds(130, 50, 260, 40);
+        txtIC.setBounds(130, 50, 330, 40);
 
         btnFindIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindIC.setText("寻找");
@@ -413,16 +415,16 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFindID);
-        btnFindID.setBounds(500, 100, 140, 50);
+        btnFindID.setBounds(730, 100, 140, 50);
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(430, 50, 210, 40);
+        txtID.setBounds(500, 50, 370, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("ID:");
         panelBody.add(jLabel4);
-        jLabel4.setBounds(400, 50, 25, 40);
+        jLabel4.setBounds(470, 50, 25, 40);
 
         tblDisease.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblDisease.setModel(new javax.swing.table.DefaultTableModel(
@@ -460,7 +462,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane3);
-        jScrollPane3.setBounds(760, 40, 990, 750);
+        jScrollPane3.setBounds(900, 40, 900, 750);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -471,10 +473,21 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnPrint);
-        btnPrint.setBounds(310, 740, 140, 50);
+        btnPrint.setBounds(300, 740, 140, 50);
+
+        btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        btnExcel.setText("Excel");
+        btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        panelBody.add(btnExcel);
+        btnExcel.setBounds(750, 740, 140, 50);
 
         getContentPane().add(panelBody);
-        panelBody.setBounds(100, 90, 1770, 820);
+        panelBody.setBounds(60, 90, 1840, 820);
 
         setBounds(0, 0, 1957, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -658,6 +671,12 @@ public class ModifyDisease extends javax.swing.JFrame {
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+        Excel exc = new Excel();
+        exc.countModel(model, "ModifyDisease");
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     public void Find()
     {
@@ -865,6 +884,8 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel15.setIcon(iconModify);
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
+        ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
+        btnExcel.setIcon(iconExcel);
         setResizable(false);
     }
     
@@ -913,6 +934,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFindIC;
     private javax.swing.JButton btnFindID;
     private javax.swing.JButton btnModify;
