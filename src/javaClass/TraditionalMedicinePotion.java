@@ -181,7 +181,7 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
         int counted = Integer.parseInt(count);
         if(counted > 1)
         {
-            String query = "Delete From TraditionalMedicinePotion where ID ="+ID+" and User ='"+User+"' order by 1 desc";
+            String query = "Delete From TraditionalMedicinePotion where ID ='"+ID+"' and User ='"+User+"'";
 
             SQLQuery sql = new SQLQuery();
 
