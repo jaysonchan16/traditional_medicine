@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javaClass.Excel;
+import javaClass.Patient;
 import javaClass.PrintTemplate;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -691,29 +692,39 @@ public class ModifyDisease extends javax.swing.JFrame {
     {
         String IC = txtIC.getText();
         String ID = txtID.getText();
-        
+        Patient patient = new Patient();
         Disease disease = new Disease();
         try {
-            if(disease.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || disease.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
-            {   
-                String ICdata = disease.getPatient(IC,ID,userid).getIC();
-                String IDdata = disease.getPatient(IC,ID,userid).getID();
-                txtName.setText(disease.getPatient(IC,ID,userid).getName());
-                txtPhone.setText(disease.getPatient(IC,ID,userid).getPhone());
-                txtID.setText(IDdata);
-                txtIC.setText(ICdata);
-                txtDiseaseID.setText(disease.getDisease(ICdata,userid).getDiseaseID());
-                txtSymptom.setText(disease.getDisease(ICdata,userid).getSymptom());
-                txtCategory.setText(disease.getDisease(ICdata,userid).getCategory());
-                txtPulse.setText(disease.getDisease(ICdata,userid).getPulseCondition());
-                txtTongueQuality.setText(disease.getDisease(ICdata,userid).getTongueQuality());
-                txtTongueCoating.setText(disease.getDisease(ICdata,userid).getTongueCoating());
-                txtHistory.setText(disease.getDisease(ICdata,userid).getHistory());
-                txtTemperature.setText(String.valueOf(disease.getDisease(ICdata,userid).getTemperature()));
-                txtBlood.setText(disease.getDisease(ICdata,userid).getBloodPressure());
-                txtShit.setText(disease.getDisease(ICdata,userid).getPeeShit());
-                txtIC.setEnabled(false);
-                txtID.setEnabled(false);
+            if(patient.validatePatient(IC,userid) != 0 || patient.validatePatientID(ID, userid) !=0)
+            {
+                if(disease.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || disease.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
+                {   
+                    String ICdata = disease.getPatient(IC,ID,userid).getIC();
+                    String IDdata = disease.getPatient(IC,ID,userid).getID();
+                    txtName.setText(disease.getPatient(IC,ID,userid).getName());
+                    txtPhone.setText(disease.getPatient(IC,ID,userid).getPhone());
+                    txtID.setText(IDdata);
+                    txtIC.setText(ICdata);
+                    txtDiseaseID.setText(disease.getDisease(ICdata,userid).getDiseaseID());
+                    txtSymptom.setText(disease.getDisease(ICdata,userid).getSymptom());
+                    txtCategory.setText(disease.getDisease(ICdata,userid).getCategory());
+                    txtPulse.setText(disease.getDisease(ICdata,userid).getPulseCondition());
+                    txtTongueQuality.setText(disease.getDisease(ICdata,userid).getTongueQuality());
+                    txtTongueCoating.setText(disease.getDisease(ICdata,userid).getTongueCoating());
+                    txtHistory.setText(disease.getDisease(ICdata,userid).getHistory());
+                    txtTemperature.setText(String.valueOf(disease.getDisease(ICdata,userid).getTemperature()));
+                    txtBlood.setText(disease.getDisease(ICdata,userid).getBloodPressure());
+                    txtShit.setText(disease.getDisease(ICdata,userid).getPeeShit());
+                    txtIC.setEnabled(false);
+                    txtID.setEnabled(false);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                    NewPatient detail = new NewPatient(user,IC);
+                    detail.setVisible(true);
+                    this.dispose();
+                }
             }
             else
             {

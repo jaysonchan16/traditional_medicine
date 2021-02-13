@@ -394,6 +394,27 @@ public class Patient {
         
     }
     
+    public int validatePatientID(String ID, String user) throws SQLException
+    {
+        try {
+            String query = "Select count(1) as count from Patient where ID = '"+ID+"' and User = '"+user+"'";
+            int count = 0;
+            rs = st.executeQuery(query);
+            count = rs.getInt("count");
+            rs.close();
+            st.close();
+            return count;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 1;
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        
+    }
+    
     public List<Patient> getDetail(String contribute, String detail, String arrangement, String user) throws SQLException{
         List<Patient> patientList = new ArrayList<>();
         String query="";
