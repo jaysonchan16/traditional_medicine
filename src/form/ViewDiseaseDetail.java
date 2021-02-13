@@ -184,7 +184,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(1490, 720, 100, 40);
+        btnPrint.setBounds(1520, 710, 150, 60);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -195,7 +195,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(1730, 720, 100, 40);
+        btnBack.setBounds(1690, 710, 150, 60);
 
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
@@ -206,7 +206,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnExcel);
-        btnExcel.setBounds(1610, 720, 100, 40);
+        btnExcel.setBounds(1350, 710, 150, 60);
 
         jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel24.setText("最新资料");
