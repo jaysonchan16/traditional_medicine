@@ -1287,7 +1287,11 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
             String resultIC = patient.getPatient(IC,ID,userid).getIC();
             String resultID = patient.getPatient(IC,ID,userid).getID();
             
-            if(ID.equalsIgnoreCase(""))
+            if(ID.equalsIgnoreCase("") && IC.equalsIgnoreCase(""))
+            {
+                JOptionPane.showMessageDialog(rootPane, "请填写IC 或者ID！");
+            }
+            else if(ID.equalsIgnoreCase(""))
             {
                 if(resultIC.equalsIgnoreCase(IC))
                 {    
