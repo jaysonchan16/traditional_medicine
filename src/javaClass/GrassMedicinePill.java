@@ -245,11 +245,20 @@ public class GrassMedicinePill extends Medicine{//药丸
     }
     
     public String DeleteGrassMedicinePill(String ID, String User) throws SQLException{
-        String query = "Delete From GrassMedicinePill where ID = '"+ID+"' and User ='"+User+"'";
+        String count = countGrassMedicinePillName(User);
+        int counted = Integer.parseInt(count);
+        if(counted > 1)
+        {
+            String query = "Delete From GrassMedicinePill where ID = '"+ID+"' and User ='"+User+"'";
           
-        SQLQuery sql = new SQLQuery();
+            SQLQuery sql = new SQLQuery();
         
-        return sql.AddEditDeleteQuery(query);
+            return sql.AddEditDeleteQuery(query);
+        }
+        else
+        {
+            return "要留一个资料";
+        }
     }
     
      public List<GrassMedicinePill> comboNameReference(String medicine, String reference, String User) throws SQLException{
