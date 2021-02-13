@@ -248,6 +248,7 @@ public class Excel {
                 result = exportToExcel(table, ExcelName+".xlsx");
             } catch (Exception ex) {
                 ex.printStackTrace();
+                result = 0;
             }
             return result;
         }

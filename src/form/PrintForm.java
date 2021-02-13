@@ -86,6 +86,7 @@ public class PrintForm extends javax.swing.JFrame {
         //4 option from newPatientDisease
         //5 option for new medicine
         //6 option for modify medicine
+        //9 option for BeginnerNewMedicine
     }
     
     public PrintForm(User user, int option, String bodyContent,String diseaseIC)
@@ -129,6 +130,27 @@ public class PrintForm extends javax.swing.JFrame {
         //4 option from newPatientDisease
         //5 option for new medicine
         //6 option for modify medicine
+    }
+    
+    public PrintForm(User user,int option,String bodyContent, String medic, String refer, String medicName, String component,
+            String indication,String effect,String scoop,String weight,String cost,String medicPrice)
+    {
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        this.medic = medic;
+        this.refer = refer;
+        this.medicName = medicName;
+        this.component = component;
+        this.indication = indication;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.weight = weight;
+        this.cost = cost;
+        this.medicPrice = medicPrice;
+        initComponents();
+        printPreview(bodyContent);
+        lblName.setText(user.getUserid());
     }
     
     public PrintForm(User user, int option, String bodyContent, String medic, String refer, String medicName,String component,
@@ -419,6 +441,13 @@ public class PrintForm extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+        }
+        else if(option == 9)
+        {
+            BeginnerNewMedicine modify = new BeginnerNewMedicine(user, medic, refer, medicName, component, indication,
+                    effect,scoop,weight,cost,medicPrice);
+            modify.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnBackActionPerformed
 

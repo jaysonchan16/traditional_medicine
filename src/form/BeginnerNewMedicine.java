@@ -31,6 +31,15 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
     private User user;
     private String userid = "";
     private String medicine;
+    private String reference;
+    private String medicName;
+    private String component;
+    private String indication;
+    private String effect;
+    private String scoop;
+    private String weight;
+    private String cost;
+    private String medicPrice;
     
     public BeginnerNewMedicine() {
     }
@@ -45,6 +54,47 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         image();
         setResizable(false);
         countMedicine();
+        if(txtMedicine.getText().equals("单味药粉"))
+        {
+            lblzhucheng.setText("药性:"); 
+            lblzhuzi.setText("应用:"); 
+        }
+        else
+        {
+            lblzhucheng.setText("组成:"); 
+            lblzhuzi.setText("主治:"); 
+        }
+         changeLabel();
+         reference();
+    }
+    
+    public BeginnerNewMedicine(User user, String medicine, String reference, String medicName, String component, String indication,
+            String effect, String scoop, String weight, String cost, String medicPrice) {
+        initComponents();
+        this.user = user;
+        userid = user.getUserid();
+        this.medicine = medicine;
+        this.reference = reference;
+        this.medicName = medicName;
+        this.component = component;
+        this.indication = indication;
+        this.effect = effect;
+        this.scoop = scoop;
+        this.weight = weight;
+        this.cost = cost;
+        this.medicPrice = medicPrice;
+        txtMedicine.setText(medicine);
+        txtMedicine.setEnabled(false);
+        txtName.setText(medicName);
+        txtComponent.setText(component);
+        txtIndication.setText(userid);
+        txtEffect.setText(effect);
+        txtScoop.setText(scoop);
+        txtWeight.setText(weight);
+        txtCost.setText(cost);
+        txtPrice.setText(medicPrice);
+        image();
+        setResizable(false);
         if(txtMedicine.getText().equals("单味药粉"))
         {
             lblzhucheng.setText("药性:"); 
@@ -456,7 +506,7 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         String reference = comboReference.getSelectedItem().toString();
         
         String bodyContent = printPreview(medicine,reference,Name,component,indication,effect,scoop,weight,cost,price);
-        PrintForm main = new PrintForm(user,5,bodyContent);
+        PrintForm main = new PrintForm(user,9,bodyContent,medicine,reference,Name,component,indication,effect,scoop,weight,cost,price);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
