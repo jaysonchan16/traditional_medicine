@@ -800,6 +800,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                                     if(updateDateTime.equalsIgnoreCase("1"))
                                     {
                                         JOptionPane.showMessageDialog(rootPane, "更新成功！");
+                                        model.setRowCount(0);
+                                        show_medical();
+                                        resetTextBox();
                                     }
                                     else
                                     {
@@ -809,6 +812,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
                                 else
                                 {
                                     JOptionPane.showMessageDialog(rootPane, "更新药名失败！");
+                                    model.setRowCount(0);
+                                    show_medical();
+                                    resetTextBox();
                                 }
                             }
                             else
@@ -818,9 +824,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
                         } else {
                             System.out.println("no");
                         }
-                        model.setRowCount(0);
-                        show_medical();
-                        resetTextBox();
+                        
                     }
                     else
                     {

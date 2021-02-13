@@ -92,11 +92,11 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         tblDisease = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         btnExcel = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -197,26 +197,6 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel2.add(btnBack);
         btnBack.setBounds(1730, 720, 100, 40);
 
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel3.setText("可以更改资料");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(400, 710, 130, 30);
-
-        jPanel3.setBackground(new java.awt.Color(151, 254, 63));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        jPanel2.add(jPanel3);
-        jPanel3.setBounds(360, 710, 30, 30);
-
-        jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel4.setText("不能更改资料");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(100, 710, 130, 30);
-
-        jPanel4.setBackground(new java.awt.Color(254, 115, 63));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        jPanel2.add(jPanel4);
-        jPanel4.setBounds(60, 710, 30, 30);
-
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
         btnExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -227,6 +207,26 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         });
         jPanel2.add(btnExcel);
         btnExcel.setBounds(1610, 720, 100, 40);
+
+        jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel24.setText("最新资料");
+        jPanel2.add(jLabel24);
+        jLabel24.setBounds(400, 720, 130, 30);
+
+        jPanel3.setBackground(new java.awt.Color(151, 254, 63));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(360, 720, 30, 30);
+
+        jLabel23.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel23.setText("旧资料");
+        jPanel2.add(jLabel23);
+        jLabel23.setBounds(100, 720, 130, 30);
+
+        jPanel4.setBackground(new java.awt.Color(254, 115, 63));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(60, 720, 30, 30);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(30, 100, 1870, 800);
@@ -618,8 +618,8 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private javax.swing.JLabel headerPatient;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
