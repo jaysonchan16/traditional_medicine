@@ -250,11 +250,20 @@ public class TraditionalMedicinePill extends Medicine{//单味药粉
     }
     
     public String DeleteTraditionalMedicinePill(String ID, String User) throws SQLException{
-        String query = "Delete From TraditionalMedicinePill where ID = '"+ID+"' and User ='"+User+"'";
-          
-        SQLQuery sql = new SQLQuery();
-        
-        return sql.AddEditDeleteQuery(query);
+        String count = countTraditionalMedicinePillName(User);
+        int counted = Integer.parseInt(count);
+        if(counted > 1)
+        {
+            String query = "Delete From TraditionalMedicinePill where ID = '"+ID+"' and User ='"+User+"'";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query);
+        }
+        else
+        {
+            return "要留一个资料";
+        }
     }
     
     public List<TraditionalMedicinePill> comboName(String User) throws SQLException{

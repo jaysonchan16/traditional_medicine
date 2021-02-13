@@ -177,11 +177,20 @@ public class TraditionalMedicinePotion extends Medicine{// 复方药粉
     
     
     public String DeleteTraditionalMedicinePotion(String ID,String User) throws SQLException{
-        String query = "Delete From TraditionalMedicinePotion where ID ="+ID+" and User ='"+User+"' order by 1 desc";
-        
-        SQLQuery sql = new SQLQuery();
-        
-        return sql.AddEditDeleteQuery(query);
+        String count = countTraditionalMedicinePotion(User);
+        int counted = Integer.parseInt(count);
+        if(counted > 1)
+        {
+            String query = "Delete From TraditionalMedicinePotion where ID ="+ID+" and User ='"+User+"' order by 1 desc";
+
+            SQLQuery sql = new SQLQuery();
+
+            return sql.AddEditDeleteQuery(query);
+        }
+        else
+        {
+            return "要留一个资料";
+        }
     }
     
     public List<TraditionalMedicinePotion> getTraditionalMedicinePotion(String User) throws SQLException{
