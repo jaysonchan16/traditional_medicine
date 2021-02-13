@@ -383,6 +383,31 @@ public class Medicine {
         }
         return medicineList;
     }
+    
+    public List<Medicine> getDetailMedicineReferenceName(String medic, String reference, String name, String User) throws SQLException{
+        List<Medicine> medicineList = new ArrayList<>();
+         
+        String query = "Select ID, name, reference, component, indications, '' as property, '' as appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePill where medicine='"+medic+"' and reference='"+reference+"' and name = '"+name+"' and User ='"+User+"' UNION ALL "
+                + "Select ID, name, reference, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From GrassMedicinePotion where medicine='"+medic+"' and reference='"+reference+"' and name = '"+name+"' and User ='"+User+"' UNION ALL "
+                + "Select ID, name, reference, component, indications, '' as property, '' as appliance,effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePotion where medicine='"+medic+"' and reference='"+reference+"' and name = '"+name+"' and User ='"+User+"' UNION ALL "
+                + "Select ID, name, reference, '' as component, '' as indications, property, appliance, effect, scoop, sellprice, gram, cost, createDateTime, lastUpdateDateTime, medicine, User From TraditionalMedicinePill where medicine='"+medic+"' and reference='"+reference+"' and name = '"+name+"' and User ='"+User+"'";
+
+        System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 medicineList.add(new Medicine(rs.getString("name"),rs.getString("reference"),
+                         rs.getString("component"),rs.getString("indications"), rs.getString("property"),rs.getString("appliance"),
+                         rs.getString("effect"),rs.getFloat("scoop"),rs.getFloat("sellprice"),
+                         rs.getFloat("gram"),rs.getFloat("cost"),rs.getString("createDateTime"),rs.getString("lastUpdateDateTime"),rs.getString("ID"), rs.getString("medicine"), rs.getString("User")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return medicineList;
+    }
 
     public List<Medicine> getMedicineDetail(String name, String reference, String component, String indications, 
             String property, String appliance,String effect, float scoop, float sellprice, float gram, 
