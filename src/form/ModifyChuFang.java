@@ -71,6 +71,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private int firstReferenceGrassMedicinePotion = 0;
     private int firstReferenceTraditionalMedicinePill = 0;
     private int firstReferenceTraditionalMedicinePotion = 0;
+    private String remaining="";
+    private String subtotal="";
+    private String weight = "";
     Prescription prescription = new Prescription();
     List<Prescription> prescriptionList = new ArrayList<Prescription>();
     List<Bill> billList = new ArrayList<Bill>();
@@ -110,6 +113,74 @@ public class ModifyChuFang extends javax.swing.JFrame {
         comboBoxNameTraditionalPill.setVisible(false);
         comboBoxNameTraditionalPotion.setVisible(false);
         btnFindMedic.setVisible(false);*/
+    }
+    public ModifyChuFang(User user, String IC,String ID,String Name,String Phone,String diseaseID,String Chufang,
+            String category,String refer,String medicName,String Jiliang,String Price,String TotalPrice,String Remaining,
+            String Bill,String latest,String subtotal,String weight, String PrescriptionID)
+    {
+        initComponents();
+        this.PrescriptionID = PrescriptionID;
+        this.user=user;
+        this.IC = IC;
+        this.ID = ID;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.DiseaseID = diseaseID;
+        this.Chufang = Chufang;
+        this.CategoryTable = category;
+        this.Reference = refer;
+        this.NameTable = medicName;
+        this.Jiliang = Jiliang;
+        this.Price = Price;
+        this.TotalPrice = TotalPrice;
+        this.remaining = Remaining;
+        this.bill = Bill;
+        this.latest =latest;
+        this.subtotal = subtotal;
+        this.weight = weight;
+        userid = user.getUserid();
+        createColumns();
+        color_table();
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        show_table();
+        widthTable();
+        image();
+        txtDisease.setVisible(false);
+        lblJiliang.setVisible(false);
+        txtRemaining.setVisible(false);
+        txtBill.setVisible(false);
+        txtLatest.setVisible(false);
+        txtSubTotal.setVisible(false);
+        txtWeight.setVisible(false);
+        txtIC.setText(IC);
+        txtID.setText(ID);
+        txtName.setText(Name);
+        txtPhone.setText(Phone);
+        txtChufang.setText(Chufang);
+        txtMedicineCategory.setText(category);
+        txtDisease.setText(diseaseID);
+        txtReference.setText(refer);
+        txtMedicineName.setText(medicName);
+        txtJiliang.setText(Jiliang);
+        txtPrice.setText(Price);
+        txtTotalPrice.setText(TotalPrice);
+        txtRemaining.setText(Remaining);
+        txtBill.setText(Bill);
+        txtLatest.setText(latest);
+        txtSubTotal.setText(subtotal);
+        txtWeight.setText(weight);
+        txtPrescriptionID.setText(PrescriptionID);
+        txtName.setEnabled(false);
+        txtPhone.setEnabled(false);
+        txtChufang.setEnabled(false);
+        txtMedicineCategory.setEnabled(false);
+        txtReference.setEnabled(false);
+        txtMedicineName.setEnabled(false);
+        txtJiliang.setEnabled(false);
+        txtPrice.setEnabled(false);
+        txtTotalPrice.setEnabled(false);
+        txtRemaining.setEnabled(false);
+        txtPrescriptionID.setVisible(false);
     }
     
     public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
@@ -524,12 +595,12 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jPanel2.add(jLabel24);
         jLabel24.setBounds(1570, 760, 130, 30);
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(100, 100, 1720, 820);
-
         txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtPrescriptionID);
-        txtPrescriptionID.setBounds(390, 120, 90, 20);
+        jPanel2.add(txtPrescriptionID);
+        txtPrescriptionID.setBounds(290, 10, 90, 20);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(80, 100, 1720, 820);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -595,9 +666,22 @@ public class ModifyChuFang extends javax.swing.JFrame {
         String name = txtName.getText();
         String phone = txtPhone.getText();
         String diseaseID = txtDisease.getText();
-
+        String Chufang = txtChufang.getText();
+        String category = txtMedicineCategory.getText();
+        String reference = txtReference.getText();
+        String medicinename = txtMedicineName.getText();
+        String jiliang = txtJiliang.getText();
+        String price  = txtPrice.getText();
+        String totalPrice = txtTotalPrice.getText();
+        String remaining = txtRemaining.getText();
+        String bill = txtBill.getText();
+        String latest = txtLatest.getText();
+        String subtotal = txtSubTotal.getText();
+        String weight = txtWeight.getText();
+        String prescriptionID = txtPrescriptionID.getText();
         String bodyContent = printPreview(IC,ID,name,phone,diseaseID,userid);
-        PrintForm main = new PrintForm(user,8,bodyContent);
+        PrintForm main = new PrintForm(user,8,bodyContent,IC,ID,name,phone,diseaseID,
+                Chufang,category,reference,medicinename,jiliang,price,totalPrice,remaining,bill,latest,subtotal,weight,prescriptionID);
         main.setVisible(true);
         this.dispose();
         /*PrintForm print = new PrintForm(user,1);
@@ -1128,23 +1212,43 @@ public class ModifyChuFang extends javax.swing.JFrame {
                     txtPhone.setText(prescription.getPatient(IC,ID,userid).getPhone());
                     txtID.setText(IDdata);
                     txtIC.setText(ICdata);
-                    txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getChufang()));
-                    txtMedicineCategory.setText(prescription.getPrescription(ICdata,userid).getCategorytable());
-                    txtReference.setText(prescription.getPrescription(ICdata,userid).getReference());
-                    txtMedicineName.setText(prescription.getPrescription(ICdata,userid).getNametable());
-                    txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getJiliang()));
-                    txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrice()));
-                    txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getTotalprice()));
-                    txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrescriptionID()));
-                    txtBill.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
-                    txtLatest.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getLatest()));
-                    txtWeight.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getInitialWeight()));
-                    txtIC.setEnabled(false);
-                    txtID.setEnabled(false);
-                    //btnFindMedic.setVisible(true);
+                    String medicineCategory = prescription.getPrescription(ICdata,userid).getCategorytable();
+                    if(medicineCategory.equalsIgnoreCase("") || medicineCategory.contains(""))
+                    {
+                        txtChufang.setEnabled(false);
+                        txtMedicineCategory.setEnabled(false);
+                        txtReference.setEnabled(false);
+                        txtMedicineName.setEnabled(false);
+                        txtJiliang.setEnabled(false);
+                        txtPrice.setEnabled(false);
+                        txtTotalPrice.setEnabled(false);
+                        txtRemaining.setEnabled(false);
+                        txtIC.setEnabled(true);
+                        txtID.setEnabled(true);
+                        btnFindIC.setEnabled(true);
+                        btnFindID.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "寻找不到病人病症资料");
+                    }
+                    else
+                    {
+                        txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getChufang()));
+                        txtMedicineCategory.setText(prescription.getPrescription(ICdata,userid).getCategorytable());
+                        txtReference.setText(prescription.getPrescription(ICdata,userid).getReference());
+                        txtMedicineName.setText(prescription.getPrescription(ICdata,userid).getNametable());
+                        txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getJiliang()));
+                        txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrice()));
+                        txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getTotalprice()));
+                        txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrescriptionID()));
+                        txtBill.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
+                        txtLatest.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getLatest()));
+                        txtWeight.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getInitialWeight()));
+                        txtIC.setEnabled(false);
+                        txtID.setEnabled(false);
+                        //btnFindMedic.setVisible(true);
 
-                    billList = billNo.getBillsDetail(userid, "BillNo", String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
-                    txtSubTotal.setText(String.valueOf(billList.get(0).getSubtotal()));
+                        billList = billNo.getBillsDetail(userid, "BillNo", String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
+                        txtSubTotal.setText(String.valueOf(billList.get(0).getSubtotal()));
+                    }
                 }
                 else
                 {
@@ -1310,7 +1414,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
                     //billList = billno.getBillsDetail("BillNo",bill,userid);
                     newSubtotal = Double.valueOf(txtSubTotal.getText()) - Double.valueOf(txtTotalPrice.getText());
                     System.out.println(newSubtotal);
-                    resultSub = billno.EditBill(newSubtotal,bill,items,userid);
+                    //if(deleteChufang == 0)
+                    //{
+                        //resultSub = billno.EditBill(newSubtotal,bill,deleteChufang,userid);
+                    //}
+                    //else
+                    //{
+                        resultSub = billno.EditBill(newSubtotal,bill,items,userid);
+                    //}
                     if (JOptionPane.showConfirmDialog(null, "你要更改回原本的重量吗?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         if(medicine.equalsIgnoreCase("单味药粉"))

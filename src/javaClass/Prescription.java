@@ -496,15 +496,18 @@ public class Prescription extends Disease{
             resultUpdateChufang = sql.AddEditDeleteQuery(deletePrescription);
             if(resultUpdateChufang.equalsIgnoreCase("1"))
             {
-                for(int i = deleteChufang; i < maximumChufang; i++)
+                if(deleteChufang>0)
                 {
-                    int latestChufang = i+1;
-                    updateChufang = "Update Prescription "
-                            + "Set Chufang = '"+i+"' "
-                            + "WHERE EXISTS (Select * FROM Disease WHERE Disease.ID = Prescription.DiseaseID "
-                            + "AND Prescription.Chufang = '"+latestChufang+"' and Prescription.User = '"+userid+"' and Disease.billNo='"+bill+"')";
-                    System.out.println(updateChufang);
-                    resultUpdateChufang = sql.AddEditDeleteQuery(updateChufang);
+                    for(int i = deleteChufang; i < maximumChufang; i++)
+                    {
+                        int latestChufang = i+1;
+                        updateChufang = "Update Prescription "
+                                + "Set Chufang = '"+i+"' "
+                                + "WHERE EXISTS (Select * FROM Disease WHERE Disease.ID = Prescription.DiseaseID "
+                                + "AND Prescription.Chufang = '"+latestChufang+"' and Prescription.User = '"+userid+"' and Disease.billNo='"+bill+"')";
+                        System.out.println(updateChufang);
+                        resultUpdateChufang = sql.AddEditDeleteQuery(updateChufang);
+                    }
                 }
             }
         } 

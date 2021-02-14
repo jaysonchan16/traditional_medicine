@@ -66,6 +66,16 @@ public class PrintForm extends javax.swing.JFrame {
     private String weight="";
     private String cost="";
     private String medicPrice="";
+    private String diseaseID="";
+    private String Chufang = "";
+    private String Jiliang = "";
+    private String Price ="";
+    private String TotalPrice = "";
+    private String Remaining="";
+    private String Bill = "";
+    private String latest = "";
+    private String subtotal="";
+    private String PrescriptionID="";
     
     public PrintForm() {
         initComponents();
@@ -131,7 +141,7 @@ public class PrintForm extends javax.swing.JFrame {
         //5 option for new medicine
         //6 option for modify medicine
     }
-    
+
     public PrintForm(User user,int option,String bodyContent, String medic, String refer, String medicName, String component,
             String indication,String effect,String scoop,String weight,String cost,String medicPrice)
     {
@@ -240,6 +250,36 @@ public class PrintForm extends javax.swing.JFrame {
         //5 option for new medicine
         //6 option for modify medicine
         //9 option for BeginnerNewMedicine
+    }
+    
+    public PrintForm(User user,int option, String bodyContent,String IC,String ID,String name,String phone, String diseaseID,
+               String Chufang,String category,String reference,String medicinename,String jiliang,String price,String totalPrice,
+               String remaining,String bill,String latest,String subtotal,String weight, String PrescriptionID)
+    {
+        this.PrescriptionID = PrescriptionID;
+        this.option = option;
+        this.user = user;
+        this.bodyContent = bodyContent;
+        this.IC = IC;
+        this.ID = ID;
+        this.Name = name;
+        this.Phone = phone;
+        this.diseaseID = diseaseID;
+        this.Chufang = Chufang;
+        this.category = category;
+        this.refer = reference;
+        this.medicName = medicinename;
+        this.Jiliang = jiliang;
+        this.Price = price;
+        this.TotalPrice = totalPrice;
+        this.Remaining = remaining;
+        this.Bill = bill;
+        this.latest = latest;
+        this.subtotal = subtotal;
+        this.weight = weight;
+        initComponents();
+        printPreview(bodyContent);
+        lblName.setText(user.getUserid());
     }
     
     public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
@@ -468,13 +508,10 @@ public class PrintForm extends javax.swing.JFrame {
         }
         else if(option == 8)
         {
-            try {
-                ModifyChuFang modify = new ModifyChuFang(user);
-                modify.setVisible(true);
-                this.dispose();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            ModifyChuFang modify = new ModifyChuFang(user,IC,ID,Name,Phone,diseaseID,Chufang,category,refer,
+                    medicName,Jiliang,Price,TotalPrice,Remaining,Bill,latest,subtotal,weight,PrescriptionID);
+            modify.setVisible(true);
+            this.dispose();
         }
         else if(option == 9)
         {

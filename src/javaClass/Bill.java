@@ -136,13 +136,25 @@ public class Bill extends Prescription{
     }
     
     public String EditBill(double subtotal, String billno, int items, String user) throws SQLException{
-         String query = "Update Bill Set Items = "+items+" and BillDate = datetime('now','localtime'),"
-                 + " SubTotal = "+subtotal+", lastUpdateDateTime = datetime('now','localtime') "
-                 + " where BillNo = '"+billno+"' and User = '"+user+"'";
-        System.out.println(query);
-        SQLQuery sql = new SQLQuery();
+        String query ="";
+        if(items>0)
+        {
+           query = "Update Bill Set Items = "+items+" and BillDate = datetime('now','localtime'),"
+                    + " SubTotal = "+subtotal+", lastUpdateDateTime = datetime('now','localtime') "
+                    + " where BillNo = '"+billno+"' and User = '"+user+"'";
+           System.out.println(query);
+           SQLQuery sql = new SQLQuery();
 
-        return sql.AddEditDeleteQuery(query);
+           return sql.AddEditDeleteQuery(query);
+        }
+        else
+        {
+           query = "Delete From Bill where BillNo = '"+billno+"' and User = '"+user+"'";
+           System.out.println(query);
+           SQLQuery sql = new SQLQuery();
+
+           return sql.AddEditDeleteQuery(query);
+        }
     }
     
     public String DeleteBill() throws SQLException{

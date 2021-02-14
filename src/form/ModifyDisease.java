@@ -137,10 +137,10 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtHistory.setEnabled(true);
         txtTemperature.setEnabled(true);
         txtBlood.setEnabled(true);
-        txtIC.setEnabled(true);
-        txtID.setEnabled(true);
-        btnFindIC.setEnabled(true);
-        btnFindID.setEnabled(true);
+        txtIC.setEnabled(false);
+        txtID.setEnabled(false);
+        btnFindIC.setEnabled(false);
+        btnFindID.setEnabled(false);
     }
     
     public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
