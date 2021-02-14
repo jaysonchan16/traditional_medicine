@@ -603,7 +603,7 @@ public class Prescription extends Disease{
                 + "Inner Join Patient c ON a.PatientID = c.ID "
                 + "where ((b.createDateTime>='"+from+"' and b.createDateTime<='"+to+"') or "
                 + "c.IC=trim('"+IC+"') or c.ID=trim('"+ID+"')) "
-                + "and c.User='"+User+"' order by a.createdatetime desc";
+                + "and c.User='"+User+"' order by b.latest desc,a.Chufang";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -664,7 +664,7 @@ public class Prescription extends Disease{
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
-                + "where "+contribute+" like '%"+detail+"%' and a.User='"+User+"' order by a.createDateTime desc";
+                + "where "+contribute+" like '%"+detail+"%' and a.User='"+User+"' order by b.latest desc,a.Chufang";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -703,7 +703,7 @@ public class Prescription extends Disease{
                 + "b.Symptom like '%"+Symptom+"%' and b.Category like '%"+Category+"%' and b.PulseCondition like '%"+Pulse+"%' and "
                 + "b.TongueQuality like '%"+Quality+"%' and b.TongueCoating like '%"+Coating+"%' and "
                 + "b.PeeShit like '%"+Shit+"%' and b.History like '%"+History+"%' and b.Temperature like '%"+Temperature+"%' and "
-                + "b.BloodPressure like '%"+Blood+"%' and a.Category like '%"+MedicCategory+"%' and a.Name like '%"+MedicName+"%' and a.Jiliang like '%"+Jiliang+"%' and c.User ='"+User+"' order by a.createDateTime desc";          
+                + "b.BloodPressure like '%"+Blood+"%' and a.Category like '%"+MedicCategory+"%' and a.Name like '%"+MedicName+"%' and a.Jiliang like '%"+Jiliang+"%' and c.User ='"+User+"' order by b.latest desc,a.Chufang";          
         System.out.println(query);
         rs = st.executeQuery(query);
         try {
