@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javaClass.Bill;
 import javaClass.Code;
+import javaClass.Disease;
 import javaClass.Excel;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
@@ -1403,10 +1404,17 @@ public class ModifyChuFang extends javax.swing.JFrame {
             String reference = txtReference.getText();
             String medicName = txtMedicineName.getText();
             String weight = txtWeight.getText();
+            String diseaseID = txtDisease.getText();
+            
             double newSubtotal;
             
             if(result.equalsIgnoreCase("1"))
             {
+                if(items == 0)
+                {
+                    Disease disease = new Disease(diseaseID,userid);
+                    disease.DeleteDisease();
+                }
                 if (JOptionPane.showConfirmDialog(null, "你要更改利润价钱和数量资料吗?", "WARNING",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     Bill billno = new Bill();

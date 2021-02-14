@@ -87,6 +87,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtHistory.setEnabled(false);
         txtTemperature.setEnabled(false);
         txtBlood.setEnabled(false);
+        btnDelete.setVisible(false);
     }
     
     public ModifyDisease(User user, String IC,String ID,String Name,String Phone,String Date, String symptom,String category,
@@ -141,6 +142,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtID.setEnabled(false);
         btnFindIC.setEnabled(false);
         btnFindID.setEnabled(false);
+        btnDelete.setVisible(false);
     }
     
     public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
@@ -190,6 +192,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         disabledTextBox();
         txtDiseaseID.setVisible(false);
         btnReset.setVisible(false);
+        btnDelete.setVisible(false);
         image();
         /*tblDisease.setAutoResizeMode(tblDisease.AUTO_RESIZE_OFF);
         new JScrollPane(tblDisease, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -315,7 +318,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnModify);
-        btnModify.setBounds(600, 740, 140, 50);
+        btnModify.setBounds(450, 740, 140, 50);
 
         btnDelete.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnDelete.setText("删除");
@@ -326,7 +329,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnDelete);
-        btnDelete.setBounds(450, 740, 140, 50);
+        btnDelete.setBounds(750, 740, 140, 50);
 
         btnReset.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnReset.setText(" 重启");
@@ -549,7 +552,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnExcel);
-        btnExcel.setBounds(750, 740, 140, 50);
+        btnExcel.setBounds(600, 740, 140, 50);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(60, 90, 1840, 820);
