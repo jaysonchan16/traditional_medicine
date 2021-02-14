@@ -208,6 +208,40 @@ public class PrintForm extends javax.swing.JFrame {
         //6 option for modify medicine
     }
     
+    public PrintForm(User user, int option, String bodyContent, String IC,String ID,String Name,String Phone,String Date,
+            String symptom,String category, String pulse,String tongueQuality,String tongueCoating,String shit,
+            String history,String temperature,String blood)
+    {
+        this.IC = IC;
+        this.ID = ID;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Date = Date;
+        this.symptom = symptom;
+        this.category = category;
+        this.pulse = pulse;
+        this.tongueQuality = tongueQuality;
+        this.tongueCoating = tongueCoating;
+        this.shit = shit;
+        this.history = history;
+        this.temperature = temperature;
+        this.blood = blood;
+        this.user = user;
+        this.option = option;
+        this.bodyContent = bodyContent;
+        initComponents();
+        //txtAreaPrint = new JTextArea(5, 10);
+        printPreview(bodyContent);
+        lblName.setText(user.getUserid());
+        //1 option from modifypatient
+        //2 option from modifypatient
+        //3 option from newPatient
+        //4 option from newPatientDisease
+        //5 option for new medicine
+        //6 option for modify medicine
+        //9 option for BeginnerNewMedicine
+    }
+    
     public PrintForm(User user, int option, String bodyContent, String IC, String ID, String Name, String Phone, String Date, String symptom, String category, 
             String pulse,String tongueQuality,String tongueCoating, String shit, String history, String temperature, String blood,
             ArrayList<String> chufang, ArrayList<String> medicine, ArrayList<String> medicinecategory, ArrayList<String> medicineReference,
@@ -425,7 +459,7 @@ public class PrintForm extends javax.swing.JFrame {
         else if(option == 7)
         {
             try {
-                ModifyDisease modify = new ModifyDisease(user);
+                ModifyDisease modify = new ModifyDisease(user,IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history,temperature,blood);
                 modify.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

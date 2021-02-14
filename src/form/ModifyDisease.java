@@ -53,6 +53,7 @@ public class ModifyDisease extends javax.swing.JFrame {
     private String History;
     private String Temperature;
     private String BloodPressure;
+    private String Date;
     private String from;
     private String to;
     private String initialIC;
@@ -77,6 +78,69 @@ public class ModifyDisease extends javax.swing.JFrame {
         disabledTextBox();
         txtDiseaseID.setVisible(false);
         image();
+        txtSymptom.setEnabled(false);
+        txtCategory.setEnabled(false);
+        txtPulse.setEnabled(false);
+        txtTongueQuality.setEnabled(false);
+        txtTongueCoating.setEnabled(false);
+        txtShit.setEnabled(false);
+        txtHistory.setEnabled(false);
+        txtTemperature.setEnabled(false);
+        txtBlood.setEnabled(false);
+    }
+    
+    public ModifyDisease(User user, String IC,String ID,String Name,String Phone,String Date, String symptom,String category,
+            String pulse,String tongueQuality,String tongueCoating,String shit,String history,String temperature,String blood) throws SQLException {
+        initComponents();
+        this.user = user;
+        this.IC = IC;
+        this.ID = ID;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Date = Date;
+        this.Symptom = symptom;
+        this.Category = category;
+        this.PulseCondition = pulse;
+        this.TongueQuality = tongueQuality;
+        this.TongueCoating = tongueCoating;
+        this.PeeShit = shit;
+        this.History = history;
+        this.Temperature = temperature;
+        this.BloodPressure = blood;
+        userid = user.getUserid();
+        show_Disease();
+        widthTable();
+        txtIC.setText(IC);
+        txtID.setText(ID);
+        txtName.setText(Name);
+        txtPhone.setText(Phone);
+        txtSymptom.setText(symptom);
+        txtCategory.setText(category);
+        txtPulse.setText(pulse);
+        txtTongueQuality.setText(tongueQuality);
+        txtTongueCoating.setText(tongueCoating);
+        txtShit.setText(shit);
+        txtHistory.setText(history);
+        txtTemperature.setText(temperature);
+        txtBlood.setText(blood);
+        txtName.setEnabled(false);
+        txtPhone.setEnabled(false);
+        disabledTextBox();
+        txtDiseaseID.setVisible(false);
+        image();
+        txtSymptom.setEnabled(true);
+        txtCategory.setEnabled(true);
+        txtPulse.setEnabled(true);
+        txtTongueQuality.setEnabled(true);
+        txtTongueCoating.setEnabled(true);
+        txtShit.setEnabled(true);
+        txtHistory.setEnabled(true);
+        txtTemperature.setEnabled(true);
+        txtBlood.setEnabled(true);
+        txtIC.setEnabled(true);
+        txtID.setEnabled(true);
+        btnFindIC.setEnabled(true);
+        btnFindID.setEnabled(true);
     }
     
     public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
@@ -668,7 +732,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         String blood = txtBlood.getText();
         
         String bodyContent = printPreview(IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood);
-        PrintForm main = new PrintForm(user,7,bodyContent);
+        PrintForm main = new PrintForm(user,7,bodyContent,IC,ID,Name,Phone,Date,symptom,category,pulse,tongueQuality,tongueCoating,shit,history, temperature, blood);
         main.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrintActionPerformed
@@ -705,18 +769,48 @@ public class ModifyDisease extends javax.swing.JFrame {
                     txtPhone.setText(disease.getPatient(IC,ID,userid).getPhone());
                     txtID.setText(IDdata);
                     txtIC.setText(ICdata);
-                    txtDiseaseID.setText(disease.getDisease(ICdata,userid).getDiseaseID());
-                    txtSymptom.setText(disease.getDisease(ICdata,userid).getSymptom());
-                    txtCategory.setText(disease.getDisease(ICdata,userid).getCategory());
-                    txtPulse.setText(disease.getDisease(ICdata,userid).getPulseCondition());
-                    txtTongueQuality.setText(disease.getDisease(ICdata,userid).getTongueQuality());
-                    txtTongueCoating.setText(disease.getDisease(ICdata,userid).getTongueCoating());
-                    txtHistory.setText(disease.getDisease(ICdata,userid).getHistory());
-                    txtTemperature.setText(String.valueOf(disease.getDisease(ICdata,userid).getTemperature()));
-                    txtBlood.setText(disease.getDisease(ICdata,userid).getBloodPressure());
-                    txtShit.setText(disease.getDisease(ICdata,userid).getPeeShit());
-                    txtIC.setEnabled(false);
-                    txtID.setEnabled(false);
+                    String diseaseID = disease.getDisease(ICdata,userid).getDiseaseID();
+                    /*String symptom = disease.getDisease(ICdata,userid).getSymptom();
+                    String category = disease.getDisease(ICdata,userid).getCategory();
+                    String pulse =  disease.getDisease(ICdata,userid).getPulseCondition();
+                    String tonguequality = disease.getDisease(ICdata,userid).getTongueQuality();
+                    String tonguecoating = disease.getDisease(ICdata,userid).getTongueCoating();
+                    String history = disease.getDisease(ICdata,userid).getHistory();
+                    int temperature = disease.getDisease(ICdata,userid).getTemperature();
+                    String blood = disease.getDisease(ICdata,userid).getBloodPressure();
+                    String peeshit = disease.getDisease(ICdata,userid).getPeeShit();*/
+                    if(diseaseID.equalsIgnoreCase("") || diseaseID.contains(""))
+                    {
+                        txtSymptom.setEnabled(false);
+                        txtCategory.setEnabled(false);
+                        txtPulse.setEnabled(false);
+                        txtTongueQuality.setEnabled(false);
+                        txtTongueCoating.setEnabled(false);
+                        txtShit.setEnabled(false);
+                        txtHistory.setEnabled(false);
+                        txtTemperature.setEnabled(false);
+                        txtBlood.setEnabled(false);
+                        txtIC.setEnabled(true);
+                        txtID.setEnabled(true);
+                        btnFindIC.setEnabled(true);
+                        btnFindID.setEnabled(true);
+                        JOptionPane.showMessageDialog(rootPane, "寻找不到病人病症资料");
+                    }
+                    else
+                    {
+                        txtDiseaseID.setText(disease.getDisease(ICdata,userid).getDiseaseID());
+                        txtSymptom.setText(disease.getDisease(ICdata,userid).getSymptom());
+                        txtCategory.setText(disease.getDisease(ICdata,userid).getCategory());
+                        txtPulse.setText(disease.getDisease(ICdata,userid).getPulseCondition());
+                        txtTongueQuality.setText(disease.getDisease(ICdata,userid).getTongueQuality());
+                        txtTongueCoating.setText(disease.getDisease(ICdata,userid).getTongueCoating());
+                        txtHistory.setText(disease.getDisease(ICdata,userid).getHistory());
+                        txtTemperature.setText(String.valueOf(disease.getDisease(ICdata,userid).getTemperature()));
+                        txtBlood.setText(disease.getDisease(ICdata,userid).getBloodPressure());
+                        txtShit.setText(disease.getDisease(ICdata,userid).getPeeShit());
+                        txtIC.setEnabled(false);
+                        txtID.setEnabled(false);
+                    }
                 }
                 else
                 {

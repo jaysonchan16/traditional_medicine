@@ -1064,7 +1064,7 @@ public class NewPatientDisease1 extends javax.swing.JFrame {
                 }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "体温后面不可以有空格/体温不可以放字母！");
+            JOptionPane.showMessageDialog(rootPane, "体温后面不可以有空格/体温不可以放字母！/资料没填完毕！");
         }
     }//GEN-LAST:event_btnAddDataActionPerformed
 

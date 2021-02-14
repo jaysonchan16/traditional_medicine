@@ -448,6 +448,7 @@ public class Disease extends Patient{
                 + "b.TongueQuality, b.TongueCoating, b.PeeShit,b.Category, b.History, a.ID,b.lastUpdateDateTime,b.createDateTime, a.IC,a.name,a.phone,a.User "
                 + "from Patient a Inner Join Disease b "
                 + "ON a.ID = b.PatientID where a.IC = '"+IC+"' and a.User ='"+User+"'";
+        System.out.println(query);
         rs = st.executeQuery(query);
         try {
              while (rs.next()) {
