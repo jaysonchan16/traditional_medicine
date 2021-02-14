@@ -570,7 +570,7 @@ public class Prescription extends Disease{
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
-                + "where c.User = '"+User+"' order by a.createDateTime desc";
+                + "where c.User = '"+User+"' order by b.latest desc,a.Chufang";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
@@ -632,7 +632,7 @@ public class Prescription extends Disease{
                 + "from Prescription a "
                 + "Inner Join Disease b ON a.DiseaseID = b.ID "
                 + "Inner Join Patient c ON a.PatientID = c.ID "
-                + "where a.ID = '"+PrescriptionID+"' order by a.createDateTime desc";
+                + "where a.ID = '"+PrescriptionID+"' order by b.latest desc,a.Chufang";
             System.out.println(query);
         rs = st.executeQuery(query);
         try {
