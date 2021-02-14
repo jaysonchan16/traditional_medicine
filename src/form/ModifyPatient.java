@@ -461,7 +461,10 @@ public class ModifyPatient extends javax.swing.JFrame {
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-            }
+                }
+                catch (NullPointerException ex) {
+                 JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                }
          }
     }//GEN-LAST:event_btnFindActionPerformed
 
