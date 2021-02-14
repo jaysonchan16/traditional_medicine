@@ -16,6 +16,7 @@ import javaClass.Code;
 import javaClass.Excel;
 import javaClass.GrassMedicinePill;
 import javaClass.GrassMedicinePotion;
+import javaClass.Patient;
 import javaClass.Prescription;
 import javaClass.PrintTemplate;
 import javaClass.TraditionalMedicinePill;
@@ -1115,41 +1116,51 @@ public class ModifyChuFang extends javax.swing.JFrame {
         updatedelete=0;
         String IC = txtIC.getText();
         String ID = txtID.getText();
-        
+        Patient patient = new Patient();
         try {
-            if(prescription.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || prescription.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
+            if(patient.validatePatient(IC,userid) != 0 || patient.validatePatientID(ID, userid) !=0)
             {
-                String ICdata = prescription.getPatient(IC,ID,userid).getIC();
-                String IDdata = prescription.getPatient(IC,ID,userid).getID();
-                txtName.setText(prescription.getPatient(IC,ID,userid).getName());
-                txtPhone.setText(prescription.getPatient(IC,ID,userid).getPhone());
-                txtID.setText(IDdata);
-                txtIC.setText(ICdata);
-                txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getChufang()));
-                txtMedicineCategory.setText(prescription.getPrescription(ICdata,userid).getCategorytable());
-                txtReference.setText(prescription.getPrescription(ICdata,userid).getReference());
-                txtMedicineName.setText(prescription.getPrescription(ICdata,userid).getNametable());
-                txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getJiliang()));
-                txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrice()));
-                txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getTotalprice()));
-                txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrescriptionID()));
-                txtBill.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
-                txtLatest.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getLatest()));
-                txtWeight.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getInitialWeight()));
-                txtIC.setEnabled(false);
-                txtID.setEnabled(false);
-                //btnFindMedic.setVisible(true);
-                
-                billList = billNo.getBillsDetail(userid, "BillNo", String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
-                txtSubTotal.setText(String.valueOf(billList.get(0).getSubtotal()));
+                if(prescription.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || prescription.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
+                {
+                    String ICdata = prescription.getPatient(IC,ID,userid).getIC();
+                    String IDdata = prescription.getPatient(IC,ID,userid).getID();
+                    txtName.setText(prescription.getPatient(IC,ID,userid).getName());
+                    txtPhone.setText(prescription.getPatient(IC,ID,userid).getPhone());
+                    txtID.setText(IDdata);
+                    txtIC.setText(ICdata);
+                    txtChufang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getChufang()));
+                    txtMedicineCategory.setText(prescription.getPrescription(ICdata,userid).getCategorytable());
+                    txtReference.setText(prescription.getPrescription(ICdata,userid).getReference());
+                    txtMedicineName.setText(prescription.getPrescription(ICdata,userid).getNametable());
+                    txtJiliang.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getJiliang()));
+                    txtPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrice()));
+                    txtTotalPrice.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getTotalprice()));
+                    txtPrescriptionID.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getPrescriptionID()));
+                    txtBill.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
+                    txtLatest.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getLatest()));
+                    txtWeight.setText(String.valueOf(prescription.getPrescription(ICdata,userid).getInitialWeight()));
+                    txtIC.setEnabled(false);
+                    txtID.setEnabled(false);
+                    //btnFindMedic.setVisible(true);
+
+                    billList = billNo.getBillsDetail(userid, "BillNo", String.valueOf(prescription.getPrescription(ICdata,userid).getBillno()));
+                    txtSubTotal.setText(String.valueOf(billList.get(0).getSubtotal()));
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
+                    /*NewPatient detail = new NewPatient(user,IC,4);
+                    detail.setVisible(true);
+                    this.dispose();*/
+                }
             }
             else
             {
                 JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                NewPatient detail = new NewPatient(user,IC);
+                /*NewPatient detail = new NewPatient(user,IC,4);
                 detail.setVisible(true);
-                this.dispose();
-            }
+                this.dispose();*/
+            }       
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChufang.Find() get error on line 615,"+ex.getMessage());
         }

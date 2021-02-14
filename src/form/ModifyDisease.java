@@ -405,7 +405,7 @@ public class ModifyDisease extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFindIC);
-        btnFindIC.setBounds(250, 100, 140, 50);
+        btnFindIC.setBounds(320, 100, 140, 50);
 
         btnFindID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFindID.setText("寻找");
@@ -721,17 +721,17 @@ public class ModifyDisease extends javax.swing.JFrame {
                 else
                 {
                     JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                    NewPatient detail = new NewPatient(user,IC);
+                    /*NewPatient detail = new NewPatient(user,IC,3);
                     detail.setVisible(true);
-                    this.dispose();
+                    this.dispose();*/
                 }
             }
             else
             {
                 JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                NewPatient detail = new NewPatient(user,IC);
+                /*NewPatient detail = new NewPatient(user,IC,3);
                 detail.setVisible(true);
-                this.dispose();
+                this.dispose();*/
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyDisease.Find() get error on line 503, " +ex.getMessage());

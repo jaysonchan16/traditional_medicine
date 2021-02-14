@@ -43,6 +43,7 @@ public class NewPatient extends javax.swing.JFrame {
     int backoption = 0;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
+    private int option = 0;
     
     public NewPatient(User user) {
         initComponents();
@@ -57,9 +58,10 @@ public class NewPatient extends javax.swing.JFrame {
         image();
     }
 
-    public NewPatient(User user, String DiseaseIC) {
+    public NewPatient(User user, String DiseaseIC, int option) {
         initComponents();
         this.user = user;
+        this.option = option;
         this.DiseaseIC = DiseaseIC;
         userid = user.getUserid();
         txtIC.setText(DiseaseIC);
@@ -337,15 +339,26 @@ public class NewPatient extends javax.swing.JFrame {
                 System.out.println(map.get("returnMessage"));
                 if (map.get("returnMessage").equalsIgnoreCase("1")) {
                     JOptionPane.showMessageDialog(rootPane, "新增成功,你的ID是：" +map.get("ID"));
+                    if(option == 0)
+                    {
+                        clearTextBox();
+                    }
                     try {
                         System.out.println("DiseaseIC:"+DiseaseIC);
                         if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,map.get("ID"),userid).getIC().equalsIgnoreCase(IC)) {
-                            diseasepage = new NewPatientDisease1(user, map.get("ID"),
-                                    DiseaseIC,
-                                    patient.getPatient(DiseaseIC,map.get("ID"),userid).getName(),
-                                    patient.getPatient(DiseaseIC,map.get("ID"),userid).getPhone());
-                            diseasepage.setVisible(true);
-                            this.dispose();
+                            if(option == 2)
+                            {
+                                diseasepage = new NewPatientDisease1(user, map.get("ID"),
+                                        DiseaseIC,
+                                        patient.getPatient(DiseaseIC,map.get("ID"),userid).getName(),
+                                        patient.getPatient(DiseaseIC,map.get("ID"),userid).getPhone());
+                                diseasepage.setVisible(true);
+                                this.dispose();
+                            }
+                            else if (option == 0)
+                            {
+                                clearTextBox();
+                            }
                         }
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, "NewPatient.btnAddActionPerformed get error on line 246"+ex.getMessage());
@@ -361,6 +374,26 @@ public class NewPatient extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    public void clearTextBox()
+    {
+        txtIC.setEnabled(true);
+        btnFind.setEnabled(true);
+        txtName.setEnabled(false);
+        txtGender.setEnabled(false);
+        txtAge.setEnabled(false);
+        txtPhone.setEnabled(false);
+        txtAddress.setEnabled(false);
+
+        txtIC.setText("");
+        txtName.setText("");
+        txtGender.setText("");
+        txtAge.setText("");
+        txtPhone.setText("");
+        txtAddress.setText("");
+        lblCreateDateTime.setText(dtf.format(localDate));
+        lblLastUpdateDateTime.setText("");
+    }
+    
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
         String IC = txtIC.getText();

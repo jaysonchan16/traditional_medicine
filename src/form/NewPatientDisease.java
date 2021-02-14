@@ -1112,7 +1112,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
                 else
                 {
                     JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                    NewPatient detail = new NewPatient(user,IC);
+                    NewPatient detail = new NewPatient(user,IC,2);
                     detail.setVisible(true);
                     this.dispose();
                 }
@@ -1139,7 +1139,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
             else
             {
                 JOptionPane.showMessageDialog(rootPane, "寻找不到病人资料");
-                NewPatient detail = new NewPatient(user,IC);
+                NewPatient detail = new NewPatient(user,IC,2);
                 detail.setVisible(true);
                 this.dispose();
             }
