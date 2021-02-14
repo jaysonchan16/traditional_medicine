@@ -663,6 +663,19 @@ public class ModifyDisease extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "删除成功！");
                 model.setRowCount(0);
                 show_Disease();
+                txtIC.setText("");
+                txtID.setText("");
+                txtName.setText("");
+                txtPhone.setText("");
+                txtSymptom.setText("");
+                txtCategory.setText("");
+                txtPulse.setText("");
+                txtTongueQuality.setText("");
+                txtTongueCoating.setText("");
+                txtShit.setText("");
+                txtHistory.setText("");
+                txtTemperature.setText("");
+                txtBlood.setText("");
             }
             else
             {

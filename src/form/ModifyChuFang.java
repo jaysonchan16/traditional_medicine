@@ -1482,6 +1482,24 @@ public class ModifyChuFang extends javax.swing.JFrame {
             }
             model.setRowCount(0);
             show_table();
+            txtIC.setText("");
+            txtID.setText("");
+            txtName.setText("");
+            txtPhone.setText("");
+            txtChufang.setText("");
+            txtMedicineCategory.setText("");
+            txtReference.setText("");
+            txtMedicineName.setText("");
+            txtJiliang.setText("");
+            txtPrice.setText("");
+            txtTotalPrice.setText("");
+            txtRemaining.setText("");
+            txtBill.setText("");
+            txtLatest.setText("");
+            txtSubTotal.setText("");
+            txtWeight.setText("");
+            txtDisease.setText("");
+            txtPrescriptionID.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "ModifyChuFang.delete() on line 769 get error, "+ex.getMessage());
         }
