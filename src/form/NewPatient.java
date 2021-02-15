@@ -39,7 +39,7 @@ public class NewPatient extends javax.swing.JFrame {
     private String Phone="";
     private String Address="";
     private String Date = "";
-    NewPatientDisease1 diseasepage;
+    NewPatientDisease diseasepage;
     int backoption = 0;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDate localDate = LocalDate.now();
@@ -348,7 +348,7 @@ public class NewPatient extends javax.swing.JFrame {
                         if (!DiseaseIC.equalsIgnoreCase("") && patient.getPatient(DiseaseIC,map.get("ID"),userid).getIC().equalsIgnoreCase(IC)) {
                             if(option == 2)
                             {
-                                diseasepage = new NewPatientDisease1(user, map.get("ID"),
+                                diseasepage = new NewPatientDisease(user, map.get("ID"),
                                         DiseaseIC,
                                         patient.getPatient(DiseaseIC,map.get("ID"),userid).getName(),
                                         patient.getPatient(DiseaseIC,map.get("ID"),userid).getPhone());
@@ -441,7 +441,7 @@ public class NewPatient extends javax.swing.JFrame {
             this.dispose();
         } else {
             try {
-                diseasepage = new NewPatientDisease1(user);
+                diseasepage = new NewPatientDisease(user);
                 diseasepage.setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {

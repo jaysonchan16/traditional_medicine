@@ -109,7 +109,7 @@ public class ProfitForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(1610, 720, 100, 40);
+        btnPrint.setBounds(1440, 720, 150, 60);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -120,7 +120,7 @@ public class ProfitForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(1730, 720, 100, 40);
+        btnBack.setBounds(1640, 720, 150, 60);
 
         txtProfit.setColumns(20);
         txtProfit.setRows(5);

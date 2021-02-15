@@ -177,7 +177,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(330, 680, 128, 45);
+        btnBack.setBounds(380, 680, 170, 70);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnFind.setText("寻找");
@@ -188,7 +188,7 @@ public class MonthYearIC extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(680, 680, 119, 45);
+        btnFind.setBounds(750, 680, 170, 70);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(370, 90, 1200, 820);

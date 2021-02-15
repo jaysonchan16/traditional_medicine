@@ -473,7 +473,7 @@ public class PrintForm extends javax.swing.JFrame {
         else if(option == 4)
         {
             try {
-                NewPatientDisease1 modify = new NewPatientDisease1(user, IC, ID, Name, Phone, Date, symptom, category, 
+                NewPatientDisease modify = new NewPatientDisease(user, IC, ID, Name, Phone, Date, symptom, category, 
                 pulse,tongueQuality,tongueCoating, shit, history, temperature, blood,
                 chufang, medicine, medicinecategory,medicinereference,
                 jiliang, price, totalprice, totalweight, mainprice,remaining,prescriptionID,weightlist);
