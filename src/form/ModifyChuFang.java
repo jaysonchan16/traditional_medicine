@@ -97,13 +97,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
         show_table();
         widthTable();
         image();
-        /*txtDisease.setVisible(false);
+        txtDisease.setVisible(false);
         lblJiliang.setVisible(false);
         txtRemaining.setVisible(false);
         txtBill.setVisible(false);
         txtLatest.setVisible(false);
         txtSubTotal.setVisible(false);
-        txtWeight.setVisible(false);*/
+        txtWeight.setVisible(false);
         
         /*comboReferenceGrassPill.setVisible(false);
         comboReferenceGrassPotion.setVisible(false);
@@ -220,14 +220,14 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrice.setText("");
         show_table();
         widthTable();
-        txtPrescriptionID.setVisible(true);
+        txtPrescriptionID.setVisible(false);
         btnReset.setVisible(false);
         image();
-        /*txtDisease.setVisible(false);
+        txtDisease.setVisible(false);
         txtBill.setVisible(false);
         txtLatest.setVisible(false);
         txtSubTotal.setVisible(false);
-        txtWeight.setVisible(false);*/
+        txtWeight.setVisible(false);
         txtPrescriptionID.setText(PrescriptionID);
         txtIC.setText(IC);
         txtIC.setEnabled(false);
