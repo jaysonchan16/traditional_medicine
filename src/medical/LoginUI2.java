@@ -110,7 +110,7 @@ public class LoginUI2 extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setText("Copyright© 2020 ");
+        jLabel5.setText("Copyright© 2021 ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("All Rights Reserved");
