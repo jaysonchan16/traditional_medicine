@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javaClass.Bill;
 import javaClass.Excel;
 import javaClass.WordWrapCellRenderer;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -235,70 +236,77 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
-        // TODO add your handling code here:
-        model = (DefaultTableModel) tblDisease.getModel();
-        int index = tblDisease.getSelectedRow();
-        TableModel model = tblDisease.getModel();
-        int column = tblDisease.getSelectedColumn();
-        String ID = model.getValueAt(index, 0).toString();
-        String IC = model.getValueAt(index,1).toString();
-        String Name = model.getValueAt(index,2).toString();
-        String Gender = model.getValueAt(index,3).toString();
-        String Age = model.getValueAt(index,4).toString();
-        String Phone = model.getValueAt(index,5).toString();
-        String Address = model.getValueAt(index,6).toString();
-        String Symptom = model.getValueAt(index,7).toString();
-        String Category = model.getValueAt(index,8).toString();
-        String PulseCondition = model.getValueAt(index,9).toString();
-        String TongueQuality = model.getValueAt(index,10).toString();
-        String TongueCoating = model.getValueAt(index,11).toString();
-        String PeeShit = model.getValueAt(index,12).toString();
-        String History = model.getValueAt(index,13).toString();
-        String Temperature = model.getValueAt(index,14).toString();
-        String BloodPressure = model.getValueAt(index,15).toString();
-        String Chufang = model.getValueAt(index,16).toString();
-        String CategoryTable = model.getValueAt(index,17).toString();
-        String Reference = model.getValueAt(index,18).toString();
-        String NameTable = model.getValueAt(index,19).toString();
-        String Jiliang = model.getValueAt(index,20).toString();
-        String Price = model.getValueAt(index,21).toString();
-        String TotalPrice = model.getValueAt(index,22).toString();
-        String CreateDateTime = model.getValueAt(index,23).toString();
-        String LastUpdateDateTime = model.getValueAt(index,24).toString();
-        String DiseaseID = model.getValueAt(index,25).toString();
-        String PrescriptionID = model.getValueAt(index,26).toString();
-        String Bill = model.getValueAt(index,27).toString();
-        String latest = model.getValueAt(index,28).toString();
-        String initialweight = model.getValueAt(index,29).toString();
-        
-        
-        int option =5;
-        
-        if (column >= 0 && column <= 6)
-        {
-            ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,CreateDateTime,LastUpdateDateTime, option, from, to, initialIC, initialID);
-            patient.setVisible(true);
-            this.dispose();
-        }
-        else if(column >= 7 && column <= 15)
-        {
-            try {
-                ModifyDisease disease = new ModifyDisease(user,ID,IC,Name,Phone,DiseaseID,Symptom,Category,PulseCondition,TongueQuality,TongueCoating,PeeShit,History,Temperature,BloodPressure, from, to, initialIC, initialID, option);
-                disease.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            model = (DefaultTableModel) tblDisease.getModel();
+            int index = tblDisease.getSelectedRow();
+            TableModel model = tblDisease.getModel();
+            int column = tblDisease.getSelectedColumn();
+            String ID = model.getValueAt(index, 0).toString();
+            String IC = model.getValueAt(index,1).toString();
+            String Name = model.getValueAt(index,2).toString();
+            String Gender = model.getValueAt(index,3).toString();
+            String Age = model.getValueAt(index,4).toString();
+            String Phone = model.getValueAt(index,5).toString();
+            String Address = model.getValueAt(index,6).toString();
+            String Symptom = model.getValueAt(index,7).toString();
+            String Category = model.getValueAt(index,8).toString();
+            String PulseCondition = model.getValueAt(index,9).toString();
+            String TongueQuality = model.getValueAt(index,10).toString();
+            String TongueCoating = model.getValueAt(index,11).toString();
+            String PeeShit = model.getValueAt(index,12).toString();
+            String History = model.getValueAt(index,13).toString();
+            String Temperature = model.getValueAt(index,14).toString();
+            String BloodPressure = model.getValueAt(index,15).toString();
+            String Chufang = model.getValueAt(index,16).toString();
+            String CategoryTable = model.getValueAt(index,17).toString();
+            String Reference = model.getValueAt(index,18).toString();
+            String NameTable = model.getValueAt(index,19).toString();
+            String Jiliang = model.getValueAt(index,20).toString();
+            String Price = model.getValueAt(index,21).toString();
+            String TotalPrice = model.getValueAt(index,22).toString();
+            String CreateDateTime = model.getValueAt(index,23).toString();
+            String LastUpdateDateTime = model.getValueAt(index,24).toString();
+            String DiseaseID = model.getValueAt(index,25).toString();
+            String PrescriptionID = model.getValueAt(index,26).toString();
+            String BillNo = model.getValueAt(index,27).toString();
+            String latest = model.getValueAt(index,28).toString();
+            String initialweight = model.getValueAt(index,29).toString();
+            List<Bill> billList = new ArrayList<Bill>();
+            Bill billNo = new Bill();
+            billList = billNo.getBillsDetail(userid, "BillNo",BillNo);
+            String subtotal = String.valueOf(billList.get(0).getSubtotal());
+            
+            int option =5;
+            
+            if (column >= 0 && column <= 6)
+            {
+                ModifyPatient patient = new ModifyPatient(user,ID,IC,Name,Gender,Age,Phone,Address,CreateDateTime,LastUpdateDateTime, option, from, to, initialIC, initialID);
+                patient.setVisible(true);
                 this.dispose();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
-        }
-        else
-        {
-            try {
-                ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,Reference,NameTable,Jiliang,Price,TotalPrice,DiseaseID,initialweight,latest,Bill,from,to,initialIC,initialID,option);
-                chufang.setVisible(true);
-                this.dispose();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            else if(column >= 7 && column <= 15)
+            {
+                try {
+                    ModifyDisease disease = new ModifyDisease(user,ID,IC,Name,Phone,DiseaseID,Symptom,Category,PulseCondition,TongueQuality,TongueCoating,PeeShit,History,Temperature,BloodPressure, from, to, initialIC, initialID, option);
+                    disease.setVisible(true);
+                    this.dispose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
+            else
+            {
+                try {
+                    ModifyChuFang chufang = new ModifyChuFang(user,ID,IC,Name,Phone,PrescriptionID,Chufang,CategoryTable,Reference,NameTable,Jiliang,Price,TotalPrice,initialweight,latest,BillNo,subtotal,DiseaseID,from,to,initialIC,initialID,option);
+                    chufang.setVisible(true);
+                    this.dispose();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_tblDiseaseMouseClicked
 

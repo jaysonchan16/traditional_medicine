@@ -97,13 +97,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
         show_table();
         widthTable();
         image();
-        txtDisease.setVisible(false);
+        /*txtDisease.setVisible(false);
         lblJiliang.setVisible(false);
         txtRemaining.setVisible(false);
         txtBill.setVisible(false);
         txtLatest.setVisible(false);
         txtSubTotal.setVisible(false);
-        txtWeight.setVisible(false);
+        txtWeight.setVisible(false);*/
         
         /*comboReferenceGrassPill.setVisible(false);
         comboReferenceGrassPotion.setVisible(false);
@@ -186,10 +186,11 @@ public class ModifyChuFang extends javax.swing.JFrame {
     
     public ModifyChuFang(User user, String ID, String IC, String Name, String Phone, String PrescriptionID, String Chufang,
             String CategoryTable, String Reference, String NameTable, String Jiliang, String Price, String TotalPrice, String initialweight, 
-            String latest, String bill, String DiseaseID, String from, String to,
+            String latest, String bill, String subtotal, String DiseaseID, String from, String to,
             String initialIC, String initialID, int option) throws SQLException
     {
         initComponents();
+        this.subtotal = subtotal;
         this.user = user;
         this.ID = ID;
         this.IC = IC;
@@ -216,20 +217,17 @@ public class ModifyChuFang extends javax.swing.JFrame {
         createColumns();
         color_table();
         jScrollPane1.getViewport().setBackground(Color.WHITE);
-        //comboReference(comboBoxMedicine.getSelectedItem().toString());
-        //medicineCategory();
-        //FindByMedicineName2(String.valueOf(comboMedicineNameGrassPill.getSelectedItem()));
         txtPrice.setText("");
         show_table();
         widthTable();
-        txtPrescriptionID.setVisible(false);
+        txtPrescriptionID.setVisible(true);
         btnReset.setVisible(false);
         image();
-        txtDisease.setVisible(false);
+        /*txtDisease.setVisible(false);
         txtBill.setVisible(false);
         txtLatest.setVisible(false);
         txtSubTotal.setVisible(false);
-        txtWeight.setVisible(false);
+        txtWeight.setVisible(false);*/
         txtPrescriptionID.setText(PrescriptionID);
         txtIC.setText(IC);
         txtIC.setEnabled(false);
@@ -242,8 +240,6 @@ public class ModifyChuFang extends javax.swing.JFrame {
         btnFindIC.setEnabled(false);
         btnFindID.setEnabled(false);
         txtChufang.setText(Chufang);
-       // comboBoxMedicine.setVisible(false);
-        //comboMedicineNameGrassPill.setVisible(false);
         txtMedicineCategory.setText(CategoryTable);
         txtMedicineName.setText(NameTable);
         txtJiliang.setText(Jiliang);
@@ -251,17 +247,20 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtTotalPrice.setText(TotalPrice);
         txtDisease.setText(DiseaseID);
         txtReference.setText(Reference);
-        /*comboReferenceGrassPill.setVisible(false);
-        comboReferenceGrassPotion.setVisible(false);
-        comboBoxReferenceTraditionalPill.setVisible(false);
-        comboBoxReferenceTraditionalPotion.setVisible(false);
-        comboMedicineNameGrassPill.setVisible(false);
-        comboMedicineNameGrassPotion.setVisible(false);
-        comboBoxNameTraditionalPill.setVisible(false);
-        comboBoxNameTraditionalPotion.setVisible(false);*/
+        txtBill.setText(bill);
+        txtLatest.setText(String.valueOf(latest));
+        txtSubTotal.setText(subtotal);
+        txtWeight.setText(initialweight);
+        txtChufang.setEnabled(false);
+        txtMedicineCategory.setEnabled(false);
+        txtReference.setEnabled(false);
+        txtMedicineName.setEnabled(false);
+        txtJiliang.setEnabled(false);
+        txtPrice.setEnabled(false);
+        txtTotalPrice.setEnabled(false);
+        txtRemaining.setEnabled(false);
         lblJiliang.setVisible(false);
         txtRemaining.setVisible(false);
-        //btnFindMedic.setVisible(false);
     }
 
     /**
@@ -598,7 +597,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
 
         txtPrescriptionID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPrescriptionID);
-        txtPrescriptionID.setBounds(290, 10, 90, 20);
+        txtPrescriptionID.setBounds(250, 10, 90, 20);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(80, 100, 1720, 820);
