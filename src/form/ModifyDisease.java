@@ -145,7 +145,10 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnDelete.setVisible(false);
     }
     
-    public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, String initialIC, String initialID, int option) throws SQLException {
+    public ModifyDisease(User user,String ID, String IC, String Name, String Phone,String DiseaseID, 
+            String Symptom, String Category, String PulseCondition, String TongueQuality, String TongueCoating, 
+            String PeeShit, String History, String Temperature, String BloodPressure, String from, String to, 
+            String initialIC, String initialID, int option) throws SQLException {
         initComponents();
         this.user = user;
         this.ID = ID;
@@ -186,6 +189,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         txtTongueQuality.setText(TongueQuality);
         txtTongueCoating.setText(TongueCoating);
         txtShit.setText(PeeShit);
+        txtDiseaseID.setText(DiseaseID);
         txtHistory.setText(History);
         txtTemperature.setText(Temperature);
         txtBlood.setText(BloodPressure);
