@@ -100,8 +100,6 @@ public class ReferenceForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel3.setLayout(null);
-
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -126,9 +124,6 @@ public class ReferenceForm extends javax.swing.JFrame {
         lblName1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName1);
         lblName1.setBounds(1752, 5, 127, 60);
-
-        jPanel3.add(panelHeader);
-        panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -270,9 +265,6 @@ public class ReferenceForm extends javax.swing.JFrame {
         jPanel2.add(jScrollPane5);
         jScrollPane5.setBounds(730, 40, 720, 760);
 
-        jPanel3.add(jPanel2);
-        jPanel2.setBounds(270, 90, 1510, 830);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -280,8 +272,25 @@ public class ReferenceForm extends javax.swing.JFrame {
         jLabel21.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel21);
 
-        jPanel3.add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1510, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jScrollPane6.setViewportView(jPanel3);
 

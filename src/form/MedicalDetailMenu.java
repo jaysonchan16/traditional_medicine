@@ -43,7 +43,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnAddMedicine = new javax.swing.JPanel();
         imgAddMedicine = new javax.swing.JLabel();
@@ -67,10 +66,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jPanel3.setLayout(null);
-
-        jPanel2.setLayout(null);
 
         btnAddMedicine.setBackground(new java.awt.Color(153, 255, 204));
         btnAddMedicine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -117,9 +112,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnAddMedicine);
-        btnAddMedicine.setBounds(230, 150, 470, 350);
-
         btnBack.setBackground(new java.awt.Color(255, 204, 255));
         btnBack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,9 +156,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-
-        jPanel2.add(btnBack);
-        btnBack.setBounds(1170, 560, 470, 350);
 
         btnFindMedicine.setBackground(new java.awt.Color(255, 204, 0));
         btnFindMedicine.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -213,9 +202,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnFindMedicine);
-        btnFindMedicine.setBounds(230, 560, 470, 350);
-
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -237,18 +223,12 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         panelHeader.add(jLabel1);
         jLabel1.setBounds(863, 2, 140, 66);
 
-        jPanel2.add(panelHeader);
-        panelHeader.setBounds(0, 0, 1940, 70);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
-
-        jPanel2.add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
 
         btnModifyMedicine.setBackground(new java.awt.Color(102, 255, 0));
         btnModifyMedicine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -293,13 +273,43 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnModifyMedicine);
-        btnModifyMedicine.setBounds(1170, 160, 470, 350);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAddMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(470, 470, 470)
+                        .addComponent(btnModifyMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnFindMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(470, 470, 470)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnModifyMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFindMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jPanel3.add(jPanel2);
-        jPanel2.setBounds(0, 0, 1940, 990);
-
-        jScrollPane1.setViewportView(jPanel3);
+        jScrollPane1.setViewportView(jPanel2);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(0, 0, 1940, 990);
@@ -475,7 +485,6 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddMedicine;
     private javax.swing.JLabel lblBack;

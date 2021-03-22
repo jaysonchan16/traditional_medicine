@@ -42,7 +42,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
@@ -73,10 +72,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel3.setLayout(null);
-
-        jPanel2.setLayout(null);
-
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -97,9 +92,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
         jLabel1.setText("病症");
         panelHeader.add(jLabel1);
         jLabel1.setBounds(879, 2, 142, 66);
-
-        jPanel2.add(panelHeader);
-        panelHeader.setBounds(0, 0, 1930, 70);
 
         btnAddDisease.setBackground(new java.awt.Color(255, 255, 153));
         btnAddDisease.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -144,9 +136,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnAddDisease);
-        btnAddDisease.setBounds(240, 110, 470, 350);
-
         btnModifyDisease.setBackground(new java.awt.Color(255, 204, 51));
         btnModifyDisease.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnModifyDisease.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,9 +178,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addComponent(lblModifyDisease, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-
-        jPanel2.add(btnModifyDisease);
-        btnModifyDisease.setBounds(780, 110, 470, 350);
 
         btnFindChuFang.setBackground(new java.awt.Color(255, 102, 51));
         btnFindChuFang.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -236,9 +222,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnFindChuFang);
-        btnFindChuFang.setBounds(1340, 110, 470, 350);
-
         btnFindDisease.setBackground(new java.awt.Color(204, 255, 153));
         btnFindDisease.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnFindDisease.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -282,9 +265,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnFindDisease);
-        btnFindDisease.setBounds(780, 520, 470, 350);
-
         btnReportDisease.setBackground(new java.awt.Color(255, 153, 153));
         btnReportDisease.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         btnReportDisease.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -327,9 +307,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addComponent(lblDiseaseReport, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-
-        jPanel2.add(btnReportDisease);
-        btnReportDisease.setBounds(240, 520, 470, 350);
 
         btnBack.setBackground(new java.awt.Color(0, 255, 204));
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -376,9 +353,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel2.add(btnBack);
-        btnBack.setBounds(1340, 520, 470, 350);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -386,13 +360,47 @@ public class DiseaseMenu extends javax.swing.JFrame {
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
 
-        jPanel2.add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1930, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAddDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnModifyDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(btnFindChuFang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnReportDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnFindDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModifyDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFindChuFang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReportDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFindDisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jPanel3.add(jPanel2);
-        jPanel2.setBounds(0, 0, 1930, 990);
-
-        jScrollPane1.setViewportView(jPanel3);
+        jScrollPane1.setViewportView(jPanel2);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(0, 0, 1930, 990);
@@ -628,7 +636,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddDisease;
     private javax.swing.JLabel lblBack;
