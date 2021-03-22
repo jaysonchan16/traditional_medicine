@@ -29,7 +29,6 @@ public class DiseaseMenu extends javax.swing.JFrame {
         initComponents();
         this.user = user;
         this.lblName.setText(user.getUserid());
-        setResizable(false);
         image();
     }
 
@@ -42,14 +41,14 @@ public class DiseaseMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         btnAddDisease = new javax.swing.JPanel();
         ImgAddDisease = new javax.swing.JLabel();
         lblAddDisease = new javax.swing.JLabel();
@@ -68,11 +67,15 @@ public class DiseaseMenu extends javax.swing.JFrame {
         btnBack = new javax.swing.JPanel();
         ImgBack = new javax.swing.JLabel();
         lblBack = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(770, 56, 0, 10);
+
+        jPanel3.setLayout(null);
+
+        jPanel2.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -95,18 +98,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
         panelHeader.add(jLabel1);
         jLabel1.setBounds(879, 2, 142, 66);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1930, 70);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel12);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
 
         btnAddDisease.setBackground(new java.awt.Color(255, 255, 153));
         btnAddDisease.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -151,8 +144,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnAddDisease);
-        btnAddDisease.setBounds(230, 150, 470, 350);
+        jPanel2.add(btnAddDisease);
+        btnAddDisease.setBounds(240, 110, 470, 350);
 
         btnModifyDisease.setBackground(new java.awt.Color(255, 204, 51));
         btnModifyDisease.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -197,8 +190,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnModifyDisease);
-        btnModifyDisease.setBounds(780, 150, 470, 350);
+        jPanel2.add(btnModifyDisease);
+        btnModifyDisease.setBounds(780, 110, 470, 350);
 
         btnFindChuFang.setBackground(new java.awt.Color(255, 102, 51));
         btnFindChuFang.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -243,8 +236,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnFindChuFang);
-        btnFindChuFang.setBounds(1340, 150, 470, 350);
+        jPanel2.add(btnFindChuFang);
+        btnFindChuFang.setBounds(1340, 110, 470, 350);
 
         btnFindDisease.setBackground(new java.awt.Color(204, 255, 153));
         btnFindDisease.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -289,8 +282,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnFindDisease);
-        btnFindDisease.setBounds(780, 560, 470, 350);
+        jPanel2.add(btnFindDisease);
+        btnFindDisease.setBounds(780, 520, 470, 350);
 
         btnReportDisease.setBackground(new java.awt.Color(255, 153, 153));
         btnReportDisease.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -335,8 +328,8 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnReportDisease);
-        btnReportDisease.setBounds(230, 560, 470, 350);
+        jPanel2.add(btnReportDisease);
+        btnReportDisease.setBounds(240, 520, 470, 350);
 
         btnBack.setBackground(new java.awt.Color(0, 255, 204));
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -383,10 +376,28 @@ public class DiseaseMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnBack);
-        btnBack.setBounds(1340, 560, 470, 350);
+        jPanel2.add(btnBack);
+        btnBack.setBounds(1340, 520, 470, 350);
 
-        setBounds(0, 0, 1933, 1036);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel12);
+
+        jPanel2.add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(0, 0, 1930, 990);
+
+        jScrollPane1.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1930, 990);
+
+        setBounds(0, 0, 1947, 1035);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblAddDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddDiseaseMouseClicked
@@ -615,8 +626,10 @@ public class DiseaseMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddDisease;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblDiseaseReport;

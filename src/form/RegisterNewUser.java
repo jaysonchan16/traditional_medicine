@@ -38,6 +38,8 @@ public class RegisterNewUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -53,10 +55,12 @@ public class RegisterNewUser extends javax.swing.JFrame {
         btnConfirm = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel3.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -79,7 +83,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
         panelHeader.add(jLabel4);
         jLabel4.setBounds(880, 0, 260, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel3.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -135,18 +139,23 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jPanel2.add(btnBack);
         btnBack.setBounds(190, 490, 130, 50);
 
-        getContentPane().add(jPanel2);
+        jPanel3.add(jPanel2);
         jPanel2.setBounds(460, 240, 940, 610);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel18.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel18);
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel21);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 954, 1940, 36);
+        jPanel3.add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        jScrollPane1.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1956, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -241,13 +250,15 @@ public class RegisterNewUser extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;

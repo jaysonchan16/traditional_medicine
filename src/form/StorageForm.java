@@ -79,11 +79,14 @@ public class StorageForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel5 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         btnFindMedic = new javax.swing.JButton();
         comboReferenceGrassPill = new javax.swing.JComboBox<>();
@@ -110,11 +113,11 @@ public class StorageForm extends javax.swing.JFrame {
         comboBoxReferenceTraditionalPill = new javax.swing.JComboBox<>();
         comboBoxReferenceTraditionalPotion = new javax.swing.JComboBox<>();
         btnReset = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel5.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -137,8 +140,18 @@ public class StorageForm extends javax.swing.JFrame {
         panelHeader.add(findHeader);
         findHeader.setBounds(870, 0, 200, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel5.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel18);
+
+        jPanel5.add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -337,18 +350,11 @@ public class StorageForm extends javax.swing.JFrame {
         panelBody.add(btnReset);
         btnReset.setBounds(310, 740, 130, 50);
 
-        getContentPane().add(panelBody);
+        jPanel5.add(panelBody);
         panelBody.setBounds(100, 90, 1752, 820);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel18.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel18);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1958, 1036);
     }// </editor-fold>//GEN-END:initComponents
@@ -828,7 +834,7 @@ public class StorageForm extends javax.swing.JFrame {
         ImageIcon iconReset = new ImageIcon(getClass().getResource("/menu/smallReset.png"));
         btnReset.setIcon(iconReset);
         this.lblName.setText(userid);
-        setResizable(false);
+//        setResizable(false);
     }
     /**
      * @param args the command line arguments
@@ -892,6 +898,7 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;

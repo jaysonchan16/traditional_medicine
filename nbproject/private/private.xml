@@ -5,7 +5,6 @@
         <group>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/PatientDetailMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ReferenceForm.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/NewPatientDisease1.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/GrassMedicinePotion.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SearchDiseasePatient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SettingsMenu.java</file>
@@ -19,18 +18,19 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthlyPatientDiseaseReport.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ViewDiseaseDetail.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/RegisterNewUser.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/AddUser.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ModifyChuFang.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/ChangePassword.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/TraditionalMedicinePill.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SearchMedicine.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/LoginUI.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/NewPatient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Disease.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/DiseaseMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/NewPatientDisease.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/DiseaseMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/DeleteSupervisorAcc.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/PrintPatientReport.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/GrassMedicinePill.java</file>
-            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/StorageForm.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/MainPage.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthYear.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Bill.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/PrintForm.java</file>
@@ -43,6 +43,7 @@
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/SearchPatient.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MonthYearIC.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/BeginnerNewMedicine.java</file>
+            <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/medical/LoginUI2.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/form/MainMenu.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/Prescription.java</file>
             <file>file:/C:/Users/Sheng/Documents/NetBeansProjects/medical/src/javaClass/User.java</file>

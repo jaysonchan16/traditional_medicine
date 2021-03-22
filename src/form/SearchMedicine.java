@@ -47,7 +47,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         show_medicals();
         JTableHeader tableHeader = tblMedicine.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
-        setResizable(false);
+        //setResizable(false);
         widthTable();
         image();
     }
@@ -60,6 +60,8 @@ public class SearchMedicine extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         panelHeader = new javax.swing.JPanel();
@@ -111,6 +113,8 @@ public class SearchMedicine extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel3.setLayout(null);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -118,7 +122,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         jLabel21.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel21);
 
-        getContentPane().add(jPanel1);
+        jPanel3.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
@@ -142,7 +146,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         panelHeader.add(findHeader);
         findHeader.setBounds(870, 0, 200, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel3.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -439,8 +443,13 @@ public class SearchMedicine extends javax.swing.JFrame {
         jPanel2.add(btnPrint);
         btnPrint.setBounds(590, 780, 130, 50);
 
-        getContentPane().add(jPanel2);
+        jPanel3.add(jPanel2);
         jPanel2.setBounds(50, 90, 1860, 840);
+
+        jScrollPane9.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane9);
+        jScrollPane9.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1958, 1038);
     }// </editor-fold>//GEN-END:initComponents
@@ -814,7 +823,7 @@ public class SearchMedicine extends javax.swing.JFrame {
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     
     public void widthTable()
@@ -898,6 +907,7 @@ public class SearchMedicine extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -906,6 +916,7 @@ public class SearchMedicine extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;

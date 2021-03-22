@@ -51,7 +51,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         show_patient();
         JTableHeader tableHeader = tblDisease.getTableHeader();
         tableHeader.setFont(new Font("STXihei", Font.BOLD, 18));
-        setResizable(false);
+        //setResizable(false);
         image();
         color_table();
         widthTable();
@@ -66,13 +66,8 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelHeader = new javax.swing.JPanel();
-        lbllogo = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        findHeader = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelBody = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
@@ -125,6 +120,13 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         btnExcel = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        panelHeader = new javax.swing.JPanel();
+        lbllogo = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        findHeader = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -132,39 +134,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
-        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
-        panelHeader.setLayout(null);
-        panelHeader.add(lbllogo);
-        lbllogo.setBounds(14, 2, 231, 70);
-
-        jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        jLabel20.setText("登入：");
-        panelHeader.add(jLabel20);
-        jLabel20.setBounds(1670, 5, 75, 60);
-
-        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
-
-        findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        findHeader.setText("寻找病人病症");
-        panelHeader.add(findHeader);
-        findHeader.setBounds(880, 0, 250, 70);
-
-        getContentPane().add(panelHeader);
-        panelHeader.setBounds(0, 0, 1940, 70);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 940, 1940, 50);
+        jPanel2.setLayout(null);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -552,14 +522,53 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         panelBody.add(btnPrint);
         btnPrint.setBounds(570, 730, 120, 50);
 
-        getContentPane().add(panelBody);
+        jPanel2.add(panelBody);
         panelBody.setBounds(30, 90, 1870, 830);
-        getContentPane().add(jScrollPane3);
+
+        panelHeader.setBackground(new java.awt.Color(255, 204, 204));
+        panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        panelHeader.setForeground(new java.awt.Color(153, 153, 153));
+        panelHeader.setLayout(null);
+        panelHeader.add(lbllogo);
+        lbllogo.setBounds(14, 2, 231, 70);
+
+        jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        jLabel20.setText("登入：");
+        panelHeader.add(jLabel20);
+        jLabel20.setBounds(1670, 5, 75, 60);
+
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1752, 5, 127, 60);
+
+        findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        findHeader.setText("寻找病人病症");
+        panelHeader.add(findHeader);
+        findHeader.setBounds(880, 0, 250, 70);
+
+        jPanel2.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel21);
+
+        jPanel2.add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+        jPanel2.add(jScrollPane3);
         jScrollPane3.setBounds(0, 0, 2, 2);
-        getContentPane().add(jScrollPane4);
+        jPanel2.add(jScrollPane4);
         jScrollPane4.setBounds(930, 110, 160, 150);
-        getContentPane().add(jScrollPane5);
+        jPanel2.add(jScrollPane5);
         jScrollPane5.setBounds(0, 0, 2, 2);
+
+        jScrollPane6.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane6);
+        jScrollPane6.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1957, 1036);
     }// </editor-fold>//GEN-END:initComponents
@@ -1124,7 +1133,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     
     public void color_table()
@@ -1261,6 +1270,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1268,6 +1278,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;

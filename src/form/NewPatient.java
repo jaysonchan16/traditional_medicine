@@ -115,6 +115,8 @@ public class NewPatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -148,6 +150,8 @@ public class NewPatient extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel2.setLayout(null);
+
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -169,7 +173,7 @@ public class NewPatient extends javax.swing.JFrame {
         panelHeader.add(headerAdd);
         headerAdd.setBounds(820, 0, 260, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -179,7 +183,7 @@ public class NewPatient extends javax.swing.JFrame {
         jLabel18.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel18);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
@@ -306,8 +310,13 @@ public class NewPatient extends javax.swing.JFrame {
         panelBody.add(btnPrint);
         btnPrint.setBounds(830, 670, 130, 50);
 
-        getContentPane().add(panelBody);
+        jPanel2.add(panelBody);
         panelBody.setBounds(330, 100, 1200, 810);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1955, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -487,7 +496,7 @@ public class NewPatient extends javax.swing.JFrame {
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/addmedium.png"));
         headerAdd.setIcon(iconHeader);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     /**
      * @param args the command line arguments
@@ -541,6 +550,8 @@ public class NewPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCreateDateTime;
     private javax.swing.JLabel lblLastUpdateDateTime;

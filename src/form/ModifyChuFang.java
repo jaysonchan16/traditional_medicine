@@ -272,6 +272,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -328,6 +330,8 @@ public class ModifyChuFang extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel5.setLayout(null);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -335,7 +339,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jLabel18.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel18);
 
-        getContentPane().add(jPanel1);
+        jPanel5.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -599,7 +603,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         jPanel2.add(txtPrescriptionID);
         txtPrescriptionID.setBounds(250, 10, 90, 20);
 
-        getContentPane().add(jPanel2);
+        jPanel5.add(jPanel2);
         jPanel2.setBounds(80, 100, 1720, 820);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
@@ -623,8 +627,13 @@ public class ModifyChuFang extends javax.swing.JFrame {
         panelHeader.add(lblName);
         lblName.setBounds(1758, 5, 160, 60);
 
-        getContentPane().add(panelHeader);
+        jPanel5.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
+
+        jScrollPane2.setViewportView(jPanel5);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1958, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -1614,7 +1623,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/editmedium.png"));
         jLabel1.setIcon(iconHeader);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     
     public String printPreview(String IC,String ID,String name,String phone,String diseaseID,String user)
@@ -1879,7 +1888,9 @@ public class ModifyChuFang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblJiliang;
     private javax.swing.JLabel lblName;

@@ -65,6 +65,8 @@ public class ReferenceForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -98,6 +100,8 @@ public class ReferenceForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel3.setLayout(null);
+
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -123,7 +127,7 @@ public class ReferenceForm extends javax.swing.JFrame {
         panelHeader.add(lblName1);
         lblName1.setBounds(1752, 5, 127, 60);
 
-        getContentPane().add(panelHeader);
+        jPanel3.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,7 +270,7 @@ public class ReferenceForm extends javax.swing.JFrame {
         jPanel2.add(jScrollPane5);
         jScrollPane5.setBounds(730, 40, 720, 760);
 
-        getContentPane().add(jPanel2);
+        jPanel3.add(jPanel2);
         jPanel2.setBounds(270, 90, 1510, 830);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -276,10 +280,15 @@ public class ReferenceForm extends javax.swing.JFrame {
         jLabel21.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel21);
 
-        getContentPane().add(jPanel1);
+        jPanel3.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
-        setBounds(0, 0, 1958, 1040);
+        jScrollPane6.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane6);
+        jScrollPane6.setBounds(0, 0, 1940, 990);
+
+        setBounds(0, 0, 1958, 1035);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -532,7 +541,7 @@ public class ReferenceForm extends javax.swing.JFrame {
         ImageIcon iconFind = new ImageIcon(getClass().getResource("/menu/smallFind.png"));
         btnFind.setIcon(iconFind);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     /**
      * @param args the command line arguments
@@ -583,11 +592,13 @@ public class ReferenceForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lbllogo;

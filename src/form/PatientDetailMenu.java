@@ -25,7 +25,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         this.user = user;
         
         this.lblName.setText(user.getUserid());
-        setResizable(false);
+        //setResizable(false);
         image();
     }
     public PatientDetailMenu() {
@@ -41,6 +41,8 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -64,6 +66,8 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel2.setLayout(null);
+
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -85,7 +89,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         panelHeader.add(headerPatient);
         headerPatient.setBounds(920, 0, 230, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -95,7 +99,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         btnAddPatient.setBackground(new java.awt.Color(0, 204, 204));
@@ -143,7 +147,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnAddPatient);
+        jPanel2.add(btnAddPatient);
         btnAddPatient.setBounds(230, 150, 470, 350);
 
         btnFindPatient.setBackground(new java.awt.Color(153, 255, 255));
@@ -191,7 +195,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnFindPatient);
+        jPanel2.add(btnFindPatient);
         btnFindPatient.setBounds(230, 560, 470, 350);
 
         btnBack1.setBackground(new java.awt.Color(255, 204, 204));
@@ -239,7 +243,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnBack1);
+        jPanel2.add(btnBack1);
         btnBack1.setBounds(1170, 560, 470, 350);
 
         btnModifyPatient.setBackground(new java.awt.Color(255, 255, 204));
@@ -288,10 +292,15 @@ public class PatientDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnModifyPatient);
+        jPanel2.add(btnModifyPatient);
         btnModifyPatient.setBounds(1170, 160, 470, 350);
 
-        setBounds(0, 0, 1960, 1038);
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
+
+        setBounds(0, 0, 1957, 1033);
     }// </editor-fold>//GEN-END:initComponents
 
     private void imgAddPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAddPatientMouseClicked
@@ -459,6 +468,8 @@ public class PatientDetailMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddPatient;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblFindPatient;

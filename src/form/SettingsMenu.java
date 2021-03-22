@@ -32,7 +32,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         userid = user.getUserid();
         image();
         lblLoggedIn.setText(user.getUserid());
-        setResizable(false);
+        //setResizable(false);
     }
     
 
@@ -45,6 +45,8 @@ public class SettingsMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
@@ -68,6 +70,8 @@ public class SettingsMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel2.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -94,7 +98,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         panelHeader.add(jLabel13);
         jLabel13.setBounds(1638, 5, 100, 60);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -104,7 +108,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         btnBack.setBackground(new java.awt.Color(255, 255, 153));
@@ -152,7 +156,7 @@ public class SettingsMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnBack);
+        jPanel2.add(btnBack);
         btnBack.setBounds(1180, 530, 470, 350);
 
         btnDeleteAccount.setBackground(new java.awt.Color(204, 204, 255));
@@ -200,7 +204,7 @@ public class SettingsMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnDeleteAccount);
+        jPanel2.add(btnDeleteAccount);
         btnDeleteAccount.setBounds(1180, 130, 470, 350);
 
         btnUpdateAccount.setBackground(new java.awt.Color(255, 204, 204));
@@ -246,7 +250,7 @@ public class SettingsMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnUpdateAccount);
+        jPanel2.add(btnUpdateAccount);
         btnUpdateAccount.setBounds(250, 530, 470, 350);
 
         btnAddAccount.setBackground(new java.awt.Color(204, 255, 204));
@@ -294,8 +298,13 @@ public class SettingsMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnAddAccount);
+        jPanel2.add(btnAddAccount);
         btnAddAccount.setBounds(250, 130, 470, 350);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1958, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -474,6 +483,8 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddAccount;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblDeleteAccount;

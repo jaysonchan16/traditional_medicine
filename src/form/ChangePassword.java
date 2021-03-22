@@ -40,7 +40,6 @@ public class ChangePassword extends javax.swing.JFrame {
         userid = user.getUserid();
         lblName.setText(userid);
         image();
-        setResizable(false);
         
     }
     /**
@@ -52,13 +51,13 @@ public class ChangePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,8 +73,13 @@ public class ChangePassword extends javax.swing.JFrame {
         txtConfirmPassword = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtOldPassword = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jPanel2.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -98,12 +102,8 @@ public class ChangePassword extends javax.swing.JFrame {
         panelHeader.add(findHeader);
         findHeader.setBounds(960, 0, 200, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
+        jPanel2.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1940, 70);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -190,36 +190,23 @@ public class ChangePassword extends javax.swing.JFrame {
         panelBody.add(txtOldPassword);
         txtOldPassword.setBounds(490, 390, 600, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(870, 870, 870)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel2.add(panelBody);
+        panelBody.setBounds(390, 130, 1338, 734);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("CopyRight © Heng Seng Tong");
+        jPanel1.add(jLabel21);
+
+        jPanel2.add(jPanel1);
+        jPanel1.setBounds(0, 940, 1940, 50);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -451,7 +438,7 @@ public class ChangePassword extends javax.swing.JFrame {
         ImageIcon iconHeader = new ImageIcon(getClass().getResource("/menu/accountmedium.png"));
         findHeader.setIcon(iconHeader);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     
     /**
@@ -502,6 +489,8 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;

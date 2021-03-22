@@ -26,7 +26,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         
         this.lblName.setText(user.getUserid());
         image();
-        setResizable(false);
+        //setResizable(false);
     }
     
     public MedicalDetailMenu() {
@@ -42,6 +42,9 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         btnAddMedicine = new javax.swing.JPanel();
         imgAddMedicine = new javax.swing.JLabel();
         lblAddMedicine = new javax.swing.JLabel();
@@ -64,6 +67,10 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel3.setLayout(null);
+
+        jPanel2.setLayout(null);
 
         btnAddMedicine.setBackground(new java.awt.Color(153, 255, 204));
         btnAddMedicine.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -110,7 +117,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnAddMedicine);
+        jPanel2.add(btnAddMedicine);
         btnAddMedicine.setBounds(230, 150, 470, 350);
 
         btnBack.setBackground(new java.awt.Color(255, 204, 255));
@@ -158,7 +165,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnBack);
+        jPanel2.add(btnBack);
         btnBack.setBounds(1170, 560, 470, 350);
 
         btnFindMedicine.setBackground(new java.awt.Color(255, 204, 0));
@@ -206,7 +213,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnFindMedicine);
+        jPanel2.add(btnFindMedicine);
         btnFindMedicine.setBounds(230, 560, 470, 350);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
@@ -230,7 +237,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         panelHeader.add(jLabel1);
         jLabel1.setBounds(863, 2, 140, 66);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -240,7 +247,7 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         btnModifyMedicine.setBackground(new java.awt.Color(102, 255, 0));
@@ -286,8 +293,16 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnModifyMedicine);
+        jPanel2.add(btnModifyMedicine);
         btnModifyMedicine.setBounds(1170, 160, 470, 350);
+
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(0, 0, 1940, 990);
+
+        jScrollPane1.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1957, 1034);
     }// </editor-fold>//GEN-END:initComponents
@@ -459,6 +474,9 @@ public class MedicalDetailMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddMedicine;
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblFindMedicine;

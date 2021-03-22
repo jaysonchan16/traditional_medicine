@@ -29,7 +29,6 @@ public class MainMenu extends javax.swing.JFrame {
         userid = user.getUserid();
         this.lblName.setText(user.getUserid());
         image();
-        setResizable(false);
     }
     
     public MainMenu(int test) {
@@ -57,6 +56,8 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -82,15 +83,17 @@ public class MainMenu extends javax.swing.JFrame {
         btnMedicine = new javax.swing.JPanel();
         imgMedicine = new javax.swing.JLabel();
         lblMedicine = new javax.swing.JLabel();
-        btnSetting = new javax.swing.JPanel();
-        imgSetting = new javax.swing.JLabel();
-        lblSetting = new javax.swing.JLabel();
         btnLogout = new javax.swing.JPanel();
         imgLogout = new javax.swing.JLabel();
         lblLogout = new javax.swing.JLabel();
+        btnSetting = new javax.swing.JPanel();
+        imgSetting = new javax.swing.JLabel();
+        lblSetting = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel2.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -113,7 +116,7 @@ public class MainMenu extends javax.swing.JFrame {
         panelHeader.add(lblhome);
         lblhome.setBounds(882, 2, 127, 63);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1930, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -123,7 +126,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel12.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel12);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         btnStorage.setBackground(new java.awt.Color(255, 204, 0));
@@ -171,7 +174,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnStorage);
+        jPanel2.add(btnStorage);
         btnStorage.setBounds(60, 490, 390, 290);
 
         btnPatient.setBackground(new java.awt.Color(204, 255, 204));
@@ -220,7 +223,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnPatient);
+        jPanel2.add(btnPatient);
         btnPatient.setBounds(60, 140, 390, 290);
 
         btnDisease.setBackground(new java.awt.Color(204, 204, 255));
@@ -268,7 +271,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnDisease);
+        jPanel2.add(btnDisease);
         btnDisease.setBounds(510, 140, 390, 290);
 
         btnProfit.setBackground(new java.awt.Color(0, 255, 153));
@@ -316,7 +319,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnProfit);
+        jPanel2.add(btnProfit);
         btnProfit.setBounds(510, 490, 390, 290);
 
         btnReference.setBackground(new java.awt.Color(241, 216, 171));
@@ -362,7 +365,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnReference);
+        jPanel2.add(btnReference);
         btnReference.setBounds(1460, 140, 390, 290);
 
         btnMedicine.setBackground(new java.awt.Color(255, 255, 204));
@@ -411,56 +414,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnMedicine);
+        jPanel2.add(btnMedicine);
         btnMedicine.setBounds(980, 140, 390, 290);
-
-        btnSetting.setBackground(new java.awt.Color(255, 204, 204));
-        btnSetting.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        btnSetting.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSettingMouseClicked(evt);
-            }
-        });
-
-        imgSetting.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgSettingMouseClicked(evt);
-            }
-        });
-
-        lblSetting.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        lblSetting.setText("设定");
-        lblSetting.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSettingMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnSettingLayout = new javax.swing.GroupLayout(btnSetting);
-        btnSetting.setLayout(btnSettingLayout);
-        btnSettingLayout.setHorizontalGroup(
-            btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSettingLayout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addGroup(btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(btnSettingLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imgSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(134, 134, 134))
-        );
-        btnSettingLayout.setVerticalGroup(
-            btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSettingLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(imgSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-
-        getContentPane().add(btnSetting);
-        btnSetting.setBounds(980, 490, 390, 290);
 
         btnLogout.setBackground(new java.awt.Color(255, 153, 255));
         btnLogout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -508,10 +463,63 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        getContentPane().add(btnLogout);
+        jPanel2.add(btnLogout);
         btnLogout.setBounds(1460, 490, 390, 290);
 
-        setBounds(0, 0, 1955, 1035);
+        btnSetting.setBackground(new java.awt.Color(255, 204, 204));
+        btnSetting.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSettingMouseClicked(evt);
+            }
+        });
+
+        imgSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgSettingMouseClicked(evt);
+            }
+        });
+
+        lblSetting.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblSetting.setText("设定");
+        lblSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSettingMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnSettingLayout = new javax.swing.GroupLayout(btnSetting);
+        btnSetting.setLayout(btnSettingLayout);
+        btnSettingLayout.setHorizontalGroup(
+            btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSettingLayout.createSequentialGroup()
+                .addContainerGap(142, Short.MAX_VALUE)
+                .addGroup(btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnSettingLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imgSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134))
+        );
+        btnSettingLayout.setVerticalGroup(
+            btnSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSettingLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(imgSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        jPanel2.add(btnSetting);
+        btnSetting.setBounds(980, 490, 390, 290);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(-1, -7, 1940, 990);
+
+        setBounds(0, 0, 1955, 1030);
     }// </editor-fold>//GEN-END:initComponents
 
     private void imgStorageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgStorageMouseClicked
@@ -804,6 +812,8 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDisease;
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel lblMedicine;

@@ -336,6 +336,8 @@ public class PrintForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         panelHeader = new javax.swing.JPanel();
@@ -352,6 +354,8 @@ public class PrintForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel3.setLayout(null);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -359,7 +363,7 @@ public class PrintForm extends javax.swing.JFrame {
         jLabel18.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel18);
 
-        getContentPane().add(jPanel1);
+        jPanel3.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
@@ -383,7 +387,7 @@ public class PrintForm extends javax.swing.JFrame {
         panelHeader.add(lblName);
         lblName.setBounds(1758, 5, 160, 60);
 
-        getContentPane().add(panelHeader);
+        jPanel3.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -420,10 +424,15 @@ public class PrintForm extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(560, 20, 508, 748);
 
-        getContentPane().add(jPanel2);
+        jPanel3.add(jPanel2);
         jPanel2.setBounds(70, 90, 1810, 830);
 
-        setBounds(0, 0, 1958, 1037);
+        jScrollPane2.setViewportView(jPanel3);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(0, 0, 1940, 990);
+
+        setBounds(0, 0, 1958, 1035);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -576,7 +585,9 @@ public class PrintForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;

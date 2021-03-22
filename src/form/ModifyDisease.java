@@ -211,6 +211,8 @@ public class ModifyDisease extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -264,15 +266,17 @@ public class ModifyDisease extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jSeparator1);
+
+        jPanel2.setLayout(null);
+        jPanel2.add(jSeparator1);
         jSeparator1.setBounds(0, 252, 720, 0);
-        getContentPane().add(jSeparator2);
+        jPanel2.add(jSeparator2);
         jSeparator2.setBounds(280, 20, 0, 110);
-        getContentPane().add(jSeparator4);
+        jPanel2.add(jSeparator4);
         jSeparator4.setBounds(280, 20, 0, 120);
 
         txtDiseaseID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        getContentPane().add(txtDiseaseID);
+        jPanel2.add(txtDiseaseID);
         txtDiseaseID.setBounds(370, 70, 250, 20);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
@@ -296,7 +300,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         panelHeader.add(lblName);
         lblName.setBounds(1758, -1, 160, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -306,7 +310,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel18.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel18);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
@@ -558,8 +562,13 @@ public class ModifyDisease extends javax.swing.JFrame {
         panelBody.add(btnExcel);
         btnExcel.setBounds(600, 740, 140, 50);
 
-        getContentPane().add(panelBody);
+        jPanel2.add(panelBody);
         panelBody.setBounds(60, 90, 1840, 820);
+
+        jScrollPane2.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1957, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -1020,7 +1029,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnPrint.setIcon(iconPrint);
         ImageIcon iconExcel = new ImageIcon(getClass().getResource("/menu/smallExcel.png"));
         btnExcel.setIcon(iconExcel);
-        setResizable(false);
+        //setResizable(false);
     }
     
     public String printPreview(String IC, String ID, String Name, String Phone, String Date,String symptom, String category, String pulse,
@@ -1091,7 +1100,9 @@ public class ModifyDisease extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

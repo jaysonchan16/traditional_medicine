@@ -45,6 +45,8 @@ public class MonthYearIC extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lbllogo = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -71,6 +73,8 @@ public class MonthYearIC extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        jPanel2.setLayout(null);
+
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -92,7 +96,7 @@ public class MonthYearIC extends javax.swing.JFrame {
         panelHeader.add(headerFind);
         headerFind.setBounds(890, 0, 260, 70);
 
-        getContentPane().add(panelHeader);
+        jPanel2.add(panelHeader);
         panelHeader.setBounds(0, 0, 1940, 70);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -102,7 +106,7 @@ public class MonthYearIC extends javax.swing.JFrame {
         jLabel18.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel18);
 
-        getContentPane().add(jPanel1);
+        jPanel2.add(jPanel1);
         jPanel1.setBounds(0, 940, 1940, 50);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
@@ -190,8 +194,13 @@ public class MonthYearIC extends javax.swing.JFrame {
         panelBody.add(btnFind);
         btnFind.setBounds(750, 680, 170, 70);
 
-        getContentPane().add(panelBody);
+        jPanel2.add(panelBody);
         panelBody.setBounds(370, 90, 1200, 820);
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 1940, 990);
 
         setBounds(0, 0, 1957, 1037);
     }// </editor-fold>//GEN-END:initComponents
@@ -281,7 +290,7 @@ public class MonthYearIC extends javax.swing.JFrame {
         ImageIcon iconModify = new ImageIcon(getClass().getResource("/menu/findmedium.png"));
         headerFind.setIcon(iconModify);
         this.lblName.setText(user.getUserid());
-        setResizable(false);
+        //setResizable(false);
     }
     /**
      * @param args the command line arguments
@@ -332,6 +341,8 @@ public class MonthYearIC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;
