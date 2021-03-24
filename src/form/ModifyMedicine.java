@@ -233,8 +233,8 @@ public class ModifyMedicine extends javax.swing.JFrame {
         txtReference = new javax.swing.JTextField();
         radioReferenceName = new javax.swing.JRadioButton();
         radioDetails = new javax.swing.JRadioButton();
-        txtFixedName = new javax.swing.JTextField();
         btnExcel = new javax.swing.JButton();
+        txtFixedName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -530,8 +530,6 @@ public class ModifyMedicine extends javax.swing.JFrame {
         });
         panelBody.add(radioDetails);
         radioDetails.setBounds(450, 730, 530, 40);
-        panelBody.add(txtFixedName);
-        txtFixedName.setBounds(10, 180, 90, 30);
 
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
@@ -550,7 +548,9 @@ public class ModifyMedicine extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(13, 13, 13)
+                .addComponent(txtFixedName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1870, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -558,8 +558,13 @@ public class ModifyMedicine extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(txtFixedName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

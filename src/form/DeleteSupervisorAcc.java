@@ -55,18 +55,20 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
         lbllogo = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
         lblLoggedIn = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         comboUser = new javax.swing.JComboBox<>();
         btnBack = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel3.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -78,27 +80,23 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("删除账号");
         panelHeader.add(findHeader);
-        findHeader.setBounds(870, 0, 200, 70);
+        findHeader.setBounds(590, 0, 200, 70);
 
         lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblLoggedIn);
-        lblLoggedIn.setBounds(1730, 10, 170, 50);
-
-        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
-        panelHeader.add(lblName);
-        lblName.setBounds(1745, 5, 160, 60);
+        lblLoggedIn.setBounds(1350, 0, 170, 50);
 
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel13.setText("登入：");
         panelHeader.add(jLabel13);
-        jLabel13.setBounds(1638, 5, 100, 60);
+        jLabel13.setBounds(980, 0, 100, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        panelHeader.add(lblName);
+        lblName.setBounds(1060, 0, 160, 70);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel12);
+        jPanel3.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -135,32 +133,25 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
         jPanel2.add(btnDelete);
         btnDelete.setBounds(590, 420, 130, 50);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(530, 530, 530)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(280, 110, 810, 500);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("CopyRight © Heng Seng Tong");
+        jPanel4.add(jLabel14);
+
+        jPanel3.add(jPanel4);
+        jPanel4.setBounds(0, 650, 1370, 50);
 
         jScrollPane1.setViewportView(jPanel3);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(2, 0, 1940, 990);
+        jScrollPane1.setBounds(2, 0, 1370, 700);
 
-        setBounds(0, 0, 1958, 1037);
+        setBounds(0, 0, 1390, 748);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -341,11 +332,11 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboUser;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLoggedIn;
     private javax.swing.JLabel lblName;

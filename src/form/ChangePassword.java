@@ -73,11 +73,13 @@ public class ChangePassword extends javax.swing.JFrame {
         txtConfirmPassword = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtOldPassword = new javax.swing.JPasswordField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel2.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -89,16 +91,19 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel20.setText("登入：");
         panelHeader.add(jLabel20);
-        jLabel20.setBounds(1670, 5, 75, 60);
+        jLabel20.setBounds(1130, 0, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
+        lblName.setBounds(1200, 0, 127, 70);
 
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("更改密码");
         panelHeader.add(findHeader);
-        findHeader.setBounds(960, 0, 200, 70);
+        findHeader.setBounds(540, 0, 190, 70);
+
+        jPanel2.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -107,16 +112,16 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("旧账号:");
         panelBody.add(jLabel1);
-        jLabel1.setBounds(400, 100, 80, 40);
+        jLabel1.setBounds(140, 30, 80, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("新账号:");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(400, 200, 63, 40);
+        jLabel3.setBounds(140, 90, 63, 40);
 
         txtNewID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtNewID);
-        txtNewID.setBounds(490, 200, 600, 40);
+        txtNewID.setBounds(230, 90, 600, 40);
 
         txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtConfirmID.addActionListener(new java.awt.event.ActionListener() {
@@ -125,31 +130,31 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtConfirmID);
-        txtConfirmID.setBounds(490, 300, 600, 40);
+        txtConfirmID.setBounds(230, 150, 600, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("确认新账号:");
         panelBody.add(jLabel2);
-        jLabel2.setBounds(360, 300, 120, 40);
+        jLabel2.setBounds(100, 150, 120, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("旧密码:");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(390, 390, 63, 40);
+        jLabel5.setBounds(130, 210, 63, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("新密码:");
         panelBody.add(jLabel6);
-        jLabel6.setBounds(390, 480, 80, 40);
+        jLabel6.setBounds(130, 270, 80, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("确认密码：");
         panelBody.add(jLabel7);
-        jLabel7.setBounds(370, 570, 95, 40);
+        jLabel7.setBounds(110, 330, 95, 40);
 
         txtOldID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldID);
-        txtOldID.setBounds(490, 100, 600, 40);
+        txtOldID.setBounds(230, 30, 600, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -160,7 +165,7 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(240, 640, 130, 50);
+        btnBack.setBounds(100, 410, 130, 50);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更改");
@@ -171,46 +176,32 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnUpdate);
-        btnUpdate.setBounds(1110, 640, 130, 50);
+        btnUpdate.setBounds(700, 400, 130, 50);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(490, 570, 600, 40);
+        txtConfirmPassword.setBounds(230, 330, 600, 40);
 
         txtNewPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtNewPassword);
-        txtNewPassword.setBounds(490, 480, 600, 40);
+        txtNewPassword.setBounds(230, 270, 600, 40);
 
         txtOldPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldPassword);
-        txtOldPassword.setBounds(490, 390, 600, 40);
+        txtOldPassword.setBounds(230, 210, 600, 40);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel2.add(panelBody);
+        panelBody.setBounds(90, 90, 970, 510);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1338, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setText("CopyRight © Heng Seng Tong");
+        jPanel3.add(jLabel13);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(0, 650, 1370, 50);
 
         jScrollPane1.setViewportView(jPanel2);
 
@@ -490,15 +481,15 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
