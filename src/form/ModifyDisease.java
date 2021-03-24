@@ -289,7 +289,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel15.setText("更改病症");
         panelHeader.add(jLabel15);
-        jLabel15.setBounds(410, 0, 180, 70);
+        jLabel15.setBounds(570, 0, 180, 70);
 
         jLabel17.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel17.setText("登入：");

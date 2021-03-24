@@ -88,8 +88,6 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         headerPatient = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisease = new javax.swing.JTable();
@@ -100,9 +98,13 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel5.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -114,23 +116,19 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel13.setText("登入：");
         panelHeader.add(jLabel13);
-        jLabel13.setBounds(1670, 5, 75, 60);
+        jLabel13.setBounds(1160, 0, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
+        lblName.setBounds(1240, 0, 127, 70);
 
         headerPatient.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         headerPatient.setText("病症资料");
         panelHeader.add(headerPatient);
-        headerPatient.setBounds(920, 0, 230, 70);
+        headerPatient.setBounds(450, 0, 230, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel12);
+        jPanel5.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -170,7 +168,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDisease);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 60, 1790, 620);
+        jScrollPane1.setBounds(50, 60, 1250, 380);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -208,49 +206,42 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel24.setText("最新资料");
         jPanel2.add(jLabel24);
-        jLabel24.setBounds(400, 720, 130, 30);
+        jLabel24.setBounds(390, 460, 130, 30);
 
         jPanel3.setBackground(new java.awt.Color(151, 254, 63));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(360, 720, 30, 30);
+        jPanel3.setBounds(350, 460, 30, 30);
 
         jLabel23.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel23.setText("旧资料");
         jPanel2.add(jLabel23);
-        jLabel23.setBounds(100, 720, 130, 30);
+        jLabel23.setBounds(90, 460, 130, 30);
 
         jPanel4.setBackground(new java.awt.Color(254, 115, 63));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(60, 720, 30, 30);
+        jPanel4.setBounds(50, 460, 30, 30);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1870, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel5.add(jPanel2);
+        jPanel2.setBounds(30, 100, 1330, 530);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("CopyRight © Heng Seng Tong");
+        jPanel6.add(jLabel14);
+
+        jPanel5.add(jPanel6);
+        jPanel6.setBounds(0, 650, 1370, 50);
 
         jScrollPane2.setViewportView(jPanel5);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(0, 0, 1940, 990);
+        jScrollPane2.setBounds(0, 0, 1370, 700);
 
-        setBounds(0, 0, 1955, 1036);
+        setBounds(0, 0, 1386, 746);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblDiseaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDiseaseMouseClicked
@@ -642,15 +633,15 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
     private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnPrint;
     private javax.swing.JLabel headerPatient;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;

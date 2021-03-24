@@ -94,11 +94,13 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMedicine = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel3.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -110,7 +112,7 @@ public class ReferenceForm extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel20.setText("登入：");
         panelHeader.add(jLabel20);
-        jLabel20.setBounds(1670, 5, 75, 60);
+        jLabel20.setBounds(1150, 0, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
@@ -119,11 +121,14 @@ public class ReferenceForm extends javax.swing.JFrame {
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("参考病症");
         panelHeader.add(findHeader);
-        findHeader.setBounds(870, 0, 200, 70);
+        findHeader.setBounds(610, 0, 200, 70);
 
         lblName1.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName1);
-        lblName1.setBounds(1752, 5, 127, 60);
+        lblName1.setBounds(1240, 0, 127, 70);
+
+        jPanel3.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -132,16 +137,21 @@ public class ReferenceForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("药物分类：");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(110, 50, 100, 40);
+        jLabel1.setBounds(110, 10, 100, 30);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("参考病症：");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(110, 110, 110, 40);
+        jLabel2.setBounds(110, 50, 110, 30);
 
         comboReference.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        comboReference.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboReferenceActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboReference);
-        comboReference.setBounds(260, 110, 240, 40);
+        comboReference.setBounds(260, 50, 240, 32);
 
         comboMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboMedicine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "复方药粉" }));
@@ -156,12 +166,12 @@ public class ReferenceForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(comboMedicine);
-        comboMedicine.setBounds(260, 50, 240, 40);
+        comboMedicine.setBounds(260, 10, 240, 32);
 
         lblzhucheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhucheng.setText("组成：");
         jPanel2.add(lblzhucheng);
-        lblzhucheng.setBounds(140, 170, 60, 40);
+        lblzhucheng.setBounds(130, 90, 80, 30);
 
         txtChuCheng.setColumns(20);
         txtChuCheng.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -169,12 +179,12 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtChuCheng);
 
         jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(260, 170, 370, 140);
+        jScrollPane2.setBounds(260, 90, 390, 100);
 
         lblzhuzi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         lblzhuzi.setText("主治：");
         jPanel2.add(lblzhuzi);
-        lblzhuzi.setBounds(140, 330, 57, 40);
+        lblzhuzi.setBounds(130, 200, 80, 30);
 
         txtZhuZhi.setColumns(20);
         txtZhuZhi.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -182,12 +192,12 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtZhuZhi);
 
         jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(260, 330, 370, 136);
+        jScrollPane3.setBounds(260, 200, 390, 100);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("功效：");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(150, 490, 57, 40);
+        jLabel5.setBounds(140, 310, 80, 30);
 
         txtGongXiao.setColumns(20);
         txtGongXiao.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -195,16 +205,16 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane4.setViewportView(txtGongXiao);
 
         jPanel2.add(jScrollPane4);
-        jScrollPane4.setBounds(260, 490, 370, 136);
+        jScrollPane4.setBounds(260, 310, 390, 100);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("每次每日分量：");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(80, 650, 140, 40);
+        jLabel6.setBounds(80, 420, 140, 30);
 
         txtFenLiang.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtFenLiang);
-        txtFenLiang.setBounds(260, 650, 370, 40);
+        txtFenLiang.setBounds(260, 420, 390, 30);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -215,7 +225,7 @@ public class ReferenceForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnFind);
-        btnFind.setBounds(580, 110, 110, 40);
+        btnFind.setBounds(520, 50, 110, 33);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -226,7 +236,7 @@ public class ReferenceForm extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(170, 740, 100, 50);
+        btnBack.setBounds(140, 480, 100, 50);
 
         tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
@@ -263,41 +273,27 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jScrollPane1);
 
         jPanel2.add(jScrollPane5);
-        jScrollPane5.setBounds(730, 40, 720, 760);
+        jScrollPane5.setBounds(730, 10, 510, 440);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(70, 90, 1280, 550);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1510, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("CopyRight © Heng Seng Tong");
+        jPanel6.add(jLabel14);
+
+        jPanel3.add(jPanel6);
+        jPanel6.setBounds(0, 650, 1370, 50);
 
         jScrollPane6.setViewportView(jPanel3);
 
         getContentPane().add(jScrollPane6);
-        jScrollPane6.setBounds(0, 0, 1940, 990);
+        jScrollPane6.setBounds(0, 0, 1370, 700);
 
-        setBounds(0, 0, 1958, 1035);
+        setBounds(0, 0, 1387, 750);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -355,6 +351,10 @@ public class ReferenceForm extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_comboMedicineActionPerformed
+
+    private void comboReferenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboReferenceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboReferenceActionPerformed
     
     public void find() throws SQLException
     {
@@ -594,14 +594,14 @@ public class ReferenceForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboReference;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

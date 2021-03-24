@@ -70,8 +70,6 @@ public class SearchPatient extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -93,9 +91,13 @@ public class SearchPatient extends javax.swing.JFrame {
         tblPatient = new javax.swing.JTable();
         btnPrint = new javax.swing.JButton();
         btnExcel = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel3.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -107,23 +109,19 @@ public class SearchPatient extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel20.setText("登入：");
         panelHeader.add(jLabel20);
-        jLabel20.setBounds(1670, 5, 75, 60);
+        jLabel20.setBounds(1100, 0, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
+        lblName.setBounds(1180, 0, 127, 70);
 
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel9.setText("寻找病人资料");
         panelHeader.add(jLabel9);
-        jLabel9.setBounds(880, 0, 240, 70);
+        jLabel9.setBounds(510, 0, 240, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel21.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel21);
+        jPanel3.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -141,17 +139,17 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtID);
-        txtID.setBounds(160, 80, 490, 42);
+        txtID.setBounds(140, 10, 490, 42);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("ID:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(120, 80, 107, 42);
+        jLabel1.setBounds(100, 10, 107, 42);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("IC:");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(120, 150, 40, 40);
+        jLabel4.setBounds(100, 60, 40, 40);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtIC.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -160,12 +158,12 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtIC);
-        txtIC.setBounds(160, 150, 490, 40);
+        txtIC.setBounds(140, 60, 490, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("姓名：");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(110, 220, 57, 40);
+        jLabel5.setBounds(90, 110, 57, 40);
 
         txtName.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -174,12 +172,12 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtName);
-        txtName.setBounds(160, 220, 490, 40);
+        txtName.setBounds(140, 110, 490, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("性别：");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(110, 300, 60, 40);
+        jLabel6.setBounds(90, 160, 60, 40);
 
         txtGender.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtGender.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -188,12 +186,12 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtGender);
-        txtGender.setBounds(160, 300, 490, 40);
+        txtGender.setBounds(140, 160, 490, 40);
 
         jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel7.setText("年龄：");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(100, 380, 57, 40);
+        jLabel7.setBounds(80, 210, 57, 40);
 
         txtAge.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -202,12 +200,12 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtAge);
-        txtAge.setBounds(160, 380, 490, 40);
+        txtAge.setBounds(140, 210, 490, 40);
 
         jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel8.setText("电话号码：");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(70, 460, 100, 40);
+        jLabel8.setBounds(50, 260, 100, 40);
 
         txtPhone.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -216,17 +214,17 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtPhone);
-        txtPhone.setBounds(160, 460, 490, 40);
+        txtPhone.setBounds(140, 260, 490, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("排列：");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(90, 540, 60, 42);
+        jLabel3.setBounds(70, 310, 60, 42);
 
         comboArrange.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboArrange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "顺序", "逆序" }));
         jPanel2.add(comboArrange);
-        comboArrange.setBounds(160, 540, 150, 40);
+        comboArrange.setBounds(140, 310, 150, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -237,7 +235,7 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(80, 640, 130, 50);
+        btnBack.setBounds(50, 430, 130, 50);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找");
@@ -248,7 +246,7 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnFind);
-        btnFind.setBounds(520, 640, 130, 50);
+        btnFind.setBounds(490, 430, 130, 50);
 
         tblPatient.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblPatient.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,7 +274,7 @@ public class SearchPatient extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblPatient);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(680, 60, 1110, 630);
+        jScrollPane1.setBounds(680, 12, 600, 450);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -287,7 +285,7 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnPrint);
-        btnPrint.setBounds(380, 640, 130, 50);
+        btnPrint.setBounds(350, 430, 130, 50);
 
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
@@ -298,34 +296,27 @@ public class SearchPatient extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnExcel);
-        btnExcel.setBounds(230, 640, 130, 50);
+        btnExcel.setBounds(200, 430, 130, 50);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1840, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel3.add(jPanel2);
+        jPanel2.setBounds(50, 90, 1310, 550);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("CopyRight © Heng Seng Tong");
+        jPanel6.add(jLabel14);
+
+        jPanel3.add(jPanel6);
+        jPanel6.setBounds(0, 650, 1370, 50);
 
         jScrollPane2.setViewportView(jPanel3);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(0, 0, 1940, 990);
+        jScrollPane2.setBounds(0, 0, 1370, 700);
 
-        setBounds(0, 0, 1959, 1034);
+        setBounds(0, 0, 1387, 747);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -651,8 +642,8 @@ public class SearchPatient extends javax.swing.JFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox<String> comboArrange;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -660,9 +651,9 @@ public class SearchPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;

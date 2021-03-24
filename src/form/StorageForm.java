@@ -85,8 +85,6 @@ public class StorageForm extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         findHeader = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         btnFindMedic = new javax.swing.JButton();
         comboReferenceGrassPill = new javax.swing.JComboBox<>();
@@ -113,9 +111,13 @@ public class StorageForm extends javax.swing.JFrame {
         comboBoxReferenceTraditionalPill = new javax.swing.JComboBox<>();
         comboBoxReferenceTraditionalPotion = new javax.swing.JComboBox<>();
         btnReset = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel5.setLayout(null);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -127,23 +129,19 @@ public class StorageForm extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel20.setText("登入：");
         panelHeader.add(jLabel20);
-        jLabel20.setBounds(1670, 5, 75, 60);
+        jLabel20.setBounds(1100, 0, 75, 70);
 
         lblName.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblName);
-        lblName.setBounds(1752, 5, 127, 60);
+        lblName.setBounds(1190, 0, 127, 70);
 
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("创库");
         panelHeader.add(findHeader);
-        findHeader.setBounds(870, 0, 200, 70);
+        findHeader.setBounds(510, 0, 200, 70);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel18.setText("CopyRight © Heng Seng Tong");
-        jPanel1.add(jLabel18);
+        jPanel5.add(panelHeader);
+        panelHeader.setBounds(0, 0, 1370, 70);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -158,7 +156,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFindMedic);
-        btnFindMedic.setBounds(450, 740, 130, 50);
+        btnFindMedic.setBounds(440, 440, 130, 50);
 
         comboReferenceGrassPill.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         comboReferenceGrassPill.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +196,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(30, 740, 130, 50);
+        btnBack.setBounds(20, 440, 130, 50);
 
         tblStorage.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblStorage.setModel(new javax.swing.table.DefaultTableModel(
@@ -230,37 +228,37 @@ public class StorageForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         panelBody.add(jScrollPane2);
-        jScrollPane2.setBounds(600, 50, 1100, 680);
+        jScrollPane2.setBounds(580, 50, 670, 360);
 
         jPanel2.setBackground(new java.awt.Color(151, 254, 63));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel2);
-        jPanel2.setBounds(1610, 750, 30, 30);
+        jPanel2.setBounds(1170, 440, 30, 30);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("足够");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(1650, 750, 90, 30);
+        jLabel3.setBounds(1210, 440, 90, 30);
 
         jPanel3.setBackground(new java.awt.Color(254, 115, 63));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel3);
-        jPanel3.setBounds(1310, 750, 30, 30);
+        jPanel3.setBounds(870, 440, 30, 30);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("即将完");
         panelBody.add(jLabel4);
-        jLabel4.setBounds(1350, 750, 90, 30);
+        jLabel4.setBounds(910, 440, 90, 30);
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 63));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel4);
-        jPanel4.setBounds(1460, 750, 30, 30);
+        jPanel4.setBounds(1020, 440, 30, 30);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("不足够");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(1500, 750, 90, 30);
+        jLabel5.setBounds(1060, 440, 90, 30);
 
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
@@ -271,7 +269,7 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnExcel);
-        btnExcel.setBounds(170, 740, 130, 50);
+        btnExcel.setBounds(160, 440, 130, 50);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("药物名称:");
@@ -340,32 +338,25 @@ public class StorageForm extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnReset);
-        btnReset.setBounds(310, 740, 130, 50);
+        btnReset.setBounds(300, 440, 130, 50);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1752, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1940, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel5.add(panelBody);
+        panelBody.setBounds(60, 90, 1270, 530);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("CopyRight © Heng Seng Tong");
+        jPanel6.add(jLabel14);
+
+        jPanel5.add(jPanel6);
+        jPanel6.setBounds(0, 650, 1370, 50);
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(0, 0, 1940, 990);
+        jPanel5.setBounds(0, 0, 1380, 990);
 
-        setBounds(0, 0, 1958, 1036);
+        setBounds(0, 0, 1387, 743);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMedicActionPerformed
@@ -896,18 +887,18 @@ public class StorageForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboReferenceGrassPotion;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblName;
