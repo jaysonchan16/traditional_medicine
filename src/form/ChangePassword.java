@@ -206,7 +206,7 @@ public class ChangePassword extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jPanel2);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 0, 1940, 990);
+        jScrollPane1.setBounds(0, 0, 1370, 990);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

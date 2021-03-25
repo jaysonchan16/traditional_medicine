@@ -83,7 +83,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         findHeader.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         findHeader.setText("设定");
         panelHeader.add(findHeader);
-        findHeader.setBounds(440, 0, 200, 70);
+        findHeader.setBounds(520, 0, 200, 70);
 
         lblLoggedIn.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelHeader.add(lblLoggedIn);
@@ -147,7 +147,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnBack);
-        btnBack.setBounds(650, 370, 290, 240);
+        btnBack.setBounds(830, 370, 290, 240);
 
         btnDeleteAccount.setBackground(new java.awt.Color(204, 204, 255));
         btnDeleteAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -195,7 +195,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnDeleteAccount);
-        btnDeleteAccount.setBounds(650, 100, 290, 240);
+        btnDeleteAccount.setBounds(830, 100, 290, 240);
 
         btnUpdateAccount.setBackground(new java.awt.Color(255, 204, 204));
         btnUpdateAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

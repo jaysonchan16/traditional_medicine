@@ -324,7 +324,7 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         comboReference.setBounds(220, 50, 270, 32);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(40, 90, 1310, 540);
+        panelBody.setBounds(40, 90, 1250, 540);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

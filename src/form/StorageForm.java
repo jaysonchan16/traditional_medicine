@@ -233,32 +233,32 @@ public class StorageForm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(151, 254, 63));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel2);
-        jPanel2.setBounds(1170, 440, 30, 30);
+        jPanel2.setBounds(1140, 440, 30, 30);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("足够");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(1210, 440, 90, 30);
+        jLabel3.setBounds(1180, 440, 90, 30);
 
         jPanel3.setBackground(new java.awt.Color(254, 115, 63));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel3);
-        jPanel3.setBounds(870, 440, 30, 30);
+        jPanel3.setBounds(840, 440, 30, 30);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel4.setText("即将完");
         panelBody.add(jLabel4);
-        jLabel4.setBounds(910, 440, 90, 30);
+        jLabel4.setBounds(880, 440, 90, 30);
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 63));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelBody.add(jPanel4);
-        jPanel4.setBounds(1020, 440, 30, 30);
+        jPanel4.setBounds(990, 440, 30, 30);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("不足够");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(1060, 440, 90, 30);
+        jLabel5.setBounds(1030, 440, 90, 30);
 
         btnExcel.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnExcel.setText("Excel");
@@ -341,7 +341,7 @@ public class StorageForm extends javax.swing.JFrame {
         btnReset.setBounds(300, 440, 130, 50);
 
         jPanel5.add(panelBody);
-        panelBody.setBounds(60, 90, 1270, 530);
+        panelBody.setBounds(40, 90, 1270, 530);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

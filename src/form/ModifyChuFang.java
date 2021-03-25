@@ -594,7 +594,7 @@ public class ModifyChuFang extends javax.swing.JFrame {
         txtPrescriptionID.setBounds(250, 10, 90, 20);
 
         jPanel5.add(jPanel2);
-        jPanel2.setBounds(80, 100, 1270, 530);
+        jPanel2.setBounds(40, 100, 1270, 530);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

@@ -553,7 +553,7 @@ public class ModifyDisease extends javax.swing.JFrame {
         btnExcel.setBounds(480, 460, 110, 40);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(60, 90, 1300, 540);
+        panelBody.setBounds(40, 90, 1300, 540);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

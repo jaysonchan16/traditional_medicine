@@ -395,7 +395,7 @@ public class NewMedicine extends javax.swing.JFrame {
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(0, 0, 1370, 700);
 
-        setBounds(0, 0, 1955, 748);
+        setBounds(0, 0, 1388, 748);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

@@ -162,7 +162,7 @@ public class MonthYear extends javax.swing.JFrame {
         btnFind.setBounds(550, 380, 160, 80);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(180, 90, 880, 540);
+        panelBody.setBounds(200, 90, 880, 540);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -179,7 +179,7 @@ public class MonthYear extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(0, 0, 1370, 1010);
 
-        pack();
+        setBounds(0, 0, 1389, 746);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFromYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromYearActionPerformed

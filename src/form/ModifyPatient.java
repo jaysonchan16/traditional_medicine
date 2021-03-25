@@ -61,8 +61,8 @@ public class ModifyPatient extends javax.swing.JFrame {
         image();
     }
     
-    public ModifyPatient(User user, int option, String ID, String IC, String Name, String Gender, 
-            String Age, String Phone, String Address, String createDateTime, String lastUpdateDateTime){
+    public ModifyPatient(User user, int option, String IC, String Name, String Gender, 
+            String Age, String Phone, String Address, String createDateTime, String ID, String lastUpdateDateTime){
         initComponents();
         this.user = user;
         this.IC = IC;
@@ -346,7 +346,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel9.setText("创造时间:");
         panelBody.add(jLabel9);
-        jLabel9.setBounds(10, 400, 90, 30);
+        jLabel9.setBounds(10, 410, 90, 30);
 
         lblCreateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(lblCreateDateTime);
@@ -355,11 +355,11 @@ public class ModifyPatient extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel10.setText("更新时间：");
         panelBody.add(jLabel10);
-        jLabel10.setBounds(10, 440, 100, 30);
+        jLabel10.setBounds(10, 450, 100, 30);
 
         lblLastUpdateDateTime.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(lblLastUpdateDateTime);
-        lblLastUpdateDateTime.setBounds(100, 440, 680, 30);
+        lblLastUpdateDateTime.setBounds(100, 450, 680, 30);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -403,7 +403,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnFind);
-        btnFind.setBounds(1130, 150, 100, 30);
+        btnFind.setBounds(1130, 60, 100, 30);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -417,7 +417,7 @@ public class ModifyPatient extends javax.swing.JFrame {
         btnPrint.setBounds(750, 490, 110, 40);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(70, 90, 1260, 550);
+        panelBody.setBounds(30, 90, 1260, 550);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

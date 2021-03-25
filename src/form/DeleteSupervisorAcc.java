@@ -134,7 +134,7 @@ public class DeleteSupervisorAcc extends javax.swing.JFrame {
         btnDelete.setBounds(590, 420, 130, 50);
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(280, 110, 810, 500);
+        jPanel2.setBounds(160, 80, 810, 500);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

@@ -106,16 +106,16 @@ public class MonthYearIC extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel6.setText("ID:");
         panelBody.add(jLabel6);
-        jLabel6.setBounds(390, 330, 50, 40);
+        jLabel6.setBounds(390, 320, 50, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel5.setText("IC:");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(390, 250, 50, 40);
+        jLabel5.setBounds(390, 240, 50, 40);
 
         txtIC.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtIC);
-        txtIC.setBounds(480, 250, 270, 40);
+        txtIC.setBounds(480, 240, 270, 40);
 
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel4.setText("到：");
@@ -160,7 +160,7 @@ public class MonthYearIC extends javax.swing.JFrame {
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(480, 330, 270, 40);
+        txtID.setBounds(480, 320, 270, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         btnBack.setText("退出");
@@ -185,7 +185,7 @@ public class MonthYearIC extends javax.swing.JFrame {
         btnFind.setBounds(680, 420, 170, 70);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(150, 80, 1130, 540);
+        panelBody.setBounds(100, 80, 1130, 540);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

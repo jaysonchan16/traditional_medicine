@@ -541,7 +541,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
         btnExcel.setBounds(660, 510, 120, 40);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(40, 80, 1320, 560);
+        panelBody.setBounds(20, 80, 1320, 560);
         jPanel2.add(txtFixedName);
         txtFixedName.setBounds(13, 190, 20, 30);
 

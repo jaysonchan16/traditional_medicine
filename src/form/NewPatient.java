@@ -301,7 +301,7 @@ public class NewPatient extends javax.swing.JFrame {
         btnPrint.setBounds(800, 450, 130, 50);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(156, 77, 1200, 550);
+        panelBody.setBounds(80, 80, 1200, 550);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

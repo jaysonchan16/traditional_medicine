@@ -276,7 +276,7 @@ public class ReferenceForm extends javax.swing.JFrame {
         jScrollPane5.setBounds(730, 10, 510, 440);
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(70, 90, 1280, 550);
+        jPanel2.setBounds(40, 90, 1280, 550);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

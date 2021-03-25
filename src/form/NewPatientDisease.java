@@ -845,7 +845,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         lblTotalPrice.setBounds(990, 820, 0, 0);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(40, 80, 1330, 550);
+        panelBody.setBounds(30, 80, 1290, 550);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -886,7 +886,7 @@ public class NewPatientDisease extends javax.swing.JFrame {
         getContentPane().add(jScrollPane3);
         jScrollPane3.setBounds(0, 0, 1370, 700);
 
-        setBounds(0, 0, 1393, 737);
+        setBounds(0, 0, 1388, 737);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindICActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindICActionPerformed

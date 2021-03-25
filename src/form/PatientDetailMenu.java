@@ -136,7 +136,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnAddPatient);
-        btnAddPatient.setBounds(320, 90, 290, 240);
+        btnAddPatient.setBounds(200, 100, 290, 240);
 
         btnFindPatient.setBackground(new java.awt.Color(153, 255, 255));
         btnFindPatient.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -185,7 +185,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnFindPatient);
-        btnFindPatient.setBounds(320, 370, 290, 240);
+        btnFindPatient.setBounds(200, 380, 290, 240);
 
         btnBack1.setBackground(new java.awt.Color(255, 204, 204));
         btnBack1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -234,7 +234,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnBack1);
-        btnBack1.setBounds(900, 380, 290, 240);
+        btnBack1.setBounds(840, 380, 290, 240);
 
         btnModifyPatient.setBackground(new java.awt.Color(255, 255, 204));
         btnModifyPatient.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -282,7 +282,7 @@ public class PatientDetailMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnModifyPatient);
-        btnModifyPatient.setBounds(900, 100, 290, 240);
+        btnModifyPatient.setBounds(840, 100, 290, 240);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

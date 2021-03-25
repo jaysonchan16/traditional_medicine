@@ -523,7 +523,7 @@ public class SearchDiseasePatient extends javax.swing.JFrame {
         btnPrint.setBounds(530, 420, 120, 50);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(30, 90, 1330, 550);
+        panelBody.setBounds(20, 90, 1330, 550);
 
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

@@ -81,7 +81,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
         jLabel4.setText("注册新账号");
         panelHeader.add(jLabel4);
-        jLabel4.setBounds(430, 0, 260, 70);
+        jLabel4.setBounds(540, 0, 260, 70);
 
         jPanel3.add(panelHeader);
         panelHeader.setBounds(0, 0, 1370, 70);

@@ -145,7 +145,7 @@ public class RegisterSupervisor extends javax.swing.JFrame {
         btnBack.setBounds(190, 430, 130, 50);
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(190, 80, 940, 550);
+        jPanel2.setBounds(130, 80, 940, 550);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
