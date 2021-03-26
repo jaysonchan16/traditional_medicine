@@ -10,6 +10,7 @@ import javaClass.Patient;
 import javaClass.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ public class ModifyPatient extends javax.swing.JFrame {
     private String initialIC;
     private String initialID; 
     private String userid = "";
+    private String firstNameLetter;
     
     public ModifyPatient() {
         initComponents();
@@ -449,6 +451,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                     Patient patient = new Patient();
                     if(patient.getPatient(IC,ID,userid).getIC().equalsIgnoreCase(IC) || patient.getPatient(IC,ID,userid).getID().equalsIgnoreCase(ID))
                     {
+                        firstNameLetter = String.valueOf(patient.getPatient(IC,ID,userid).getName().charAt(0));
                         txtIC.setText(patient.getPatient(IC, ID,userid).getIC());
                         txtID.setText(patient.getPatient(IC, ID,userid).getID());
                         txtName.setText(patient.getPatient(IC,ID,userid).getName());
@@ -460,6 +463,7 @@ public class ModifyPatient extends javax.swing.JFrame {
                         lblLastUpdateDateTime.setText(patient.getPatient(IC,ID,userid).getLastUpdateDateTime());
                         txtID.setEnabled(false);
                         btnFind.setEnabled(false);
+                        findUpdate();
                     }
                     else
                     {
@@ -483,6 +487,7 @@ public class ModifyPatient extends javax.swing.JFrame {
             String ID = txtID.getText();
             String IC = txtIC.getText();
             String name = txtName.getText();
+            String firstUpdateName = String.valueOf(name.charAt(0));
             String gender = txtGender.getText();
             int age = Integer.parseInt(txtAge.getText());
             String phone = txtPhone.getText();
@@ -491,7 +496,29 @@ public class ModifyPatient extends javax.swing.JFrame {
             Patient patient = new Patient(IC,name,gender,age,phone,address,ID,userid);
             String result = patient.EditPatient();
             if (result.equalsIgnoreCase("1")) {
-                JOptionPane.showMessageDialog(rootPane, "更改成功");
+                if(firstNameLetter.equalsIgnoreCase(firstUpdateName))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更改成功!");
+                }
+                else
+                {
+                    if (JOptionPane.showConfirmDialog(null, "你的名字已经更改了，请问你要更改ID吗?", "WARNING",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                              Patient changeID = new Patient();
+                              HashMap<String,String> map = new HashMap<String,String>();
+                              map = changeID.ChangeNewPatientID(name,IC,userid);
+                              if(map.get("returnMessage").equalsIgnoreCase("1"))
+                              {
+                                  JOptionPane.showMessageDialog(rootPane, "更换ID成功，,你现在的ID是：" +map.get("ID"));
+                                  finishedUpdate();
+                              }
+                        }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "更改成功!");
+                        finishedUpdate();
+                    }
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, result);
             }
@@ -646,6 +673,35 @@ public class ModifyPatient extends javax.swing.JFrame {
     {
         PrintTemplate print = new PrintTemplate();
         return print.printPatient(ID, IC, Name, Gender, Age, Phone, Address, Date);
+    }
+    
+    public void finishedUpdate()
+    {
+        txtID.setText("");
+        txtIC.setText("");
+        txtName.setText("");
+        txtGender.setText("");
+        txtAge.setText("");
+        txtPhone.setText("");
+        txtAddress.setText("");
+        lblCreateDateTime.setText("");
+        lblLastUpdateDateTime.setText("");
+        txtID.setEnabled(true);
+        btnFind.setEnabled(true);
+        txtName.setEnabled(false);
+        txtGender.setEnabled(false);
+        txtAge.setEnabled(false);
+        txtPhone.setEnabled(false);
+        txtAddress.setEnabled(false);
+    }
+    
+    public void findUpdate()
+    {
+        txtName.setEnabled(true);
+        txtGender.setEnabled(true);
+        txtAge.setEnabled(true);
+        txtPhone.setEnabled(true);
+        txtAddress.setEnabled(true);
     }
     
     public void image()

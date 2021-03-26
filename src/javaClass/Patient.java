@@ -267,6 +267,28 @@ public class Patient {
         return sql.AddEditDeleteQuery(query);
     }
     
+    public HashMap<String,String> ChangeNewPatientID(String name,String IC, String user) throws SQLException{
+        Code code = new Code();
+        HashMap<String, String> map = new HashMap<String,String>();
+        map = code.validatePatientID(name,user);
+        HashMap<String,String> returnMessage = new HashMap<String,String>();
+        if(map.get("messages").equalsIgnoreCase(""))
+        {
+            SQLQuery sql = new SQLQuery();
+            String query = "Update Patient Set ID = '"+map.get("data")+"', lastUpdateDateTime = datetime('now','localtime')"
+                     + "where IC = '"+IC+"' and User = '"+user+"'";
+            returnMessage.put("returnMessage", sql.AddEditDeleteQuery(query));
+            returnMessage.put("ID", map.get("data"));
+            return returnMessage;
+        }  
+        else
+        {
+            returnMessage.put("returnMessage","Patient.AddNewPatient() get error on line 217, "+map.get("messages"));
+            returnMessage.put("ID","");
+            return returnMessage;
+        }
+    }
+    
     public String DeletePatient() throws SQLException{
         String query = "Delete From Patient where ID = '"+ID+"' and User = '"+user+"'";
           

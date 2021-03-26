@@ -157,8 +157,6 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel2.setLayout(null);
-
         panelHeader.setBackground(new java.awt.Color(255, 204, 204));
         panelHeader.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         panelHeader.setForeground(new java.awt.Color(153, 153, 153));
@@ -179,9 +177,6 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         headerMedic.setText("新增药");
         panelHeader.add(headerMedic);
         headerMedic.setBounds(550, 0, 160, 70);
-
-        jPanel2.add(panelHeader);
-        panelHeader.setBounds(0, 0, 1370, 70);
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
         panelBody.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -323,9 +318,6 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         panelBody.add(comboReference);
         comboReference.setBounds(220, 50, 270, 32);
 
-        jPanel2.add(panelBody);
-        panelBody.setBounds(40, 90, 1250, 540);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
@@ -333,15 +325,32 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         jLabel13.setText("CopyRight © Heng Seng Tong");
         jPanel1.add(jLabel13);
 
-        jPanel2.add(jPanel1);
-        jPanel1.setBounds(0, 650, 1370, 50);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jScrollPane4.setViewportView(jPanel2);
 
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(0, 0, 1940, 990);
 
-        setBounds(0, 0, 1387, 746);
+        setBounds(0, 0, 1469, 746);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -623,7 +632,7 @@ public class BeginnerNewMedicine extends javax.swing.JFrame {
         ImageIcon iconPrint = new ImageIcon(getClass().getResource("/menu/smallprint.png"));
         btnPrint.setIcon(iconPrint);
         this.lblName.setText(userid);
-        setResizable(false);
+        //setResizable(false);
     }
     
     public String printPreview(String medicine, String reference, String Name, String component, String indication, String effect, String scoop, String weight, String cost, String price)
