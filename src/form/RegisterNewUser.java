@@ -26,6 +26,10 @@ public class RegisterNewUser extends javax.swing.JFrame {
      */
     public RegisterNewUser() {
         initComponents();
+        lblEmail.setVisible(false);
+        lblConfirmEmail.setVisible(false);
+        txtEmail.setVisible(false);
+        txtConfirnEmail.setVisible(false);
         image();
     }
 
@@ -54,6 +58,12 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        txtConfirnEmail = new javax.swing.JTextField();
+        lblConfirmEmail = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtConfirmID = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -87,30 +97,30 @@ public class RegisterNewUser extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPassword);
-        txtPassword.setBounds(330, 210, 390, 39);
+        txtPassword.setBounds(330, 230, 390, 39);
 
         txtUserid.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtUserid);
-        txtUserid.setBounds(330, 100, 390, 37);
+        txtUserid.setBounds(330, 60, 390, 37);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(330, 340, 390, 37);
+        txtConfirmPassword.setBounds(330, 310, 390, 37);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("账号：");
+        jLabel1.setText("确定账号：");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(230, 100, 80, 40);
+        jLabel1.setBounds(210, 150, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("密码：");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(230, 220, 60, 26);
+        jLabel2.setBounds(240, 230, 60, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("确认密码：");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(230, 340, 100, 40);
+        jLabel3.setBounds(200, 310, 100, 40);
 
         btnConfirm.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnConfirm.setText("确认");
@@ -121,7 +131,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnConfirm);
-        btnConfirm.setBounds(640, 430, 130, 50);
+        btnConfirm.setBounds(640, 470, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -132,7 +142,34 @@ public class RegisterNewUser extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(180, 420, 130, 50);
+        btnBack.setBounds(180, 470, 130, 50);
+
+        txtConfirnEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtConfirnEmail);
+        txtConfirnEmail.setBounds(330, 420, 390, 37);
+
+        lblConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail.setText("确定电子邮件：");
+        jPanel2.add(lblConfirmEmail);
+        lblConfirmEmail.setBounds(160, 420, 140, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("账号：");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(230, 60, 80, 40);
+
+        lblEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblEmail.setText("电子邮件：");
+        jPanel2.add(lblEmail);
+        lblEmail.setBounds(200, 380, 100, 40);
+
+        txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtConfirmID);
+        txtConfirmID.setBounds(330, 150, 390, 37);
+
+        txtEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtEmail);
+        txtEmail.setBounds(330, 380, 390, 37);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -172,32 +209,42 @@ public class RegisterNewUser extends javax.swing.JFrame {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
         String userid = txtUserid.getText();
+        String confirmuserid = txtConfirmID.getText();
         String password = txtPassword.getText();
         String confirmpassword = txtConfirmPassword.getText();
+//        String email = txtEmail.getText();
+//        String confirmEmail = txtConfirnEmail.getText();
         
-        if(password.equalsIgnoreCase(confirmpassword))
+        if(userid.equalsIgnoreCase(confirmuserid))
         {
-            try {
-                User user = new User(userid, password);
-                String result = user.registerUser("Admin");
-                if(result.equalsIgnoreCase("1"))
-                {
-                    JOptionPane.showMessageDialog(rootPane, "注册成功！");
-                    LoginUI2 loginui = new LoginUI2();
-                    loginui.setVisible(true);
-                    this.dispose();
+            if(password.equalsIgnoreCase(confirmpassword))
+            {
+                try {
+                    User user = new User(userid, password,"Admin");
+                    String result = user.registerUser();
+                    if(result.equalsIgnoreCase("1"))
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "注册成功！");
+                        LoginUI2 loginui = new LoginUI2();
+                        loginui.setVisible(true);
+                        this.dispose();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, result);
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "RegisterNewUser.btnConfirmActionPerformed get error on line 124,"+ex.getMessage());
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, result);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, "RegisterNewUser.btnConfirmActionPerformed get error on line 124,"+ex.getMessage());
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "密码和确认密码不相对！");
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(rootPane, "密码和确认密码不相对！");
+            JOptionPane.showMessageDialog(rootPane, "账号和确认账号不相对！");
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
@@ -264,14 +311,20 @@ public class RegisterNewUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblConfirmEmail;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JTextField txtConfirmID;
     private javax.swing.JPasswordField txtConfirmPassword;
+    private javax.swing.JTextField txtConfirnEmail;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserid;
     // End of variables declaration//GEN-END:variables

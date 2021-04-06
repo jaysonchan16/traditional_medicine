@@ -523,9 +523,9 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jPanel2);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(-1, -7, 1940, 990);
+        jScrollPane1.setBounds(-1, -7, 1370, 990);
 
-        setBounds(0, 0, 1955, 1030);
+        setBounds(0, 0, 1386, 741);
     }// </editor-fold>//GEN-END:initComponents
 
     private void imgStorageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgStorageMouseClicked

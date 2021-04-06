@@ -67,6 +67,9 @@ public class SettingsMenu extends javax.swing.JFrame {
         lblAddAccount = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        btnModifyDatabase = new javax.swing.JPanel();
+        ImgModifyDatabase = new javax.swing.JLabel();
+        lblModifyDatabase = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -147,7 +150,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnBack);
-        btnBack.setBounds(830, 370, 290, 240);
+        btnBack.setBounds(690, 370, 290, 240);
 
         btnDeleteAccount.setBackground(new java.awt.Color(204, 204, 255));
         btnDeleteAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -241,7 +244,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnUpdateAccount);
-        btnUpdateAccount.setBounds(160, 370, 290, 240);
+        btnUpdateAccount.setBounds(470, 100, 290, 240);
 
         btnAddAccount.setBackground(new java.awt.Color(204, 255, 204));
         btnAddAccount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -290,7 +293,7 @@ public class SettingsMenu extends javax.swing.JFrame {
         );
 
         jPanel2.add(btnAddAccount);
-        btnAddAccount.setBounds(160, 100, 290, 240);
+        btnAddAccount.setBounds(100, 100, 290, 240);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -301,6 +304,55 @@ public class SettingsMenu extends javax.swing.JFrame {
 
         jPanel2.add(jPanel6);
         jPanel6.setBounds(0, 650, 1370, 50);
+
+        btnModifyDatabase.setBackground(new java.awt.Color(204, 255, 255));
+        btnModifyDatabase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
+        btnModifyDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModifyDatabaseMouseClicked(evt);
+            }
+        });
+
+        ImgModifyDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ImgModifyDatabaseMouseClicked(evt);
+            }
+        });
+
+        lblModifyDatabase.setFont(new java.awt.Font("STXihei", 1, 24)); // NOI18N
+        lblModifyDatabase.setText("更改database");
+        lblModifyDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblModifyDatabaseMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnModifyDatabaseLayout = new javax.swing.GroupLayout(btnModifyDatabase);
+        btnModifyDatabase.setLayout(btnModifyDatabaseLayout);
+        btnModifyDatabaseLayout.setHorizontalGroup(
+            btnModifyDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnModifyDatabaseLayout.createSequentialGroup()
+                .addGroup(btnModifyDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnModifyDatabaseLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(lblModifyDatabase))
+                    .addGroup(btnModifyDatabaseLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(ImgModifyDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        btnModifyDatabaseLayout.setVerticalGroup(
+            btnModifyDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnModifyDatabaseLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ImgModifyDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblModifyDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+
+        jPanel2.add(btnModifyDatabase);
+        btnModifyDatabase.setBounds(300, 370, 290, 240);
 
         jScrollPane1.setViewportView(jPanel2);
 
@@ -383,6 +435,28 @@ public class SettingsMenu extends javax.swing.JFrame {
         register();
     }//GEN-LAST:event_btnAddAccountMouseClicked
 
+    private void ImgModifyDatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImgModifyDatabaseMouseClicked
+        // TODO add your handling code here:
+        ModifyDatabase();
+    }//GEN-LAST:event_ImgModifyDatabaseMouseClicked
+
+    private void lblModifyDatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblModifyDatabaseMouseClicked
+        // TODO add your handling code here:
+        ModifyDatabase();
+    }//GEN-LAST:event_lblModifyDatabaseMouseClicked
+
+    private void btnModifyDatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyDatabaseMouseClicked
+        // TODO add your handling code here:
+        ModifyDatabase();
+    }//GEN-LAST:event_btnModifyDatabaseMouseClicked
+
+    public void ModifyDatabase()
+    {
+        ModifyDatabase detail = new ModifyDatabase(user);
+        detail.setVisible(true);
+        this.dispose();
+    }
+    
     public void back()
     {
         MainMenu detail = new MainMenu(user);
@@ -433,6 +507,8 @@ public class SettingsMenu extends javax.swing.JFrame {
         ImgBack.setIcon(iconBack);
         ImageIcon iconSettings = new ImageIcon(getClass().getResource("/menu/settingsmedium.png"));
         findHeader.setIcon(iconSettings);
+        ImageIcon iconDatabase = new ImageIcon(getClass().getResource("/menu/databaseSettingsMedium.png"));
+        ImgModifyDatabase.setIcon(iconDatabase);
     }
     
     
@@ -475,10 +551,12 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel ImgAddAccount;
     private javax.swing.JLabel ImgBack;
     private javax.swing.JLabel ImgDeleteAccount;
+    private javax.swing.JLabel ImgModifyDatabase;
     private javax.swing.JLabel ImgUpdateAccount;
     private javax.swing.JPanel btnAddAccount;
     private javax.swing.JPanel btnBack;
     private javax.swing.JPanel btnDeleteAccount;
+    private javax.swing.JPanel btnModifyDatabase;
     private javax.swing.JPanel btnUpdateAccount;
     private javax.swing.JLabel findHeader;
     private javax.swing.JLabel jLabel13;
@@ -490,6 +568,7 @@ public class SettingsMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblDeleteAccount;
     private javax.swing.JLabel lblLoggedIn;
+    private javax.swing.JLabel lblModifyDatabase;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblUpdateAccount;
     private javax.swing.JLabel lbllogo;

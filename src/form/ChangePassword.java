@@ -39,6 +39,12 @@ public class ChangePassword extends javax.swing.JFrame {
         initComponents();
         userid = user.getUserid();
         lblName.setText(userid);
+        lblConfirmEmail.setVisible(false);
+        lblOldEmail.setVisible(false);
+        lblNewEmail.setVisible(false);
+        txtOldEmail.setVisible(false);
+        txtNewEmail.setVisible(false);
+        txtConfirmEmail.setVisible(false);
         image();
         
     }
@@ -66,13 +72,19 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblConfirmEmail = new javax.swing.JLabel();
         txtOldID = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         txtConfirmPassword = new javax.swing.JPasswordField();
         txtNewPassword = new javax.swing.JPasswordField();
         txtOldPassword = new javax.swing.JPasswordField();
+        jLabel8 = new javax.swing.JLabel();
+        lblOldEmail = new javax.swing.JLabel();
+        lblNewEmail = new javax.swing.JLabel();
+        txtConfirmEmail = new javax.swing.JTextField();
+        txtOldEmail = new javax.swing.JTextField();
+        txtNewEmail = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -112,16 +124,16 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel1.setText("旧账号:");
         panelBody.add(jLabel1);
-        jLabel1.setBounds(140, 30, 80, 40);
+        jLabel1.setBounds(140, 10, 80, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("新账号:");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(140, 90, 63, 40);
+        jLabel3.setBounds(140, 70, 63, 40);
 
         txtNewID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtNewID);
-        txtNewID.setBounds(230, 90, 600, 40);
+        txtNewID.setBounds(230, 70, 600, 40);
 
         txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         txtConfirmID.addActionListener(new java.awt.event.ActionListener() {
@@ -130,31 +142,31 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(txtConfirmID);
-        txtConfirmID.setBounds(230, 150, 600, 40);
+        txtConfirmID.setBounds(230, 130, 600, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("确认新账号:");
         panelBody.add(jLabel2);
-        jLabel2.setBounds(100, 150, 120, 40);
+        jLabel2.setBounds(100, 130, 120, 40);
 
         jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel5.setText("旧密码:");
         panelBody.add(jLabel5);
-        jLabel5.setBounds(130, 210, 63, 40);
+        jLabel5.setBounds(130, 190, 63, 40);
 
         jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel6.setText("新密码:");
         panelBody.add(jLabel6);
-        jLabel6.setBounds(130, 270, 80, 40);
+        jLabel6.setBounds(130, 250, 80, 40);
 
-        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel7.setText("确认密码：");
-        panelBody.add(jLabel7);
-        jLabel7.setBounds(110, 330, 95, 40);
+        lblConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail.setText("确认电子邮件：");
+        panelBody.add(lblConfirmEmail);
+        lblConfirmEmail.setBounds(70, 450, 150, 40);
 
         txtOldID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldID);
-        txtOldID.setBounds(230, 30, 600, 40);
+        txtOldID.setBounds(230, 10, 600, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -165,7 +177,7 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(100, 410, 130, 50);
+        btnBack.setBounds(100, 420, 130, 50);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更改");
@@ -176,22 +188,49 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnUpdate);
-        btnUpdate.setBounds(700, 400, 130, 50);
+        btnUpdate.setBounds(700, 420, 130, 50);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(230, 330, 600, 40);
+        txtConfirmPassword.setBounds(230, 310, 600, 40);
 
         txtNewPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtNewPassword);
-        txtNewPassword.setBounds(230, 270, 600, 40);
+        txtNewPassword.setBounds(230, 250, 600, 40);
 
         txtOldPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtOldPassword);
-        txtOldPassword.setBounds(230, 210, 600, 40);
+        txtOldPassword.setBounds(230, 190, 600, 40);
+
+        jLabel8.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel8.setText("确认密码：");
+        panelBody.add(jLabel8);
+        jLabel8.setBounds(110, 310, 95, 40);
+
+        lblOldEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblOldEmail.setText("旧电子邮件：");
+        panelBody.add(lblOldEmail);
+        lblOldEmail.setBounds(90, 370, 114, 40);
+
+        lblNewEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblNewEmail.setText("新电子邮件：");
+        panelBody.add(lblNewEmail);
+        lblNewEmail.setBounds(90, 410, 120, 40);
+
+        txtConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtConfirmEmail);
+        txtConfirmEmail.setBounds(230, 450, 600, 40);
+
+        txtOldEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtOldEmail);
+        txtOldEmail.setBounds(230, 370, 600, 40);
+
+        txtNewEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        panelBody.add(txtNewEmail);
+        txtNewEmail.setBounds(230, 410, 600, 40);
 
         jPanel2.add(panelBody);
-        panelBody.setBounds(90, 90, 970, 510);
+        panelBody.setBounds(90, 80, 970, 560);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -208,7 +247,7 @@ public class ChangePassword extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(0, 0, 1370, 990);
 
-        pack();
+        setBounds(0, 0, 1386, 747);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtConfirmIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmIDActionPerformed
@@ -254,17 +293,43 @@ public class ChangePassword extends javax.swing.JFrame {
         String oldPassword = txtOldPassword.getText();
         String newPassword = txtNewPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
+        String oldEmail = txtOldEmail.getText();
+        String newEmail = txtNewEmail.getText();
+        String confirmEmail = txtConfirmEmail.getText();
+        
         boolean resultValidateUsername = user.ValidateUser(userid);
         
         if(newID.equalsIgnoreCase(confirmID))
         {
-            if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase(""))
+            if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase("")
+                    && oldEmail.equalsIgnoreCase("") && newEmail.equalsIgnoreCase("") && confirmEmail.equalsIgnoreCase(""))
             {
                 UpdatePassword(newPassword, confirmPassword, oldPassword,user.getUserid());
             }
+            /*else if(oldID.equalsIgnoreCase("") && newID.equalsIgnoreCase("") && confirmID.equalsIgnoreCase("")
+                    && oldPassword.equalsIgnoreCase("") && newPassword.equalsIgnoreCase("") && confirmPassword.equalsIgnoreCase(""))
+            {
+                UpdateEmail(newEmail, confirmEmail, oldEmail, user.getUserid());
+            }*/
             else if(oldID.equalsIgnoreCase(user.getUserid()))
             {
-                if(resultValidateUsername)
+                ModifyID(resultValidateUsername,oldID, newID,confirmID, oldPassword, newPassword, confirmPassword, oldEmail, newEmail, confirmEmail);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "原本的ID不一致！");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "ID不一致！");
+        }
+        
+    }
+    
+    public void ModifyID(boolean resultValidateUsername,String oldID, String newID, String confirmID, String oldPassword, String newPassword, String confirmPassword, String oldEmail, String newEmail, String confirmEmail) throws SQLException
+    {
+        if(resultValidateUsername)
                 {
                     User user = new User();
                     Code code = new Code();
@@ -304,7 +369,14 @@ public class ChangePassword extends javax.swing.JFrame {
                                                         JOptionPane.showMessageDialog(rootPane, "ID 更改！");
                                                         lblName.setText(user.getUserid());
                                                         this.user = user;
-                                                        UpdatePassword(newPassword, confirmPassword, oldPassword,newID);
+                                                        if(!oldPassword.equalsIgnoreCase("") && !newPassword.equalsIgnoreCase("") && !confirmPassword.equalsIgnoreCase(""))
+                                                        {
+                                                            UpdatePassword(newPassword, confirmPassword, oldPassword,newID);
+                                                        }
+                                                        /*if(!oldEmail.equalsIgnoreCase("") && !newEmail.equalsIgnoreCase("") && !confirmEmail.equalsIgnoreCase(""))
+                                                        {
+                                                            UpdateEmail(newEmail, confirmEmail, oldEmail, newID);
+                                                        }*/
                                                     }
                                                     else
                                                     {
@@ -387,17 +459,6 @@ public class ChangePassword extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(rootPane, "ID 已用过！");
                 }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(rootPane, "原本的ID不一致！");
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(rootPane, "ID不一致！");
-        }
-        
     }
     
     public void UpdatePassword(String newPassword, String confirmPassword, String oldPassword, String userid) throws SQLException
@@ -426,6 +487,33 @@ public class ChangePassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "密码不一致！");
         }
     }
+    
+    /*public void UpdateEmail(String newEmail, String confirmEmail, String oldEmail, String userid)
+    {
+        if(newEmail.equalsIgnoreCase(confirmEmail))
+        {
+            if(oldEmail.equalsIgnoreCase(user.get()))
+            {
+                String resultUser = user.UpdatePassword(userid,newPassword);
+                if(resultUser != null && resultUser.equalsIgnoreCase("1"))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "更新密码成功！");
+                }
+                else
+                {
+                     JOptionPane.showMessageDialog(rootPane, "更新密码失败！");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "原本的密码不一致！");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "密码不一致！");
+        }
+    }*/
     
     public void image()
     {
@@ -487,18 +575,24 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblConfirmEmail;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNewEmail;
+    private javax.swing.JLabel lblOldEmail;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JTextField txtConfirmEmail;
     private javax.swing.JTextField txtConfirmID;
     private javax.swing.JPasswordField txtConfirmPassword;
+    private javax.swing.JTextField txtNewEmail;
     private javax.swing.JTextField txtNewID;
     private javax.swing.JPasswordField txtNewPassword;
+    private javax.swing.JTextField txtOldEmail;
     private javax.swing.JTextField txtOldID;
     private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables

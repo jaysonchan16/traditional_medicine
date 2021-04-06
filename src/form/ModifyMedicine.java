@@ -398,7 +398,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnDelete);
-        btnDelete.setBounds(660, 460, 120, 40);
+        btnDelete.setBounds(690, 490, 100, 40);
 
         btnUpdate.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnUpdate.setText("更新");
@@ -409,7 +409,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnUpdate);
-        btnUpdate.setBounds(460, 510, 120, 40);
+        btnUpdate.setBounds(470, 490, 100, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -420,7 +420,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnBack);
-        btnBack.setBounds(10, 460, 120, 40);
+        btnBack.setBounds(30, 490, 100, 40);
 
         tblMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
@@ -455,7 +455,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnPrint);
-        btnPrint.setBounds(460, 460, 120, 40);
+        btnPrint.setBounds(360, 490, 100, 40);
 
         btnModify.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnModify.setText("更改");
@@ -466,7 +466,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnModify);
-        btnModify.setBounds(250, 510, 120, 40);
+        btnModify.setBounds(140, 490, 100, 40);
 
         txtMedicine.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtMedicine);
@@ -481,7 +481,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnReset);
-        btnReset.setBounds(250, 460, 120, 40);
+        btnReset.setBounds(250, 490, 100, 40);
 
         txtEffect.setColumns(20);
         txtEffect.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
@@ -538,7 +538,7 @@ public class ModifyMedicine extends javax.swing.JFrame {
             }
         });
         panelBody.add(btnExcel);
-        btnExcel.setBounds(660, 510, 120, 40);
+        btnExcel.setBounds(580, 490, 100, 40);
 
         jPanel2.add(panelBody);
         panelBody.setBounds(20, 80, 1320, 560);

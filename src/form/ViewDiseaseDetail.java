@@ -168,7 +168,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDisease);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 60, 1250, 380);
+        jScrollPane1.setBounds(30, 60, 1250, 380);
 
         btnPrint.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnPrint.setText("打印");
@@ -224,7 +224,7 @@ public class ViewDiseaseDetail extends javax.swing.JFrame {
         jPanel4.setBounds(50, 460, 30, 30);
 
         jPanel5.add(jPanel2);
-        jPanel2.setBounds(30, 100, 1330, 530);
+        jPanel2.setBounds(20, 100, 1330, 530);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));

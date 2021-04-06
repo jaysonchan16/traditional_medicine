@@ -40,6 +40,13 @@ public class Code {
         this.remark = remark;
     }
 
+    public Code(String code, int number, String remark, String user)
+    {
+        this.code = code;
+        this.number = number;
+        this.remark = remark;
+        this.user = user;
+    }
     /**
      * @return the code
      */
@@ -269,5 +276,35 @@ public class Code {
     {
         SQLQuery sql = new SQLQuery();
         return sql.DeleteUser("Maintcode", user);
+    }
+    
+    public String insertCode(String query,String User) throws SQLException
+    {
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+        return sql.AddEditDeleteQuery(query);
+    }
+    
+    public List<Code> getCodes() throws SQLException{
+        List<Code> codeList = new ArrayList<>();
+            String query = "Select Code,Number,Remark,User from Maintcode";
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 codeList.add(new Code(rs.getString("Code"),rs.getInt("Number"), rs.getString("Remark"),
+                         rs.getString("User")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally{
+            rs.close();
+            st.close();
+        }
+        rs.close();
+        st.close();        
+        return codeList;
     }
 }

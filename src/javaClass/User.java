@@ -21,6 +21,8 @@ import form.NewPatient;
 public class User {
     private String userid;
     private String password;
+    private String position;
+    private String email;
     protected Statement st = connect.connection();
     ResultSet rs;
     
@@ -34,8 +36,15 @@ public class User {
     public User(String userid, String password){
         this.userid = userid;
         this.password = password;
+        //this.email = email;
     }
 
+    public User(String userid, String password, String position){
+        this.userid = userid;
+        this.password = password;
+        //this.email = email;
+        this.position = position;
+    }
     /**
      * @return the userid
      */
@@ -64,6 +73,33 @@ public class User {
         this.password = password;
     }
     
+        /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+     /**
+     * @return the position
+     */
+    public String getPosition() {
+        return position;
+    }
+
+    /**
+     * @param position the position to set
+     */
+    public void setPosition(String position) {
+        this.position = position;
+    }
     /*public void login(String userid, String password)
     {
         st = connect.connection();
@@ -104,6 +140,7 @@ public class User {
                 }*/
                  while (rs.next()) {
                      return new User(rs.getString("userid"), rs.getString("password"));
+                     //return new User(rs.getString("userid"), rs.getString("password"),rs.getString("email"));
                 //System.out.println(rs.getString("userid") + "\t" +
                 //                   rs.getString("password"));
                    }
@@ -283,17 +320,28 @@ public class User {
         }
     }
     
-    public String registerUser(String position) throws SQLException
+    public String registerUser() throws SQLException
     {
-        try {
-            String query = "insert into User(userid,password,position) "
-                    + "Select '"+userid+"','"+password+"','"+position+"'";
-            System.out.println(query);
-            st.executeUpdate(query);
-            st.close();
-            return "1";
-        } catch (SQLException ex) {
-            return "User.registerUser get error on line 231, "+ex.getMessage();
+        boolean validate = ValidateUser(userid);
+        
+        if(validate)
+        {
+            try {
+    //            String query = "insert into User(userid,password,position,email) "
+    //                    + "Select '"+userid+"','"+password+"','"+position+"','"+email;
+                  String query = "insert into User(userid,password,position) "
+                           + "Select '"+userid+"','"+password+"','"+getPosition()+"'";
+                System.out.println(query);
+                st.executeUpdate(query);
+                st.close();
+                return "1";
+            } catch (SQLException ex) {
+                return "User.registerUser get error on line 231, "+ex.getMessage();
+            }
+        }
+        else
+        {
+            return "这账号已经注册过了! ";
         }
     }
     
@@ -431,5 +479,63 @@ public class User {
         st.close();
         return name;
     }
-}
+    
+    public User getUsersDetail(String username) throws SQLException{
+        List<User> user = new ArrayList<>();
+        String query = "Select * from User where userid = '"+username+"'";
+        rs = st.executeQuery(query);
+        try {
+                /*while ((line = br.readLine()) != null) {
+                  String arr[] = line.split(",");
+                  if(arr.length != 9)
+                  {
+                      continue;
+                  }
+                  if(username.equals(arr[0]))
+                  {
+                      return new Resident(arr[0],arr[1],arr[2],arr[3],arr[4],
+                              Double.valueOf(arr[5]),arr[6],
+                              Integer.valueOf(arr[7]),Integer.valueOf(arr[8]));
+                  }
+                }*/
+                 while (rs.next()) {
+                     //return new User(rs.getString("userid"), rs.getString("password"),rs.getString("position"),rs.getString("email"));
+                     return new User(rs.getString("userid"), rs.getString("password"),rs.getString("position"));
+                //System.out.println(rs.getString("userid") + "\t" +
+                //                   rs.getString("password"));
+                   }
+               
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        finally
+        {
+            st.close();
+            rs.close();
+        }
+        return new User();
+    }
 
+    public List<User> getUsers() throws SQLException{
+            List<User> userList = new ArrayList<>();
+
+            String query = "Select userid, password, position from User";
+            System.out.println(query);
+        rs = st.executeQuery(query);
+        try {
+            while (rs.next()) {
+                 userList.add(new User(rs.getString("userid"),
+                         rs.getString("password"),rs.getString("position")));
+            } 
+        } 
+        catch (Exception e)
+        {
+            throw(new NoSuchElementException(e.getMessage()));
+        }
+        return userList;
+    }
+
+   
+}

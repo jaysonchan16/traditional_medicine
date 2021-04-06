@@ -60,6 +60,7 @@ public class LoginUI2 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -123,7 +124,15 @@ public class LoginUI2 extends javax.swing.JFrame {
         jLabel6.setText("This product is license to Heng Seng Tong");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setText("Version: 1.0");
+        jLabel7.setText("Version: 1.0.1");
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("忘记密码？");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -138,14 +147,17 @@ public class LoginUI2 extends javax.swing.JFrame {
                             .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtUserID, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(126, 126, 126)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(54, 54, 54))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,12 +195,14 @@ public class LoginUI2 extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(144, 144, 144))
+                .addGap(117, 117, 117))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -206,7 +220,7 @@ public class LoginUI2 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -236,7 +250,7 @@ public class LoginUI2 extends javax.swing.JFrame {
                     System.out.println("reference added!");
                 }
                 user.validateID(txtUserID.getText());
-                if(user.validateBeginner(txtUserID.getText()))
+                /*if(user.validateBeginner(txtUserID.getText()))
                 {
                     if( user.login(userid, password)){
                         user = user.getUser(userid);
@@ -249,7 +263,7 @@ public class LoginUI2 extends javax.swing.JFrame {
                     }
                 }
                 else
-                {
+                {*/
                     if( user.login(userid, password)){
                         user = user.getUser(userid);
 
@@ -263,7 +277,7 @@ public class LoginUI2 extends javax.swing.JFrame {
                     else {
                         JOptionPane.showMessageDialog(rootPane,"密码或者账号不符合");
                     }
-                }
+                //}
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"LoginUI.btnLoginActionPerformed get error on line 160, "+ex.getMessage());
@@ -274,6 +288,13 @@ public class LoginUI2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        ForgotPassword fgd = new ForgotPassword();
+        fgd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -327,6 +348,7 @@ public class LoginUI2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

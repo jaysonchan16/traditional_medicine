@@ -59,6 +59,8 @@ public class RegisterSupervisor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
@@ -97,30 +99,30 @@ public class RegisterSupervisor extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPassword);
-        txtPassword.setBounds(330, 210, 390, 39);
+        txtPassword.setBounds(340, 230, 390, 39);
 
         txtUserid.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtUserid);
-        txtUserid.setBounds(330, 100, 390, 37);
+        txtUserid.setBounds(340, 30, 390, 37);
 
         txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(330, 340, 390, 37);
+        txtConfirmPassword.setBounds(340, 340, 390, 37);
 
         jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("账号：");
+        jLabel1.setText("确认账号：");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(230, 100, 80, 40);
+        jLabel1.setBounds(220, 130, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel2.setText("密码：");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(230, 220, 60, 26);
+        jLabel2.setBounds(240, 230, 60, 40);
 
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("确认密码：");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(230, 340, 100, 40);
+        jLabel3.setBounds(240, 340, 100, 40);
 
         btnAdd.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnAdd.setText("添加");
@@ -131,7 +133,7 @@ public class RegisterSupervisor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnAdd);
-        btnAdd.setBounds(650, 430, 130, 50);
+        btnAdd.setBounds(650, 490, 130, 50);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -142,10 +144,17 @@ public class RegisterSupervisor extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(190, 430, 130, 50);
+        btnBack.setBounds(190, 490, 130, 50);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("账号：");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(240, 30, 80, 40);
+        jPanel2.add(jTextField1);
+        jTextField1.setBounds(340, 130, 390, 40);
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(130, 80, 940, 550);
+        jPanel2.setBounds(130, 80, 940, 560);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -174,10 +183,10 @@ public class RegisterSupervisor extends javax.swing.JFrame {
         if(password.equalsIgnoreCase(confirmpassword))
         {
             try {
-                User user = new User(userid, password);
+                User user = new User(userid, password,"Supervisor");
                 if(user.ValidateUser(userid))
                 {
-                    String result = user.registerUser("Supervisor");
+                    String result = user.registerUser();
                     if(result.equalsIgnoreCase("1"))
                     {
                         JOptionPane.showMessageDialog(rootPane, "注册成功！");
@@ -270,10 +279,12 @@ public class RegisterSupervisor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
