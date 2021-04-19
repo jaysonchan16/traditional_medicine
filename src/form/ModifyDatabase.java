@@ -284,7 +284,7 @@ public class ModifyDatabase extends javax.swing.JFrame {
         String table = txtSelectTable.getText();
         String firstLetter = query.substring(0, 1);
         
-        if(firstLetter.equalsIgnoreCase("U") || firstLetter.equalsIgnoreCase("I") || firstLetter.equalsIgnoreCase("D"))
+        if(firstLetter.equalsIgnoreCase("U") || firstLetter.equalsIgnoreCase("I") || firstLetter.equalsIgnoreCase("D") || firstLetter.equalsIgnoreCase("C") || firstLetter.equalsIgnoreCase("A"))
         {
             if(code.insertCode(query, userid).equalsIgnoreCase("1"))
             {

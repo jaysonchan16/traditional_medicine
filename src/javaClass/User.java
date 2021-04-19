@@ -23,6 +23,14 @@ public class User {
     private String password;
     private String position;
     private String email;
+    private String securityQuestion1;
+    private String securityQuestion2;
+    private String securityQuestion3;
+    private String securityAnswer1;
+    private String securityAnswer2;
+    private String securityAnswer3;
+    private int firstLogin;
+    
     protected Statement st = connect.connection();
     ResultSet rs;
     
@@ -44,6 +52,20 @@ public class User {
         this.password = password;
         //this.email = email;
         this.position = position;
+    }
+    
+    public User(String userid, String password, String position, int firstLogin, String email, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, String securityQuestion3, String securityAnswer3){
+        this.userid = userid;
+        this.password = password;
+        this.email = email;
+        this.position = position;
+        this.securityQuestion1 = securityQuestion1;
+        this.securityQuestion2 = securityQuestion2;
+        this.securityQuestion3 = securityQuestion3;
+        this.securityAnswer1 = securityAnswer1;
+        this.securityAnswer2 = securityAnswer2;
+        this.securityAnswer3 = securityAnswer3;
+        this.firstLogin = firstLogin;
     }
     /**
      * @return the userid
@@ -232,6 +254,27 @@ public class User {
         
     }
     
+    public int validateSupervisor() throws SQLException
+    {
+        int count = 0;
+        String countID = "Select count(*)as ID from User where position = 'Supervisor'";
+        rs = st.executeQuery(countID);
+        count = rs.getInt("ID");
+        if(count == 0)
+        {
+            st.close();
+            rs.close();
+            return 1;
+        }
+        else 
+        {
+            st.close();
+            rs.close();
+            return 0;
+        }
+        
+    }
+    
     public int registerMaintcode(String User) throws SQLException
     {
         try {
@@ -327,10 +370,11 @@ public class User {
         if(validate)
         {
             try {
-    //            String query = "insert into User(userid,password,position,email) "
-    //                    + "Select '"+userid+"','"+password+"','"+position+"','"+email;
-                  String query = "insert into User(userid,password,position) "
-                           + "Select '"+userid+"','"+password+"','"+getPosition()+"'";
+                String query = "insert into User(userid,password,position,email,firstLogin,SecurityQuestion1,SecurityAnswer1,SecurityQuestion2,SecurityAnswer2,SecurityQuestion3,SecurityAnswer3) "
+                        + "Select '"+userid+"','"+password+"','"+position+"','"+email+"','"+firstLogin+"',"+securityQuestion1+"','"+securityAnswer1+"','"+securityQuestion2+"','"+securityAnswer2+"','"+securityQuestion3+"','"+securityAnswer3+"'";
+
+//                  String query = "insert into User(userid,password,position) "
+//                           + "Select '"+userid+"','"+password+"','"+getPosition()+"'";
                 System.out.println(query);
                 st.executeUpdate(query);
                 st.close();
@@ -388,6 +432,16 @@ public class User {
         SQLQuery sql = new SQLQuery();
         String result = sql.AddEditDeleteQuery(query);
         setPassword(newPassword);
+        return result;
+    }
+    
+    public String UpdateEmail(String userid, String newEmail) throws SQLException
+    {
+        String query = "Update User Set password = '"+newEmail+"' where userid = '"+userid+"'";
+        System.out.println(query);
+        SQLQuery sql = new SQLQuery();
+        String result = sql.AddEditDeleteQuery(query);
+        setPassword(newEmail);
         return result;
     }
     
@@ -535,6 +589,104 @@ public class User {
             throw(new NoSuchElementException(e.getMessage()));
         }
         return userList;
+    }
+
+    /**
+     * @return the securityQuestion1
+     */
+    public String getSecurityQuestion1() {
+        return securityQuestion1;
+    }
+
+    /**
+     * @param securityQuestion1 the securityQuestion1 to set
+     */
+    public void setSecurityQuestion1(String securityQuestion1) {
+        this.securityQuestion1 = securityQuestion1;
+    }
+
+    /**
+     * @return the securityQuestion2
+     */
+    public String getSecurityQuestion2() {
+        return securityQuestion2;
+    }
+
+    /**
+     * @param securityQuestion2 the securityQuestion2 to set
+     */
+    public void setSecurityQuestion2(String securityQuestion2) {
+        this.securityQuestion2 = securityQuestion2;
+    }
+
+    /**
+     * @return the securityQuestion3
+     */
+    public String getSecurityQuestion3() {
+        return securityQuestion3;
+    }
+
+    /**
+     * @param securityQuestion3 the securityQuestion3 to set
+     */
+    public void setSecurityQuestion3(String securityQuestion3) {
+        this.securityQuestion3 = securityQuestion3;
+    }
+
+    /**
+     * @return the securityAnswer1
+     */
+    public String getSecurityAnswer1() {
+        return securityAnswer1;
+    }
+
+    /**
+     * @param securityAnswer1 the securityAnswer1 to set
+     */
+    public void setSecurityAnswer1(String securityAnswer1) {
+        this.securityAnswer1 = securityAnswer1;
+    }
+
+    /**
+     * @return the securityAnswer2
+     */
+    public String getSecurityAnswer2() {
+        return securityAnswer2;
+    }
+
+    /**
+     * @param securityAnswer2 the securityAnswer2 to set
+     */
+    public void setSecurityAnswer2(String securityAnswer2) {
+        this.securityAnswer2 = securityAnswer2;
+    }
+
+    /**
+     * @return the securityAnswer3
+     */
+    public String getSecurityAnswer3() {
+        return securityAnswer3;
+    }
+
+    /**
+     * @param securityAnswer3 the securityAnswer3 to set
+     */
+    public void setSecurityAnswer3(String securityAnswer3) {
+        this.securityAnswer3 = securityAnswer3;
+    }
+
+    /**
+     * @return the firstLogin
+     */
+    public int getFirstLogin() {
+        return firstLogin;
+    }
+
+    /**
+     * @param firstLogin the firstLogin to set
+     */
+    public void setFirstLogin(int firstLogin) {
+        this.firstLogin = firstLogin;
     }
 
    

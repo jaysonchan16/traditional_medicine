@@ -17,7 +17,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
+import mail.ConfigUtility;
+import mail.EmailUtility;
 /**
  *
  * @author Sheng
@@ -28,6 +29,7 @@ public class ForgotPassword extends javax.swing.JFrame {
      * Creates new form ForgotPassword
      */
     int randomCode;
+    private ConfigUtility configUtil = new ConfigUtility();
     
     public ForgotPassword() {
         initComponents();
@@ -98,7 +100,7 @@ public class ForgotPassword extends javax.swing.JFrame {
 
         txtID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         panelBody.add(txtID);
-        txtID.setBounds(240, 120, 600, 40);
+        txtID.setBounds(250, 30, 600, 40);
 
         btnFind.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnFind.setText("寻找密码");
@@ -125,7 +127,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jLabel3.setText("账号：");
         panelBody.add(jLabel3);
-        jLabel3.setBounds(140, 120, 80, 40);
+        jLabel3.setBounds(150, 30, 80, 40);
 
         getContentPane().add(panelBody);
         panelBody.setBounds(90, 90, 970, 510);
@@ -155,6 +157,104 @@ public class ForgotPassword extends javax.swing.JFrame {
         User user= new User(id);
         String password = user.getUser(id).getPassword();
         lblPassword.setText("你的密码是: "+password);
+//        Send2();
+    }
+    
+    public void Send2()
+    {
+        if (!validateFields()) {
+                return;
+        }
+            Random rand = new Random();
+            randomCode = rand.nextInt(999999);
+            String toAddress = txtID.getText();
+            String subject = "Testing";
+            String message = "Your reset code is "+randomCode;
+
+            try {
+                    Properties smtpProperties = configUtil.loadProperties();
+                    EmailUtility.sendEmail(smtpProperties, toAddress, subject, message);
+
+                    JOptionPane.showMessageDialog(this, 
+                                    "The e-mail has been sent successfully!");
+
+            } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, 
+                                    "Error while sending the e-mail: " + ex.getMessage(),
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+            }
+    }
+    
+    private boolean validateFields() {
+            if (txtID.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, 
+                                    "Please enter To address!",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    txtID.requestFocus();
+                    return false;
+            }
+
+            if (txtID.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, 
+                                    "Please enter subject!",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    txtID.requestFocus();
+                    return false;
+            }
+
+            if (txtID.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, 
+                                    "Please enter message!",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                    txtID.requestFocus();
+                    return false;
+            }
+
+            return true;
+	}
+    
+    public void Send1()
+    {
+            String userName = "zhongyao2021@gmail.com";
+            String password = "brucetan2021";
+            String emailSubject = "Reseting Code";
+            String emailMessage = "Your reset code is "+randomCode;
+            String to = txtID.getText();
+            try {
+            // Use javamail api, set parameters from registration.properties file
+            // set the session properties
+            Properties props = System.getProperties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.transport.protocol", "smtp");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            Session session = Session.getDefaultInstance(props, null);
+            // Create email message
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(userName));
+            String[] recipientList = to.split(",");
+            InternetAddress[] recipientAddress = new InternetAddress[recipientList.length];
+            int counter = 0;
+            for (String recipient: recipientList) {
+                recipientAddress[counter] = new InternetAddress(recipient.trim());
+                counter++;
+            }
+            message.setRecipients(Message.RecipientType.TO, recipientAddress);
+            message.setSubject(emailSubject);
+            message.setContent(emailMessage, "text/html");
+            // Send smtp message
+            Transport tr = session.getTransport("smtp");
+            tr.connect("smtp.gmail.com", 587, userName, password);
+            message.saveChanges();
+            tr.sendMessage(message, message.getAllRecipients());
+            tr.close();
+            JOptionPane.showMessageDialog(null, "code has been send to email");
+            } catch (MessagingException e) {
+                //return "Error in method sendEmailNotification: " + e;
+            }
     }
     
     public void Send()
@@ -170,16 +270,12 @@ public class ForgotPassword extends javax.swing.JFrame {
             String message = "Your reset code is "+randomCode;
             boolean sessionDebug = false;
             Properties pros = System.getProperties();
-            pros.put("mail.smtp.host", host);
-            pros.put("mail.smtp.port", 465); 
-            pros.put("mail.smtp.user", user); 
-            pros.put("mail.smtp.auth", "true"); 
-            pros.put("mail.smtp.starttls.enable","true");
-            pros.put("mail.smtp.debug", "true");
-            pros.put("mail.smtp.socketFactory.port", 465);
-            pros.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            pros.put("mail.smtp.socketFactory.fallback", "false");
-            
+//            pros.put("mail.smtp.starttls.enable", "true");
+//            pros.put("mail.smtp.host", "smtp.gmail.com");
+//            pros.put("mail.smtp.port", "587");
+//            pros.put("mail.smtp.auth", "true");
+//            pros.put("mail.smtp.starttls.required", "true");
+//            
 //            pros.put("mail.smtp.starttls.enable","true");
 //            pros.put("mail.smtp.host", "host");
 //            pros.put("mail.smtp.port", "587");
@@ -187,18 +283,18 @@ public class ForgotPassword extends javax.swing.JFrame {
 //            pros.put("mail.debug", "true"); 
 
 
-//            props.put("mail.smtp.user","username"); 
-//            props.put("mail.smtp.host", "smtp.gmail.com"); 
-//            props.put("mail.smtp.port", "25"); 
-//            props.put("mail.debug", "true"); 
-//            props.put("mail.smtp.auth", "true"); 
-//            props.put("mail.smtp.starttls.enable","true"); 
-//            props.put("mail.smtp.EnableSSL.enable","true");
-//
-//            props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-//            props.setProperty("mail.smtp.socketFactory.fallback", "false");   
-//            props.setProperty("mail.smtp.port", "465");   
-//            props.setProperty("mail.smtp.socketFactory.port", "465"); 
+            pros.put("mail.smtp.user",user); 
+            pros.put("mail.smtp.host", "smtp.gmail.com"); 
+            pros.put("mail.smtp.port", "25"); 
+            pros.put("mail.debug", "true"); 
+            pros.put("mail.smtp.auth", "true"); 
+            pros.put("mail.smtp.starttls.enable","true"); 
+            pros.put("mail.smtp.EnableSSL.enable","true");
+
+            pros.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+            pros.setProperty("mail.smtp.socketFactory.fallback", "false");   
+            pros.setProperty("mail.smtp.port", "587");   
+            pros.setProperty("mail.smtp.socketFactory.port", "587"); 
             java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Session mailSession = Session.getDefaultInstance(pros,null);
             mailSession.setDebug(sessionDebug);

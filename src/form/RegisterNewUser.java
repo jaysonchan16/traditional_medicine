@@ -26,10 +26,10 @@ public class RegisterNewUser extends javax.swing.JFrame {
      */
     public RegisterNewUser() {
         initComponents();
-        lblEmail.setVisible(false);
+        //lblEmail.setVisible(false);
         lblConfirmEmail.setVisible(false);
-        txtEmail.setVisible(false);
-        txtConfirnEmail.setVisible(false);
+//        txtEmail.setVisible(false);
+//        txtConfirnEmail.setVisible(false);
         image();
     }
 
@@ -51,18 +51,30 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JPasswordField();
+        btnConfirm = new javax.swing.JButton();
         txtUserid = new javax.swing.JTextField();
         txtConfirmPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnConfirm = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        txtConfirnEmail = new javax.swing.JTextField();
         lblConfirmEmail = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
         txtConfirmID = new javax.swing.JTextField();
+        comboSecurityQuestion1 = new javax.swing.JComboBox<>();
+        lblConfirmEmail2 = new javax.swing.JLabel();
+        comboSecurityQuestion2 = new javax.swing.JComboBox<>();
+        lblConfirmEmail3 = new javax.swing.JLabel();
+        comboSecurityQuestion3 = new javax.swing.JComboBox<>();
+        txtSecurityAnswer3 = new javax.swing.JTextField();
+        txtSecurityAnswer1 = new javax.swing.JTextField();
+        txtSecurityAnswer2 = new javax.swing.JTextField();
+        lblConfirmEmail4 = new javax.swing.JLabel();
+        lblConfirmEmail5 = new javax.swing.JLabel();
+        lblConfirmEmail6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        txtConfirmEmail = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -97,30 +109,7 @@ public class RegisterNewUser extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtPassword);
-        txtPassword.setBounds(330, 230, 390, 39);
-
-        txtUserid.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jPanel2.add(txtUserid);
-        txtUserid.setBounds(330, 60, 390, 37);
-
-        txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jPanel2.add(txtConfirmPassword);
-        txtConfirmPassword.setBounds(330, 310, 390, 37);
-
-        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel1.setText("确定账号：");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(210, 150, 100, 40);
-
-        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel2.setText("密码：");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(240, 230, 60, 40);
-
-        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel3.setText("确认密码：");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(200, 310, 100, 40);
+        txtPassword.setBounds(60, 70, 470, 39);
 
         btnConfirm.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnConfirm.setText("确认");
@@ -131,7 +120,108 @@ public class RegisterNewUser extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnConfirm);
-        btnConfirm.setBounds(640, 470, 130, 50);
+        btnConfirm.setBounds(980, 480, 130, 50);
+
+        txtUserid.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtUserid);
+        txtUserid.setBounds(60, 20, 470, 37);
+
+        txtConfirmPassword.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtConfirmPassword);
+        txtConfirmPassword.setBounds(630, 70, 480, 40);
+
+        jLabel1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel1.setText("确定账号：");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(540, 20, 100, 40);
+
+        jLabel2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel2.setText("密码：");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(10, 70, 60, 40);
+
+        jLabel3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel3.setText("确认密码：");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(540, 70, 100, 40);
+
+        lblConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail.setText("答案3:");
+        jPanel2.add(lblConfirmEmail);
+        lblConfirmEmail.setBounds(10, 420, 100, 40);
+
+        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel6.setText("账号：");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(10, 20, 80, 40);
+
+        txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtConfirmID);
+        txtConfirmID.setBounds(630, 20, 480, 37);
+
+        comboSecurityQuestion1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(comboSecurityQuestion1);
+        comboSecurityQuestion1.setBounds(110, 170, 1000, 40);
+
+        lblConfirmEmail2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail2.setText("安全问题2:");
+        jPanel2.add(lblConfirmEmail2);
+        lblConfirmEmail2.setBounds(10, 270, 100, 40);
+
+        comboSecurityQuestion2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(comboSecurityQuestion2);
+        comboSecurityQuestion2.setBounds(110, 270, 1000, 40);
+
+        lblConfirmEmail3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail3.setText("安全问题3:");
+        jPanel2.add(lblConfirmEmail3);
+        lblConfirmEmail3.setBounds(10, 370, 100, 40);
+
+        comboSecurityQuestion3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(comboSecurityQuestion3);
+        comboSecurityQuestion3.setBounds(110, 370, 1000, 40);
+
+        txtSecurityAnswer3.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtSecurityAnswer3);
+        txtSecurityAnswer3.setBounds(110, 420, 1000, 40);
+
+        txtSecurityAnswer1.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        txtSecurityAnswer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSecurityAnswer1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtSecurityAnswer1);
+        txtSecurityAnswer1.setBounds(110, 220, 1000, 40);
+
+        txtSecurityAnswer2.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtSecurityAnswer2);
+        txtSecurityAnswer2.setBounds(110, 320, 1000, 40);
+
+        lblConfirmEmail4.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail4.setText("安全问题1:");
+        jPanel2.add(lblConfirmEmail4);
+        lblConfirmEmail4.setBounds(10, 170, 100, 40);
+
+        lblConfirmEmail5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail5.setText("答案1:");
+        jPanel2.add(lblConfirmEmail5);
+        lblConfirmEmail5.setBounds(10, 220, 100, 40);
+
+        lblConfirmEmail6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        lblConfirmEmail6.setText("答案2:");
+        jPanel2.add(lblConfirmEmail6);
+        lblConfirmEmail6.setBounds(10, 320, 100, 40);
+
+        jLabel5.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel5.setText("电子邮件:");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(10, 120, 90, 40);
+
+        jLabel7.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jLabel7.setText("确认电子邮件:");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(540, 120, 120, 40);
 
         btnBack.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         btnBack.setText("退出");
@@ -142,34 +232,15 @@ public class RegisterNewUser extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBack);
-        btnBack.setBounds(180, 470, 130, 50);
+        btnBack.setBounds(10, 480, 130, 50);
 
-        txtConfirnEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jPanel2.add(txtConfirnEmail);
-        txtConfirnEmail.setBounds(330, 420, 390, 37);
-
-        lblConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        lblConfirmEmail.setText("确定电子邮件：");
-        jPanel2.add(lblConfirmEmail);
-        lblConfirmEmail.setBounds(160, 420, 140, 40);
-
-        jLabel6.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jLabel6.setText("账号：");
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(230, 60, 80, 40);
-
-        lblEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        lblEmail.setText("电子邮件：");
-        jPanel2.add(lblEmail);
-        lblEmail.setBounds(200, 380, 100, 40);
-
-        txtConfirmID.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
-        jPanel2.add(txtConfirmID);
-        txtConfirmID.setBounds(330, 150, 390, 37);
+        txtConfirmEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
+        jPanel2.add(txtConfirmEmail);
+        txtConfirmEmail.setBounds(670, 120, 440, 37);
 
         txtEmail.setFont(new java.awt.Font("STXihei", 1, 18)); // NOI18N
         jPanel2.add(txtEmail);
-        txtEmail.setBounds(330, 380, 390, 37);
+        txtEmail.setBounds(100, 120, 430, 37);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
@@ -183,18 +254,18 @@ public class RegisterNewUser extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -212,29 +283,42 @@ public class RegisterNewUser extends javax.swing.JFrame {
         String confirmuserid = txtConfirmID.getText();
         String password = txtPassword.getText();
         String confirmpassword = txtConfirmPassword.getText();
-//        String email = txtEmail.getText();
-//        String confirmEmail = txtConfirnEmail.getText();
+        String email = txtEmail.getText();
+        String confirmEmail = txtConfirmEmail.getText();
+        String securityQue1 = comboSecurityQuestion1.getSelectedItem().toString();
+        String securityQue2 = comboSecurityQuestion2.getSelectedItem().toString();
+        String securityQue3 = comboSecurityQuestion3.getSelectedItem().toString();
+        String securityAns1 = txtSecurityAnswer1.getText();
+        String securityAns2 = txtSecurityAnswer2.getText();
+        String securityAns3 = txtSecurityAnswer3.getText();
         
         if(userid.equalsIgnoreCase(confirmuserid))
         {
             if(password.equalsIgnoreCase(confirmpassword))
             {
-                try {
-                    User user = new User(userid, password,"Admin");
-                    String result = user.registerUser();
-                    if(result.equalsIgnoreCase("1"))
-                    {
-                        JOptionPane.showMessageDialog(rootPane, "注册成功！");
-                        LoginUI2 loginui = new LoginUI2();
-                        loginui.setVisible(true);
-                        this.dispose();
+                if(email.equalsIgnoreCase(confirmEmail))
+                {
+                    try {
+                        User user = new User(userid, password,"Admin",1,email,securityQue1,securityAns1,securityQue2,securityAns2,securityQue3,securityAns3);
+                        String result = user.registerUser();
+                        if(result.equalsIgnoreCase("1"))
+                        {
+                            JOptionPane.showMessageDialog(rootPane, "注册成功！");
+                            LoginUI2 loginui = new LoginUI2();
+                            loginui.setVisible(true);
+                            this.dispose();
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(rootPane, result);
+                        }
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, "RegisterNewUser.btnConfirmActionPerformed get error on line 124,"+ex.getMessage());
                     }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(rootPane, result);
-                    }
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, "RegisterNewUser.btnConfirmActionPerformed get error on line 124,"+ex.getMessage());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "电子邮件和确认电子邮件不相对！");
                 }
             }
             else
@@ -248,10 +332,13 @@ public class RegisterNewUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void txtSecurityAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSecurityAnswer1ActionPerformed
         // TODO add your handling code here:
-        LoginUI2 loginui = new LoginUI2();
-        loginui.setVisible(true);
+    }//GEN-LAST:event_txtSecurityAnswer1ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        LoginUI2 register = new LoginUI2();
+        register.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -305,27 +392,39 @@ public class RegisterNewUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JComboBox<String> comboSecurityQuestion1;
+    private javax.swing.JComboBox<String> comboSecurityQuestion2;
+    private javax.swing.JComboBox<String> comboSecurityQuestion3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblConfirmEmail;
-    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblConfirmEmail2;
+    private javax.swing.JLabel lblConfirmEmail3;
+    private javax.swing.JLabel lblConfirmEmail4;
+    private javax.swing.JLabel lblConfirmEmail5;
+    private javax.swing.JLabel lblConfirmEmail6;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPanel panelHeader;
+    private javax.swing.JTextField txtConfirmEmail;
     private javax.swing.JTextField txtConfirmID;
     private javax.swing.JPasswordField txtConfirmPassword;
-    private javax.swing.JTextField txtConfirnEmail;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtSecurityAnswer1;
+    private javax.swing.JTextField txtSecurityAnswer2;
+    private javax.swing.JTextField txtSecurityAnswer3;
     private javax.swing.JTextField txtUserid;
     // End of variables declaration//GEN-END:variables
 }
